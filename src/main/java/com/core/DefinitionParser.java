@@ -23,7 +23,9 @@ public class DefinitionParser {
      * 从配置中加载码值  --> cache
      */
     public void parseCode(){
-
+        //落库
+        //cache
+        //TODO:页面如何生成页面关系
     }
 
     private Map doParse() {

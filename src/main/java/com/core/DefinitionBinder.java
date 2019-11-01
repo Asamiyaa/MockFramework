@@ -14,14 +14,14 @@ import com.core.DtoGenerate.DtoGenerator;
 public class DefinitionBinder {
 
 
-    public void build(){
+    public void marshal(){
         /**
          * 将从页面来的值和xml标签匹配赋值
          */
        new DtoGenerator().createDto();
     }
 
-    public void parse(){
+    public void unmarshal(){
         /**
          * 将从报文来的值赋值到对象
          */

@@ -1,4 +1,4 @@
-package com.msg;
+package com.msg.mq;
 
 /**
  * @author YangWenjun

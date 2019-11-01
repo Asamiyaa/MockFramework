@@ -1,4 +1,4 @@
-package com.controller;
+package com.busi.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
