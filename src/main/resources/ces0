@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--使用xml保存正真发送的报文格式，为了方便起见，将类型(为了)写在文件内容中，解析生成对象后，将值去掉-->
+
+<!---
+    TODO:将xml下方到excel 文档配置  - 解析为xml - 放到数据库  \\\\  添加head / document /  加密等固定东西 - 最后
+   -->
+<user>
+    <name></name>
+    <age></age>
+</user>
