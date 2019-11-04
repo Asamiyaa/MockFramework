@@ -17,6 +17,7 @@ import java.util.Properties;
  * @title: DtoCreater
  * @description:文件中的配置属性生成对象
  * TODO:是否反序列化到本地
+ * 反射：获得运行时数据进行操作。比如比较、赋值、判断  详见hook中自定义注解
  */
 public class DtoGenerator implements IDtoGenerate {
 

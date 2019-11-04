@@ -10,6 +10,8 @@ import org.springframework.context.ApplicationContextAware;
  * @project MockFramework
  * @title: Context
  * @description:   注意配合spring作为总的线，作为一站式信息流转
+ *                  placeHolder
+ *                  JBPM源码对流程影响，其实所有的不都是为了流程控制么
  */
 public class Context implements ApplicationContextAware{
 
