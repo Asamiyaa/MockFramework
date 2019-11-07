@@ -1,4 +1,4 @@
-package com.rule;
+package com.core.rule;
 
 import java.util.Map;
 
@@ -10,6 +10,7 @@ import java.util.Map;
  * @description:
  *          规则引擎：是用于业务灵活 、动态配置if/else .， 所以这里是无需的。将业务逻辑注入应用程序  --- 借鉴
  *          现状:对传入值，类型，等进行schema级校验
+ *          Parttern.compile()
  */
 public class Ruler {
 
