@@ -1,6 +1,6 @@
-package com.core.DtoGenerate;
+package com.core.draft.DtoGenerate;
 
-import com.core.DtoGenerate.AsmImpl.AsmGenerator;
+import com.core.draft.DtoGenerate.AsmImpl.AsmGenerator;
 
 /**
  * @author YangWenjun

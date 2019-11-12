@@ -1,12 +1,9 @@
-package com.core.DtoGenerate;
-
-import com.core.DtoGenerate.AsmImpl.AsmGenerator;
+package com.core.draft.DtoGenerate;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 

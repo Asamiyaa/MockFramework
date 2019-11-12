@@ -12,9 +12,9 @@ import java.util.regex.Pattern;
  * @title: LoadParamRule
  * @description:
  */
-public interface ParamRule {
+public interface IParamRuleAssemb {
 
-    Map<String ,Map<Object ,Pattern>> loadParamRule(File ruleFile);
+    Map<String ,Map<Object ,Pattern>> assembParamRule(File ruleFile);
 
     Map<Object ,Pattern> getParamRule(String className);
 

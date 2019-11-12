@@ -10,7 +10,7 @@ import com.exception.ServiceCheckException;
  * @title: ParamCheck
  * @description:
  */
-public interface ParamCheck {
+public interface IParamCheck {
 
     /**
      * 返回值 - 方法名 - 参数(哪些、类型、命名) - 异常

@@ -1,17 +1,14 @@
-package com.core.rule.paramCheckImpl;
+package com.core.rule.impl;
 
-import com.core.rule.ParamCheck;
-import com.core.rule.ParamRule;
+import com.core.rule.IParamCheck;
+import com.core.rule.IParamRuleAssemb;
 import com.core.rule.bean.CheckResult;
 import com.exception.ServiceCheckException;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
 /**
@@ -21,9 +18,9 @@ import java.util.regex.Pattern;
  * @title: RegexParamCheck
  * @description:
  */
-public class RegexParamCheck implements ParamCheck{
+public class ParamCheckImpl implements IParamCheck {
 
-    private ParamRule paramRule;
+    private IParamRuleAssemb paramRule;
 
     @Override
     public CheckResult check(Object o, Class<?> objectType) throws ServiceCheckException {

@@ -1,4 +1,4 @@
-package com.core.DtoGenerate.AsmImpl;
+package com.core.draft.DtoGenerate.AsmImpl;
 
 import java.util.Map;
 
