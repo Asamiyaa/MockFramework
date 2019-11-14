@@ -82,9 +82,16 @@
     3.报文解析流程  doParse()
     4.context是关键，参考jbpm - bjbank 机具项目 - session
 
---架子搭完，深入实现--
+20191114  -- 架子搭完，深入实现--
     1.api
     2.先简化加载信息和规则，test框架
-    3.
+    3.file - stream - String https://blog.csdn.net/u010002184/article/details/51296969
+    4.Java工程读取resources中资源文件路径问题 https://blog.csdn.net/ma524654165/article/details/76762046
+    5.split注意点 末尾拼接字符截取
+    6.数据结构的不明确 list map-entry ...
+    7.返回对象不是简单的map/list 要包装
+
+
+    ***从别人的仿真上可以看到公共逻辑的高层抽象可以使用 '注解'减少这种重复。和这里自己定义的一个LiST<validator>一样
 
 
