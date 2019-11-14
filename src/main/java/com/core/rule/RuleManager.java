@@ -15,8 +15,8 @@ import com.core.rule.bean.CombinedRuler;
 import com.core.rule.impl.ParamCheckImpl;
 import com.core.rule.impl.ParamRuleImpl;
 
-import java.io.File;
-import java.io.InputStream;
+import java.io.*;
+import java.util.*;
 
 /**
  * 参考：一个轻量级的参数校验框架  https://juejin.im/post/5a28942cf265da431c70302c  非常优秀 结合了许多知识点 抽象层次也非常高
@@ -41,7 +41,7 @@ public class RuleManager {
      *  首次加载报文规则进行解析持久化
      * @param file  报文规则excel
      */
-    public void parseAndPersist(File file){
+    public void parseAndPersist(File file) throws IOException {
         /**
          * 当不对外调用，不作为一个service时，可以new 无需复用
          */
@@ -50,20 +50,77 @@ public class RuleManager {
         doParseAndPersist( file);
     }
 
-    private void doParseAndPersist(File file) {
+    private void doParseAndPersist(File file) throws IOException {
 
         IParamRule  paramRule =  new ParamRuleImpl();  //TODO :spring 获取 vs 工厂  vs  new
         ICache ruleCache = new RuleCache();
-
+        //异常处理优化，是抛出还是捕获..
         CombinedRuler combinedRuler = parse(file);
 
-        paramRule.updateParamRule(combinedRuler);
+        System.out.println(combinedRuler);
 
-        ruleCache.synch(combinedRuler);
+        //paramRule.updateParamRule(combinedRuler);
+
+        //ruleCache.synch(combinedRuler);
 
     }
 
-    private CombinedRuler parse(File file) {
+    private CombinedRuler parse(File file) throws IOException {
+
+        InputStreamReader inputStreamReader = null;
+        BufferedReader br = null;
+        StringBuffer properFile = new StringBuffer();
+        //List propertyList = new ArrayList<String>();
+        //List ruleForProperty = new ArrayList();
+        Map propertyRule = new HashMap<String,List<String>>();  //最终是map<String,List>模式
+        Map classNamePropertys = new HashMap<String,Map<String,List>>();
+
+       //解析配置文件
+        try (InputStream fileInputStream = new FileInputStream(file)) {
+
+            inputStreamReader =  new InputStreamReader(fileInputStream);
+            br = new BufferedReader(inputStreamReader);
+            //while(br.readLine() != null){
+            String line ;
+            while(( line = br.readLine()) != null){
+                if(line.startsWith("#")){continue;}
+                properFile.append(line); //不可多次读取 即不可重复
+                properFile.append("-");
+            }
+            System.out.println(properFile.substring(0, properFile.toString().length()-1).toString());
+
+            //统一处理逻辑
+            String[] properInfo = properFile.substring(0, properFile.toString().length()-1).toString().split("-");
+            String className = properInfo[0];
+            for (int x = 1; x<properInfo.length; x++){
+                String[] properInner = properInfo[x].split(":");
+                //for(int y = 0; y<properInner.length; y++){
+                    //解析 --没必要，保存数据结构。表结构 map<String,map<String,List>> -- <类名,<属性，规则list>>
+
+                //}
+               // propertyRule.put(properInfo[x], Arrays.asList(properInner));
+                propertyRule.put(properInner[0], Arrays.asList(properInner));
+
+            }
+            //classNamePropertys.put(className, propertyRule);
+
+            //输出中list map ...输出要是分不清
+            //CombinedRuler{draftNo='student', draftDescribe='testDraft', propertyRule={1=[1, java.lang.String], name=[name, 0, 99],
+            // className=[className, 0, 1, 20, java.lang.Integer], age=[age, 0, 0, 2, java.lang.Integer]}}
+            return new CombinedRuler(className, "testDraft", propertyRule);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(inputStreamReader != null){
+                inputStreamReader.close();
+            }
+            if(br != null){
+                br.close();
+            }
+        }
         return null;
     }
 
