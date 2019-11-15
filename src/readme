@@ -118,8 +118,10 @@
                 1.到底哪些应该由spring管理？
                 2.--> springboot 常用注解
                 3.生成的类是棕色的，并不是有问题，而是没有add到版本管理  -点击项目 - git - add 右上角的快捷键 commit
-    3.
+    3.《阿里巴巴Java开发手册》IDEA插件与Eclipse插件使用指南 https://yq.aliyun.com/articles/224817
 
+    0.sql执行计划 插入性能 索引  监控
+      应用 jmeter 并发
     1.责任链
     2.如何组装到xml bean--xml需要吗？将解析映射高层次抽象动态化
     3.check

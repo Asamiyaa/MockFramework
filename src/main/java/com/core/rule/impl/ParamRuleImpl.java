@@ -46,6 +46,8 @@ public class ParamRuleImpl implements IParamRule {
 
             //propertyDoMapper.updateByPrimaryKey(new PropertyDo(entries[i].get));
         }*/
+
+        //TODO:启线程  -->
         for (Map.Entry < String, List <String>> entry : entries){
             propertyDoMapper.updateByPrimaryKey(new PropertyDo(draftNo,entry.getKey()));
         }
