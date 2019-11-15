@@ -59,7 +59,7 @@ public class RuleManager {
 
         System.out.println(combinedRuler);
 
-        //paramRule.updateParamRule(combinedRuler);
+        paramRule.updateParamRule(combinedRuler);
 
         //ruleCache.synch(combinedRuler);
 
@@ -89,7 +89,7 @@ public class RuleManager {
             }
             System.out.println(properFile.substring(0, properFile.toString().length()-1).toString());
 
-            //统一处理逻辑
+            //统一处理逻辑  TODO:commonUtil 使用 --判空操作  分割 - 集合工具类操作
             String[] properInfo = properFile.substring(0, properFile.toString().length()-1).toString().split("-");
             String className = properInfo[0];
             for (int x = 1; x<properInfo.length; x++){
