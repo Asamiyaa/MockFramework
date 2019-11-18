@@ -1,5 +1,6 @@
 package boot;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.boot.SpringApplication;
  */
 
     @org.springframework.boot.autoconfigure.SpringBootApplication(scanBasePackages = {"com"})
+    @MapperScan("com.core.rule.dao")
     public class SpringBootApplication {
 
         public static void main(String[] args) {

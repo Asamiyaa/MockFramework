@@ -59,9 +59,9 @@ public class RuleManager {
 
         System.out.println(combinedRuler);
 
-        paramRule.updateParamRule(combinedRuler);
 
         //ruleCache.synch(combinedRuler);
+        paramRule.updateParamRule(combinedRuler);
 
     }
 

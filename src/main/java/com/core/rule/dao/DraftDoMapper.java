@@ -1,6 +1,7 @@
 package com.core.rule.dao;
 
 import com.core.rule.bean.dataObj.DraftDo;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

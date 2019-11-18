@@ -16,6 +16,8 @@ public class CombinedRuler {
     private String draftDescribe;
     private Map<String,List<String>> propertyRule;
 
+
+    public CombinedRuler(){}
     public CombinedRuler(String draftNo, String draftDescribe, Map<String, List<String>> propertyRule) {
         this.draftNo = draftNo;
         this.draftDescribe = draftDescribe;

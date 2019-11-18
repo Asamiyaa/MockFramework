@@ -96,7 +96,7 @@
        不过我这种实现可以后期直接配置化，无需硬编码到bean上面。还是有必要的 --后期增强自动根据配置文件生成对应的
        javabean + 规则配置  实现无需编码代码
 
-2019111
+20191116
     1.构建表 CombinedRuler 对应表结构 processon -- 落地关系
             这里一对多是不是不能关联主键而是某个字段 ？
 
@@ -120,8 +120,55 @@
                 3.生成的类是棕色的，并不是有问题，而是没有add到版本管理  -点击项目 - git - add 右上角的快捷键 commit
     3.《阿里巴巴Java开发手册》IDEA插件与Eclipse插件使用指南 https://yq.aliyun.com/articles/224817
 
-    0.sql执行计划 插入性能 索引  监控
+20191118
+    1.单元测试  -- 不识别应该想到‘没有注入引起的’ --单元测试本身不复杂，复杂就在对单元的划分，就像对架构层次，module抽象一样
+            1.jar spring-boot-test 是否引入junit? Failed to load ApplicationContext --引入 。
+
+               引入jar包如何配置合理的版本？
+                        Maven中 jar包冲突原理与解决办法：https://blog.csdn.net/noaman_wgs/article/details/81137893
+
+               如何生成实际代码的test相关代码？
+                        使用Junit Generator V2.0(已经路径配置好) 生成 在类中进行alt+insert
+                        https://blog.csdn.net/qq_26115733/article/details/70340243
+
+               代码不识别，是因为没有扫描到，myabtis generator 生成的实现
+                       #为什么这里是classpath:...
+                       mybatis.mapper-locations=classpath:mapping/secKillMapping/*.xml + 启动类的@MapperScan("com.core.rule.dao")
+
+                配置datasource 虽然在mybatis generator中配置过了，但是那是给插件的，而不是项目本身的。
+                       在application.property中配置
+
+                Failed to load driver class com.mysql.jdbc.Driver in either of HikariConfig class loader or Thread context classloader
+                       在pom中引入mysql-connector-java  注意插件引入和项目引入是不同的
+
+            2.思考到底哪里应该使用junit,是否和manage混淆，真正启动如何处理？特别是稍微有复合操作的单元测试。
+                 这里manage进入，不能获得注入的信息。因为当正确注入@service时，其实关联的dao等信息也注入了。
+                 相当于当前spring环境就是test下的。
+                 so ：这种情况如何测试？
+                        高级使用：1.baseTest 中before() \after()
+                                  2.@Tranditional一致性   @Rollback() 保证数据现场
+
+
+            3.自动生成的id 即虽然在mapper.xml中sql也是有id,但是可以new对象时不使用id , insert同样会正常插入
+
+    2.数据库对象 - 函数
+            mysql文档  sql执行计划 插入性能 索引  监控
+
+    3.jdk ： api -> commonUtils
+    4.linux shell
+    5.excel 工具
+
+
+
+
       应用 jmeter 并发
     1.责任链
     2.如何组装到xml bean--xml需要吗？将解析映射高层次抽象动态化
     3.check
+
+
+
+
+
+    将入参进行封装到req / resp ..与context关联
+    springApplication  / applicationBuilder.addListener

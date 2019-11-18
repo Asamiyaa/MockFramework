@@ -37,10 +37,12 @@ public class ParamRuleImpl implements IParamRule {
         //TODO:数据库关联设计 -- 完成  ByPrimaryKey 主键的是否需要外界传入
         String draftNo = combinedRuler.getDraftNo();
 
-        draftDoMapper.updateByPrimaryKey(new DraftDo(draftNo, combinedRuler.getDraftDescribe()));
+        //TODO:二者区别
+        //draftDoMapper.updateByPrimaryKey(new DraftDo(draftNo, combinedRuler.getDraftDescribe()));
+        draftDoMapper.insert(new DraftDo(draftNo, combinedRuler.getDraftDescribe()));
 
         Set<Map.Entry<String, List<String>>> entries = combinedRuler.getPropertyRule().entrySet();
-        //TODO: 对 map .entry 遍历
+        //TODO: 对 map .entry 遍历  iterator遍历好于for?
 
         /*for (int i = 0; i < entries.size(); i++) {
 
