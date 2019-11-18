@@ -155,7 +155,12 @@
             mysql文档  sql执行计划 插入性能 索引  监控
 
     3.jdk ： api -> commonUtils
+            1.jdk 已总结 + reflect + 思考实现 + common/guava工具使用  --> 形成树
+            2.推进框架 checkChain + xml组装赋值 + asm生成代码
+
     4.linux shell
+            1.语法
+
     5.excel 工具
 
 
