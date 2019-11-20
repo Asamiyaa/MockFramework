@@ -7,6 +7,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedType;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 
 /**
  * @author YangWenjun
@@ -21,6 +22,13 @@ public class Main {
 
     public static <T> void main(String[] args) throws ServiceCheckException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 
+        //BigDecimal bigDecimal = new BigDecimal("1000000000000000.1234567");
+        BigDecimal bigDecimal = new BigDecimal(Math.pow(0.2334444444444444444444444444444444444444444444
+                , 13.4422222224444444444444444444444444));
+        System.out.println(bigDecimal.toString());  //3.21353312349286154870071688361386763599369942312478087842464447021484375E-9
+        System.out.println(bigDecimal.toPlainString());//0.00000000321353312349286154870071688361386763599369942312478087842464447021484375
+
+
         //枚举
         Class<?> enumCls = Class.forName("com.core.constant.BaseResultTypeEnum");
         enumCls.getEnumConstants();
@@ -30,7 +38,7 @@ public class Main {
             System.out.println("--------------------");
             System.out.println(t.length);  //通过限制T extends 来可以有api引入
             //t.
-            System.out.println("--------------------");
+            System.out.println("-------中国人-------------");
         }
 
 

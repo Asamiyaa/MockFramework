@@ -156,17 +156,33 @@
 
     3.jdk ： api -> commonUtils
             1.jdk 已总结 + reflect + 思考实现 + common/guava工具使用  --> 形成树
+
+20191120
+    1.common api
+    2.druid  德鲁伊
+            http://blog.didispace.com/java-datasource-pool-compare/
+            https://juejin.im/post/5a0ae0e16fb9a0452341680c
+    3.jmeter
+            https://www.cnblogs.com/stulzq/p/8971531.html
+
+
+20191121
+
             2.推进框架 checkChain + xml组装赋值 + asm生成代码
 
     4.linux shell
             1.语法
 
+
     5.excel 工具
 
 
+    ---------上面都是在语法熟练基础上，向设计模式，性能，安全...方面推进---------
 
 
-      应用 jmeter 并发
+
+
+      应用 druid使用  jmeter 并发  jprofile 使用
     1.责任链
     2.如何组装到xml bean--xml需要吗？将解析映射高层次抽象动态化
     3.check
@@ -175,5 +191,19 @@
 
 
 
-    将入参进行封装到req / resp ..与context关联
+    行内框架是对api熟悉以及整体面有关，深度、设计模式、模型等都还不够，但足够让自己学习。--> efwk框架 逻辑
+    将入参进行封装到req / resp ..与context关联  session - springContext - dbSessionFactory - threadContext ThreadLocal
+    type  + 反射中使用  https://juejin.im/post/5adefaba518825670e5cb44d
     springApplication  / applicationBuilder.addListener
+    xmlMessage - node / xpath
+    maven 打包、build ..exlude
+
+
+    为什么重写equals就必须重写hashcode?compareTo呢？
+    红黑树？
+    queue为什么在源码中经常作为底层实现？和list等区别?
+    如何实现深度拷贝，并在哪种场景上？
+    用流读取大文件，入库。
+
+
+

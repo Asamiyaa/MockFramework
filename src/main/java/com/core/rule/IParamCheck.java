@@ -12,6 +12,7 @@ import com.exception.ServiceCheckException;
  */
 public interface IParamCheck {
 
+
     /**
      * 返回值 - 方法名 - 参数(哪些、类型、命名) - 异常
      * @param o
