@@ -10,8 +10,11 @@ import com.exception.ServiceCheckException;
  * @title: ParamCheck
  * @description:
  */
-public interface IParamCheck {
+public interface IParamCheckInvalid {
 
+    /***
+     * 链的构建和校验柔和在一起。
+     */
 
     /**
      * 返回值 - 方法名 - 参数(哪些、类型、命名) - 异常

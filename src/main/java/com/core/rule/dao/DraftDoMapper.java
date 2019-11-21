@@ -18,4 +18,7 @@ public interface DraftDoMapper {
     List<DraftDo> selectAll();
 
     int updateByPrimaryKey(DraftDo record);
+
+    //TODO ：SQL实现
+  List<DraftDo> listDraftDosByNo(String draftNo);
 }

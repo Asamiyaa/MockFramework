@@ -1,7 +1,6 @@
 package com.core.rule.impl;
 
-import com.core.rule.IParamCheck;
-import com.core.rule.IParamRuleAssemb;
+import com.core.rule.IParamCheckInvalid;
 import com.core.rule.bean.CheckResult;
 import com.exception.ServiceCheckException;
 import org.springframework.util.StringUtils;
@@ -18,9 +17,9 @@ import java.util.regex.Pattern;
  * @title: RegexParamCheck
  * @description:
  */
-public class ParamCheckImpl implements IParamCheck {
+public class ParamCheckImplInvalid implements IParamCheckInvalid {
 
-    private IParamRuleAssemb paramRule;
+//    private IParamRuleAssemb paramRule;
 
     @Override
     //public CheckResult check(Object o, Class<?> objectType) throws ServiceCheckException {
@@ -28,7 +27,9 @@ public class ParamCheckImpl implements IParamCheck {
 
         //todo 前置判断
         //根据报文编号获得责任链，责任链最终是一个对象，只是里面进行了嵌套包装
-        Map<Object, Pattern>  ruleMap = paramRule.getParamRuleChain(cls.getName());
+
+//  /      Map<Object, Pattern>  ruleMap = paramRule.getParamRuleChain(cls.getName());
+        Map<Object, Pattern>  ruleMap = new HashMap<>();
         Map  fieldValueMap = new HashMap();
         //List fieldValueList = new ArrayList();
 

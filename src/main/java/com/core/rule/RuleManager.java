@@ -13,12 +13,15 @@ import com.core.Cache.ICache;
 import com.core.Cache.impl.RuleCache;
 import com.core.rule.bean.CheckResult;
 import com.core.rule.bean.CombinedRuler;
-import com.core.rule.impl.ParamCheckImpl;
+import com.core.rule.impl.ParamRuleCheckImpl;
 import com.core.rule.impl.ParamRuleImpl;
 import com.exception.ServiceCheckException;
 
 import java.io.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 参考：一个轻量级的参数校验框架  https://juejin.im/post/5a28942cf265da431c70302c  非常优秀 结合了许多知识点 抽象层次也非常高
@@ -35,21 +38,21 @@ import java.util.*;
 
 public class RuleManager {
 
-    public IParamCheck instance(){
-        return new ParamCheckImpl();  //TODO:工厂模式 -- 抽象工厂 ..
-    }
+    /*public IParamCheck instance(){
+        return new ParamRuleCheckImpl();  //TODO:工厂模式 -- 抽象工厂 ..
+    }*/
 
 
     /*获得链是对内拆分，没有必要暴露给外模块
     public RulerChain getRulerChainByDraftNo(String draftNo){
         return null ;
     }*/
-    public <T> CheckResult check(T t , Class<T> cls) throws ServiceCheckException {
+    public <T> CheckResult check(String draftNo ,T t) throws ServiceCheckException {
         /**
          * 未面向接口编程
          * 引入泛型T
          */
-        return new ParamCheckImpl().check(t, cls);
+        return new ParamRuleCheckImpl().check( draftNo , t);
     }
 
 

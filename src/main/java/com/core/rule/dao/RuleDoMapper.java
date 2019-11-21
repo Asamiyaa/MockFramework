@@ -1,5 +1,6 @@
 package com.core.rule.dao;
 
+import com.core.rule.bean.dataObj.DraftDo;
 import com.core.rule.bean.dataObj.RuleDo;
 import org.springframework.stereotype.Repository;
 
@@ -46,4 +47,7 @@ public interface RuleDoMapper {
      * @mbg.generated Thu Nov 21 16:34:50 CST 2019
      */
     int updateByPrimaryKey(RuleDo record);
+
+    //TODO ：SQL实现
+    List<RuleDo> lisRuleDoByNo(String draftNo);
 }
