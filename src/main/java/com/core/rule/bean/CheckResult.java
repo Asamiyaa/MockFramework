@@ -11,9 +11,22 @@ import com.core.constant.BaseEnum;
  */
 public class CheckResult {
 
+
+
    /* private String resultCode ;
-    private String resultMsg;*/
+       private String resultMsg;*/
    private BaseEnum result ;
 
+   public CheckResult(BaseEnum result) {
+      this.result = result;
+   }
+   //为了方便
+   /*public void setResult(BaseEnum result) {
+      this.result = result;
+   }*/
 
+   public CheckResult setResult(BaseEnum result) {
+      this.result = result;
+      return this ;
+   }
 }

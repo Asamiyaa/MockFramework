@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * @date 2019/11/7 19:48
  * @project MockFramework
  * @title: RegexParamRuleImpl
- * @description:
+ * @description:  ruler chain
  */
 public class ParamRuleAssembImpl implements IParamRuleAssemb {
     @Override
@@ -34,7 +34,7 @@ public class ParamRuleAssembImpl implements IParamRuleAssemb {
 
 
     @Override
-    public Map<Object, Pattern> getParamRule(String className) {
+    public Map<Object, Pattern> getParamRuleChain(String className) {
 
         //cache中获取
 

@@ -1,7 +1,14 @@
 #第一行 定位类名  之后是属性+校验规则  0：否 1：是 - 是否启用正则 -是否启用js引擎 -是否为空 -长度 -类型
+
 #后续修改为excel读取
+
+# draftno,  property, propertyDesc,  isregex,  isjsengine,  isempty,  length,  type
+
 student
-#name:0:0:0:-1:java.lang.String   分隔符特殊性 -1 中 -
-name:0:0:0:99:java.lang.String
-age:0:0:0:2:java.lang.Integer
-className:0:0:1:20:java.lang.Integer
+#name:0:0:0:-1:java.lang.String   分隔符特殊性 -1 中 -  --> 统一设置为0为不使用改校验规则，1启用
+#不直接使用正则是为了有的场景没必要正则
+#so 范围选择如何限定？
+
+name:"名字":0:0:1:16:java.lang.String
+age:"年龄":0:0:1:2:java.lang.Integer
+className:"班级":0:0:0:16:java.lang.Integer

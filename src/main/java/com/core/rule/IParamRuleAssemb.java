@@ -16,6 +16,6 @@ public interface IParamRuleAssemb {
 
     Map<String ,Map<Object ,Pattern>> assembParamRule(File ruleFile);
 
-    Map<Object ,Pattern> getParamRule(String className);
+    Map<Object ,Pattern> getParamRuleChain(String className);
 
 }

@@ -23,24 +23,26 @@ public class ParamCheckImpl implements IParamCheck {
     private IParamRuleAssemb paramRule;
 
     @Override
-    public CheckResult check(Object o, Class<?> objectType) throws ServiceCheckException {
+    //public CheckResult check(Object o, Class<?> objectType) throws ServiceCheckException {
+    public <T> CheckResult check(T t , Class<T> cls) throws ServiceCheckException {
 
         //todo 前置判断
-        Map<Object, Pattern>  ruleMap = paramRule.getParamRule(objectType.getName());
+        //根据报文编号获得责任链，责任链最终是一个对象，只是里面进行了嵌套包装
+        Map<Object, Pattern>  ruleMap = paramRule.getParamRuleChain(cls.getName());
         Map  fieldValueMap = new HashMap();
         //List fieldValueList = new ArrayList();
 
         //o instanceof (objectType.)? ((objectType.getName()) o) : null;
-        if(StringUtils.isEmpty(o)){
+        if(StringUtils.isEmpty(t)){
                 throw  new ServiceCheckException("");
         }
 
-        Field[] fields = objectType.getDeclaredFields();
+        Field[] fields = cls.getDeclaredFields();
         for (Field field :
                 fields) {
             field.setAccessible(true);
             try {
-                fieldValueMap.put(field.getName(), field.get(objectType.cast(o)));
+                fieldValueMap.put(field.getName(), field.get(cls.cast(t)));
                 //fieldValueList.add
             } catch (IllegalAccessException e) {
                 e.printStackTrace();

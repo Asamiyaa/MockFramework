@@ -21,7 +21,9 @@ public interface IParamCheck {
      * @return
      * @throws ServiceCheckException
      */
-    CheckResult check(Object o , Class<?> objectType) throws ServiceCheckException;
+    //CheckResult check(Object o , Class<?> objectType) throws ServiceCheckException;
+    <T> CheckResult check(T t , Class<T> cls) throws ServiceCheckException;
+
 
     /**
      * 反射 - 类名 - 关联调用

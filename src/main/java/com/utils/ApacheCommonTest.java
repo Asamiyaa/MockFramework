@@ -75,11 +75,11 @@ package com.utils;
 
              Betwixt	XML与Java对象之间相互转换.
 
-             //DBCP	提供数据库连接池服务.                              --由druid代替
-             //Configuration	一个java应用程序的配置管理类库.         --由spring代替
-             //DbUtils	提供对jdbc 的操作封装来简化数据查询和记录读取操作. -- 由orm代替
+             //DBCP	提供数据库连接池服务.                               --由druid代替
+             //Configuration	一个java应用程序的配置管理类库.          --由spring代替
+             //DbUtils	提供对jdbc 的操作封装来简化数据查询和记录读取操作.  -- 由orm代替
              //Logging	提供的是一个Java 的日志接口.                    --由logback、log4j代替
-             //Validator	提供了客户端和服务器端的数据验证框架.         -- 由正则-注解-自定义校验框架代替
+             //Validator	提供了客户端和服务器端的数据验证框架.          -- 由正则-注解-自定义校验框架代替
 
  */
 
@@ -102,18 +102,25 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 /**
- *      Google Guava官方教程  --->http://ifeve.com/google-guava/
+ *      Google Guava官方教程
+ *                          --->http://ifeve.com/google-guava/
+ *                          --->https://wizardforcel.gitbooks.io/guava-tutorial/content/1.html
  *            Basic utilities
  *            Collections
  *            Caches
+ *                  Guava Cache：本地缓存实现，支持多种缓存过期策略
  *            Functional idioms
  *            Concurrency
+ *                  Service框架：抽象可开启和关闭的服务，帮助你维护服务的状态逻辑
  *            Strings
  *            Primitives
  *            Ranges
  *            io
  *            Hash
  *            EventBus
+ *                  传统上，Java的进程内事件分发都是通过发布者和订阅者之间的显式注册实现的。
+ *                  设计EventBus就是为了取代这种显示注册方式，使组件间有了更好的解耦。
+ *                  EventBus不是通用型的发布-订阅实现，不适用于进程间通信。
  *            Math
  *            Reflection
  *

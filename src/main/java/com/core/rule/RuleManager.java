@@ -11,9 +11,11 @@ package com.core.rule;
 
 import com.core.Cache.ICache;
 import com.core.Cache.impl.RuleCache;
+import com.core.rule.bean.CheckResult;
 import com.core.rule.bean.CombinedRuler;
 import com.core.rule.impl.ParamCheckImpl;
 import com.core.rule.impl.ParamRuleImpl;
+import com.exception.ServiceCheckException;
 
 import java.io.*;
 import java.util.*;
@@ -36,6 +38,20 @@ public class RuleManager {
     public IParamCheck instance(){
         return new ParamCheckImpl();  //TODO:工厂模式 -- 抽象工厂 ..
     }
+
+
+    /*获得链是对内拆分，没有必要暴露给外模块
+    public RulerChain getRulerChainByDraftNo(String draftNo){
+        return null ;
+    }*/
+    public <T> CheckResult check(T t , Class<T> cls) throws ServiceCheckException {
+        /**
+         * 未面向接口编程
+         * 引入泛型T
+         */
+        return new ParamCheckImpl().check(t, cls);
+    }
+
 
     /**
      *  首次加载报文规则进行解析持久化
@@ -84,7 +100,8 @@ public class RuleManager {
             String line ;
             while(( line = br.readLine()) != null){
                 if(line.startsWith("#")){continue;}
-                properFile.append(line); //不可多次读取 即不可重复
+                if(line.isEmpty()){continue;} //空行跳过
+                properFile.append(line.trim()); //不可多次读取 即不可重复 - 去掉前后空格
                 properFile.append("-");
             }
             System.out.println(properFile.substring(0, properFile.toString().length()-1).toString());
@@ -124,4 +141,7 @@ public class RuleManager {
         return null;
     }
 
+    private class RulerChain {
+
+    }
 }

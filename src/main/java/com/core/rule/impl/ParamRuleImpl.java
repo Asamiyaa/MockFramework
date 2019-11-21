@@ -51,18 +51,19 @@ public class ParamRuleImpl implements IParamRule {
 
         //TODO:启线程  -->
         for (Map.Entry < String, List <String>> entry : entries){
-            propertyDoMapper.updateByPrimaryKey(new PropertyDo(draftNo,entry.getKey()));
+//            propertyDoMapper.updateByPrimaryKey(new PropertyDo(draftNo,entry.getKey()));
+            propertyDoMapper.insert(new PropertyDo(draftNo,entry.getKey(),entry.getValue().get(1)));
         }
 
         for (Map.Entry < String, List <String>> entry : entries){
             //TODO:可能时string / int 如何写 如何传递最优
 //            List<String> values = entry.getValue();
             List<String> values = entry.getValue();
-            ruleDoMapper.updateByPrimaryKey(new RuleDo(draftNo,Integer.parseInt(values.get(0)),
-                    Integer.parseInt(values.get(1)),
-                    Integer.parseInt(values.get(2)),
+            ruleDoMapper.insert(new RuleDo(draftNo,values.get(0),Integer.parseInt(values.get(2)),
                     Integer.parseInt(values.get(3)),
-                    values.get(4)));
+                    Integer.parseInt(values.get(4)),
+                    Integer.parseInt(values.get(5)),
+                    values.get(6)));
         }
 
         return null;

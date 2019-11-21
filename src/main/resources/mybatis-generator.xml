@@ -172,9 +172,9 @@
             注意，table里面很多参数都是对javaModelGenerator，context等元素的默认属性的一个复写；
          -->
         <!--这里本该是大写的 作为类-->
-        <table tableName="draft" domainObjectName="DraftDo"></table>
+        <!--<table tableName="draft" domainObjectName="DraftDo"></table>-->
         <table tableName="property" domainObjectName="PropertyDo"></table>
-        <table tableName="rule" domainObjectName="RuleDo"></table>
+        <!--<table tableName="rule" domainObjectName="RuleDo"></table>-->
             <!-- generatedKey用于生成生成主键的方法，
                 如果设置了该元素，MBG会在生成的<insert>元素中生成一条正确的<selectKey>元素，该元素可选
                 column:主键的列名；

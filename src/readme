@@ -157,32 +157,59 @@
     3.jdk ： api -> commonUtils
             1.jdk 已总结 + reflect + 思考实现 + common/guava工具使用  --> 形成树
 
-20191120
+20191120 - 当你打好基础，那么剩下的就是将新的模块整合上来，加强，优化。配置，学习新技术也会越来越少走许多弯路
     1.common api
     2.druid  德鲁伊
             http://blog.didispace.com/java-datasource-pool-compare/
-            https://juejin.im/post/5a0ae0e16fb9a0452341680c
+            https://blog.csdn.net/gnail_oug/article/details/80172239
+                1.maven 管理的jar包冲突  report - 等待
+                2.navicat 不能及时查询到数据  -- 通过mysql客户端配合 -- 并且可以查看设置后台配置信息
+                3.druid看不到单元测试
+
+                TODO:相关参数调整和展示信息关联理解
     3.jmeter
             https://www.cnblogs.com/stulzq/p/8971531.html
+            JMeter 可以用于对服务器、网络或对象模拟巨大的负载，来自不同压力类别下测试它们的强度和分析整体性能。
+                   能够对应用程序做功能/回归测试，通过创建带有断言的脚本来验证你的程序返回了你期望的结果-->录制
+                   为了最大限度的灵活性，JMeter允许使用正则表达式创建断言。
+
+
+                TODO:相关参数配置(多线程访问-自动化脚本测试) - 慕课网上高性能测试视频
+                TODO:监控指标监控和分析  https://blog.csdn.net/huangjin0507/article/details/51878559
+                TODO:jprofiles 使用
+                启动：C:\YangwenjunSoftware\jmeterServerAgent\agentServer\ServerAgent-2.2.3
+                启动：jmeter
+                没有出现折线图：https://stackoverflow.com/questions/46763934/graphs-generated-but-shows-waiting-for-samples-in-jmeter
+                    设置时间短，跑的时间短。设置长点 5s 10s
+
+                0.必须清晰业务流程
+                1.三个组检
+                2.badboy录制—代理服务器设置。抓取。排除js，css。正则匹配
+                3.脚本调试 重定向—编码—乱码。最后查看实际系统的结果是否变化
+                4.参数化  函数助手
+                5.组
+
+    4.idea 安装jprofile和jmeter
+    5.自动编译，发包，部署到linux ：https://blog.csdn.net/weixin_41703383/article/details/79786805
 
 
 20191121
 
-            2.推进框架 checkChain + xml组装赋值 + asm生成代码
+    1.springboot 、cloud 的常用注解配置
+    2.推进框架 checkChain + xml组装赋值 + asm生成代码
+            1.数据库设计时少了rule少了字段，这样无法定位到特定报文的特定字段 -- 在generator中配置rule表重新生成
+              数据库设计时少了property少了字段,propertyDesc
+                    --> 字段长度设置/表字段关联/是否有必要分三个表？
 
-    4.linux shell
-            1.语法
+              单元测试可以更便捷的对修改进行回归测试
 
-
-    5.excel 工具
+    TODO:linux shell  相关文档
+    TODO:ppt、excel 工具
 
 
     ---------上面都是在语法熟练基础上，向设计模式，性能，安全...方面推进---------
 
 
-
-
-      应用 druid使用  jmeter 并发  jprofile 使用
     1.责任链
     2.如何组装到xml bean--xml需要吗？将解析映射高层次抽象动态化
     3.check
