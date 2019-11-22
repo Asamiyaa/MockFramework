@@ -39,7 +39,9 @@ public class ParamRuleImpl implements IParamRule {
 
         //TODO:二者区别
         //draftDoMapper.updateByPrimaryKey(new DraftDo(draftNo, combinedRuler.getDraftDescribe()));
-        draftDoMapper.insert(new DraftDo(draftNo, combinedRuler.getDraftDescribe()));
+
+        //将这段逻辑放到draft module
+        //draftDoMapper.insert(new DraftDo(draftNo, combinedRuler.getDraftDescribe()));
 
         Set<Map.Entry<String, List<String>>> entries = combinedRuler.getPropertyRule().entrySet();
         //TODO: 对 map .entry 遍历  iterator遍历好于for?
@@ -52,7 +54,7 @@ public class ParamRuleImpl implements IParamRule {
         //TODO:启线程  -->
         for (Map.Entry < String, List <String>> entry : entries){
 //            propertyDoMapper.updateByPrimaryKey(new PropertyDo(draftNo,entry.getKey()));
-            propertyDoMapper.insert(new PropertyDo(draftNo,entry.getKey(),entry.getValue().get(1)));
+//            propertyDoMapper.insert(new PropertyDo(draftNo,entry.getKey(),entry.getValue().get(1)));
         }
 
         for (Map.Entry < String, List <String>> entry : entries){

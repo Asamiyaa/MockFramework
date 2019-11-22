@@ -49,5 +49,5 @@ public interface RuleDoMapper {
     int updateByPrimaryKey(RuleDo record);
 
     //TODO ：SQL实现
-    List<RuleDo> lisRuleDoByNo(String draftNo);
+    List<RuleDo> selectRuleDoByNo(String draftNo);
 }

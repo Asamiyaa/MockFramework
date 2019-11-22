@@ -14,7 +14,9 @@ public interface IDraftTemplate {
      * @param draftTemplate
      * @return
      */
-    Integer updateDraftTemplate(String draftNo , String draftTemplate);
+    Integer insertDraft(String draftNo , String draftDesc ,String draftTemplate);
+
+    //Integer updateDraftTemplate(String draftNo , String draftDesc ,String draftTemplate);
 
     String getDraftTemplate(String draftNo);
 

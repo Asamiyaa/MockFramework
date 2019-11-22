@@ -10,6 +10,7 @@ import com.core.draft.IDraft;
  * @title: DraftImpl
  * @description:解析根据规则定义的xml文件  - 是否接入spring bean 模式 识别xml - bind
  * TODO:classLoader
+ *     机具项目中绑定  -- spring丰富的选择 - dubbo ->spi机制
  */
 
 public class DraftImpl implements IDraft {

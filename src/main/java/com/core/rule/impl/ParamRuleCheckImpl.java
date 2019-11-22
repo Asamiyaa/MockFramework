@@ -7,6 +7,7 @@ import com.core.rule.bean.dataObj.RuleDo;
 import com.core.rule.bean.subRuler.*;
 import com.core.rule.dao.RuleDoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -22,6 +23,7 @@ import java.util.regex.Pattern;
  * @title: RegexParamRuleImpl
  * @description:  ruler chain
  */
+@Service
 public class ParamRuleCheckImpl implements IParamRuleCheck {
 
     @Autowired
@@ -55,7 +57,7 @@ public class ParamRuleCheckImpl implements IParamRuleCheck {
         //接壤造成后续转化
         //CombinedRuler combinedRuler = new ParamRuleImpl().getParamRuleList(draftNo);
         //combinedRuler.get
-        List<RuleDo> ruleDos = ruleDoMapper.lisRuleDoByNo(draftNo);
+        List<RuleDo> ruleDos = ruleDoMapper.selectRuleDoByNo(draftNo);
         for (RuleDo ruleDo :ruleDos) {
             //根据每个属性 获得该对象的属性值并传入
             Field propertyField = null;

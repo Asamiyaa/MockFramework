@@ -33,7 +33,7 @@ public class RuleDaoMapperTest {
     DraftDoMapper draftDoMapper ;
     @Test
     public void testDaoMapper() throws IOException {
-        DraftDo draftDo = new DraftDo("test2", "测试draftDao2");
+        DraftDo draftDo = new DraftDo("test2", "测试draftDao2","".getBytes());
         draftDoMapper.insert(draftDo);
     }
 

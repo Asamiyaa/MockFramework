@@ -16,6 +16,7 @@ import com.core.rule.bean.CombinedRuler;
 import com.core.rule.impl.ParamRuleCheckImpl;
 import com.core.rule.impl.ParamRuleImpl;
 import com.exception.ServiceCheckException;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.Arrays;
@@ -35,7 +36,7 @@ import java.util.Map;
 //    以及保存/更新rule
 
     //对外暴露 firstLoad  以及check调用
-
+@Service
 public class RuleManager {
 
     /*public IParamCheck instance(){

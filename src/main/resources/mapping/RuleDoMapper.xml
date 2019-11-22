@@ -73,4 +73,10 @@
     select id, draftNo, property, isRegex, isJsEngine, isEmpty, length, type
     from rule
   </select>
+
+  <select id="selectRuleDoByNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, draftNo, property, isRegex, isJsEngine, isEmpty, length, type
+    from rule
+    where draftNo = #{draftNo,jdbcType=VARCHAR}
+  </select>
 </mapper>

@@ -213,9 +213,18 @@
 
 20191122
     1.如何组装到xml bean--xml需要吗？将解析映射高层次抽象动态化
-    2.xml-xpath...定位
+            1.修改draft表逻辑到draft module 而不是rule ，并在字段中添加template字段  blob
+            2.锚点 point -- bind
+            3.熟练后，速度加快
+            4.navicat 查看blob字段  选中 - 备注 即可
+            5.使用home / end 切换光标位置
 
+            1.对根据业务新增的dao方法在xml中写对应实现
 
+    2.xml-xpath...定位  -->使用绑定类库
+    3.redis 缓存  https://my.oschina.net/u/3452433/blog/1831026
+    4.log
+    5.context
 
 
 
