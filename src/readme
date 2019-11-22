@@ -225,6 +225,12 @@
     3.redis 缓存  https://my.oschina.net/u/3452433/blog/1831026
     4.log
     5.context
+    6.Thread
+    7.msg - mq
+
+    第二阶段：对报文的组成 xml-schema-字段有属性 - 自定义数据类型
+
+
 
 
 
