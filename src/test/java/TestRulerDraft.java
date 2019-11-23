@@ -8,11 +8,13 @@ import com.exception.DraftBindException;
 import com.exception.ServiceCheckException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.*;
+import java.util.logging.Logger;
 
 
 /**
@@ -76,10 +78,14 @@ public class TestRulerDraft {
 
     @Autowired
     private DraftDoMapper draftDoMapper ;
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(TestRulerDraft.class);
+
     @Test
     public void testDaoMapper() throws IOException {
-        DraftDo draftDo = new DraftDo("test", "测试draftDao","".getBytes());
+        DraftDo draftDo = new DraftDo("test1", "测试draftDao1","".getBytes());
         draftDoMapper.insert(draftDo);
+        log.debug("---测试数据传入---");
+        log.error("---测试数据传入---");
     }
 
     @Autowired

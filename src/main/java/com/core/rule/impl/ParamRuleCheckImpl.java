@@ -6,6 +6,8 @@ import com.core.rule.bean.CheckResult;
 import com.core.rule.bean.dataObj.RuleDo;
 import com.core.rule.bean.subRuler.*;
 import com.core.rule.dao.RuleDoMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,7 @@ import java.util.regex.Pattern;
 @Service
 public class ParamRuleCheckImpl implements IParamRuleCheck {
 
+    private static final Logger log = LoggerFactory.getLogger(ParamRuleCheckImpl.class);
     @Autowired
     private RuleDoMapper ruleDoMapper;
 
@@ -66,6 +69,8 @@ public class ParamRuleCheckImpl implements IParamRuleCheck {
                 propertyField = t.getClass().getDeclaredField(ruleDo.getProperty());
                 propertyField.setAccessible(true);
                 T o = (T) propertyField.get(t);
+
+                log.info("--开始进行property rule validate--",o);
 
                 if(validateOfOneProperty(o,ruleDo).getResult().getCode()
                                 == BooleanEnum.FALSE.getCode()){

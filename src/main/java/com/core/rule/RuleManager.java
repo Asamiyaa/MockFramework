@@ -16,6 +16,7 @@ import com.core.rule.bean.CombinedRuler;
 import com.core.rule.impl.ParamRuleCheckImpl;
 import com.core.rule.impl.ParamRuleImpl;
 import com.exception.ServiceCheckException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -70,17 +71,19 @@ public class RuleManager {
         doParseAndPersist( file);
     }
 
+    @Autowired
+    private ICache cache ;
     private void doParseAndPersist(File file) throws IOException {
 
         IParamRule  paramRule =  new ParamRuleImpl();  //TODO :spring 获取 vs 工厂  vs  new
-        ICache ruleCache = new RuleCache();
+        //ICache ruleCache = new RuleCache();
         //异常处理优化，是抛出还是捕获..
         CombinedRuler combinedRuler = parse(file);
 
         System.out.println(combinedRuler);
 
 
-        //ruleCache.synch(combinedRuler);
+        cache.synch(combinedRuler);
         paramRule.updateParamRule(combinedRuler);
 
     }

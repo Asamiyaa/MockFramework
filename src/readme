@@ -223,8 +223,25 @@
 
     2.xml-xpath...定位  -->使用绑定类库
     3.redis 缓存  https://my.oschina.net/u/3452433/blog/1831026
-    4.log
-    5.context
+            1.redis client没有查看对应的数据，但是可以通过redisTemplate get得到数据
+                因为没有选择库
+            2.需要@bean重新编辑RedisCacheConfigure类，实现序列化 必须否则传入的
+              key = xxxxx.xxx
+             问题：这里@bean后为什么没有在用到的时候注入自己路径下重写的bean而是还是spring自己的bean呢？
+
+            3.TODO:策略 一致性 强弱 refresh - 失效、调用更新
+    4.log   https://www.cnblogs.com/bigdataZJ/p/springboot-log.html
+            1.springboot 自带logback log4j so 直接使用
+                private static final Logger LOG = LoggerFactory.getLogger(LogConfig.class);
+                总觉得后面的LogConfig.class可有可无，因为随便写个其他类也不会报错，但是准确编写class信息能够提供快速定位日志的效率。
+            2.配置输出到文件
+                1.不同的模块生成不同的日志文件
+                2.日志切割
+            3.如何配置文件到本地文件
+
+            TODO:日志切面 参考hook中其实就是为了练习aop api 和 aop思想
+
+    5.context - process(base组件 - 自定义流程组件)
     6.Thread
     7.msg - mq
 
