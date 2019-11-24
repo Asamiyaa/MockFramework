@@ -1,3 +1,4 @@
+/*
 package com.utils.db.sql;
 
 import java.util.Arrays;
@@ -10,77 +11,97 @@ import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.Entity;
 
+*/
 /**
  * 包装器<br>
  * 主要用于字段名的包装（在字段名的前后加字符，例如反引号来避免与数据库的关键字冲突）
  * @author Looly
  *
- */
+ *//*
+
 public class Wrapper {
 	
-	/** 前置包装符号 */
+	*/
+/** 前置包装符号 *//*
+
 	private Character preWrapQuote;
-	/** 后置包装符号 */
+	*/
+/** 后置包装符号 *//*
+
 	private Character sufWrapQuote;
 	
 	public Wrapper() {
 	}
 	
-	/**
+	*/
+/**
 	 * 构造
 	 * @param wrapQuote 单包装字符
-	 */
+	 *//*
+
 	public Wrapper(Character wrapQuote) {
 		this.preWrapQuote = wrapQuote;
 		this.sufWrapQuote = wrapQuote;
 	}
 	
-	/**
+	*/
+/**
 	 * 包装符号
 	 * @param preWrapQuote 前置包装符号
 	 * @param sufWrapQuote 后置包装符号
-	 */
+	 *//*
+
 	public Wrapper(Character preWrapQuote, Character sufWrapQuote) {
 		this.preWrapQuote = preWrapQuote;
 		this.sufWrapQuote = sufWrapQuote;
 	}
 	
 	//--------------------------------------------------------------- Getters and Setters start
-	/**
+	*/
+/**
 	 * @return 前置包装符号
-	 */
+	 *//*
+
 	public char getPreWrapQuote() {
 		return preWrapQuote;
 	}
-	/**
+	*/
+/**
 	 * 设置前置包装的符号
 	 * @param preWrapQuote 前置包装符号
-	 */
+	 *//*
+
 	public void setPreWrapQuote(Character preWrapQuote) {
 		this.preWrapQuote = preWrapQuote;
 	}
 	
-	/**
+	*/
+/**
 	 * @return 后置包装符号
-	 */
+	 *//*
+
 	public char getSufWrapQuote() {
 		return sufWrapQuote;
 	}
-	/**
+	*/
+/**
 	 * 设置后置包装的符号
 	 * @param sufWrapQuote 后置包装符号
-	 */
+	 *//*
+
 	public void setSufWrapQuote(Character sufWrapQuote) {
 		this.sufWrapQuote = sufWrapQuote;
 	}
 	//--------------------------------------------------------------- Getters and Setters end
 	
-	/**
+	*/
+/**
 	 * 包装字段名<br>
 	 * 有时字段与SQL的某些关键字冲突，导致SQL出错，因此需要将字段名用单引号或者反引号包装起来，避免冲突
 	 * @param field 字段名
 	 * @return 包装后的字段名
-	 */
+	 *//*
+
 	public String wrap(String field){
 		if(preWrapQuote == null || sufWrapQuote == null || StrUtil.isBlank(field)) {
 			return field;
@@ -110,12 +131,14 @@ public class Wrapper {
 		return StrUtil.format("{}{}{}", preWrapQuote, field, sufWrapQuote);
 	}
 	
-	/**
+	*/
+/**
 	 * 包装字段名<br>
 	 * 有时字段与SQL的某些关键字冲突，导致SQL出错，因此需要将字段名用单引号或者反引号包装起来，避免冲突
 	 * @param fields 字段名
 	 * @return 包装后的字段名
-	 */
+	 *//*
+
 	public String[] wrap(String... fields){
 		if(ArrayUtil.isEmpty(fields)) {
 			return fields;
@@ -129,12 +152,14 @@ public class Wrapper {
 		return wrappedFields;
 	}
 	
-	/**
+	*/
+/**
 	 * 包装字段名<br>
 	 * 有时字段与SQL的某些关键字冲突，导致SQL出错，因此需要将字段名用单引号或者反引号包装起来，避免冲突
 	 * @param fields 字段名
 	 * @return 包装后的字段名
-	 */
+	 *//*
+
 	public Collection<String> wrap(Collection<String> fields){
 		if(CollectionUtil.isEmpty(fields)) {
 			return fields;
@@ -143,12 +168,14 @@ public class Wrapper {
 		return Arrays.asList(wrap(fields.toArray(new String[fields.size()])));
 	}
 	
-	/**
+	*/
+/**
 	 * 包装字段名<br>
 	 * 有时字段与SQL的某些关键字冲突，导致SQL出错，因此需要将字段名用单引号或者反引号包装起来，避免冲突
 	 * @param entity 被包装的实体
 	 * @return 包装后的字段名
-	 */
+	 *//*
+
 	public Entity wrap(Entity entity){
 		if(null == entity) {
 			return null;
@@ -167,12 +194,14 @@ public class Wrapper {
 		return wrapedEntity;
 	}
 	
-	/**
+	*/
+/**
 	 * 包装字段名<br>
 	 * 有时字段与SQL的某些关键字冲突，导致SQL出错，因此需要将字段名用单引号或者反引号包装起来，避免冲突
 	 * @param conditions 被包装的实体
 	 * @return 包装后的字段名
-	 */
+	 *//*
+
 	public Condition[] wrap(Condition... conditions){
 		final Condition[] clonedConditions = new Condition[conditions.length];
 		if(ArrayUtil.isNotEmpty(conditions)) {
@@ -187,3 +216,4 @@ public class Wrapper {
 		return clonedConditions;
 	}
 }
+*/

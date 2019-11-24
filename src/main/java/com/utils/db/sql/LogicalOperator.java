@@ -1,6 +1,6 @@
 package com.utils.db.sql;
 
-import cn.hutool.core.util.StrUtil;
+import com.utils.core.util.StrUtil;
 
 /**
  * 逻辑运算符

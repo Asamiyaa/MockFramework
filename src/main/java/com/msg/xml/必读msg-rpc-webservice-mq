@@ -1,0 +1,8 @@
+																            msg
+						                         同步rpc														异步(已经大型化 比如票交所)
+							       
+							 dubbo         webservcie(行内系统间)      socket			                    mq(jms)
+					            java              异构  
+					                       soap           rest		                                      MQ： 
+										xml约束 																	区别：面向数据、生产者与消费者、有缓冲节点、异步、系统级/模块级通信																											
+																											选型：RabbitMQ、ActiveMQ/Apollo、ZeroMQ、memcacheQ、Redis、MSMQ、kafka/jafka

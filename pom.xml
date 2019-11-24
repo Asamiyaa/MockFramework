@@ -192,6 +192,10 @@
         <artifactId>commons-email</artifactId>
         <version>1.4</version>
       </dependency>-->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-net</artifactId>
+      </dependency>
 
       <!--fastJson-->
       <dependency>

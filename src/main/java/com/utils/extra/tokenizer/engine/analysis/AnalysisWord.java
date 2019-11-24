@@ -1,3 +1,4 @@
+/*
 package com.utils.extra.tokenizer.engine.analysis;
 
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
@@ -6,21 +7,25 @@ import org.apache.lucene.util.Attribute;
 
 import cn.hutool.extra.tokenizer.Word;
 
+*/
 /**
  * Lucene-analysis分词中的一个单词包装
  * 
  * @author looly
  *
- */
+ *//*
+
 public class AnalysisWord implements Word {
 	
 	private Attribute word;
 
-	/**
+	*/
+/**
 	 * 构造
 	 * 
 	 * @param word {@link CharTermAttribute}
-	 */
+	 *//*
+
 	public AnalysisWord(CharTermAttribute word) {
 		this.word = word;
 	}
@@ -51,3 +56,4 @@ public class AnalysisWord implements Word {
 		return getText();
 	}
 }
+*/

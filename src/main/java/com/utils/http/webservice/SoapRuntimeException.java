@@ -1,12 +1,15 @@
+/*
 package com.utils.http.webservice;
 
 import cn.hutool.core.util.StrUtil;
 
+*/
 /**
  * SOAP异常
  * 
  * @author xiaoleilu
- */
+ *//*
+
 public class SoapRuntimeException extends RuntimeException {
 	private static final long serialVersionUID = 8247610319171014183L;
 
@@ -30,3 +33,4 @@ public class SoapRuntimeException extends RuntimeException {
 		super(StrUtil.format(messageTemplate, params), throwable);
 	}
 }
+*/

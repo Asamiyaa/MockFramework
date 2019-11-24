@@ -1,6 +1,5 @@
 package com.msg.ftp;
 
-import com.com.INetCom;
 import com.msg.INetCom;
 
 /**

@@ -1,8 +1,8 @@
 package com.utils.db.sql;
 
-import java.io.Serializable;
+import com.utils.core.util.StrUtil;
 
-import cn.hutool.core.util.StrUtil;
+import java.io.Serializable;
 
 /**
  * SQL排序对象

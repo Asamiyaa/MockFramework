@@ -1,6 +1,6 @@
 package com.utils.db.sql;
 
-import cn.hutool.core.util.StrUtil;
+import com.utils.core.util.StrUtil;
 
 /**
  * 排序方式（升序或者降序）

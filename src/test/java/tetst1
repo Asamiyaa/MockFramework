@@ -1,0 +1,1311 @@
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+import javax.naming.NamingException;
+import javax.xml.parsers.*;
+import java.io.*;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.*;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.logging.Logger;
+
+/**
+****
+ * import org.w3c.dom.Document;
+ import org.w3c.dom.Node;
+ import org.w3c.dom.NodeList;
+ import org.xml.sax.Attributes;
+ import org.xml.sax.SAXException;
+ import org.xml.sax.helpers.DefaultHandler;
+
+ import javax.naming.NamingException;
+ import javax.xml.parsers.*;
+ import java.io.*;
+ import java.lang.annotation.Annotation;
+ import java.lang.reflect.*;
+ import java.math.BigDecimal;
+ import java.text.DecimalFormat;
+ import java.text.ParseException;
+ import java.text.SimpleDateFormat;
+ import java.util.*;
+ import java.util.logging.Logger;
+
+ /****
+ **import org.w3c.dom.Document;
+ import org.w3c.dom.Node;
+ import org.w3c.dom.NodeList;
+ import org.xml.sax.Attributes;
+ import org.xml.sax.SAXException;
+ import org.xml.sax.helpers.DefaultHandler;
+
+ import javax.naming.NamingException;
+ import javax.xml.parsers.*;
+ import java.io.*;
+ import java.lang.annotation.Annotation;
+ import java.lang.reflect.*;
+ import java.math.BigDecimal;
+ import java.text.DecimalFormat;
+ import java.text.ParseException;
+ import java.text.SimpleDateFormat;
+ import java.util.*;
+ import java.util.logging.Logger;
+
+ /*****
+ import org.dom4j.DocumentException;
+ import org.dom4j.DocumentHelper;
+ import org.dom4j.io.OutputFormat;
+ import org.dom4j.io.SAXReader;
+ import org.dom4j.io.XMLWriter;
+ import org.jdom2.Element;
+ import org.jdom2.JDOMException;
+ import org.jdom2.input.SAXBuilder;
+ import org.w3c.dom.Document;
+ import org.w3c.dom.Node;
+ import org.w3c.dom.NodeList;
+ import org.xml.sax.Attributes;
+ import org.xml.sax.SAXException;
+ import org.xml.sax.helpers.DefaultHandler;
+
+ import javax.naming.NamingException;
+ import javax.xml.parsers.*;
+ import java.io.*;
+ import java.lang.annotation.Annotation;
+ import java.lang.reflect.*;
+ import java.math.BigDecimal;
+ import java.text.DecimalFormat;
+ import java.text.ParseException;
+ import java.text.SimpleDateFormat;
+ import java.util.*;
+ import java.util.Map.Entry;
+ import java.util.logging.Logger;
+
+
+ /**
+ *
+ * @author YangWenjun
+ * @date 2018年6月9日
+ * @description
+ * @todo TODO
+ */
+public class Test1 {
+
+    public static void main(String[] args) throws Throwable {
+        // method1() ;//基本类型 基本运算
+        //method2() ;//Arrays
+        // method3();//get jdk bit
+        //method4();//collection_ArrayList
+        // method5();//collection_LinkedList _ Vector_stack
+        // method6();//HashMap
+        // method7();//HashSet-linkedHashSet
+        //method8();//TreeMap
+        // method9();//io
+        //method10();//File
+        //method11();//String Math  Date  Calendar
+        // method12();//System
+        // method13() ;//Runtime
+        // method14();//浮点运算
+        //method15(); //通过反射，“手动”拼借类信息及反射API验证
+        // method16(); //反射调用
+        // method17() ; //xml解析 dom - jdom -dom4j -sax 四种方式对比
+        // method18(); //dom4j 对xpath支持 + 内存写入xml文档
+        //method19() ; //BigDecimal 实现精度
+        // method20() ; //throwable
+        // System.out.println("to test excetion ---"); //这里主线程和method20线程是并发的。所以
+        // : 如果代码逻辑需要返回再进行需要进行线程控制。
+        // method21();//log
+        //method22() //快捷键使用
+        //method23();//DecimalFormat
+        //method24() ;//9*9乘法表
+        //method25(); //字节字符对比
+        //method26();  //序列化
+        //method27(); //继承多态
+        //method28();//测试字符串简单解析
+        //List<String>[] ls = new ArrayList[10];
+        byte i1 = 12;
+        int  i2 = 7 ;
+        System.out.println(i1/i2);
+        for (String string : "788".split(",")) {
+            System.out.println(string+"-------->>>>>>>");
+        };
+
+
+        System.out.println("".length());
+
+    }
+    static void method28(){
+
+        String s1 = "we,are,a,dog";
+        String[] s  =  s1.split(",");
+        int  j = 0 ;
+        for(int i =0 ; i<= s.length -1  ; i++){
+            j = s.length  - i + 3 ;
+            System.out.println(j );
+            System.out.println(s[i]);
+        }
+
+
+    }
+
+
+
+
+    static void method27(){
+        //  当子类和父类拥有同一个属性时，且值不一样，子类.属性得到的时子类值还是父类值?
+        //Animal中值：
+        Animal a = new Animal(2,"two");
+        Dog d = new Dog(1,"one");
+
+        System.out.println(d.getAge()+" " +d.name); //1 ,one
+        //当父类有显示赋值时
+
+
+
+    }
+    //序列化 ser
+    static void method26(){
+        //Fish类实现Serializable接口  并 关联 Dog对象  并且增加serialID标识 Dog类也实现serializable接口
+        Dog dog = new Dog(2,"wangwang");
+        Fish fish = new Fish(true,100,"love",dog);
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("D:/123.txt")));
+            oos.writeObject(fish);
+            oos.close();
+            //结果是二进制文件看不懂
+            //反序列化
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("D:/123.txt")));
+            Fish f = (Fish)ois.readObject();
+            oos.close();
+            System.out.println(f.sex+" "+f.getWeight()+" " + f.getDog().name+" "+f.getDog().getAge());
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    //字节字符对比
+    static void method25() throws UnsupportedEncodingException {
+        //char c = "我";  字符特征：1.‘’ 2.内容为一个整体
+        char c = 'w' ;
+        char c1 = '我' ;
+        String s = "w";
+        String s1 = "我是一个好" ;
+        String s2 = "?" ;
+
+
+
+
+        System.out.println(Arrays.toString(s.getBytes()));   //[119]    当前空间命名就是utf-8
+        System.out.println(Arrays.toString(s1.getBytes())); //[-26, -120, -111]
+
+        System.out.println(Arrays.toString(s.getBytes("ASCII")));  //[119]
+        System.out.println(Arrays.toString(s1.getBytes("ASCII")));//[63]
+        System.out.println(Arrays.toString(s2.getBytes("ASCII")));//[63]
+
+
+        System.out.println(Arrays.toString(s.getBytes("UTF-8")));  //[119]
+        System.out.println(Arrays.toString(s1.getBytes("UTF-8")));//[-26, -120, -111]
+
+        System.out.println(Arrays.toString(s.getBytes("UTF-16")));//  [-2, -1, 0, 119]
+        System.out.println(Arrays.toString(s1.getBytes("UTF-16"))); //[-2, -1, 98, 17]
+
+        System.out.println(Arrays.toString(s.getBytes("UTF-32")));// [0, 0, 0, 119]
+        System.out.println(Arrays.toString(s1.getBytes("UTF-32"))); //[0, 0, 98, 17]
+
+
+        System.out.println(Arrays.toString(s.getBytes("GBK")));  //[119]
+        System.out.println(Arrays.toString(s1.getBytes("GBK")));//[-50, -46]
+
+    }
+
+    /**
+     * 9*9乘法表
+     * 分析： 1.将最终显示效果出来
+     *            1*1
+     *            1*2 2*2
+     *            1*3 2*3 3*3
+     *            .。。。。。。
+     *            则列为1 2 3 行为 1 2 3
+     *                1     2    3  .。。。
+     *           1
+     *           2
+     *           3
+     *           .
+     *           。
+     *           。
+     *          2.二维涉及到for嵌套   谁内谁外？外大循环内小循环  考虑到print打印。肯定时以行为基础打的。print  i代表行 j代表列
+     *            行列值关系： j <= i
+     *
+     *            发现规律的过程  --> 归纳法！！！
+     *
+     *            1.i与i++的区别是： ++i  是先执行   i=i+1  再  "  使用 i    "  的值，而 i++ 是先使用 i 的值再执行 i=i+1。
+     2.但是如果不了解 for 循环的执行顺序则容易出错。
+     for循环的执行顺序如下：
+     当是i++时：
+     for(sta1;sta2;sta3)
+     {
+     sta4;
+     }
+     1.进入循环执行sta1;//只是进入的时候执行.
+     2.执行sta2;//条件为真才执行sta4,不然就跳出for了.
+     3,执行sta4;
+     4,执行sta3;
+     5,再回到第2步开始执行
+     *
+     */
+    static void method24() {
+        for(int i = 1 ; i <= 9 ;i++){
+            for(int j = 1; j <= i ;  j++){
+                System.out.print ( j + "*" +i + "  ");
+            }
+            System.out.println();
+        }
+    }
+
+    static void method23() {
+
+        System.out.println(Float.MAX_VALUE);    //3.4028235E38
+        DecimalFormat df = new DecimalFormat("0");
+        System.out.println(df.format(Float.MAX_VALUE));   //340282346638528860000000000000000000000
+        /**整数部分位数大于等于8时开始以科学计数法显示  整数位为0,当小数位以0开始连续出现大于等于3时开始以科学计数法显示
+         * 很多时候，我们需要做一个统一，要么全部以科学计数法输出，要么就全部显示为普通计数。
+         根据网上的资料，主要提及NumberFormat、DecimalFormat、BigDecimal这三种API实现方式。
+         https://blog.csdn.net/king_zxy/article/details/62895617
+         */
+        System.out.println(Integer.MAX_VALUE); //2147483647
+
+
+    }
+
+    // 快捷键使用技巧
+    static void method22() {
+        System.out.println();
+        String.valueOf(123);
+
+        System.out.println();
+
+    }
+
+    // log
+    static void method21() {
+        /**
+         * jdk Logger 结果:六月 16, 2018 2:13:35 下午 Test1 method21 警告: this is test
+         * JavaLogger
+         */
+        Logger logger = Logger.getLogger("TestLogger");
+        logger.warning("this is test JavaLogger");
+
+        /**
+         * log4j 结果：
+         */
+        org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger("Test1");
+        log.info("this is info msg");
+        log.error("error msg");
+        log.debug("debug");
+    }
+
+    // throwable
+    static void method20() throws Throwable {
+        // 异常只能去throw 和 catch
+        // 。异常将会从捕获位置继续向下执行，若“本方法内未捕获”，将抛至调用着直至捕获。若最终未捕获将抛至main,停止虚拟机。
+        // 异常分类 -> 何时何地抛出哪个异常(自定义异常)
+        try {
+            throw new ClassNotFoundException();
+            // System.out.println("111"); Unreachable code
+        } catch (ClassNotFoundException e) {
+            System.out.println("catch exception");
+
+            // e.printStackTrace();
+            e.printStackTrace(new PrintStream(new File("c:\\abcd.txt")));
+            // e.fillInStackTrace();
+            // e.getMessage();
+        }
+        System.out.println("111222");
+
+        throw new IOException("ioioio", new NamingException("name")).initCause(new RuntimeException("123"));
+
+    }
+
+    // java计算中精度 -- 浮点运算 计算机中浮点数的保存是近似的，对浮点数运算时具有“不可预知性” 。问题：哪些浮点运算会出现精度缺失？
+    // https://blog.csdn.net/bohu83/article/details/51124084
+    static void method19() {
+        System.out.println(0.06 + 0.01); // 0.06999999999999999
+        System.out.println(1.0 - 0.42); // 0.5800000000000001
+        System.out.println(4.015 * 100); // 401.49999999999994
+        System.out.println(303.1 / 1000); // 0.30310000000000004
+        System.out.println(2 - 1.23); // 0.77
+        System.out.println(2 - 1.231); // 0.7689999999999999
+
+        System.out.println(add(0.06, 0.01)); // 0.07
+        System.out.println(subtract(1.0, 0.42)); // 0.58
+
+    }
+
+    // 1.将“浮点型数值”构造为string 2.构造BigDecimal 3.调用BigDecimal方法
+    // 4.将BigDecimal对象转换为对应的类型
+    public static double add(double value1, double value2) {
+        BigDecimal b1 = BigDecimal.valueOf(value1); //new BigDecimal(Double.toString(value1));
+        BigDecimal b2 = BigDecimal.valueOf(value2);//new BigDecimal(Double.toString(value2));
+
+        return b1.add(b2).doubleValue();
+    }
+
+    public static double subtract(double value1, double value2) {
+        BigDecimal b1 = new BigDecimal(Double.toString(value1));
+        BigDecimal b2 = new BigDecimal(Double.toString(value2));
+        return b1.subtract(b2).doubleValue();
+    }
+
+    static void method18() {
+        // Dom4j to Xpath and write the context to xml to implement 持久化 ==
+        // 通过前台修改配置文件流程 修改 - 保存 -调用相应方法将信息写入xml - 是否触发reload操作重新读取从xml读取
+        dom4jForXpath("TestParse.xml");
+        dom4jWriteToXml();
+    }
+
+    public static void dom4jForXpath(String fileName) {
+        File inputXml = new File(fileName);
+        SAXReader reader = new SAXReader();
+        // dataBase节点
+        org.dom4j.Document document;
+        try {
+            document = reader.read(inputXml);
+            // org.dom4j.Element users = document.getRootElement(); 获得root节点
+            // 自定义dataBase节点
+            org.dom4j.Element dataBase = (org.dom4j.Element) document.selectSingleNode("//user[@id='1']");
+            // org.dom4j.Element dataBase =
+            // (org.dom4j.Element)document.selectSingleNode("//user[2]");
+            List list = dataBase.elements();
+            for (Object obj : list) {
+                org.dom4j.Element element = (org.dom4j.Element) obj;
+                System.out.println(element.getName() + ":" + element.getText());
+            }
+            // 修改属性值
+
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * xpath 类似与jQuery中的 “*** 各种选择器 ***”
+     * 更多xpath规则详见：https://blog.csdn.net/chenweitang123/article/details/6252263
+     * nodename : 选取此节点的所有子节点 / :从根节点选取 // :从匹配选择的当前节点选择文档中的节点，而不考虑他们的位置 . .. @
+     * : 选取属性 *** 区分开：元素 > 属性*** | ： 若干路径
+     */
+
+    public static void dom4jWriteToXml() {
+        // 生成RSS元素及属性
+        org.dom4j.Document document = DocumentHelper.createDocument();
+        org.dom4j.Element rss = document.addElement("rss");
+        rss.addAttribute("version", "2.0");
+
+        org.dom4j.Element channel = rss.addElement("channel");
+        channel.setText("csdn");
+
+        // 生成XML文件
+        File file = new File("C:\\abc.xml");
+        try {
+            XMLWriter writer = new XMLWriter(new FileOutputStream(file));
+            OutputFormat format = OutputFormat.createPrettyPrint();
+            format.setEncoding("GBK");
+
+            XMLWriter writer1 = new XMLWriter(new FileOutputStream(file), format);
+            writer.setEscapeText(false);
+            writer1.write(document);
+            System.out.println("-----");
+        } catch (UnsupportedEncodingException | FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 四种方式均可以实现写入，详见：https://blog.csdn.net/DXZCZH/article/details/51783573
+     */
+    // 修改xml中数据 详见：https://blog.csdn.net/dlutbrucezhang/article/details/9946733
+
+    // xml解析/////////////////////////////////////////////////////////
+    static void method17() throws ParserConfigurationException, SAXException, IOException {
+        // praseXmlForDom("TestParse.xml");
+
+        // JdomDemo jd = new Test1().new JdomDemo(); //内部类
+        // jd.praseXmlForJdom("TestParse.xml");
+
+        // new Test1().new JdomDemo().new
+        // Dom4jDemo().praseXmlFordom4j("TestParse.xml"); //内部类
+        new Test1().new JdomDemo().new SAXDemo().praseXmlForSax("TestParse.xml");
+
+    }
+    // Dom解析
+    // private Document document ; //Document为接口，未找到实现类
+
+    public static void praseXmlForDom(String fileName) throws ParserConfigurationException, SAXException, IOException {
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance(); // javax.xml.parsers.....
+        DocumentBuilder db = dbf.newDocumentBuilder();
+
+        Document document = db.parse(fileName);
+        // 1.xml解析中的循环次数问题 --> 区别与：for(){if...}
+        // for(){fro(){}}这种两个变量是无关的。但这里是相关相当于多层
+        // 2.可以缩减直接合并到for中 问题：是否解析必须知道有几层？有没有递归可能？
+
+        NodeList users = document.getChildNodes(); // org.w3c.dom.NodeList
+        // --users标签
+        for (int i = 0; i < users.getLength(); i++) {
+            Node user = users.item(i); // org.w3c.dom.Node --user标签 每两步代表数组中一步
+            NodeList userInfo = user.getChildNodes(); // 用返回数组项 不是去输出而是去找下一个数组向
+            // System.out.println(userInfo); //[users: null]
+            // 这就是输出呀。只不过users的内容是null是因为还未解析。而不是该表userInfo为null
+
+            for (int j = 0; j < userInfo.getLength(); j++) { // userlist <user
+                // id =0> <user
+                // id =1 >多维数组
+                Node node = userInfo.item(j); // 返回集合中的第 index 个项。//第几个user
+                NodeList userMeta = node.getChildNodes(); // 遍历user标签内容
+                // <name>..<funciton>
+                System.out.println(userMeta.getLength() + " --------"); // 5
+                // //第三次是在遍历行
+                // 。。。。
+                for (int k = 0; k < userMeta.getLength(); k++) {
+                    if (userMeta.item(k).getNodeName() != "#text") {
+                        System.out.println(userMeta.item(k).getNodeName() + ":" + userMeta.item(k).getTextContent());
+                    }
+                }
+
+                System.out.println();
+            }
+        }
+    }
+
+    // Jdom解析
+    class JdomDemo {
+        public void praseXmlForJdom(String fileName) {
+            SAXBuilder builder = new SAXBuilder();
+            try {
+                org.jdom2.Document document = builder.build(fileName);
+                Element users = document.getRootElement();
+                List userList = users.getChildren("user");
+
+                for (int i = 0; i < userList.size(); i++) { // 上面用到了length..
+                    Element user = (Element) userList.get(i);
+                    List userInfo = user.getChildren();
+
+                    for (int j = 0; j < userInfo.size(); j++) {
+                        System.out.println(
+                                ((Element) userInfo.get(j)).getName() + ":" + ((Element) userInfo.get(j)).getValue());
+
+                        // 从java-xml 中写
+                        // System.out.println(((Element)userInfo.get(j)).getAttributeValue("tom")
+                        // );
+                    }
+                }
+            } catch (JDOMException | IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        // dom4j 解析
+        class Dom4jDemo {
+            public void praseXmlFordom4j(String fileName) {
+                File inputXml = new File(fileName);
+                SAXReader reader = new SAXReader();
+
+                try {
+                    org.dom4j.Document document = reader.read(inputXml);
+                    org.dom4j.Element users = document.getRootElement();
+                    for (Iterator i = users.elementIterator(); i.hasNext();) {
+                        org.dom4j.Element user = (org.dom4j.Element) i.next();
+                        for (Iterator j = user.elementIterator(); j.hasNext();) {
+                            org.dom4j.Element node = (org.dom4j.Element) j.next();
+                            System.out.println(node.getName() + ":" + node.getText());
+                        }
+                    }
+
+                } catch (DocumentException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // SAX解析 -- 和dom无需添加jar包
+        class SAXDemo {
+            public void praseXmlForSax(String fileName) {
+                SAXParserFactory saxfac = SAXParserFactory.newInstance();
+                SAXParser saxParser;
+                try {
+                    saxParser = saxfac.newSAXParser();
+                    FileInputStream is = new FileInputStream(fileName);
+                    saxParser.parse(is, new SAXDemo().new MySAXHandler());
+                } catch (ParserConfigurationException | SAXException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+
+            class MySAXHandler extends DefaultHandler {
+                boolean hasAttribute = false;
+                Attributes attributes = null;
+
+                public void startElement(String uri, String localName, String qName, Attributes attributes)
+                        throws SAXException {
+                    if (qName.equals("users")) {
+                        return;
+                    }
+
+                    if (qName.equals("user")) {
+                        return;
+                    }
+
+                    if (attributes.getLength() > 0) {
+                        this.attributes = attributes;
+                        this.hasAttribute = true;
+                    }
+                }
+
+                public void endElement(String uri, String localName, String qName) throws SAXException {
+                    if (hasAttribute && (attributes != null)) {
+                        for (int i = 0; i < attributes.getLength(); i++) {
+                            System.out.println(attributes.getQName(0) + ":" + attributes.getValue(0));
+                        }
+                    }
+                }
+
+                public void characters(char ch[], int start, int length) throws SAXException {
+                    System.out.println(new String(ch, start, length));
+                }
+            }
+        }
+    }
+
+    //reflect  实际应用
+    static void method16()
+            throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException,
+            IllegalArgumentException, InvocationTargetException, InstantiationException, NoSuchFieldException {
+
+        char c ='我' ;
+        Class cls = Class.forName("Dog");
+        Dog o = (Dog) cls.newInstance();
+
+        Field field = cls.getDeclaredField("home");
+        field.setAccessible(true);
+        field.set(o, "山西省阳泉市");
+        System.out.println(o);
+
+        Method mth = cls.getDeclaredMethod("run", String.class); // 重载
+        // .class就是Class类的外在模样特征
+        mth.setAccessible(true);
+        mth.invoke(o, "ywj"); // 越灵活，底层验证考虑也越多，抛出可能异常就越多
+
+    }
+
+    /**
+     * 通过反射，“手动”拼借类信息
+     */
+    // reflect 动态代理-> 类加载 io
+    static void method15() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        // Class - Filed - 构造器 - method
+        // 加载io - 解析(集合 | xml) - 反射创建 <xml>name</xml>
+        // <value>com.ywj.one.Dog</value> 去输出狗的名字
+
+        Class cls = Class.forName("Dog"); // 通过jvm角度“约束类”的工具来通过类加载器加载“我们定义的类”我们定义的class实质就是Class的一个对象
+        System.out.println(cls.getCanonicalName());
+        Object obj = cls.newInstance();
+        // getClasses() --不能使用
+        for (Class cla : cls.getClasses()) {
+            System.out.println(cla);
+            System.out.println("---");
+        }
+
+        System.out.println(cls.getClassLoader()); // sun.misc.Launcher$AppClassLoader@73d16e93
+        System.out.println(cls.getComponentType()); // null
+        // getDeclaredAnnotations() --不能使用
+
+        //System.out.println(Class.forName("Dog").getAnnotation(myTestAnnotation.class));
+        for (Annotation ann : Class.forName("Dog").getAnnotations()) { // this
+            // is
+            // Aniamls
+            // static
+            // 同样会创建父类
+            System.out.println("123456" + ann); // 通过Class对象（.newInstance才是dog对象）
+        }
+        System.out.println(Arrays.toString(cls.getDeclaredClasses())); // 数组直接Arrays
+        // 集合-遍历
+        System.out.println(cls.getEnclosingClass());
+
+        // Integer.valueOf((cls.getModifiers())) -->
+        // 这里的转换不是使用Integer.valueof或者String.valueof 而是特殊的Modifier
+        // java.lang.reflect.Modifier
+        StringBuffer sb = new StringBuffer();
+        sb.append(Modifier.toString(cls.getModifiers()) + " " + cls.getName());
+        if (cls.getSuperclass() != null) {
+            sb.append(" extends " + cls.getSuperclass());
+        }
+
+        if (cls.getInterfaces() != null) {
+            int i = 0; // 有时需要flag
+            for (Class class1 : cls.getInterfaces()) {
+                if (i == 0) {
+                    sb.append(" implements " + class1);
+                    i++;
+                } else {
+                    sb.append(" , " + class1);
+                }
+            }
+        }
+        sb.append("{");
+        sb.append("\n\r");
+
+        for (Field field : cls.getDeclaredFields()) {
+            /// midifier修饰符而不是类型 System.out.println(field);
+            sb.append(Modifier.toString(field.getModifiers()) + " " + field.getType() + " " + field.getName());
+            if (field.get(obj) != null) {
+                sb.append(" = " + field.get(obj) + "\n");
+            } else {
+                sb.append("\n");
+            }
+            // System.out.println("------"+field.toString());
+        }
+        ;
+
+        for (Constructor method0 : cls.getDeclaredConstructors()) {
+            sb.append(Modifier.toString(method0.getModifiers()) + " " + " " + method0.getName() + " (");
+            if (method0.getParameterTypes() != null) {
+                for (Class pram : method0.getParameterTypes()) {
+                    sb.append(" " + pram);
+                }
+                sb.append(") ");
+            }
+            if (method0.getExceptionTypes() != null) {
+                int j = 0;
+                for (Class excp : method0.getExceptionTypes()) {
+                    if (j == 0) {
+                        sb.append("  throws  " + excp);
+                        j++;
+                    } else {
+                        sb.append(" " + excp);
+                    }
+                }
+            }
+            sb.append("\n");
+        }
+        for (Method method : cls.getDeclaredMethods()) {
+            sb.append(Modifier.toString(method.getModifiers()) + " " + method.getReturnType() + " " + method.getName()
+                    + " (");
+            if (method.getParameterTypes() != null) {
+                for (Class pram : method.getParameterTypes()) {
+                    sb.append(" " + pram);
+                }
+                sb.append(") ");
+            }
+            if (method.getExceptionTypes() != null) {
+                int j = 0;
+                for (Class excp : method.getExceptionTypes()) {
+                    if (j == 0) {
+                        sb.append("  throws  " + excp);
+                        j++;
+                    } else {
+                        sb.append(" " + excp);
+                    }
+                }
+            }
+            sb.append("\n");
+            // 上面这么多是为了熟悉获取不同element的api，获得整个方法直接 toString()
+        }
+        ;
+        sb.append("}");
+        System.out.println(sb.toString());
+    }
+
+    // 浮点运算支持更多接近。计算机就是尽可能的模拟接近，
+    static void method14() {
+        byte b = (byte) 12345678; // 78 向下转型 损失精度
+        short s = 1 / 3; // 0
+        int i = 1 / 3; // 0
+        long l = 1 / 3; // 0
+        // 因为是 整形所有都没有小数 底层使用的bit位不同 byte:1 2 4 8 -->bit -->
+        // 取值范围不同
+
+        float f = (float) Math.PI / 3; // 1.0471976 8位有效数字
+        double d = Math.PI / 3; // 1.0471975511965976 17位有效数字
+        float f1 = 2.14f / 3; // java中小数默认声明为double
+        double d1 = 2.14 / 3;
+        // 浮点运算可以显示小数 底层使用bit位不同 byte 4 8 和int long区别在于浮点表示中的后几位表示小数，即结构不同
+        // ->取值范围是区间性的
+        System.out.println(b);
+        System.out.println(s);
+        System.out.println(i);
+        System.out.println(l);
+        System.out.println(f1); // 1.0466667
+        System.out.println(d1); // 1.0466666666666666
+        // 0.37999999999999995
+        float f2 = 100000 / 3;
+        System.out.println(f2); // 33333.0 为什么不是固定的有效长度位？
+        double d2 = 100000 / 3;
+        System.out.println(d2); // 33333.0
+
+        // double 和 float
+        // 的区别是double精度高，但double消耗内存是float的两倍，且double的运算速度较float稍慢。
+        // 计算机浮点运算误差问题及bigDecimal()使用
+        // https://blog.csdn.net/aya19880214/article/details/45891581
+    }
+
+    // Runtime
+    static void method13() {
+        Runtime rt = Runtime.getRuntime();
+        System.out.println(rt.totalMemory() / 1024 / 1024); // 128974848
+        System.out.println(rt.freeMemory() / 1024 / 1024); // 126930024
+        System.out.println(rt.availableProcessors()); // 4
+        System.out.println(rt.getRuntime()); // 4
+
+        System.out.println("--------------------------------");
+        Runtime run = Runtime.getRuntime();
+        Process pro = null;
+        try {
+            pro = run.exec("notepad.exe");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            Thread.sleep(10000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        pro.destroy();
+
+    }
+
+    // System
+    static void method12() {
+        for (Map.Entry<String, String> entry : System.getenv().entrySet()) {
+            System.out.println("key = " + entry.getKey() + "value = " + entry.getValue());
+        }
+        ;
+
+        System.out.println(System.console());
+        System.gc();
+        System.out.println(System.currentTimeMillis());
+        System.getSecurityManager();
+
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("woshiyigeGC");
+    }
+
+    // String Math  Date  Calendar
+    static void method11() throws IOException, ParseException {
+        String s = "我是中国人abc123";
+        // System.out.println(s.getBytes());//[B@15db9742 很多返回都是数组
+        System.out.println(Arrays.toString(s.getBytes())); //   utf8      [-26, -120, -111, -26, -104, -81, -28, -72, -83, -27, -101, -67, -28, -70, -70, 97, 98, 99, 49, 50, 51]
+        System.out.println(Arrays.toString(s.getBytes("GBK"))); // [-50, -46, -54, -57, -42, -48, -71, -6, -56, -53, 97, 98, 99, 49, 50, 51]
+        System.out.println(Arrays.toString(s.getBytes("UTF8")));
+        System.out.println(String.valueOf(new char[] { 'y', 'w', 'j', 'h' }));
+        System.out.println(String.valueOf(123)+'=');
+        Dog d123 =new Dog();
+        System.out.println(String.valueOf(d123));
+        System.out.println(d123);
+        StringBuilder SB = new StringBuilder();
+
+        // Math
+        System.out.println("--------------Math-------------------");
+        System.out.println(Math.PI);
+        System.out.println(Math.abs(-22.3429));
+        System.out.println(Math.round(2.345)); // 2
+        System.out.println(Math.round(-2.745)); // -3
+        System.out.println(Math.floor(3)); // 3.0
+        //当需要设计只有两种结果时，random得到结果 0<=x <1 再 round() 四舍五入 。得到结果就是0或者1
+        double d = Math.random();
+        System.out.println(Math.round(d)); // 2.0e
+        //错误思路：取余    当需要设计只有多种（这里比如6种 筛子）共6种情况，且每次只能且只出现其中一种 ，且 几率一样。-随机性 。- 生成随机数。结果时，random  0-1
+        System.out.println( ((Math.round((Math.random()*100)))/6));
+        System.out.println( (Math.round((Math.random()*100))) - ((Math.round((Math.random()*100)))/6)*6  );  //[0,100)
+        //正确思路
+        System.out.println((int) (Math.random()*6+1) +"------"); //random产生的是double [0,1) -> [0,6) ->[1,7) 取整数 这里可以使用floor
+        System.out.println( Math.floor((Math.random()*6+1)));
+        System.out.println((int)2.3); //类似于oracle函数中的to_char(t.timestap,'yyyymm') 除了类型转换（内部），还有格式转换。(表面)   使用的是去尾法. 格式只是类型的子集。
+        System.out.println((int)2.5);
+        System.out.println("--------------Math-------------------");
+
+        // Date
+        Date date = new Date();
+        Date date1 = new Date();
+        System.out.println(date); // Mon Jun 04 20:30:19 CST 2018
+        System.out.println(date.after(date1));
+        /**
+         * SimpleDateFormat 是一个以国别敏感的方式格式化和分析数据的具体类。 它允许格式化 (date -> text)、语法分析
+         * (text -> date)和标准化。
+         */
+        // Date - > 字符串
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 自定义
+        // y
+        // M
+        // m这些都是固定的表示年、月
+        // 、日...h
+        // 12制
+        // H
+        // 24制
+        // E星期
+        // a上午、下午
+        // Z时区
+        System.out.println(sdf.format(date));
+
+        SimpleDateFormat sdf1 = new SimpleDateFormat();
+        sdf1.applyPattern("yyyymmdd");
+        System.out.println(sdf1.format(date));
+
+        // 字符串 -> Date
+        String s1 = "2018-09-08 23:29:22"; // 这里的格式和sdf定义中“必须保持一致”
+        Date d1 = sdf.parse(s1);
+        System.out.println(d1); // Sat Sep 08 23:29:22 CST 2018（数据库操作时）
+
+        // System.out.println(d1.getMonth()+ "---");
+        Calendar cal = Calendar.getInstance();
+        Date d2 = new Date(); // 也可以通过simpledateFormat将string - date -calendar
+        // 这样自定义格式之后的列
+        cal.setTime(d2);
+        System.out.println(d2);
+        System.out.println(cal.DAY_OF_MONTH);// 5
+        System.out.println(cal.YEAR); // 1?
+        System.out.println(cal.get(cal.YEAR)); // 2018 --->Tue Jun 05 15:22:15
+        // CST 2018看到的这些字符串其实是
+        // 内部默认的simpleDateFormat（格式）Calendar.属性得到的属性的int标识
+        System.out.println(cal.MONTH); // 2
+        System.out.println(cal.get(cal.MONTH)); // 5
+
+        System.out.println(cal.DAY_OF_MONTH); // 2
+        System.out.println(cal.get(cal.DAY_OF_MONTH)); // 2
+
+        System.out.println(cal.get(cal.MONTH)); // 5
+
+        System.out.println(cal.DAY_OF_YEAR); // 6
+        System.out.println(Calendar.DAY_OF_YEAR); // 6
+        System.out.println(cal.get(Calendar.DAY_OF_YEAR)); // 156
+
+        System.out.println(cal.DAY_OF_WEEK_IN_MONTH); // 8
+        // --------------------------------------------------------------------------------------------------
+
+    }
+
+    // File
+    static void method10() throws IOException {
+        File f = new File("C:/a/b/c/abcd.txt");
+
+        System.out.println(f.canExecute());
+        System.out.println(f.canRead());
+        System.out.println(f.canWrite());
+        // System.out.println(f.createNewFile());
+        // System.out.println(f.createTempFile("zabc", "gabc", f));
+        // delete()
+        // equals()
+
+        System.out.println(f.getAbsolutePath()); // E:\a\b\c\abc.txt 默认都是文件夹，->
+        // 文件
+        System.out.println(f.getAbsoluteFile());
+        System.out.println(f.getFreeSpace());
+        System.out.println(f.getTotalSpace());
+        System.out.println(f.getParentFile());// E:\a\b\c
+        System.out.println(f.getParent());// E:\a\b\c
+
+        // File f = new File("E:/a/b/c/abc.txt");
+        System.out.println(f.exists());
+        if (f.exists()) {            //从最好的情形回推。
+            if (f.isFile()) {
+                // 执行读写操作
+            } else {
+                // 创建对应文件
+            }
+        } else {
+            // 创建对应的路径
+            File f1 = f.getParentFile();
+            f1.mkdirs();
+            // 创建对应的文件
+            File f2 = new File(f1, "abc.txt"); // 没有后续操作，这里只是一个虚拟，不会创建
+            if (!f2.isFile()) { // 去判断该虚拟路径是否在磁盘上有映射
+                f2.createNewFile();
+            }
+            BufferedWriter bw = new BufferedWriter(new FileWriter(f2));
+            bw.write("123456:www_kkk_rmou" + "\n");
+            bw.write("367482:bbb_brjrk_iiir_99_iouu" + "\n");
+            bw.write("987384:jruo_rma" + "\n");
+            bw.flush();
+            bw.close();
+        }
+        // 解析配置文件要比这简单，直接约定接口，名称和路径完成
+        BufferedReader br = new BufferedReader(new FileReader("c:/a/b/c/abc.txt"));
+        /**
+         * 1.读入方式 1.普通io
+         * 2. .使用java.util.ResourceBundle类的getBundle()方法
+         *           ResourceBundle rb = ResourceBundle.getBundle(name,Locale.getDefault());
+         * 3.使用java.util.PropertyResourceBundle类的构造函数
+         *           InputStream is = new BufferedInputStream(new FileInputStream(name));
+         *           ResourceBundle rb = new PropertyResourceBundle(is);
+         * 4.使用class变量的getResourceAsStream()方法 InputStream in =
+         *           类名.class.getResourceAsStream(name);
+         * 5.使用class.getClassLoader()所得到的java.lang.ClassLoader的getResourceAsStream()方法
+         *           InputStream in = 类名.class.getClassLoader().getResourceAsStream(name);
+         * 6.使用java.lang.ClassLoader类的getSystemResourceAsStream()静态方法
+         *           InputStream in = ClassLoader.getSystemResourceAsStream(name);
+         *
+         * 2.解析方式_list读入很多 读入之后解析 非规定的：seprator --> 高级可能需要引入正则 利用split函数： String
+         * s = new String("2_8_7_4_3_9_1"); String[] arr = s.split("_");
+         * 利用StringTokenizer类： String s = new String("2_8_7_4_3_9_1");
+         * StringTokenizer commaToker = new StringTokenizer(s, "_"); String[]
+         * arr = new String[commaToker.countTokens()]; 我在应用中用到一些，给大家总结一下，仅供大家参考：
+         * 1
+         * 如果用“.”作为分隔的话，必须是如下写法：String.split("\\."),这样才能正确的分隔开，不能用String.split(".");
+         * 2、
+         * 如果用“|”作为分隔的话，必须是如下写法：String.split("\\|"),这样才能正确的分隔开，不能用String.split("|");
+         * “.”和“|”都是转义字符，必须得加"\\"; 3、 如果在一个字符串中有多个分隔符，可以用“|”作为连字符，比如：“acount=?
+         * and uu =? or n=?”,把三个都分隔出来，可以用String.split("and|or");
+         *
+         * 3.解析类型 proprerty xml 对比及简单xml解析https://www.jianshu.com/p/80ff66cc6736
+         */
+
+        // 流的方式 123456:www367482:bbb987384:jruo为什么不是按行输出
+        // String data = null ;
+        // while(( data = br.readLine() )!= null){
+        // System.out.print(data);
+        // }
+        // br.close();
+
+        // propertiry 分隔符是啥？ 冒号
+        // Properties p = new Properties();
+        // p.load(br);
+        // for (String o :p.stringPropertyNames()) {
+        // //对key：value进行操作
+        // System.out.println(o + " ！" + p.getProperty(o)); //分隔符是啥？ 冒号
+        // }
+        //
+        // 自定义分隔符
+        // 1 . 将流转化为字符串 StringBuffer 2.split
+        // StringBuffer sb = new StringBuffer("");
+
+        String data = null;
+        Map<String, String[]> m = new HashMap<String, String[]>();
+        int j = 1;
+        while ((data = br.readLine()) != null) {
+            // sb.append(data + "\t") ;
+            // j++ ;
+            // System.out.println(data + j);
+            /**
+             * 为什么会有空行？ 123456:www_kkk_rmou2 3 367482:bbb_brjrk_iiir_99_iouu4 5
+             * 987384:jruo_rma6 7 因为上面写入时使用了\n\r \n=newLine \r=enter
+             *
+             * 注意这些调试过程中的 信息
+             **/
+            String[] s = data.split(":");
+            // m.put(s[0], s[1]) ;
+            // System.out.println(Arrays.toString(s));
+            //// //System.out.println(s[0]);
+            //// System.out.println(s[1]);
+            String[] s1 = s[1].split("_");
+            //// //System.out.println(Arrays.toString(s1));
+            m.put(s[0], s1);
+            System.out.println(m.size());// 1
+        }
+        // */*/ // System.out.print(sb.toString() ); //11 流读出之后就没有了
+        // 因为上面使用property解析了流。所以为null--> 解析输入回推流PushbachInputStream...
+        // 123456:www_kkk_rmou 367482:bbb_brjrk_iiir_99_iouu 987384:jruo_rma
+        // 通用的。假设没有：也不可能用到property
+        // entryset获取 | keySet()
+        /*
+         * for (Object key :m.keySet()) { String[] value
+         * =(String[])(m.get(key)); int i ; for(i =0 ; i<value.length ; i++){
+         * System.out.println("key=  " + key + "  " + "value=  " + value[i]); }
+         * }
+         */
+        /*
+         * //在定义map时候就应该指定泛型 要不了这里会报错 for (Map.Entry<String, String[]> entry :
+         * m.entrySet()) { int i ; for(i = 0 ; i<entry.getValue().length ; i++){
+         * System.out.println("Key = " + entry.getKey() + ", Value = " +
+         * entry.getValue()[i]); } }
+         */
+
+        // 使用iterator 其实是set下的
+        Iterator ite = m.entrySet().iterator();
+        while (ite.hasNext()) {
+            Map.Entry<String, String[]> entry = (Map.Entry<String, String[]>) ite.next();
+            int i;
+            for (i = 0; i < entry.getValue().length; i++) {
+                System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue()[i]);
+            }
+        }
+
+    }
+
+    /*
+     * String sts = sb.toString() ; String[] sa = sts.split("\t") ;
+     *
+     * //遍历数组 int i = 0 ; int i2 = sa.length ; for(i = 0 ; i < i2 ; i++){
+     * String[] sa2 = sts.split(":") ; String[] sa3 = sa2[1].split("_");
+     * m.put(sa2[0], sa3) ; //模型时map(string,string[]) } //遍历map
+     *
+     * for (Object key :m.keySet()) { String[] s123 = (String[])(m.get(key)) ;
+     * for (String string : s123) { System.out.println("key=" + " " + key + " "
+     * + "value=" + string); } }
+     *
+     * // System.out.println(m.get("123456")); for (String string : m) {
+     *
+     * }
+     *
+     * }
+     */
+
+    // io
+    /**
+     *
+     * @throws IOException
+     *             1.对比字节和字符 字节对于“展示” 来说没有意义 因为我们并不知道几个字节代表一个字符 编码格式.. 2.
+     *             引入File类 文件和目录路径名的抽象表示形式。 3.引入数组读取而非单字节、字符 is.read() 单 -->
+     *             char[] array = new char[256] ; is.read(Array a) ; for(int i =
+     *             0; i < data; i++){... 4.引入BufferReader .... readLine()
+     *             5.解决乱码问题：window编码：cmd - chcp -936 = GBK 当前编码环境：is.getEncoding
+     *             =UTF-8 因此在读取时，指定“编码格式”。这里乱码是因为转码读取的格式不一致造成的。类似于Oracle 1.is =
+     *             new InputStreamReader(new FileInputStream(file) , "GBK");
+     *             文本GBK格式 - GBK方式二进制 - 到达jvm 使用utf-8 编码表示.指定的GBK要和文件保存格式一致
+     *             2.new String()指定编码格式
+     */
+    static void method9() throws IOException {
+        String file = "E:\\abc.txt"; // woshiyigefenshu>?0123!&我是一个中国人
+        // File file1 = "";
+        // InputStream is = null ;
+        BufferedReader is = null;
+        try {
+            // is = new FileInputStream(file);
+            // is = new FileReader(file);
+            is = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+            char[] array = new char[256];
+            int data = -1; // read()
+            while ((data = is.read(array)) != -1) {
+                // System.out.print(data); //119 111
+                // 115104105121105103101102101110115104117206210202199210187184246214208185250200203
+                // System.out.print((byte)data);
+                // //119111115104105121105103101102101110115104117-50-46-54-57-46-69-72-10-42-48-71-6-56-53
+                // System.out.print((char)data);
+                // //woshiyigefenshu>?0123!&����һ���й���
+                for (int i = 0; i < data; i++) {
+                    System.out.print(array[i]); // woshiyigefenshu>?0123!&����һ���й���
+
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (is != null) {
+                is.close();
+            }
+        }
+    }
+
+    // TreeMap
+    static void method8() {
+        //借助user类对equals() / hashcode()  / compareto() 方法对比
+        //1.equals / hashcode 均相等 。重写了compareto
+        Map<User, Integer> userHashMap = new HashMap<User, Integer>();
+        User user1 = new User("1", "Jay", 30);
+        User user2 = new User("2", "Jolin", 21);
+        User user3 = new User("3", "Jack Cheng", 22);
+        User user4 = new User("4", "Bruce Lee", 22);
+        userHashMap.put(user1, 100);             //在插入时，一定要注意规则，hashmap时判断key的hashcode - equals .不要从字面感觉user1-2-3-4是不同对象，key就不同。*******
+        userHashMap.put(user2, 200);
+        userHashMap.put(user3, 300);
+        userHashMap.put(user4, 400);
+
+        System.out.println(userHashMap);    //{User [name=Jay, age=30]=400}
+
+        Map<User, Integer>  userTreeMap = new TreeMap<User, Integer>();
+        userTreeMap.put(user1, 100);
+        userTreeMap.put(user2, 200);
+        userTreeMap.put(user3, 300);             //在插入时，注意新插入对象会和原先对象比较，当compareto得到整数，存在该对象后面，负数前面，相等取代value值。所以这里按照年龄从小到大
+        userTreeMap.put(user4, 400);
+
+        System.out.println(userTreeMap);    //{User [name=Jolin, age=21]=200, User [name=Jack Cheng, age=22]=400, User [name=Jay, age=30]=100}
+        System.out.println("-------------------------------------------------------------");
+
+// 实际应用中三个方法都会重写的 - 修改user类中三个方法  -- 	再次执行上面代码
+
+        //{User [name=Jay, age=30]=100, User [name=Jolin, age=21]=200, User [name=Jack Cheng, age=22]=300, User [name=Bruce Lee, age=22]=400}
+        //{User [name=Jolin, age=21]=200, User [name=Jack Cheng, age=22]=400, User [name=Jay, age=30]=100}
+
+//Collections.sort(userList); sort就是调用对象的compareTo方法。
+
+    }
+
+    // HashSet-linkedHashSet
+    static void method7() {
+
+        // HashSet<Integer > hs = new HashSet() ;
+        LinkedHashSet hs = new LinkedHashSet();
+        hs.add(1);
+        hs.add(2);
+        hs.add(12);
+        hs.add(233);
+        hs.add(1);
+        System.out.println(hs); // HashSet:[1, 2, 233, 12]
+        // ________>>>>>涓嶅彲閲嶅锛屾棤搴� >鍘熷瀷鏄疕ashMap
+        System.out.println(hs); // LinkedHashSet:[1, 2, 12,
+        // 233]________>>>>>涓嶅彲閲嶅锛屾湁搴�
+        // >鍘熷瀷鏄疞inkedHashMap
+
+    }
+
+    // HashMap
+    static void method6() {
+        // HashMap hm = new HashMap();
+        LinkedHashMap hm = new LinkedHashMap();
+        hm.put(1, "a");
+        hm.put("bb", 2);
+        hm.put("aa", 2);
+        hm.put("cc", 2);
+        hm.put("bb", 3);
+        System.out.println(hm); // hashmap:{bb=2, aa=2, cc=2, 1=a}
+        // ________>>>>>key涓嶅彲閲嶅锛屾棤搴�
+        // LinkedHashMap:{1=a, bb=3, aa=2, cc=2}
+        // ________>>>>>key涓嶅彲閲嶅锛屾湁搴�
+        System.out.println(hm.size());
+
+        System.out.println(hm.entrySet()); // [bb=2, 1=a]
+        // set鍘熺悊鏄埅鍙杕ap涓璳ey,涓轰粈涔堝嚭鏉ユ椂鏁扮粍鍛紵
+        System.out.println(hm.keySet()); // [bb, 1]
+        System.out.println(hm.values()); // [2, a]
+
+        Hashtable ht = new Hashtable();
+    }
+
+    // collection_LinkedList _ Vector_stack
+    static void method5() {
+        LinkedList l = new LinkedList();
+        l.add(1);
+        l.add(2);
+        System.out.println(l); // [1, 2] 榛樿閲嶅啓浜唗oString()
+        System.out.println(l.clone());
+
+        Vector v = new Vector();
+
+        Queue q = new ArrayDeque();
+    }
+
+    // collection_ArrayList
+    static void method4() {
+        List l = new ArrayList();
+        //Queue<E> q = new
+
+        List l2 = new ArrayList();
+        l.add(1);
+        l.add(2);
+        l.add(3);
+        l2.add(11);
+        l2.add(12);
+        l2.add(13);
+        System.out.println(l.size()); // 3
+        l.addAll(1, l2);
+        System.out.println(l.size()); // 6
+        System.out.println(l);
+        System.out.println(Arrays.asList(l.toArray())); // [1, 11, 12, 13, 2, 3]
+        l.remove(3);
+        System.out.println(Arrays.asList(l.toArray())); // [1, 11, 12, 2, 3]
+        // (ArrayList) l.removeRange(); 杩欓噷浣跨敤澶氭�侊紝鍙兘浣跨敤鍒扮埗绫绘柟娉�
+        l.set(0, 123);
+        System.out.println(Arrays.asList(l.toArray())); // [123, 11, 12, 2, 3]
+        System.out.println(l.indexOf(12)); // 2
+        // ........
+
+    }
+
+    // get jdk bit
+    static void method3() {
+        String arch = System.getProperty("sun.arch.data.model");
+        System.out.println(arch);
+    }
+
+    //  Arrays
+    static void method2() {
+        String[] s = new String[] { "aa", "bb", "cc" };
+        System.out.println(Arrays.asList(s));     // [aa, bb, cc]
+        System.out.println(Arrays.toString(s)); //[aa, bb, cc]
+        System.out.println(s);                         //[Ljava.lang.String;@28d93b30 这是因为[]没有重写toString，需要借助Arrays.toString().
+
+
+        String[] s1 = new String[] { "bb", "cc" };
+        System.out.println(Arrays.binarySearch(s1, "b")); // "b" -1
+        System.out.println(Arrays.binarySearch(s1, "bb")); // 0
+
+        System.out.println(Arrays.asList(Arrays.copyOf(s1, 3))); // [bb,cc,null]
+
+
+        System.out.println(Arrays.asList(Arrays.copyOfRange(s1, 1, 4))); // 1
+
+        System.out.println(Arrays.asList(Arrays.equals(s, s1))); // false
+
+        Arrays.fill(s1, 0, 1, "ooo"); // Array index out of range: 4
+        System.out.println(Arrays.asList(s1));
+
+        String[] s123 = new String[] { "dd","bb","aa", "cc" };
+        Arrays.sort(s123);
+        System.out.println(Arrays.asList(s123)); // [aa, bb, cc, dd]  - 如何实现逆序操作ne ?
+        System.out.println(s123[1]);
+
+        //String[] s321 = new String[]{} ;   //这样出来的数组大小为0 所以导致越界
+        String[]  s321 = new String[4];
+        int i ;
+        int length = s123.length;//注意length不减一，下标减1
+        System.out.println(length); //4
+        for( i = 0 ; i<=length -1  ; i++){  //注意这里的循环是先执行++操作还是后执行。
+            s321[i] = s123[length-1- i];
+        }
+        System.out.println(Arrays.asList(s321));
+
+        System.out.println(s1.hashCode()); // 366712642
+        System.out.println(s1); // [Ljava.lang.String;@15db9742
+    }
+
+    // 基本类型 基本运算
+    static void method1() {
+        int i1 = 2;
+        int i2 = 1;
+        System.out.println(i1 / i2); // 2
+
+        float i3 = 2;
+        float i4 = 1;
+        System.out.println(i3 / i4); // 2.0
+
+        int i5 = 2;
+        int i6 = (int) 1.2;
+        System.out.println(i5 / i6); // 2
+        System.out.println(i6); // 1
+
+        float i7 = 2;
+        float i8 = (float) 1.2;
+        System.out.println(i7 / i8); // 1.666666 float鏈�澶氫繚鐣�7浣嶆湁鏁堟暟瀛�
+
+        double i9 = (double) 1.2;
+        System.out.println(i7 / i9); // 1.6666666666666667
+        // double鏈�澶氫繚鐣�17浣嶆湁鏁堟暟瀛�
+
+        double i10 = (double) 2;
+        System.out.println(i10 / i9);
+    }
+}
+
+

@@ -1,5 +1,19 @@
 package com.process.controller;
+/**
+ *  @author  YangWenjun
+ *  @date   2018年11月14日
+ *  @description
+ *               ***bbsp中砍掉了这部分功能***bbsp中使用mule和jbpm做的  学习：mule /activity
+ *               1.为什么将jBPM与Mule一起使用？                                 https://blogs.mulesoft.com/dev/mule-dev/why-use-jbpm-with-mule/
+ *               2.企业数据总线(ESB)和注册服务管理(dubbo)的区别          https://www.cnblogs.com/liangqihui/p/7905307.html
+ *               3.纵观 jBPM：从 jBPM3 到 jBPM5 以及 Activiti5             https://www.infoq.cn/article/rh-jbpm5-activiti5
+ *               4. Activiti5                                                                    https://www.jianshu.com/p/988cedf2ca7c
+ *               5.activiti5 工作流的入门								                     https://blog.csdn.net/fgstudent/article/details/39901255
+ *               6. 特别响、非常近——BPMN2 新规范与 Activiti5            https://www.infoq.cn/article/bpmn2-activiti5
+ *               7.mule   muleESB的第一个开发实例-HelloWorld（二）   https://blog.csdn.net/jiuqiyuliang/article/details/49516457
+ *
 
+ */
 
 import com.secKill.controller.BaseController;
 import org.activiti.engine.*;

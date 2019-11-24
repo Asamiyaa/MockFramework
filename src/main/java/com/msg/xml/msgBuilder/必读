@@ -1,0 +1,29 @@
+--   20181122  --
+--------上传----------
+三个类（总的是两大部 因为除了核心ces会有单独的builder 其他都是在第一个service完成）  三个对象   九步走 
+																			                                                                                                                                                  我 是父类（001）继承自抽象abstractBuildDraft ( - assembleDraft(拼接head+body+标签.....)
+CESxxxServcie  -    CESBuilerXXXService 包含                                                                                              -  DraftService 中                                        |||||||
+ 业务逻辑           将业务对象通过addValueToBusiMgrReqInfo***我写*** - 保存业务对象                                  这里才是需要builDbd  ***canSendDraft  -- 001buildDraft(我写)	--   IClientProcessor中send 		- 数据库log		 - 本地log						        
+                            （两个对象之间可能是需要传到票交所的则 并不是包含但是一个模块一个req对象 
+                             该对象包含综合了该模块下所有的属性）
+                             
+                             只有ces大模块是单独的由builderService。其他小模块在前面servcie完成
+
+                          BaseReqInfo（msgid / prccd .....）
+XXEntity  - -       xxxReqInfo                                                                                                 -  DraftBuildData=requestInfo+msgid+sender+isAddSign... =String draft 关注的报文体      
+                     （ 每个模块一个reqInfo） （需要发给票交所的信息内容）                                                 
+
+Factory
+
+                                         requstInfo 和 xxxreq每个模块的请求对象发送和处理是共用的。所以dealRequst vs ....
+---------下传-----------
+mq - msgHandler中process -解析报文字符串截取 + log本地保存 + 获取对应的processor并doprocessor(将xml->对象 我写***001Processor**DraftMessage -> requestInfo)    -- cas001serviceimpl中记日志- 我写cas001ServcieImpl)  --   casservcie.executeCAS001()将vo到entity并执行业务逻辑
+
+  等价于：DraftService
+
+ ------------------------------逆向第一个先得到reqinfo对象  第二步得到业务对象------------------------------
+ 
+ 
+ 
+--   20181123  --
+对象内容之间 -- 内容元素及类型转换

@@ -1,0 +1,4 @@
+1.@WebService      接口上放一个WebService注解，说明该接口是一个 WS 接口（称为“Endpoint，端点”），
+2.@WebService +@WebMethod   实现类   方法是 WS 方法（称为“Operation，操作”）
+3.Endpoint.publish()      写一个 发布类，使用jdk自带的Endpoint进行发布
+4.通过http://localhost:1111/hobbyService/queryHobby?wsdl验证

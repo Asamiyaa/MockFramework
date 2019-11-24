@@ -1,11 +1,11 @@
 package com.utils.db.sql;
 
-import java.util.Collection;
+import com.utils.core.collection.CollectionUtil;
+import com.utils.core.util.ArrayUtil;
+import com.utils.db.DbRuntimeException;
+import com.utils.db.Page;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.db.DbRuntimeException;
-import cn.hutool.db.Page;
+import java.util.Collection;
 
 /**
  * 查询对象，用于传递查询所需的字段值<br>

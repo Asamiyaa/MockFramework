@@ -1,6 +1,6 @@
 package com.utils.cron.pattern.parser;
 
-import cn.hutool.cron.CronException;
+import com.utils.cron.CronException;
 
 /**
  * 简易值转换器。将给定String值转为int

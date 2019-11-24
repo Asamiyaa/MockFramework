@@ -1,0 +1,9 @@
+1.使用jdk工具生成客户端代码
+		HobbyServiceImpl.class
+		HobbyServiceImplService.class
+		ObjectFactory.class
+		package-info.class
+		QueryHobby.class
+		QueryHobbyResponse.class
+2.编写调用函数
+
