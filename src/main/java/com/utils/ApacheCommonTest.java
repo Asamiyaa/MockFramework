@@ -1,5 +1,7 @@
+/*
 package com.utils;
 
+*/
 /**
  * @author YangWenjun
  * @date 2019/11/1 17:52
@@ -81,7 +83,8 @@ package com.utils;
              //Logging	提供的是一个Java 的日志接口.                    --由logback、log4j代替
              //Validator	提供了客户端和服务器端的数据验证框架.          -- 由正则-注解-自定义校验框架代替
 
- */
+ *//*
+
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.mail.EmailException;
@@ -101,6 +104,7 @@ import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+*/
 /**
  *      Google Guava官方教程
  *                          --->http://ifeve.com/google-guava/
@@ -124,7 +128,8 @@ import java.util.zip.ZipOutputStream;
  *            Math
  *            Reflection
  *
- */
+ *//*
+
 public class ApacheCommonTest {
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, EmailException {
@@ -150,9 +155,11 @@ public class ApacheCommonTest {
             put("b","b");
             put("c","c");
         }};
-        /*for (Map.Entry<String, String> entry:map.entrySet()){
+        */
+/*for (Map.Entry<String, String> entry:map.entrySet()){
             这里由于上面初始化map时，泛型的位置应该在前面，才能map.entryset时返回对应的泛型参数，而不是object
-        }*/
+        }*//*
+
 
         for (Map.Entry<String, String> entry:map.entrySet()){
             System.out.println(entry.getKey() + "--" + entry.getValue());
@@ -178,10 +185,12 @@ public class ApacheCommonTest {
         //InputStream in = new BufferedInputStream(new FileInputStream(new File("d:\\a.txt")));//路径有问题吗？
         InputStream in = new BufferedInputStream(new FileInputStream(new File("d:/a.txt")));
         OutputStream out = new FileOutputStream("d:\\b.txt"); //是否存在？文件权限 目录..创建...
-            /*@Override
+            */
+/*@Override
             public void write(int b) throws IOException {
                 out.write(b);
-            }*/
+            }*//*
+
             //流和代码如何转换  输入输出， 这里为了验证 copy功能  -- 来定义一个数组,读到数组中
             int length ;
             byte[] bytes = new byte[1024];
@@ -278,3 +287,4 @@ public class ApacheCommonTest {
 
     }
 }
+*/

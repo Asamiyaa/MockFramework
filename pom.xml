@@ -84,6 +84,41 @@
         </configuration>
       </plugin>
 
+      <!-- AspectJ 编译插件 -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>aspectj-maven-plugin</artifactId>
+        <version>1.8</version>
+        <configuration>
+          <verbose>true</verbose>
+          <privateScope>true</privateScope>
+          <showWeaveInfo>true</showWeaveInfo>
+          <source>1.8</source>
+          <target>1.8</target>
+          <complianceLevel>1.8</complianceLevel>
+          <!-- <encoding>UTF-8</encoding> -->
+          <verbose>false</verbose>
+          <outxml>true</outxml>
+          <aspectLibraries>
+            <!-- 此处定义外部的aspect包，例如spring的事务aspect包 。这里引用的包必须在依赖中声明 -->
+            <!--
+              <aspectLibrary>
+                 <groupId>org.springframework</groupId>
+                 <artifactId>spring-aspects</artifactId>
+             </aspectLibrary>
+            -->
+          </aspectLibraries>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>       <!-- use this goal to weave all your main classes -->
+              <goal>test-compile</goal>  <!-- use this goal to weave all your test classes -->
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
   </build>
 
@@ -152,11 +187,11 @@
         <artifactId>httpclient</artifactId>
         <version>4.5.5</version>
       </dependency>
-      <dependency>
+     <!-- <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-email</artifactId>
         <version>1.4</version>
-      </dependency>
+      </dependency>-->
 
       <!--fastJson-->
       <dependency>
@@ -181,6 +216,68 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-redis</artifactId>
+      </dependency>
+
+      <!--aop-->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-aop</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjrt</artifactId>
+        <version>1.8.9</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjtools</artifactId>
+        <version>1.8.9</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>1.7.4</version>
+      </dependency>
+
+      <!--springboot对activity整合-->
+      <dependency>
+        <groupId>org.activiti</groupId>
+        <artifactId>activiti-spring-boot-starter-basic</artifactId>
+        <version>6.0.0</version>
+      </dependency>
+
+      <!--spring quartz-->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-quartz</artifactId>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-all -->
+      <dependency>
+        <groupId>org.apache.activemq</groupId>
+        <artifactId>activemq-all</artifactId>
+        <version>5.15.9</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.12.6</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.thoughtworks.xstream</groupId>
+        <artifactId>xstream</artifactId>
+        <version>1.4.10</version>
+      </dependency>
+
+      <!--mockito机制-->
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-all</artifactId>
+        <version>1.7</version>
       </dependency>
 
     </dependencies>

@@ -1,0 +1,2240 @@
+https://www.cnblogs.com/xrq730/category/733883.html
+
+微服务是将每个模块/服务进行相应的注册，调用...监控，统计... 这些都是固定的。所以核心还是对‘ 模块 ’的抽象和调用
+				将这些组件和代码模块/框架设计模式柔和在一起。
+				kafka(在mq间增加数据实时分析节点) https://www.cnblogs.com/likehua/p/3999538.html
+				dubbo https://juejin.im/post/5a5ee63d518825732914748c
+				zookeeper 注册中心，dubbo的一种注册方式
+
+
+1.将数据库信息导入到新电脑，保证项目启动。导入seckill的页面
+2.开始为系统搭建整体(有了系统 完整套路)
+			1.spring入口
+			2.监听器
+			3.缓存
+			4.线程     结合微信上的处理
+			5.activity
+			6...
+
+
+
+			originCode
+			handleInput
+			composite
+			clz
+			StringUtils.contains（xxx，“xxx”）;无需null判断
+            beancoper  -- 优雅的记录日志，是否定义日志bean对象？？？面向模型。
+
+			https://www.cnblogs.com/zhshlimi/p/9671273.html 过滤器/拦截器/监听器再j2ee中的实现和使用
+
+			思考报文解析模块的构造 (参考原来看过的书，注意点)  。。。 --> 所有的都大型化后才会有多线程，分布式，微服务思考
+
+			split 启用正则，并不代表所有的string都是正则
+
+
+3.问题:
+     1.避免重复(requestServlet..)到servlet安全性(多线程)
+     2.一致性     大话分布式环境接口幂等性与一致性解决方案  ： https://blog.csdn.net/chenaima1314/article/details/79069242
+     3.线程中的问题
+     4.超时
+     5.apchea ioutils 查看别人实现 vs 自己实现
+     6.数字证书
+     7.后置处理器
+     8.加解密
+     9.机具中如何将jbpm和xml组合起来，哪里塞入的namespace .. 如何处理的返回值？
+     10.性能
+     11.cookie session servletContext..
+     12.算法
+
+     				1.o(1):举个例子吧，比如说你要解决的问题里面涉及到n个数据的处理，而n的大小是在运行时刻才能确定的，你要正确处理这n个数据，需要额外的存储空间，如果这个额外存储空间的大小和n无关，或者说是一个常数，那么就称空间复杂度为O(1)的。例如，找出n个数中最大的数是多少，那么不管n是多少，你只需要一个额外的变量max来存储，那么空间复杂度就是O(1)，但是你需要遍历所有的n个数，n越大在遍历的过程中消耗的时间就越多，因此时间复杂度…
+        		2. O(n2)、O(n)、O(1)、O(nlogn) https://www.zhihu.com/question/21387264
+        uml
+        powerdesign
+        ..
+     13.启动日志查看配置
+     14.内部类 静态问题 变量问题如何使用
+     15.类在jvm /spring的初始化和声明周期
+     16.死锁
+     			1.死锁:多个进程在运行过程中因争夺资源而造成的一种僵局，当进程处于这种僵持状态时，若无外力作用，它们都将无法再向前推进。
+ *     					 因此我们举个例子来描述，如果此时有一个线程A，按照先锁a再获得锁b的的顺序获得锁，而在此同时又有另外一个线程B，按照先锁b再锁a的顺序获得锁
+ *  		  2.原因：a. 竞争资源
+				             系统中的资源可以分为两类：
+				             可剥夺资源，是指某进程在获得这类资源后，该资源可以再被其他进程或系统剥夺，CPU和主存均属于可剥夺性资源；
+				             另一类资源是不可剥夺资源，当系统把这类资源分配给某进程后，再不能强行收回，只能在进程用完后自行释放，如磁带机、打印机等。
+				             产生死锁中的竞争资源之一指的是竞争不可剥夺资源（例如：系统中只有一台打印机，可供进程P1使用，假定P1已占用了打印机，若P2继续要求打印机打印将阻塞）
+				             产生死锁中的竞争资源另外一种资源指的是竞争临时资源（临时资源包括硬件中断、信号、消息、缓冲区内的消息等），通常消息通信顺序进行不当，则会产生死锁
+
+		             b. 进程间推进顺序非法
+
+				             若P1保持了资源R1,P2保持了资源R2，系统处于不安全状态，因为这两个进程再向前推进，便可能发生死锁
+				             例如，当P1运行到P1：Request（R2）时，将因R2已被P2占用而阻塞；当P2运行到P2：Request（R1）时，也将因R1已被P1占用而阻塞，于是发生进程死锁
+					3.必要条件
+							  互斥条件：进程要求对所分配的资源进行排它性控制，即在一段时间内某资源仅为一进程所占用。
+								请求和保持条件：当进程因请求资源而阻塞时，对已获得的资源保持不放。
+								不剥夺条件：进程已获得的资源在未使用完之前，不能剥夺，只能在使用完时由自己释放。
+								环路等待条件：在发生死锁时，必然存在一个进程--资源的环形链。
+					4.解决方案
+					      资源一次性分配：一次性分配所有资源，这样就不会再有请求了：（破坏请求条件）
+										只要有一个资源得不到分配，也不给这个进程分配其他的资源：（破坏请保持条件）
+										可剥夺资源：即当某进程获得了部分资源，但得不到其它资源，则释放已占有的资源（破坏不可剥夺条件）
+										资源有序分配法：系统给每类资源赋予一个编号，每一个进程按编号递增的顺序请求资源，释放则相反（破坏环路等待条件）
+										1、以确定的顺序获得锁
+												?那么死锁就永远不会发生。 针对两个特定的锁，开发者可以尝试按照锁对象的hashCode值大小的顺序，分别获得两个锁，这样锁总是会以特定的顺序获得锁，那么死锁也不会发生。问题变得更加复杂一些，如果此时有多个线程，都在竞争不同的锁，简单按照锁对象的hashCode进行排序（单纯按照hashCode顺序排序会出现“环路等待”），可能就无法满足要求了，这个时候开发者可以使用银行家算法，所有的锁都按照特定的顺序获取，同样可以防止死锁的发生，该算法在这里就不再赘述了，有兴趣的可以自行了解一下。
+
+										2、超时放弃
+
+												当使用synchronized关键词提供的内置锁时，只要线程没有获得锁，那么就会永远等待下去，然而Lock接口提供了boolean tryLock(long time, TimeUnit unit) throws InterruptedException方法，该方法可以按照固定时长等待锁，因此线程可以在获取锁超时以后，主动释放之前已经获得的所有的锁。通过这种方式，也可以很有效地避免死锁。
+					 jstack  jconsole
+
+     当一个线程获取了锁之后，是不会被interrupt()方法中断的。
+
+
+		     《Java编码指南：编写安全可靠程序的75条建议》	 安全性
+		      JAVA 代码安全规范：https://blog.csdn.net/shanchahua123456/article/details/85038027
+
+		 17.序列化的生成   rmi 序列化在具体代码中的体现？是被中间件mq...等包装了吗？
+		 18.方法调用及堆栈效果：https://blog.csdn.net/hchhan/article/details/81713654  --对象的创建及jvm回收
+		 19.nio:http://ifeve.com/selectors/  线程/线程池 模型+监听器(注册)设计模式..
+     20.序列化和mq组合实现。分布式代码如何写？dubbo
+     21.大量的if - case/数组/map
+
+1.安全
+		1.编写代码
+				1.代码签名 ....其他。。。
+				2.类加载 字节码校验
+
+		2.***用户认证  加密
+		3.***数字签名
+
+				|
+		  用户登陆
+
+
+
+图解密码学：https://blog.csdn.net/weixin_39190897/article/details/82223408
+数据加解密：https://blog.csdn.net/weixin_39190897/article/details/82220653
+
+1.Permission使用:https://www.yiibai.com/java/java-set-file-permissions-posixfilepermission.html
+
+2.shiro
+
+3.登陆权限 ... 模块级安全
+
+4.面试题
+
+
+5.解决问题的能力 需要到开发
+
+6.职业方向
+
+7.源码--spring --- mybatis:https://www.cnblogs.com/xrq730/p/6991655.html
+
+8.***开始模块***需求过程-- 学习快速整合 - 优化  --多个框架间整合..
+   1.通信模块
+   			1.需求流程（从需求中长度截取写对应报文处理逻辑） - 流程图。(嵌在别的框架中...导致不知道执行流程) --/spring+activmq)
+   					我如何知道考虑哪些东西(不同协议 / 模块vs工具类)，如何全面
+   						 --书籍/博客/github项目平时积累
+   						   1.activmq 查看官网概述/api -
+
+   						   2.书籍 快速 技能点 出现问题好定位 找书(专业点)  ActiveMQ in Action 英文版
+   						   			https://jfires.iteye.com/category/181422
+   						   			https://www.cnblogs.com/ainima/p/6331700.html  并实现简单示例 --在扩展
+   						   					1.JMS理解 在java api 实际使用封装  生产者/消费者 | jms api(https://www.orcode.com/question/314145_k8bf14.html)
+   						   							1.松耦合一般是为了减轻经典RPC（Remote Procedure Calls）调用的紧耦合架构而被引入的。
+		   						   					2.大数据量催生了rpc下的微服务，将原来单个服务进行拆分部署.这些是需要服务同时启动，存在的，实时的。
+		   						   					 同步和异步都找到了各自的场景和最终的实践
+		   						   					3.brokers
+		   						   					4. 企业消息传送到目的就是在系统间传递数据。这些年来已经有各种不同的技术可以进行消息传送，如下列表所示。
+																	通过远程过程调用（RPC）的解决方案，例如COM，CORBA,DCE及EJB
+																	使用事件通知，内部交互，消息队列的，例如FIFO缓冲，消息队列，管道，信号，socket等。
+																	使用异步可靠消息队列的中间件的，例如IBM WebSphere MQ, SonicMQ, TIBCO Rendezvous,
+																	and Apache ActiveMQ，它们都可用在企业消息集成。
+   						   					2.从别的项目中可以知道：框架对url端口/pool...都封装到对应的类中，所以配置类
+   						   					  时，注意框架已经封装好的类及其配置
+   						   					  AmqMessageSender - jmsTemplate - AmqConnnetionPoolFactory - AmqConnnetionFactory - brokerURL（el表达式 -直接从applicationContextproperty中取）-哪里加载到spring容器中的 vs 从getProperty...获取https://blog.lovian.org/spring/2018/04/09/java-spring-bean-spel.html  vs 代码中取值呢?也可以使用spel吗？还是getProperty/Resource https://blog.csdn.net/honghailiang888/article/details/51880312对比b'b's'p这种代码加载
+   						   					  																												  - maxConnections
+
+   						   						从博客中找到有点杂，或者简单，角度不同。我不知道如何找到有用的。
+   						   						从api中找到方法全，但是不知道如何组织这些方法
+
+   						   					3.配置分层  resource.file / shcpeResource.xml中import...
+
+   						   2.整合spring / 其他框架 扩展点
+   						        框架自身监听器扩展 - quartz
+   						        spring自身(包装了..) - 其他比如factory applicationContext ..初始化/实例化 销毁
+	   						        sessionAwareMessageListner   接受时必要性
+	   						        BeanFactoryPostPorcessor     假设没有spring不是都在构造方法中进行相关操作吗？--spring提供了哪些特殊操作
+	   						        DisposableBean
+   						        spring在线手册：http://www.shouce.ren/api/spring2.5/ ***any goto read to lijiao keneng kuozhandian
+   						        不仅仅是这个相关接口，还有用到其他初始化接口
+   						        contextLoaderListener
+   						        是不是有些类不应该由spring管理，比如这些类再构造方法init一些东西，如果由spring管理永远调用不到。--可以将这些初始化操作到一起，实现contexxtLOADERlI...
+   						        上面是不是由的项目中不是扫描文件夹，而是配置bean呢。
+
+   						        bean的jvm和spring下生命周期：(扩展点)
+   						        		com.SpringTest
+					   						        1.AmqMsgListenerContainer extends DefaultMessageListenerContainer  发
+					   						        2.AmqMsgListener implements SessionAwareMessageListener           收
+					   						        3.整个模块的启停加载																								 容器加载
+					   						          comProcessor implements BeanFactoryPostProcessor , DisposableBean
+					   						        4.配置高级的属性 pool,factory,time-out,auth...
+					   						        4.回调
+					   						        5.事务
+					   						        6.日志
+
+					   						        如何知道扩展哪些呢? 如何知道下面实现api? 上面阅读书籍/博客/github 项目 -- 一部来，不要随意修改demo,manman kuo zhan
+
+   						   3.定义和报文拼装解析的接口(----最简单的实现，往往在实际开发中是不行的。----)
+   						          1.配置property
+   						          2.传递形式  string /ob ...
+   						          3.springboot中常用注解及属性
+
+   						          		1.@Controller("zzz") @Service @Repository @Component（前面三个的父类） @Scope  @Configuretion+@bean（将方法返回定义bean对象，bean name为方法名）
+   						          		2.@Autowired(required=false) (可以不用写getter/setter..反射+属性) 写在字段上，或者方法上 默认情况下必须要求依赖对象必须存在，如果要允许null值，可以设置它的required属性为false
+   						          			@Resource相当于@Autowire 默认以byname注入 ..可以通过配置name type 指定注入顺序
+   						          			@Qualifier("xx")
+   						          			@Value 注解加载属性值的时候可以支持两种表达式来进行配置， 如下所示:
+																一种是PlaceHolder 方式， 格式为＄｛．．．｝， 大括号内为PlaceHolder。
+																另一种是使用SpEL 表达式(Spring Expression Language), 格式为＃｛．．．｝， 大括号
+																内为SpEL 表达式。
+
+   						          		3.@Controller + @Responsebody = @RestController 返回json数据  ==@RequestMapping("/test") 可方法可类  ==@RequestParam public Resp test(@RequestParam(required = "false " value="course_id") Integer id)
+   						          			@ModeAttribute
+   						          			@ModelAttribute(value="user_name") public?String?before2(@RequestParam(required?=?false)?String?name,?Model?model)?{3????????System.out.println("进入了2："?+?name);4????????return?name;5????}
+															@SessionAttributes
+														4.@Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
+														5.@Cacheable  @CacheEvict
+   						          		6.@PostConstruct @PreDestroy
+   						          继承实现和现在的注解融合出现了问题，不执行或者执行不理想
+   						             --使用高级功能，破坏了当前的springboot的默认配置，导致向broker-url/name/password都需要代码注入后，在加入其他
+   						          	 --扩展点和扩展点间包含，关联无法确定，springboot扩展中乱...  ， 先从property中扩展，这是由框架定义好的，再想着去扩展类(前面扩展是基本的，想要定义仍然需要对类结构进行管理)
+
+   						          	jms文档：https://www.cnblogs.com/larryzeal/p/7294564.html
+													Spring在代码中获取bean的几种方式：https://www.cnblogs.com/yjbjingcha/p/6752265.html
+
+													属性问题:不是所有的类属性都需要在spring配置，比如：类中初始化，返回值，成员接受容器list/map。。。
+													         配置文件中的属性多于类属性，特别是：继承框架的类，继承结构 factory..max... .配置的setxx() 而不是属性.所以有的属性是找不到的
+
+													Assert.notNull(code, "Code must not be null"); https://uule.iteye.com/blog/898842
+
+
+
+													--------------TODO:接受时的listener无法糅合进去--------------------
+
+   						          4.自定义注解和解析逻辑 --> 框架提供注解。
+   						          5.英文文档的快速学习----
+
+   						     msg以何种方式传递，如何和对象之间转换处理  -- 信息的拼接和组装？json？xml? --> draft模块   这里就可以先测试，因为架构和基本实现完成。
+   						          剩下：性能-线程  一致性：事务  代码安全性：认证/代码安全性
+											   						     线程
+											   						     分布式事务org.springframework.transaction.support.TransactionSynchronizationAdapter;
+
+
+   			2.uml图 工具使用 - 设计模式 (特别是在公共业务中)
+   						   1.
+   						   2.
+
+   			3.代码编写
+
+
+   		  4.测试驱动开发 - 性能涉及工具 监控...
+   		  						springboot中junit:
+
+
+   		  阻塞处理 / 配置 .../ 一致性
+
+   		  涉及技术原理+bug整合
+   		    监听器/线程/selector-nio
+
+
+
+  -----最后发现，官方文档才是正规的。也是最可以扩展点。可以完全信赖-----
+
+
+
+  ---------- 规范------------------
+  lombok插件使用：http://blog.didispace.com/java-lombok-how-to-use/
+
+  1.接口定义 bbsp / 数据库规范 ...
+  --MQ 队列深度 / 几个进出 ...
+
+
+  工具的problem注意查看和处理
+
+
+  ------------draft-------------------
+  1.交互接口定义 obj/str/byte...  --》对于不熟悉(没使用过的领域或者说框架)如何上手，考虑周全 。**代码量**套路**
+  		1.前置机 2.报文解析/组装 来报/往报 3.加签/验签vs加密 4schema校验  5.日志处理  6.xml-obj xmlbean 头 body...
+  		其实报文处理就是 oxm 一部分，所以说也是一个大型模块。所以说就类似于orm 先学习xml相关,
+  		比如这里的基本元素，结构，校验...先学习，在学习oxm框架  比如xmlbeans / xstream ... 。 oxml直接和jms连接发送
+
+  		所以说分割问题，明确是重要的
+
+  		网上看到的都是 每个知识点的简单应用，先不改变，跑起来。 -- 高级功能/自定义化  -- 实际项目中都是 许多知识 的综合应用题
+  						菜鸟教程 / w3c ... 基本元素，组成。。 -博客 稍高级使用   -实际场景分析和官方文档 -整合
+
+  						元数据  规则  ---> 提供了很多的灵活性 其实代码中想要定义什么都可以
+
+  		比如json ...等
+
+  2.动态sql if... mabatis方式  --SQL  数据 库设计 orm
+  3.RAP;https://github.com/thx/
+  RAP 前后台接口测试工具
+  4.代码规范75+150... - 接口定义规范/数据库规范.... - 架构设计规范 - 业务规范 .
+  5.业务甬道图 背诵 记录  知识串联  有利于分析代码....  / 甬道图判断可能对应者代码量很多，  华腾的架构设计
+
+  -------------log------------------
+
+
+  -------------redis---------------
+
+  -------------nginx---------------
+
+
+服务注册中心 RC - 状态机
+
+RPC 验证
+
+票据对接票交所  使用xml  对接机具 使用json  ---对比 --规范上对比 --
+	    1.xml和json对比：https://blog.csdn.net/xfeiman/article/details/79834722
+	      xpath - xschema - xpath
+
+	    2.其实string后的xml,或者不按格式的xml 都不会破坏xml,xml重要的就是结束标签。来划分子孙。--建立模型
+
+	    3.xml 菜鸟教程 https://www.runoob.com/xml/xml-attributes.html
+				XML 相关技术：https://www.runoob.com/xml/xml-technologies.html
+											SOAP (简单对象访问协议)
+											允许应用程序在 HTTP 之上交换信息的基于 XML 的协议。
+
+											WSDL (Web 服务描述语言)
+											用于描述网络服务的基于 XML 的语言。
+
+											xpath:XPath 是一门在 XML 文档中查找信息的语言  https://www.w3school.com.cn/xpath/index.asp
+
+											xQuery:https://www.w3school.com.cn/xquery/index.asp
+
+	      schema:   https://www.runoob.com/schema/schema-tutorial.html
+							      	定义可出现在文档中的元素
+											定义可出现在文档中的属性
+											定义哪个元素是子元素
+											定义子元素的次序
+											定义子元素的数目
+											定义元素是否为空，或者是否可包含文本
+											定义元素和属性的数据类型
+											定义元素和属性的默认值以及固定值
+	      对于spring.其他框架配置多时，其本质是理解其内部逻辑，配置..都是对外提供的接口，完全信赖。
+
+
+	    oxm 框架
+	    	 https://www.jb51.net/article/131704.htm
+	    	 是否需要提前定义映射对象？json需要吗？
+
+
+-----事务----两个及以上落库操作-----问题：1.嵌套 失效  2.同一个方法中事务调用 ----------
+Spring中七种Propagation类的事务属性详解：?
+
+?REQUIRED：支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。?
+    关于业务的。都是一个整体的。配置许多是命名时，每个人不同，所以配置多。拦截器统一 vs 方法配置
+
+?REQUIRES_NEW：新建事务，如果当前存在事务，把当前事务挂起。?
+		启动一个新的, 不依赖于环境的 "内部" 事务. 这个事务将被完全 commited 或 rolled back 而不依赖于外部事务, 它拥有自己的隔离范围, 自己的锁, 等等. 当内部事务开始执行时, 外部事务将被挂起, 内务事务结束时, 外部事务将继续执行.
+
+    只要自己没有问题，自己就commit，即使外部事务异常也不会回滚。如果自己rollback,也不影响外部的。
+
+    addLog操作 - 记库 IserviceDao 抽离哪些信息记库  vs  文件
+
+?SUPPORTS：支持当前事务，如果当前没有事务，就以非事务方式执行。?
+?NESTED：支持当前事务，如果当前事务存在，则执行一个嵌套事务，如果当前没有事务，就新建一个事务。?
+		PROPAGATION_NESTED 开始一个 "嵌套的" 事务,? 它是已经存在事务的一个真正的子事务. 潜套事务开始执行时,? 它将取得一个 savepoint. 如果这个嵌套事务失败, 我们将回滚到此 savepoint. 潜套事务是外部事务的一部分, 只有外部事务结束后它才会被提交.?
+		????由此可见, PROPAGATION_REQUIRES_NEW 和 PROPAGATION_NESTED 的最大区别在于, PROPAGATION_REQUIRES_NEW 完全是一个新的事务, 而 PROPAGATION_NESTED 则是外部事务的子事务, 如果外部事务 commit, 潜套事务也会被 commit, 这个规则同样适用于 roll back.?
+
+?NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。?
+
+?MANDATORY：支持当前事务，如果当前没有事务，就抛出异常。?
+?NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。?
+
+
+这个配置将影响数据存储，必须根据情况选择。
+
+--上面和下面一般不同时出现--
+
+readonly  隔离级别  https://blog.csdn.net/KimSoft/article/details/5280271
+	如果你一次执行单条查询语句，则没有必要启用事务支持，数据库默认支持SQL执行期间的读一致性；
+	如果你一次执行多条查询语句，例如统计查询，报表查询，在这种场景下，多条查询SQL必须保证整体的读一致性，否则，在前条SQL查询之后，后条SQL查询之前，数据被其他用户改变，则该次整体的统计查询将会出现读数据不一致的状态，此时，应该启用事务支持。
+
+
+  只配置readOnly,那么默认的传播行为是什么？
+  不同数据库默认的隔离级别，配置隔离级别。 哪些情况需要配置读未提交....
+
+  resetInterest:事务 never
+
+  幻读：事务在插入已经检查过不存在的记录时，惊奇的发现这些数据已经存在了，之前的检测获取到的数据如同鬼影一般
+  			https://blog.csdn.net/liuxiao723846/article/details/51817825
+
+
+
+	Oracle默认的隔离级别为Read Committed，因此可能出现不可重复度和幻读。
+	MySql默认的隔离级别为Repeatable Read，因此只会出现幻读的情况。
+
+	幻读和不可重复读都是读取了另一条已经提交的事务（这点就脏读不同），所不同的是不可重复读查询的都是同一个数据项，
+	而幻读针对的是一批数据整体（比如数据的个数）。
+
+	为什么互联网使用读已提交？https://www.cnblogs.com/shoshana-kong/p/10516404.html
+
+	隔离级别和readonly 修饰 qry.... get .. search ...等查询方法，进行设值和优化   @Transactional(readonly = true)
+
+
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)//只读，不能更新，删除
+	@Transactional(propagation=Propagation.REQUIRED,timeout=30)//超时30秒
+  其实propagation=Propagation.REQUIRED 不影响。所以可以看作是默认吧。写不写都行
+
+aop
+日志：存库 vs 文件  / logUtils（ 也是需要的。不是所有的都可以配置 ） vs aop
+     https://www.cnblogs.com/jianjianyang/p/4910851.html
+
+     问题:修改的是方法，为什么叫代理类呢？
+
+aop实现原理：
+
+aop 和  拦截器 和 代理关系？ 拦截器 - 责任链 那么这个容器到底有多大？包含哪些信息？
+
+aop使用:参数检查  / 统一日志 / 统一异常 AfterReturningAdvice ThrowsAdvice MethodBeforeAdvice --如何实现扩展> serviceExceptionAdvisor
+		http://www.imooc.com/article/68948
+
+
+------------ 加解密 加签 验签  token -----------------------
+所谓加密(Encryption)是指将一个信息(或称明文－plain text) 经过加密钥匙(Encrypt ion key)及加密函数转换,变成无意义的密文( ciphertext),而接收方则将此密文经过解密函数、解密钥匙(Decrypt on key)还原成明文。这一概念是密码学的基础。
+
+md5 不是加密算法，而是摘要算法，摘要算法检查数据的完整性，可检查数据有没有被改过。你想要的那种加密算法可以尝试 AES 对称加密和解密
+
+加密都是可以解密的，换句话说就是可逆，md5 是摘要，摘要会有信息丢失，所以是不可逆的
+
+加密都是可逆的 摘要都是不可逆的
+
+md5 base64 aes 加密 摘要
+
+Base64加密解密：https://blog.csdn.net/huangxiaoguo1/article/details/78042715
+为什么要使用base64编码，有哪些情景需求？:https://www.cnblogs.com/straybirds/p/8395041.html  *****
+
+网页登录时密码如何传输?https://blog.csdn.net/u012512762/article/details/41681159
+
+https://www.cnblogs.com/bjlhx/category/980088.html
+
+shiro
+
+
+
+
+------------  流水号生成 -------------------
+集群环境下  多线程环境下
+
+
+
+
+
+
+------------------------------
+
+  6.中台
+    分险敞口：https://zhidao.baidu.com/question/564035707.html
+    解付，是指持票人持有汇票向开户行提示付款，持票人开户行收妥后交换到出票行，出票行验证汇票无误后付款的行为。
+
+    防止重复 ：token 交易类
+
+    1.clob字段直接搜索  2.问题:如何比较 ？  3.看懂人家的line是为了展开函数 进行比较容易  4. if 函数...逻辑 ..存储过程...
+
+
+    前置机和mq关系 为什么代码中直接使用template，发送，没有考虑前置机吗？
+
+
+
+
+
+  对接票交所 mq... 报文组装
+  对接影像 ...idcheck
+  注册中心
+  sql优化
+  业务
+  异常处理  一致性
+  审批流  机具 ...
+
+ ---金融类业务---
+  风控/账务处理(--核算管理--)
+  	风控：对外：黑名单客户 / 签约准入 / 保证金灵活管控
+  	      对内: 超低利率 / 授权管理
+  报表
+
+  智能决策 --市场判断
+  规则配置化（业务-额度扣减/基础数据..）  查询模块 ...
+
+  接口服务类似于查询，公共配置，业务(xxx) , 权限 ，工作流 ，监控 ...都是子系统
+
+  业务流转..
+
+
+  -------------------------
+
+   2.log
+   3.事务
+   4.登陆验证
+   5.es
+   6.缓存升级 redis
+
+
+   pair diff  ParameterParser
+
+
+
+
+1.基础
+ 			1.大学课程   --我不是非科班生  --简历上如何弄？
+ 			2.jdk  hashmap(红黑树/hash冲突..)
+ 			3.spring netty ...源码
+2.实践
+			1.自己hook项目必须集成变大 <--- github/码云  框架的使用扩展
+			2.linux 中sed awk 以及服务器部署相关知识
+
+3.优化
+			1.思路 方向
+			2.工具使用
+			...
+redis - zookeeper..
+	https://www.cnblogs.com/ainima/p/6331696.html
+
+我的编程规范：
+  工具类:https://www.google.com.hk/search?safe=strict&source=hp&ei=uCg4XcqxBuTn0gKe5pGADg&q=%E5%93%AA%E4%BA%9B%E5%AE%9A%E4%B9%89%E4%B8%BA%E5%B7%A5%E5%85%B7%E7%B1%BB+%E5%93%AA%E4%BA%9B%E8%AE%BE%E8%AE%A1%E4%B8%BA&oq=%E5%93%AA%E4%BA%9B%E5%AE%9A%E4%B9%89%E4%B8%BA%E5%B7%A5%E5%85%B7%E7%B1%BB+%E5%93%AA%E4%BA%9B%E8%AE%BE%E8%AE%A1%E4%B8%BA&gs_l=psy-ab.3..33i160.1091.16248..17887...10.0..3.523.14897.2-40j12j2j1......0....1..gws-wiz.....10..35i39j0j0i131j0i12j0i13i4i30j0i13i5i4i30.e-6Exw4_13o&ved=0ahUKEwjK7czaos3jAhXks1QKHR5zBOAQ4dUDCAU&uact=5
+
+mybatis
+   https://www.iteye.com/blogs/subjects/mybatis#4338
+
+
+   tomcat性能调整  调整jdk和调整tomcat jdk 区别是什么
+
+   ces chs
+
+
+   https://blog.csdn.net/sayWhat_sayHello/article/details/82453638
+
+每个服务间注意点:
+springCloud
+		1.https://blog.csdn.net/weixin_39800144/article/details/85012548
+		2.https://blog.csdn.net/hellozpc/article/details/84144453#474ConfigApplicationEnableEurekaClient_940
+dubbo:https://blog.csdn.net/hellozpc/article/details/78575773
+
+dubbo vs webservice
+     https://blog.csdn.net/albenxie/article/details/82959168
+
+
+前置机开发
+
+proxy listner factory  handler adapter wrapper .Context.. 设计模式对应类  call/excute  ..asString Template
+invoke/invocation  proceed  retVal  putIfAbsent  createTransactionIfNecessary  doUnbindResource   toIndex - fromIndex;
+dot 点
+invokeParam  QueryCondition OrderBean  rangeCheck
+
+-------------------------------------------
+1.一致性脚本发 ， -- 结果 - 比对
+2.将xml-xmlbean xtream代码整理到hook   签名验签 shcpeSignManager  / 回调设计（ 逻辑的调用是由上一个程序结果调用的，比如来报，hibernateCallBack,异步... ）
+3.RC - 状态机 - zookeeper    Context EventHub  Event  --listener
+
+4.spring 环境下单元测试   springboot下呢 比
+
+
+
+----------------
+
+环境比对一事思考:
+
+	1.excel 函数  - 快速
+	2.表连接 去重 ？
+	3.序列在哪里使用
+	4.很多字段不清楚含义
+
+	比如序列的下一次值，，这些都不应该是差异，但是这次比的是 差异。  下一次才过滤：哪些条件算整整差异，比如投产版本，执行计划等...
+	限制用户，...
+
+	表 / 索引 / 数据库集统计 / 数据库版本统计 / 用户权限统计 / 序列统计 / 存储过程统计 / 触发器统计 / 函数统计  / 视图统计
+
+
+	1.执行计划表去掉了吗？
+	2.表列名中文修改
+	3
+
+-----------------
+
+P260迁移思考：
+
+
+
+-----------
+
+仿真
+  1.一个系统创建的流程 思考
+  2.架构图 思考  仿真-着重方面
+  3.业务流程  角度  报文   明确(每个业务)自己做了什么，票交所做了什么？是否模拟账务，征信，风险票 ，性能 ...
+  		1.出票 - 贴现 - 转贴 - 兑付/签收 - 结清 / 追索   自己系统：行内处理 ，调用外接口   仿真：着重别人处理，
+  																									                                  从接口模拟要完成的东西。
+                  1.必须新建对手，而不是拿着自己系统，改个登陆就当别的行对手，因为这其中涉及额度，订单，账务...等
+                    所以，只需要 ‘ 模拟对手报文 ’即可。只发报文 。 这些元素和自己系统一样
+                  2.票交所后台模拟，模拟 ‘ 转发操作 ’，更多参数设置：案例：超时，拒绝，应答方式，验签，...
+                    行名行号下发，我行处理，票交所 订阅 。 这些都是来验证功能的。性能/扩展
+                  3.非交易直连部分添加也就是几个界面。因为后台处理逻辑一样。
+                  4.问题：每个报文票交所后台到底做了哪些？除了转发呢? 应答 / 为什么别人的cim002只有？而不是所有
+                    的cim都需要？数字证书呢?系统状态？ 我发的和我收的进行对比 得到票交所加了些什么。
+                  5.票交所下发的信息：schema+数据类型=如何在仿真中对schema处理，并定义自己的类型。
+                    事务 - 异常（统一异常） - 日志 --> 技术架构 其实这里只是模拟一个bbsp中的报文组装发送层代码 service层代码涉及很少。因为不涉账务
+                  6.依据别人下发的接口文档，发推内部实现。
+                  	‘ 自动 ’ --> listener / 回调  接着就是验证 - 转发 - 记库(为了前台操作)【报文】
+                      规则：营业日-下发文件 【-广播-】 切日   通知，订阅的技术实现
+                      码值：有的两个机构转发，有的是票交所处理得到的结果，有的是票交所根据改结果进行加功处理
+                      文档中报文处理规则就是票交所做的事情***
+                      明确哪些报文需要哪些处理
+                  7.真正的票交所：性能肯定是一个重点 mq / 规范制定者 /报文标识号生成
+
+  		2.是否考虑非交易直连的模块 比如... 这些东西的
+	4.ppt excel word 流程图 ... 文档能力
+
+
+-----
+
+proputil
+cache
+aop
+mysql
+sql脚本
+
+
+baseService 中 统一异常/日志处理
+
+
+------
+
+mysql - sql查询 - mybatis
+
+------
+
+理清一个个模块套路。切面。必须形成
+
+spring 实战   aop-自定义注解  业务层面-代理层
+spring 攻略
+spring 官方手册  （扩展点 整合点）
+
+springboot 官方手册
+
+springcloud相关知识点/官方手册
+
+-----
+
+常用的思路：分片/批量操作/
+常用的面试：红黑树 / ....
+redis
+mq高级
+并发 - lock - jvm  - 调优
+tomcat NIO
+源码
+
+
+
+
+
+
+
+
+-----interview------------
+1.bootstrap  前后台接口 jbpm+spring+quarz+json+xstream+线程+mock/postman+git
+	1.spring mudule  mvc  视图技术
+			--线程和单例
+					1.为什么spring单例模式可以支持多线程并发访问  https://blog.csdn.net/csj50/article/details/83016508
+					2.Spring解决单例bean线程不安全问题 	  https://blog.csdn.net/weixin_42324471/article/details/90603651
+							ThreadLocal是JDK提供的为解决线程安全的一种解决办法
+							spring自己肯定用到了ThreadLocal
+							Spring框架不对单例的bean做任何多线程的处理。单例的bean的并发问题和线程安全是开发人员的责任。
+							而实际上,大多数spring bean没有可变状态(例如服务和DAO的类),这样的话本身是线程安全的。但如果您的bean有可变状态(例如视图模型对象),这就需要你来确保线程安全。
+							这个问题最简单和明显的解决方案是改变bean Scope，可变的bean从“单例”到“原型”。
+
+							及：哪里使用spring,哪里使用new
+
+		轻量：Spring 是轻量的，基本的版本大约2MB。
+		控制反转：Spring通过控制反转实现了松散耦合，对象们给出它们的依赖，而不是创建或查找依赖的对象们。
+		面向切面的编程(AOP)：Spring支持面向切面的编程，并且把应用业务逻辑和系统服务分开。
+		容器：Spring 包含并管理应用中对象的生命周期和配置。
+		MVC框架：Spring的WEB框架是个精心设计的框架，是Web框架的一个很好的替代品。
+		事务管理：Spring 提供一个持续的事务管理接口，可以扩展到上至本地事务下至全局事务（JTA）。
+		异常处理：Spring 提供方便的API把具体技术相关的异常（比如由JDBC，Hibernate or JDO抛出的）转化为一致的unchecked 异常。
+
+   beanFactory application 结构
+
+	2.企业实战扩展点
+	3.源码 IOC / AOP / 事务 / 其他扩展框架-对外（适配器？） 设计模式
+	4.
+
+
+2.struts+spring+hibernate+activemq(丢失/延时)+mule+状态机/登记中心+webservice/aix+ant+前置机
+
+
+3.mybatis / mysql / jdk / 数据结构算法
+
+
+
+
+
+1.服务器宕机 / 数据库宕机
+2.FTP服务器空间不足 / 应用服务器存储不足 /
+3.行内其他系统网络不通 和人行ECDS网络不通
+4.数据库锁表  数据库表空间不足
+5.MQ
+
+
+spring 源码：---------
+
+preProcessXml(root);
+parseBeanDefinitions(root, this.delegate);
+postProcessXml(root);
+
+包装了equals
+private void parseDefaultElement(Element ele, BeanDefinitionParserDelegate delegate) {
+    //"import"
+    if (delegate.nodeNameEquals(ele, IMPORT_ELEMENT)) {
+        importBeanDefinitionResource(ele);
+    }
+
+ throw new IllegalStateException
+
+ 链式 - 方法包装/类的包装嵌套包含..
+
+  while (counter == -1 || registry.containsBeanDefinition(id)) {
+            counter++;
+            id = generatedBeanName + GENERATED_BEAN_NAME_SEPARATOR + counter;
+        }
+
+   ---》 for
+
+
+   do{xxx}while (targetClass != null && targetClass != Object.class);
+
+   aop /事务 --基于 代理（spring创建代理的形式）+拦截器(事务) -- 拦截器模式 - chain'
+   遍历所有使用的 Advisor，获得其Advice，将Advice转为MethodInterceptor。
+
+   监听和callBack()组合在一起
+
+   所谓的事务挂起其实就是一个移除当前线程、数据源活动事务对象的过程。
+   事务的本质其实是对数据库自动提交的关闭与开启，传播特性是Spring提出、实现、控制的概念，而隔离级别是对数据库实现的封装。
+
+   写代码和阅读代码 先把架子搭好在自己的脑海中，再进行填充
+
+--混合编程--将原来进出口银行和北京银行/包商银行的知识点进行转化 总结--自己  excel word ppt  visio jmeter--
+--打地基  自信/建立   数据结构  模型  处理注意点 套路  算法(查找-二分 排序-快速)
+
+jdk源码：---
+
+1. return (a == b) || (a != null && a.equals(b));  vs flag  vs 本身是同一个对象就无需进行其他浪费操作
+2. if(a == b)
+            return true;
+        else if(a == null || b == null)
+            return false;
+        else
+            return Arrays.deepEquals0(a, b);
+   null 判断  - 通过if判断将“筛选条件过滤掉” 所以这里的if..条件不是一个维度的  这里的else if 也可以写成if.表示向下的流
+	 比较数组长度
+3.基础方法  --> 重载 --> 加入特定环境约束 形成新的方法 。 源码也是这种处理，更加牛牛牛
+  每个方法判断也是对这个“ 特定环境进行的 ”
+  复用：匹配  -- 不匹配  都是可以公用的
+4.public static int binarySearch(char[] a, char key) {
+        return binarySearch0(a, 0, a.length, key);     内部方法 0 / $ ..
+    }
+5.System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
+6.T[] copy = ((Object) newType == (Object) Object[].class)
+            ? (T[]) new Object[newLength]
+            : (T[]) Array.newInstance(newType.getComponentType(), newLength);
+        System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
+7.被spring 使用的：被多个模块使用的bean 交有spring管理，象哪种初始化，。。。vs service / dao / entity
+public Timer() {
+        this("Timer-" + serialNumber());  // init
+    }
+    再初始化中对对象属性进行处理。---- 交给spring那么初始化过程的许多口子
+类初始化过程
+8.方法定义中synchronized（）{} 使用 保证自己定义的方法安全  多重  粒度 AutoIncrease 属性 原子性  阻塞
+9.Timer 执行完后不会停止主线程和子线程，只有cancel才可以。源码中没有for..TimerThread.  监听器模式
+  资源释放
+10.map 遍历  map.entrySet
+11.对于分隔符 \ | .. 处理
+12.super(h) 在构造中调用父类..
+13. static final char[] digits = {
+        '0', '1', '2', '3'}
+14.处理null的情况  一定要注意 。 而改值是否可能为空，与整个业务流程，相关流程有关，比如在输入，入口已经完成校验。
+   是否有必要加一个null分支呢?
+Class<?>[] empty = {};
+
+---0.对象初始化 - spring初始化  1.动态代理 proxy - spring    2.hashmap / concurrentHashmap  3.
+
+
+大型的源码就会设计到许多设计模式/模型...
+
+---量大，需要时，迷惑时再去查看---
+
+当不确定时，可以快速定位源码
+
+类图 idea:
+
+2
+
+
+线程 并发---
+多线程下 - 程序运行模型 - 对现有代码模型注意，变更
+堆栈 方法调用  对象存储位置
+每个线程(资源)对应一个栈（指令调用集合）  -- 对象(实物) vs 线程
+成员变量也是对于对象的.一个对象(单利)多个方法的调用该对象  成员变量 共享  volatile --> ThreadLocal
+哪些操作时atomic的？哪些不是？
+1.jdk中timer中synchronized 控制  vs 自己写的代码为什么没有考虑并发处理
+2.volatile
+3.transient
+4.concurrent
+安全 - 同步：任何时刻，只有一个线程访问该xx
+
+实现 - 并发(属性修饰符 -ThreadLocal / ConcurrentHashMap CopyOnWriteArrayList:
+			 - JUC（Autoxxx）
+			   - 锁(synchronized / lock) | wait notify condition
+			     - aqs samophare/countLatchDown..
+
+
+多线程的应用场景：https://blog.csdn.net/hll814/article/details/50816268
+
+
+nio
+1.流的包装和恰当选择
+2.netty 框架 - 使用场景
+nio模型更像服务员，传统线程池就是固定的几个服务员，一致到做完或者异常。
+这里就好像服务员，当吃饭(不可读 无需求)去服务其他。
+整体的线程就好像cpu,不保存状态，状态由各个io保存。只是无状态的执行。selector
+一个 I/O 线程可以并发处理 N 个客户端连接和读写操作，这从根本上解决了传统同步阻塞 I/O 一连接一线程模型，架构的性能、弹性伸缩能力和可靠性都得到了极大的提升。
+
+基于 Buffer 操作不像传统 IO 的顺序操作，NIO 中可以随意地读取任意位置的数据。
+
+
+我们设计一个事件处理模型的程序有两种思路：
+
+1）轮询方式：线程不断轮询访问相关事件发生源有没有发生事件，有发生事件就调用事件处理逻辑；
+
+2）事件驱动方式：发生事件，主线程把事件放入事件队列，在另外线程不断循环消费事件列表中的事件，调用事件对应的处理逻辑处理事件。事件驱动方式也被称为消息通知方式，其实是设计模式中观察者模式的思路。
+
+netty 通信级别  微服务底层... 框架 - 服务器（netty tomcat）
+
+
+
+
+
+丢失和重复 -- 控制
+
+
+单元测试 springboot  - 验证spring启动ioc是否处理静态代码块 ， 构造方法 -- 处理  处理完后采取处理方法的spring hook
+         测试准则
+
+
+
+
+分库 分表 分区
+ 拆分后代码如何写？https://www.cnblogs.com/f-ck-need-u/p/9388407.html
+索引创建原则和失效
+	建立：
+
+	WHERE字句的查询条件里有不等于号（WHERE column!=…），MYSQL将无法使用索引
+	类似地，如果WHERE字句的查询条件里使用了函数（如：WHERE DAY(column)=…），MYSQL将无法使用索引
+	在JOIN操作中（需要从多个数据表提取数据时），MYSQL只有在主键和外键的数据类型相同时才能使用索引，否则即使建立了索引也不会使用
+	如果WHERE子句的查询条件里使用了比较操作符LIKE和REGEXP，MYSQL只有在搜索模板的第一个字符不是通配符的情况下才能使用索引。比如说，如果查询条件是LIKE 'abc%',MYSQL将使用索引；如果条件是LIKE '%abc'，MYSQL将不使用索引。
+	在ORDER BY操作中，MYSQL只有在排序条件不是一个查询条件表达式的情况下才使用索引。尽管如此，在涉及多个数据表的查询里，即使有索引可用，那些索引在加快ORDER BY操作方面也没什么作用。
+	如果某个数据列里包含着许多重复的值，就算为它建立了索引也不会有很好的效果。比如说，如果某个数据列里包含了净是些诸如“0/1”或“Y/N”等值，就没有必要为它创建一个索引。
+	对于多列索引，不是使用的第一部分，则不会使用索引
+	如果条件中有or(并且其中有or的条件是不带索引的)，即使其中有条件带索引也不会使用(这也是为什么尽量少用or的原因)。注意：要想使用or，又想让索引生效，只能将or条件中的每个列都加上索引
+	如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引
+	如果mysql估计使用全表扫描要比使用索引快,则不使用索引
+
+
+	视图构建
+
+	分层查询和子查询
+
+	OLAP:
+	业务类系统主要供基层人员使用，进行一线业务操作，通常被称为OLTP（On-Line Transaction Processing，联机事务处理）。
+
+数据分析的目标则是探索并挖掘数据价值，作为企业高层进行决策的参考，通常被称为OLAP（On-Line Analytical Processing，联机分析处理）。
+
+
+
+
+
+
+调优
+	生产问题定位 ：jvm 对象创建 内存分布 销毁 类加载   + linux 网络  所以说是综合性的
+	              堆栈 通常设置大小 k m  --> io
+
+
+数据结构算法
+
+
+
+fastJson
+
+
+数据结构与算法之美  王争
+MySQL实战45讲       林晓斌
+Java性能调优实战  刘超
+   javacore看哪些信息 - javaheapdump看哪些信息 。首先看的肯定是当前环境总体
+
+深入拆解Tomcat & Jetty   李号双
+
+受检异常:来自api 或者 自定义try{}catch()..throw出来，表示这段逻辑本身
+
+问题：
+1.异步 顺序
+2.重复
+3.丢失
+
+线程安全：包括线程同步，协调通信wait notify
+
+使用 中断 代替if/else...呈现过程性 ...
+
+int 转float 精度丢失   转double 不会
+
+当想要增加功能 ， 增加接口 ， 对应的实现去实现该接口
+
+边界问题  -- 数组 / 线程 ..
+
+
+1.存档信息登记表打印  毕业证书编号6个月有效期  所有材料准备  周五下午tj  拿到应该有的记录  周六上午wq  8:30开始 转入
+2.南湖板块 / bd  see house  - 等待是否通过zq
+3.评估征信 工资  小心首付 贷款 出现问题  - 周六下午回来
+4.跑步  洗澡  健身
+5.版本内容是甲方最介意的。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------
+编写安全 / 高效代码书籍
+
+spring mybatis
+
+线程
+
+
+
+----------------
+
+1.spring应用书籍-2 源码-1 视频(设模-源码编写实例) orm oxm jms mvc..接口
+2.mybatis使用 背诵api  封装 ..
+3.springboot 使用
+4.springcloud 知识点
+
+5.测试技巧 - 性能测试
+
+6.生产问题-性能( 多个维度 - 知识点周边扩展学习 )
+
+
+
+
+
+
+
+
+
+
+
+
+1.aop 日志实现  事务实现  以及  相关其他实现 参考：LogAspect
+2.mybatis 生成过程  sql编写  配置 优化  orm						--- 领域知识
+		1.现在pom.xml配置依赖  mybatis-spring / mabatis-spring-test / genereator plugin
+		2.在mybatis-generator.xml中配置表映射对象，dao interface , dao implement(xml实现形式 - 这里可以后期扩展sql)相应路径
+		3.在service层中调用对应
+
+		mybatis中$和#
+
+		mybatis使用：https://blog.csdn.net/hellozpc/article/details/80878563#93_1312
+
+3.oxm bbsp中com.draft1 +  XMLConvertUtil  xmlbean	    --- 领域知识
+4.springmvc 执行流程   --前台领域知识  协议，浏览器 ，session ，域 ，统一异常处理，安全编码节码
+5.嵌套解决
+6.中间件  		redis
+------实现 - 使用----
+
+--底部
+bean xml 解析 element	/ annotation											resource
+bean 初始化+实例化
+
+						AbstractApplicationContext refresh()   定位 / 载入 / 注册
+
+
+						spring aop 源码
+
+
+						对数据访问，前台统一接口
+
+
+事物本质深刻认识(准确的粒度)和工具熟练使用(实现优雅扩展)
+象spring这种框架，到底哪里需要使用同步安全呢。很多地方都没有，不会有问题吗？
+
+
+79
+
+架构图的绘画，使用。思想 - 工具  (powerpoint / visio / 网站 可以画的)
+以一个核心业务为基准，向下思考实现，关联关系。 各个模块间关联(每个模块完成了哪些出入参处理)票交所接口文档
+方案：1.划分几个部分编写  2.目录  封面  3.***最核心：如何表述自己的方案技术性高，专业性。而不是一堆含糊不清的废话****
+      业务流程 --
+
+
+
+源码感觉：
+0.abstractApplicaitonContext refresh() 从整体查看流程  --- https://blog.csdn.net/greedystar/article/list/2?
+
+                                      IOC(定位-Resource|加载-beanDefinition|注册-DefaultListableBeanFactory)
+                                      DI（getBean()- 真正将beanDefinition实例化，并将依赖关联）
+
+                                      AOP(动态代理)- （动态代理 - 切面） -动态代理将变化的部分通过构造和参数传入，形成面(一个接口 该接口下对象，方法随client的传入而变化，但是代理的逻辑是类似的，不能说相同 不是简单的sysout 可能涉及到 运行时数据 )
+                                      							火车票售卖点/媒婆/中介  双方各自集中在自己的领域
+                                      							jdk在哪里调用了invoke() 流程在哪里？$Proxy0 调用在客户端拿到代理对象.接口方法() 本质就是子类中的invoke() - 为什么？我们无需编写及实现handlerxx和用户接口的类。https://blog.csdn.net/u012033124/article/details/53645727
+
+                                      							aop 元素 通知 切点 ...LogAspect <aop:config> <aop:aspect> <aop:pointcut> <aop:before>....  注解
+
+                                      							拦截器链 / 适配器
+                                      							1.注册时,bean 从容器中getBean() populateBean 实例化 or 注入的是代理对象 initializeBean 初始化 如果是代理那么就aop - 后置处理器
+                                      								initializeBean：Bean实例对象包装相关属性，如名称，类加载器，所属容器等信息，调用BeanPostProcessor.postProcessBeforeInitialization()
+
+                                      							2.AbstractAutoProxyCreator - wrapIfNecessary - wrappedBean - AopProxy(JdkDynamicAopProxy/CglibAopProxy) - 链(https://blog.csdn.net/u012843873/article/details/80540499 多个aspect/每个aspect的前置，后置....) -advised(interceptor)
+
+                                     transaction - 关联数据库级别的特性
+                                     							  1.@Transactional 只能应用到 public 方法才有效
+                                     							  2.避免 Spring 的 AOP 的自调用问题
+                                     							  1.transaction 如何关联aop
+																										2.如何从库的事务中封装
+																										3.orm session关系
+																							****锁和数据库隔离级别(***知乎上一个关于 锁/隔离级别/ 现有问题 后有解答  但是当前还是没有找到****)
+																										spring事务源码对几个属性是如何控制的呢  隔离级别 - 物理隔离级别 - 锁 /传播行为
+																										传播行为：https://www.cnblogs.com/shoshana-kong/p/10712834.html
+																										锁和隔离级别:https://tech.meituan.com/2014/08/20/innodb-lock.html
+																										spring传播行为和Conn如何关联隔离级别的物理
+																										Conn中包装了。有个个驱动实现
+
+																										https://blog.csdn.net/BuquTianya/article/details/78946473
+																										https://www.jianshu.com/p/1becdc376f5d
+                                     orm-oxm-jms
+
+                                              configuration - mapper（sqlsession.getMapper）-MapperProxy***很多框架中都使用代理+反射完成高层次的抽象MappedStatement - Executor - StatementHandler - ResultSetHandler/typeHandler（都是interceptor 类型转化器）
+
+                                          		mybatis: 很多配置元素都有对应的源码bean+handler...例如：configi下的envoriment . 所以说：使用别人的框架接口遵循规则，因为他们底层是按照这个逻辑进行解析的。当学习新框架时，文档直到如何用，自己想底层实现。
+                                          		SqlSession的getMapper方法是联系应用程序和Mybatis纽带，应用程序访问getMapper时，Mybatis会根据传入的接口类型和对应的XML配置文件生成一个代理对象，这个代理对象就叫Mapper对象
+                                    					UserDao userMapper = sqlSession.getMapper(UserDao.class); 传入接口形成代理。真正实现是自己按照规则写的xml
+                                    					真正做到配置化，交互，就必须熟悉xml/json - reader...转义/ 递归 xpath等的操作  从spring/myabtis等框架中可以学习到 - oxm知识
+                                    					offset
+
+                                    					TODO:复杂sql如何编写映射  / 一对多，多对多呢？https://my.oschina.net/xianggao/blog/549015
+
+                                    					字符串代入法# 默认的情况下，使用#{}语法会促使MyBatis 生成PreparedStatement 属性并且使用PreparedStatement 的参数（=？）来安全的设置值。
+                                    					尽量这些是快捷安全，也是经常使用的。---安全+解析了
+                                    					但有时候你可能想直接未更改的字符串代入到SQL 语句中。比如说，对于ORDER BY，你可能会这样使用：ORDER BY ${columnName}但MyBatis 不会修改和规避掉这个字符串。
+                                    					这样地接收和应用一个用户输入到未更改的语句中，是非常不安全的。这会让用户能植入破坏代码，所以，要么要求字段不要允许客户输入，要么你直接来检测他的合法性 。
+                                    					不安全+不解析(有sql注入风险)
+                                     mvc
+
+1.不同，丰富的配置 选择  所以分支场景多(相当于 银行 的业务场景  专业词汇)  --
+2.对象封装 入参出参  不是仅仅的int string .... retVal 而是 ‘合理的封装到对应对象’-- beanDefinition/ret/ReqBean/properValue/
+3.嵌套肯定是在完成单个的基础上，进行遍历，递归，parseSubxxx
+4.工厂方法的重载 T  class<T> contains判断   大型：提供了Fatory接口 XmlBeanDefinitionReader
+5.? 初始化过程中扩展接口 beanDefinition生成中  比如说：postProcessHandler
+6.ApplicationContext通过继承ApplicationEventPublisher、ResourcePatternResolver、MessageSource、EnvironmentCapable接口，为基本的IOC容器扩展了高级的容器特性，例如：
+	ApplicationEventPublisher：支持应用事件
+	MessageSource：支持国际化信息源
+	ResourcePatternResolver： 允许以路径模式定位Resource
+	EnvironmentCapable：应用上下文环境检查
+	AbstractApplicationContext.refresh()
+	可以通过直接从xmlBenaFactory作为入口 定位，加载，注册 / 或者从application中获取
+
+7.双向引用， list中有某个元素 ， 某个元素记录了list ,所以每个元素可以通过this.list.add(this)来完成。 或者this.某个属性 。
+  这些都可以封装为 ‘ 方法 ’- 类 - 设计模式 - module
+8.aop 从 ioc -di - aop（）模块间关联跳转
+	if (StringUtils.hasLength(beanName) && this.targetSourcedBeans.contains(beanName)) {}更早中断 而不是变量，那么就需要后面的判断
+	return proceed();
+9.局部变量初始化
+	不是必须。只是要使用的话是要初始化的，定义的时候不需要。而这个newImg在下面又马上赋值了。所以上面这个给null的值是没有意义的。
+10.自定义注解 -在需要的属性/方法上添加 - 注解+反射Filed / Filed值 / 注解的值 - AnnotationUtils自定义该方法的解析逻辑，进行判断
+
+
+
+1.流水号后几位  生成规则
+2.日志 查看调用情况  是自身还是返回    /  通过ctrl+h查看自己代码中是否有抛出改错 场景
+3.沟通代价 效率
+4.使用 - 为什么这么做 所以然 必然 - 设计(优化)
+	缓存方案如何设计才能切合业务需求？https://www.zhihu.com/question/37747712
+	https://juejin.im/post/5b849878e51d4538c77a974a
+	https://www.cnblogs.com/findbetterme/p/11289445.html
+	频繁访问即时性要求较低的读数据
+	举例：电商类应用，商品分类，商品列表等适合缓存并加一个失效时间(根据数据更新频率来定)，后台如果发布一个商品，买家需要5分钟才能看到新的商品一般还是可以接受的
+
+
+  日志监控：问题定位 / 运行状况跟踪 / 性能瓶颈
+5.文档编写 布局  大纲 合理、processon
+
+阿诺:
+方案最好能画出一些关键流程。比如一些关键流程，仿真系统如何和测试系统来互相交互，数据流程怎么走。
+
+阿诺:
+参与的系统都有哪些。这样谭总看起来会清晰点
+
+阿诺:
+另外具体的技术方案如何来实现。比如：有哪些要实现业务逻辑，哪些只是做个挡板就可以。
+
+阿诺:
+业务人员在做测试的时候，操作流程是怎么样的。是先要录入数理据到仿真系统中，然后由程序去实现仿真数据，还是说仿真数据都是由人工来设置的。不同的实现有不同的方法。
+
+阿诺:
+这一类的问题，其实都要体现到你的文档当中。不然谭总不知道你们要将来会做成一个什么样子。仿真到哪种程度。哪些要用程序来仿真数据，哪些用挡板就直接实现了。业务人员的操作流程是怎么样的。实现了以后，通过哪些流程和方式与正式环境的流程来互相验证。
+
+6.当然第一遍看的时候不要每个细节都需要研究的非常明白，因为你可能会陷入某个细节中，一时又很难搞清楚，所以第一遍目标是搞清楚大体是如何实现的，第二遍的时候可以去研究实现的细节。这样，一块一块的不断的研究，后面你就可以从宏观上去理解整体的代码和设计了。
+根据票据号码，核对标的票据权属是否在卖出方机构辖下，如符合条件则进行下一步校验，如不符合条件，则调用发送确认报文，向发送方机构提示校验不通过原因。（票交所自己也要校验，自己也要校验。所以从票交所角度看，这种外部client时不可信的）张数等....
+
+
+看着需求文档，接口文档 ，结合思路 ， 开发
+
+
+技术方案的推进  角度
+
+
+
+
+
+使用processon/visio/powerpoint/ppt 画图 -- 层层累加上去的
+场景 - 流程图 - +涉及客户/系统/岗位( 业务复杂  不是简单的将分为后台配置和客户这么简单 ) -流程图+系统( 为后期代码(分层)/接口调用设计 )
+不同的图给不同的人看  业务 技术 ，总体基础都一样，只不过角度不同
+复杂性  业务- 技术
+
+方案 - 领导拍板
+
+口行 运维资料  --包商  设计资料  --> 需要加强代码能力和解决问题能力
+
+从几个典型场景对校验，生成规则，交互规则进行引申 - 报文校验，组装规则 其他子系统
+
+
+
+架构自己实现 ，当前应用 vs 别人的架构https://www.google.com.hk/search?sxsrf=ACYBGNQizJvEn1DDm1CKeHm92Hxj8nzBmg:1571711455404&q=%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84&tbm=isch&source=hp&safe=strict&sxsrf=ACYBGNQizJvEn1DDm1CKeHm92Hxj8nzBmg:1571711455404&sa=X&ved=2ahUKEwiRm_S36a7lAhXDA4gKHZcFA48QsAR6BAgGEAE&biw=1536&bih=754#imgrc=3K8QLvrgCzE8UM:
+看到别人的实现，要直到每个小点的实现，才能直到每个小点的作用，配合当前业务场景才能做到好的。
+
+
+
+
+通过整理，发现其实很多模块都是简单的，只有核心业务模块需要对应的业务场景进行分析，校验、报文、生成逻辑....
+技术架构方面：报文模块设计肯定是核心 报文生成解析组装  枚举 校验 触发  发布(-- 业务流程画一个大型的流程图 判断不同交易 校验类型 返回报文等...) - 缓存- 日志
+
+不要秀代码  而是真实需要  高效
+
+
+
+
+
+
+TODO
+	1.业务流程画一个大型的流程图 判断不同交易 校验类型（client端是不可信的。所以保证提交符合性） 返回报文等 -- 从票交所的接口文档中筛选需要的额
+	2.下沉到技术实现 从中先冲报文报文模块设计开始 先思考如何实现 - 共性向上抽象 - 数据库结构 / uml -反射/spir   分为通讯，接受，解析...
+
+---票交所-  看了好多遍 校验也是可插拔的  非必须的都是可插拔的--
+
+	1.状态前置
+标的票据流转阶段为可交易票据状态对应的所有票据流转阶段。
+如报价单操作标识为“发送”，则报价单状态为：无
+如报价单操作标识为“修改发送”，则报价单状态为：已接收
+2．判断逻辑
+（1）对交易双方机构（包括产品）和交易员权限进行校验。
+A.校验交易双方机构（包括产品）和交易员是否具有交易权限，如有交易权限进行下一项校验，如无交易权限，则调用发送确认报文，向发送方机构提示校验不通过原因。
+B.校验交易双方机构（包括产品）和交易员是否具有内外部交易权限，如校验通过则进行下一项校验，如校验不通过，则调用发送确认报文，向发送方机构提示校验不通过原因，
+C.校验交易员是否属于该机构,当为虚拟资管时：校验非法人产品是否与该交易员有绑定关系。
+（2）对对话报价要素进行校验。
+A. 校验报价有效时间、最晚结算时间、清算速度、结算方式、清算类型是否符合上述约束规则要求，如一致则进行下一项校验，如不一致则调用发送确认报文，向发送方机构提示校验不通过原因。
+B.修改发起方如未修改任何报价和票据清单要素，则校验不通过，向修改发起方提示校验不通过原因。
+（3）校验对话报价要素中的票面总额、收益率、应付利息、结算金额、加权平均剩余期限、票据张数、结算日，如校验结果一致则进行下一项校验，如不一致则调用发送确认报文，向发送方机构提示校验不通过原因。
+（4）对标的票据进行校验。
+A.根据票据号码，核对标的票据权属是否在卖出方机构辖下，如符合条件则进行下一步校验，如不符合条件，则调用发送确认报文，向发送方机构提示校验不通过原因。
+B.根据票据号码，核对标的票据是否在可交易状态，如符合条件则进行下一步校验，如不符合条件则调用发送确认报文，向发送方机构提示校验不通过原因。
+C.根据票据号码，与对话报价要素中票据种类和票据介质进行校验，如一致则进行下一项校验，如不一致则调用发送确认报文，向发送方机构提示校验不通过原因。
+D.根据票据号码，校验标的票据是否为风险票据，如无风险票据则进行下一步校验，如有风险票据则调用发送确认报文，向发送方机构提示校验不通过原因。
+E.根据票据号码，校验标的票据是否处于保证增信流程中，如不处于该流程则进行下一步校验，如处于该流程中，则调用发送确认报文，向发送方机构提示校验不通过原因。
+F.校验标的票据张数是否超过参数配置张数，如没有超出则进行下一步校验，如超出则调用发送确认报文，向发送方机构提示校验不通过原因。
+G.校验单票标的票据的应付利息和结算金额,如校验结果一致则进行下一项校验,如果不一致则调用发送确认报文,向发送方机构提示校验不通过原因。
+（5）根据标的票据清单中的票号及对话报价要素，计算相应的票面总额、收益率、应付利息、结算金额、加权平均剩余期限、票据张数、结算日。
+（6）对交易员单笔限额进行校验。校验对话报价要素中票面总额是否超出交易双方交易员单笔交易限额，如没有超出则进行下一步处理，如超出则调用发送确认报文，向发送方机构提示校验不通过原因。
+3．处理结果
+上述校验全部通过则发送成功，首次发送时向卖出方机构提供报价单编号。
+报价单状态更新为：已发送
+报价单中标的票据的票据状态更新为：已锁定，票据流转阶段更新为：转贴现锁定
+已删除的票据的票据状态更新为：锁定前的状态，票据流转阶段更新为：锁定前的流转阶段
+
+
+
+1.线程 invocationHandler +设计模式 porxy\chain ..
+2.spring中各个对象的定义 + 设计模式
+3.利用socket + serial + 反射  实现rmi(非注册中心版)
+4.zookeeper + 实现lock\... 整体思路借助外界已有产品实现分布式锁
+5.3-4生成由注册中心的rmi框架
+
+
+票据系统
+
+1.状态机 https://sparxsystems.cn/resources/uml2_tutorial/uml2_statediagram.html
+		 状态模式 https://www.runoob.com/design-pattern/design-pattern-intro.html
+	   状态模式->状态机 http://yukai.space/2017/08/10/%E7%8A%B6%E6%80%81%E6%9C%BA%E4%B8%8E%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/
+	   https://glumes.com/post/android/understand-state-machine/
+	java8:接口中写接口/写default实现   接口增强
+	票据的登记中心和状态机的结合(登记中心指的是从不同业务过来对票的操作都会登记到中心上，状态机则是进行流转判断)
+	从别人写的代码中闻到 ‘ spring源码 ’ 味道 命名 方式 对象抽象
+	将配置信息写道数据库有必要吗？xml 配置解析(xml解析 我们自己定义的肯定没有spring那么复杂，适配多个场景 - 拼装自己的逻辑)vs 反射( 可以 代码内 )每次都需要读取库  <-- 票据登记中心 --> 加载到缓存
+	   其实 ‘ 统一抽象到数据库和反射一样，又抽高了一个层次，结合T , 写个template之后读取库，对应操作 - 对应多个分支 ’
+	当调用多个操作，重构时会出现出参入参 来回传递时，定义‘ 成员变量 ’，直接作为入参，往下走 。自己就变了。    ---> 多线程会出现问题吧。考虑多线程
+	对象之间包含
+	init中又很多new xx()
+	成员变量 如果值是spring管理的引用，则注入；常量可以通过spring在配置中，(这里可以计算，不同对象间)，或者直接在类中赋值，也可以通过static / 构造
+	   进行‘ 处理初始化   统一起来 ’
+
+
+2.
+
+
+
+
+2.activemq
+3.oxm 回调 模板 对于公共部分对类抽象/schema..
+4.注解校验
+5.金额计算  账务处理
+6.x86迁移
+7.仿真
+
+建模教程：https://sparxsystems.cn/resources/uml_datamodel.html
+uml:用例图 - 时序图 - 类图 - 状态图 - 部署图
+随着代码的更近，很多‘ 小 ’的‘ 元素 ’都可以抽象成对象，比如invokePara / orderBean / QueryCondition/ req对象 /retVal / ***状态机 状态*** 从细流程中又抽出来
+	就像登记中心就是一个map ,缓存也是，但是具体到实现，区别。。。。。。。 拦截器 切面  动态代理  设计模式
+	1.更加完善 比如retVal code / msg / throwable ...
+	2.更加灵活 状态机
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4.jms mq  com.Amq spring和mq对接  mq自身配置和阻塞  报文顺序  异步  保证到达  重复
+
+
+
+
+
+1.修复谷歌访问助手，没有结果， 找了一个访问谷歌的入口
+2.编写仿真word文档
+
+
+当你看不懂时，你要分解这里面的知识点，一点点的学习，总结

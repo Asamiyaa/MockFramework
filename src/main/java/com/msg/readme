@@ -1,0 +1,10 @@
+1.策略模式
+    + 工厂
+        + 单例(下放到每个类,spring中默认单例，是否需要自己实现??? 只有 ***cesTransParam参数对象 vs 对象区分 vs dto***)
+              (从context容器中获取)
+            + spring扩展接口(spring中对初始化接口操作 vs static/块/构造.. ) - FactoryBean/ApplicationContextAware
+                + 多线程处理(容器tomcat中多线程处理)
+
+
+
+2.divide and coqure 中第二步：对每个具体实现  - 自己实现+spring/框架接口扩展...（最一开始的）

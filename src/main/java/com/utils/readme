@@ -1,0 +1,4 @@
+1.灵活使用apache commmon / google goova 等第三方资源包 比如IOUtils
+    https://commons.apache.org/proper/commons-io/javadocs/api-2.5/org/apache/commons/io/IOUtils.html
+2.使用jdk自带api
+3.

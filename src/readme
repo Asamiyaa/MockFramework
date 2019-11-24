@@ -230,6 +230,7 @@
              问题：这里@bean后为什么没有在用到的时候注入自己路径下重写的bean而是还是spring自己的bean呢？
 
             3.TODO:策略 一致性 强弱 refresh - 失效、调用更新
+            4.redis在项目中的应用总结 https://blog.csdn.net/wang258533488/article/details/78901124
     4.log   https://www.cnblogs.com/bigdataZJ/p/springboot-log.html
             1.springboot 自带logback log4j so 直接使用
                 private static final Logger LOG = LoggerFactory.getLogger(LogConfig.class);
@@ -248,6 +249,12 @@
 
     第二阶段：对报文的组成 xml-schema-字段有属性 - 自定义数据类型
 
+
+20191124
+    1.将hu-tool工具包整合到util,但未特性化到本项目，后续开发中，优化整合。
+    2.将hook项目整合过来，因为本项目几乎涵盖了hook中的知识点，所以整合进来作为后续脚手架
+      整合了seckill项目，主要学到了企业级封装，类、接口定义规范化....
+      设计模式 springMain
 
 
 

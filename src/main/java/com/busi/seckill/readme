@@ -1,0 +1,312 @@
+---1.idea maven git 插件及目录结构-----------2019-04-13-------------------------------------
+    区段链银行
+
+    1.创建springBoot-maven项目  quickstart
+    2.构建对应的目录 src/java  / test..... 并标为source director ...   创建resources目录并标为 ..
+    3.测试run
+        问题：1.构建的没有对应的目录和pom内容
+
+    1.集成相关springboot ， 打开官方文档   https://spring.io/guides/gs/rest-service/
+        在使用idea的时候，发现有时候external libraries里面的包在进行导入的时候并没有在jdk下显示，对于该问题，在上网查找答案之后发现只需要点击idea右侧的mavean project里reimport all mevean pojects就可以了
+            问题：1.如何从官方文档中扒出有用的东西，并学习使用
+    2.在自定义启动类boot.class上标注注解
+      @EnableAutoConfiguration
+      SpringApplication.run(boot.class,args);
+      并启动，看到了后台启动了spring相关，并启动了tomcat
+
+      @RestController   @RequestMapping("/") 访问获取到首页
+
+    3.修改tomcat配置
+      resources目录下创建application.property 配置文件，直接修改server.port=8090  --约定大于配置--
+
+    4.集成mybatis
+      问题1.下载阿里druid时卡，重启一下idea ，移动一下pom.xml文件位置，查看  ---> 每次新加文件后都需要reimport到项目左侧，并查看左侧是否加载完成，才能识别
+      问题2.每次启动项目都会重新加载maven吗？
+
+      mybatis.mapperLocation=classpath:mapping/*.xml - maping目录搭建 - pom中mybatis插件(pom中配置了许多相关的东西注意查看)
+
+      创建myabtis-generator.xml文件 ，并解析其重点
+
+      创建数据库  创建user_info表  user_password
+
+      修改generator.xml文件配置，创建dataObj目录放置生成类 ，创建dao目录
+
+      使用maven生成相关映射  ： run -edit configuration - 加号添加maven - 在右侧的commond line:mybatis-generator:generate 来调用pom中的插件 - 退出来 run -mybatis-generator
+
+
+      *****新开项目没有配置导致当前项目是在m2.目录下下载相关jar而不是自己定义的respostiry中，所以下载是慢的，注意新开项目是这些基本配置，github
+      字符集 .....******
+      问题：一直generator插件无法加载--重新配置maven/settings.xml对仓库等定义
+            generator拼写错误
+            引入maven编译标准plugin
+
+            MySQL Error: : 'Access denied for user 'root'@'localhost' : 修改密码 ， 给用户对应的库授权
+
+            namespace  为什么我生成的sql语句小于慕课网老师呢？（复杂sql 老师是自动生成 cratie）配置文件的问题
+    5.指定数据源
+         application.property中数据源
+         修改boot类，调试数据源是否没有问题
+         一定不要手敲相关配置，经常敲错，或者人家名字都变了。通过idea引导完成
+         mybatis.mapper-locations=classpath:mapping/secKillMapping/*.xml  ***注意映射文件加载问题
+            1.不要手写.mapper-locations
+            2.classpath指的是作为root路径为依据，application的root就在resources下所以携程classpath 编译root路径
+            3.mapping/xxx这里自己加了一层，不是直接*.xml
+
+1.提交项目到github一直弹框，输入用户名密码
+  先在cvs创建git respo 可以提交到本地，项目上add , 项目上commit file , 将远程建的仓库url填写即可
+
+2.创建对应的controller  ,service 创建Model对象对数据模型封装，避免透传 - 思考1,2, 修改dao 增加getUserId()方法
+  相关注解：@ResponseBody 自动将对象转为json串  ...
+  造数据，测试前台http://localhost:8090/user/get?id=1 返回
+  {"id":1,"gender":true,"age":27,"telphone":"12345678901","regMode":"1","thirdPartyId":"123","encrptPassword":"fajiwnfeihweer"}
+3.密码传递到前台，密码是作为servcie层使用的，所以建立controller/viewObj  ,即UI使用
+  对字段进行处理：注册方法，第三方id,密码，这些地段都是后台进行校验，或者推送服务，或者进行控制的信息，对客户来说没有意义展示
+  修改controller返回vo
+4. //入参判断 --分而治之 ，一定不要因为模块大了而造成对每个小模块必要判断的丢失 ，千万不要逻辑混乱，想起啥来判断啥...
+				1.入参校验
+				2.过滤(业务，是否需要调用下面的核心 可能简单，也可能查库，也可能调用其他系统 ...)
+				3.入参准备(..同上)
+				4.核心业务
+				5.周边状态处理，更新，刷新....
+
+				每个方法的调用都要进行  ‘入参校验’ 特别是空指针问题
+
+--2.通用返回 -  异常系统---------------------2019-04-14-----------------------------------------------------------------------------
+1.建立统一返回 ，封装异常
+			标识结构层次   原因：如果后台报错，http返回由web容器定义的错误页面，是不友好的。所以我们需要给前端标识，让其对成功失败进行封装 等价于 后台判断定向到不同的页面 等价于抛异常到前台
+                           前者是分离开发，后两者则是混在一起。所以这里前后台接口是json，所以引入
+
+                     bbsp中webservice返回的也是这样的需要标识位的
+        1.创建response文件夹，处理返回
+           思路：1.CommonReturnType  定义status 和 private Object result
+
+           通路是否有问题
+                   有：没通
+                   无：返回标识
+                         成功：..
+                         失败：..错误码 错误信息
+
+        2. /**
+			     * 思考1.自己类中，可以定义构建自己的方法 construct
+			     *                 ...      获取.........  返回自己  vs  构造方法
+			     											vo..mapping .. 等用于传递值得可以直接new ,其他情况应该封装，而不是客户端去new
+			     *                 ......   获取自己属性..
+			     *                 .....   对比和别的.......
+			     *         打破那种不能自己获得自己的思想
+			     * @return
+			     */
+
+			    //定义一个通用的创建方法，并构建方法重载，所以也是public
+			    public static CommonReturnType create(Object result){
+			        return CommonReturnType.create(result , "success");
+			    }
+
+			    public static CommonReturnType create(Object result, String success) {
+			        return new CommonReturnType("success",result);
+			    }
+			  3.修改controller中返回，处理VO
+			     return CommonReturnType.create(userVO);
+			     {"status":"success","data":{"id":1,"name":"ywj","gender":true,"age":27,"telphone":"12345678901"}}
+
+			  4.异常情况处理  ---> 异常系统
+			  												1.前后台分离后异常情况下，数据传输规则。后台不可消化
+			  												2.事务
+			  												3.
+			  				1.*   模拟简单实用CommonReturnType处理异常情况
+				             1. return CommonReturnType.create(new Object() ,"fail");
+				         *      Whitelabel Error Page</h1><p>This application has no explicit mapping for /error, so you are seeing this as a fallback.<
+				         *      直接将后台错误抛给web容器，容器转换为500错误，一方面这是不符合真实情况的，不是服务器不可访问，只是后台
+				         *                                                    二方面前台也是无法处理，未进行封装处理
+				         *    2.so:在类中为fail情况
+				         *      创建对应的errorCode errorMsg。
+				         *      return new CommonReturnType("fail", "10001","用户不存在");
+				         //     {"status":"fail","data":null,"errorCode":"10001","errorMsg":"用户不存在"}
+				            --基本效果达到
+
+				              3.定义统一的异常，可以在service中根据场景抛出，到controller自动包装到commonReturnType中
+				                1.创建error目录 CommonError接口 定义' 1> 枚举EmBusiError  '***(特别是setMsg的思考，统一使用枚举管理异常种类便于交互，而不是灵活的直接定义setCode来自定义，但setMsg在种类又是特殊的 =
+				                				没有必要定义太多种的serviceExcption)并实现该接口
+				                2.创建' 2> busiException ' 以便可以在service地方抛出，到controller中通过commonReturnType统一处理
+				                3.如何将将异常和返回联系起来
+				                      '3 > 包装器模式 ’		 使得转化无需通过if判断，自动完成
+				                      在controller中添加    if(userModel == null){throw  new BusiException(EmBusiError.USER_NO_EXIT);}
+				                			这样直接将异常抛给了tomcat所以还是不行的。
+				                 4.使用springboothandler方式统一处理
+				                      思路：拦截错误 4> 钩子思想
+				                      在 handlerException添加@ResponseBody 可以将异常类的反序列结果返回到前台
+				                      //由于返回的ex的反序列化，所以这里需要将原来的异常进行窄化,并构造在固定的map中返回
+				                5.整理代码结构  异常类型判断 公共方法抽离  5> 创建baseContoller将handlExcption放入
+
+---3.activity ---由于项目使用jbpm,临时学习流程相关知识-----------------------------------------------------------------
+         1.为什么使用activiti/jbpm?
+            可以把工作流理解成一个框架，它专门用来管理你的流程，你所有跟流程相关的事情都由它来管理，流程上的每个节点就是你的业务逻辑。
+            它适用于一些我们通常意义上的流程，如请假流程，订外卖流程，审批流程等等。
+
+            避免流程和业务的耦合，我们经常会引入工作流来解决业务中所遇到的审批相关的操作。
+
+            简单的流程其实就是if ..else...判断...  activiti是在这个基础上，比 状态位 前台更形象，后台也更小模块化，
+            专注于业务实现，不要在业务实现中考虑流程问题
+
+         2.使用流程框架后，我们要在原来代码上如何修改？流程框架为我们完成了那些事情？流程的执行是由代码控制吗(就像自定义注解需要工具类去校验一样)吗？
+
+         3.到底适不适合使用工作流呢？渠道？
+
+      实施：1.加入依赖
+                    <dependency>
+                    	<groupId>org.activiti</groupId>
+                    	<artifactId>activiti-spring-boot-starter-basic</artifactId>
+                    	<version>6.0.0</version>
+                    </dependency>
+            2.application配置中定义activiti配置  TODO:其他高级配置含义及使用
+            3.配置apply.bpmn 必须以这个结尾      TODO:通过组件拖拽生成
+              https://docs.awspaas.com/reference-guide/aws-paas-process-activity-reference-guide/service_task/README.html
+                                系统任务（Service Task）是一个自动化任务。当流程到达系统任务时，自动执行编写的Java程序，完毕后继续执行后继路线。
+                                人工任务（User Task）用来表示业务流程中由人参与完成的工作。当引擎处理到该节点时，给指定的用户（参与者）或者一组用户（如部门、角色、小组，在AWS里被称为共享任务）创建待处理的任务项，等待用户的处理。
+                                判断任务 (Exclusive Gateway)（也称为XOR网关或更多技术基于数据的排他网关）经常用做决定流程的流转方向。当流程到达该网关的时候，所有的流出序列流到按照已定义好的顺序依次执行。
+                --20190420--
+                下载bpmn插件并安装，进行拖拽式开发
+                https://www.tony-bro.com/posts/813468167/index.html了解和复制xml
+                基本流程跑起来
+                问题：自定义的返回  机具项目封装了导致无需return?
+                            通过set Map和随着流程传递到下一个节点  excution  ,机具项目全部和入参出参塞在一起 JsonRecord
+                            因为企业级项目中的方法调用不仅仅需要上一个返回值，需要更前面的结合，如果传递每次都进行set/get
+                            那么是麻烦的。所以这部分已经向上抽象，使用了公共的对象来处理，并随着流程向下走。JsonDataRecord
+                            serviceContext
+                            所以问题：在xml配置中是否到底需要配置。
+                             答：配置了是不是相当于该节点执行了set ....  到下一个节点使用get 获取即可，不用和jbpm的
+                             excution等函数相关。
+                             封装
+
+                            将方法默认抽象为process 而无需在各自配置
+                            都使用action而不是servcie
+
+                      相关表操作
+                      实例，runtime相关信息获取 ,子流程
+
+
+            4.编写对应的实现 service并将暂时不用的功能注掉             TODO:机具使用的都是action...
+            5.启动报错：查看：https://www.jianshu.com/p/83d9909e7f27 问题2
+            6.修改后成功启动，数据库多了28张表 , test  TODO:这些表用法  ， 高级的工作流用法 就像spring自定义东西一样
+
+            当前问题：1.访问时元素类型 "serviceTask" 必须后跟属性规范 ">" 或 "/>"。]
+                      2.junit启动报错
+
+------基本了解了，但到灵活应用需要练习-----------------------------------------------------------------------------
+
+以上信息完成了‘ 基础能力 ’的构建，接下来是‘ 模型能力 ’的构建。比如下单模型，用户模型 ....
+---3.OTP全称叫One-time Password,也称动态口令- TODO:随机数生成器  redis存放otp  调用短信接口---------------
+           详见：userController.getOtp()
+---4.用户模型：metronic 前台模板 - bootstrap - 模板引擎  快速套用前端模板开发 ------------
+           前后端分离，利用已经存在的前端模板快速构建系统(已经封装好的js，css,图片布局等)
+           对ajax来处理 而不是form post 不仅仅是原来js那么小的分离 ，而是将页面不合在后台代码项目中
+                1.构建简单的页面 测试可使用
+                2.引入jQuery ,并使用ajax方法传递参数，绑定，传参  --TODO 冒泡思想  不熟悉结构导致少逗号，括号 ....
+                3.ctroller 指定method
+                    @RequestMapping(value="/getOpt" ,method={RequestMethod.POST},consumes={"application/x-www-form-urlencoded"})
+                    提取到父类
+                4.Access to XMLHttpRequest at 'http://localhost:8090/user/getOtp' from origin 'null' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+                  --TODO 跨域问题   使用js中绑定，校验 ，整洁    json 测试模拟工具
+                  文件是在本地，域在本地，请求在服务器 。ajax认为域不同，这种回调不安全 解决:@CrossOrigin
+                  上面不起作用 所以创建CustomCORSConfiguration
+                  但还是404 --- url 单词otp 而不是opt   $("#xxx").val()判断值是否获取到  。 TODO 前台判空处理
+                  -- TODO 页面美化
+---5.用户模型：登录 -- 单点登录
+                 1.验证otp 和 phone 一致
+                 2.引入apache common 包进行校验  -- 从https://mvnrepository.com/tags/maven去找对应的依赖，也可以找jar,并且mvn 更新到左侧
+                 3.register()的校验逻辑
+                 4.值从对象间转换
+                        问题1：userPasswordDo.setUserId(userModel.getId()); //TODO:此时的id有值吗？
+                        问题2：insert 和 insertByselective
+                               后者会判断值是否为null,如果为null,则不插入该字段值，以保证数据库默认值的使用
+                               trim 属性
+                                               prefix：前缀覆盖并增加其内容
+                                               suffix：后缀覆盖并增加其内容
+                                               prefixOverrides：前缀判断的条件
+                                               suffixOverrides：后缀判断的条件
+                               //TODO :数据库设计有尽量不为null的原因
+                               //TODO : mybatis 动态sql   当前每个类对应的一个mapper接口和mapper.xml实现，当dao层复杂时，
+                               //TODO : 现在的许多项目dao会设计到多个类操作呢?如何解决，是不是需要动态sql
+                               //TODO : 封装req对象是否也可以抽取出方法
+                               //TODO :不同情况下考虑那些是必输的，
+                               //TODO :思考 数据库定义时不应该是Boolean   ｍｖｃ接受到可以自动转不是都是String.  vs instanceOf 强制类型转换
+                  5.添加@Transactional
+                  6.MD5密码加密
+                               //TODO: 机具企业版加密 解密
+                  7.注册界面
+                         1.复制getOtp -> register.html
+                         2.编写注册界面
+                               //TODO: 数据库性别字段设计不合理  不应该是boolean 因为这是无法从前台获取来的
+                               //使用浏览器定位上送字段等
+                               //alert("otp发送失败 , "+data.data.errorMsg) 前端同样要面向对象
+                               //TODO:使用IDEA 查看源代码*** 查看类图
+                         3.otp在加密下显示null ,并且信息没有抛到前台，抛给调用者 ，抛到父类 ，common构造时逻辑有误
+                               1.跨域造成otp在session间不可共享
+                                      1.在@crossOrigin中添加参数  DEFAULT_ALLOWED_HEADER:允许跨域传输所有header对象，将用于使用token放到header域做session共享跨域请求
+                                      2.xhrFields:{withCredentials:true}, 允许前端跨域授信请求，以使session跨域可授信，与前面呼应
+                                //TODO：不要瞎用串  //String otp = (String) httpServletRequest.getSession().getAttribute("telphone");不要盲目用串，要明确
+                                //TODO:异常和返回这里需要好好梳理 设计的好，但自己这里有问题
+                                2.userServieImpl中StringUtils.isEmpty(userModel.getEncrptPassword())为true
+                                      1.因为java中 MD5加密只支持16位，不支持64位  当塞入时，加密后为null
+                                      2.创建工具类 加密
+                                 //TODO: 机具企业版加密 解密
+                                      3.修改mapper文件中的if判断字段为属性值，添加的应该是数据库属性，以及trim
+                                        注意字符串的拼接 ， 空格 ， 符号.. 中文 ，表明
+                                         nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column
+                                        存在但是不匹配，很大程度上就是‘自己写的sql’这些细节问题
+                                      4.Field 'id' doesn't have a default value; nested exception is java.sql.SQLException: Field 'id' doesn't have a default value
+                                        userModel.setId(userDo.getId());并在mapper文件定义主键及生成方式
+                                        keyProperty="id" useGeneratedKeys="true"
+                                        主键在没有默认值下，没有定义生成方式 ，定义了非空就会报错。
+                                        重新设值主键默认值 必须吗？删除原来数据，手工插入影响系统主键生成
+
+----------TODO-----20190423--------------
+                      8.登录 --> 单点登录
+---6 Log
+
+              1.自定义注解
+                      1.自定义注解     注解是对xml的更高封装，xml是对类封装，任何语言都提供了自定义以便于使用。根据场景修改
+                      2.此处注解的定义是为了  “配合aop完成一些不方便按照固定命名规范的方法等” 提供的“灵活日志方式”
+                             TODO:自定义注解更多的使用场景：校验，描述，...
+              2.aop
+                      1.定义类 及 基本方法
+                      2.引入aop相关maven依赖
+                             TODO:AOP和cglib/aspectj/编译插件区别及使用
+                      3.定义pointcut 及  增强实现
+                             TODO: pointcut 多种组合-前面的* 后面参数... 粒度
+                             1.步步为营，先写sysout测试aop架子没有问题
+                             2.
+              3.反射
+              4.表设计-log工具
+                       1.成功失败均记录入库，失败还会记录本地，更详细异常信息
+                       2.表设计 - log4j设计  - service /logUtil编写
+                         测试
+
+              5.线程
+              6.mq
+          TODO:日志工具升级为日志系统，便于后期数据分析，性能等：https://www.google.com/search?source=hp&ei=lAe_XJnAAe690PEPmfqZqAw&q=%E6%97%A5%E5%BF%97+%E7%B3%BB%E7%BB%9F&btnK=Google+%E6%90%9C%E7%B4%A2&oq=%E6%97%A5%E5%BF%97+%E7%B3%BB%E7%BB%9F&gs_l=psy-ab.3..0i12l6.101.3334..3571...0.0..0.313.3638.2-14j1......0....1..gws-wiz.....0..0.aRxSJA22ENo
+
+----20190630 quartz schedual 实现----
+              1.导入jar和log4j.jar 以及spring相关支持包  --> 这里使用的是springboot，所以引入spring-boot-quartz-..即可
+                    springboot下schema如何对应，如何引入真确的
+                      --bean...全选剪切复制
+                    java.lang.AbstractMethodError: ch.qos.logback.classic.pattern.EnsureExceptionHandling.process(Lch/qos/logback/core/Context
+                      --换版本为1.2.2
+                      --配置相关的log信息在applicaiton.property中
+                    ***相关包依赖问题***顺序问题**冲突问题***版本问题***
+
+              2.测试job - application-quartz.xml - > jobDetail / trigger / schedual(基本实现) （注意依赖，这里需要spring支持）
+                    配置文件路径地址
+                    整合spring ioc 出现问题
+                            springboot2中如何识别定义的实例。没有配置文件加载的地方
+                            错误: 找不到或无法加载主类 com.schedual.quartz.secKillJob??? 换了类名为大写就会有问题，小写没有？
+                    修改为springboot2 注解形式  seckillService中，并且在boot.class中添加EnableScheduling 并且去掉原来在secKillJob中对spring加载，使其统一加载
+                         --未集成quartz
+
+              3.listner 配置文件高级配置 jobStore 、listener / pool / 集群等高级....
+                    如何在springboot下使用高级高级知识点呢？
+                        https://blog.csdn.net/limingcai168/article/details/85008721
+                        https://eksliang.iteye.com/blog/2208624
+                   监听器模式：在框架中的使用  vs 代码的顺序执行(前面多一个方法....)
+                       https://eksliang.iteye.com/blog/2208624
+              4.源码 设计思想
+
