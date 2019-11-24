@@ -28,6 +28,11 @@ import java.util.regex.Pattern;
 @Service
 public class ParamRuleCheckImpl implements IParamRuleCheck {
 
+    /**
+     *
+     *TODO 1.统一抽象- getxx级别Logger.log(sping中的判断) -- 父类/接口/工厂  -- 不同模块的log
+     *   使其无需再每个类中都去获取。
+     */
     private static final Logger log = LoggerFactory.getLogger(ParamRuleCheckImpl.class);
     @Autowired
     private RuleDoMapper ruleDoMapper;

@@ -240,6 +240,7 @@
             3.如何配置文件到本地文件
 
             TODO:日志切面 参考hook中其实就是为了练习aop api 和 aop思想
+            TODO:推进设计不好的地方，借鉴秒杀项目定义
 
     5.context - process(base组件 - 自定义流程组件)
     6.Thread
