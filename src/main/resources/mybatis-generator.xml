@@ -76,7 +76,7 @@
             targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
             targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
          -->
-        <javaModelGenerator targetPackage="com.core.rule.bean.dataObj" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.register.bean.dataObj" targetProject="src/main/java">
             <!--  for MyBatis3/MyBatis3Simple
                 自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter；
              -->
@@ -124,7 +124,7 @@
 
         <javaClientGenerator targetPackage="com._520it.mybatis.mapper" type="ANNOTATEDMAPPER" targetProject="src/main/java">
          -->
-        <javaClientGenerator targetPackage="com.core.rule.dao" type="XMLMAPPER" targetProject="src/main/java">
+        <javaClientGenerator targetPackage="com.register.dao" type="XMLMAPPER" targetProject="src/main/java">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="true"/>
 
@@ -172,9 +172,14 @@
             注意，table里面很多参数都是对javaModelGenerator，context等元素的默认属性的一个复写；
          -->
         <!--这里本该是大写的 作为类-->
-        <table tableName="draft" domainObjectName="DraftDo"></table>
+        <!--<table tableName="draft" domainObjectName="DraftDo"></table>-->
         <!--<table tableName="property" domainObjectName="PropertyDo"></table>-->
         <!--<table tableName="rule" domainObjectName="RuleDo"></table>-->
+        <table tableName="status" domainObjectName="Status"></table>
+        <table tableName="rgct_method" domainObjectName="RgctMethod"></table>
+        <table tableName="rgct_student_info" domainObjectName="RgctStudentInfo"></table>
+        <table tableName="rgct_student_hist" domainObjectName="RgctStudentHist"></table>
+        <table tableName="statusDictionary" domainObjectName="StatusDictionary"></table>
             <!-- generatedKey用于生成生成主键的方法，
                 如果设置了该元素，MBG会在生成的<insert>元素中生成一条正确的<selectKey>元素，该元素可选
                 column:主键的列名；

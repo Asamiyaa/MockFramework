@@ -1,4 +1,4 @@
-package com.process;
+package com.process.activityDemo;
 
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;

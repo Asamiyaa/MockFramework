@@ -1,4 +1,4 @@
-package com.process.dataObj;
+package com.process.activityDemo.dataObj;
 
 public class Employee {
 

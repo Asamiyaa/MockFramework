@@ -1,5 +1,6 @@
-package com.process.controller;
-/**
+/*
+package com.process.activityDemo.controller;
+*
  *  @author  YangWenjun
  *  @date   2018年11月14日
  *  @description
@@ -13,7 +14,8 @@ package com.process.controller;
  *               7.mule   muleESB的第一个开发实例-HelloWorld（二）   https://blog.csdn.net/jiuqiyuliang/article/details/49516457
  *
 
- */
+
+
 
 import com.secKill.controller.BaseController;
 import org.activiti.engine.*;
@@ -58,14 +60,16 @@ public class applyController  extends BaseController{
        System.out.println("流程创建成功，当前流程实例ID："+processId);
 
 
-     /*  Task task=taskService.createTaskQuery().processInstanceId(processId).singleResult();
+  Task task=taskService.createTaskQuery().processInstanceId(processId).singleResult();
         System.out.println("第一次执行前，任务名称："+task.getName());
         taskService.complete(task.getId());
         //相关判断才能执行完成
-        System.out.println("--暂停---");*/
+        System.out.println("--暂停---");
+
 
        //开启流程
         //可以塞入初始参数  map形式
       //      runtimeService.startProcessInstanceById(deploy.getId());
     }
 }
+*/

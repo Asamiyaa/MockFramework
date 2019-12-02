@@ -240,12 +240,15 @@
                 2.日志切割
             3.如何配置文件到本地文件
 
-            TODO:日志切面 参考hook中其实就是为了练习aop api 和 aop思想
+            TODO:日志切面 参考hook中其实就是为了练习aop api 和 aop思想 - 对外接口调用出参/入参记录
             TODO:推进设计不好的地方，借鉴秒杀项目定义
 
-    5.context - process(base组件 - 自定义流程组件)
-    6.Thread
-    7.msg - mq
+    5.context - process(base组件 - 自定义流程组件) servlet(cookie / session) / tomcat / spring
+                注册中心 processEngine(activity/jbpm)
+    6.process - 规则引擎
+
+    7.Thread
+    8.msg - mq
 
     第二阶段：对报文的组成 xml-schema-字段有属性 - 自定义数据类型
 
@@ -258,6 +261,123 @@
     3.将basejava中的导入 主要是原来搭建的要去做的完成和Thread
 
    ---* 代码中由于类路径和maven包导入，会有报错，记得处理---------
+
+
+20191129 - 状态机 - rc(bbsp)
+    1.为了不污染接口，利用接口的多继承，可以将粒度分开。而不是类的继承，因为类是单继承的
+    2.业务字段 - 转化为表/类 - 不是简单的对应，应该在考虑扩展，性能，抽象基础上对字段进行设计。
+    3.method(接口、方法、是否需要前置检查、是否删除票据、是否添加历史、是否回退历史...) -
+      - dao - status(前置，后置，当前,参数) - statusmapping - info/hist表
+    4.info表和hist表的不同，为什么不是自己想的那样加入时间戳，而是不同的字段呢？那么历史到底啥含义？
+    5.实际项目中的状态模式 状态机 https://nicky-chen.github.io/2018/12/19/state-machine/
+          使用Spring StateMachine框架实现状态机:http://blog.didispace.com/spring-statemachine/
+      状态机的适用范围？         https://www.zhihu.com/question/295411490
+                              https://www.cnblogs.com/21207-iHome/p/6085334.html
+      bbsp的状态机：没有对应类，实质是将 ‘状态管理抽象到同一的状态管理模块，也就是这里的登记中心’，
+                区分上面的将状态和转换设计成类。登记中心实质就是将每个基于票的衍生产品(贴现、转贴...)
+                ,票是基准,将每个产品的前置状态、后置状态、是否可以挑出来.....。其实就是一个' 状态管理 '模块。
+                那么单个产品可以使用状态机吗?
+
+
+20191202
+    模式的使用和流编程矛盾，将状态和转换包装成类。这样好处是啥?
+    1.  currentState - event - action - newState
+        - 状态模式：
+         抽象类中定义默认实现为异常，约束子类重写，否则调用报错
+        protected static final RuntimeException EXCEPTION = new RuntimeException("操作流程不允许");
+
+            @Override
+            public void checkEvent(Context context) {
+                throw EXCEPTION;
+            }
+
+          this 引用 context参数依赖  成员
+
+        - spring状态机: builder模式加载配置 、 定义监听器、注解配置 使状态机结构层次化
+         依赖关系初始化，后置处理器
+         @PostConstruct
+            private void initialize() {
+                this.persistStateMachineHandler.addPersistStateChangeListener(orderPersistStateChangeListener);
+            }
+         @Conifguration + @bean 形成全局对象
+
+            https://nicky-chen.github.io/2018/12/19/state-machine/
+
+        缺点：创建大量状态类
+        -----jbpm和状态机是前面模式的扩展，那么前面的模式使用的场景是什么呢?-----
+
+        - jbpm ：流程引擎 类比规则引擎，将‘ 变化抽离出来 ’ ,组合复用，比如流程去掉某个节点，添加某个节点，许多流程公用某个节点
+                 在工作流中，这些都是单独类+流程定义(processDefinition - XML).重新修改定义即可发布 。流程长，复杂
+                 比如机具联网核查、加密验密、....只有长和变才能体现出来，这里不适合，因为票的生命周期不会变的。流程也不是
+                 个性化而是固定的(申请 -复核 -记账)短的。所以这里没有必要
+
+                 涉及多个审批对象，以便于联系。通常用于‘ 审批 ’。比如xx审批...xx审批...
+
+                 客户要求前台展示当前位置:https://blog.csdn.net/heishuang/article/details/49583347
+
+                 OA:涉及多个审批，请假，报工，进货...所以复用..都是必须的
+
+
+          这里的客户端就是各个产品(转贴、质押...)。票才是需要控制状态的。这里票的状态就像并发下资源，需要从多个产品来控制
+        - 状态机 - 数据库状态规则+method实现状态控制 。
+            1.将状态、事件、操作、监听从类级别抽离到数据库，数据库是公用的(业务系统和配置系统)，所以这里的抽象是高于类的
+            2.表设计
+                1.status table  一个状态变化依赖事件，前，后状态，监听
+                2.statusDictionary
+                3.method        其实每一个方法就是事件，
+
+            todo:建表时，需要在表前面加上对应的模块名，比如这里表明就应该是RGCT_STATUS ..而不是单独的这个
+            todo:字段是多个含义的时，使用“ _ ” 而不是想代码一样 “ 大小写 ”
+            todo:变与不变 中 设计中扩展 ，适用化
+
+    2.info + hist
+        1.如何设计？info和hist是基础的表，肯定包含许多‘ 来自场景中的属性字段 ’
+          历史表就是简单的将已有信息打时间戳放到历史吗？
+
+          1.版本号
+          2.时间戳
+                1.前两者都会造成数据表膨胀，并且许多历史数据是不常使用的，定位查找耗时
+                2.记录的实体没有明确的“单号”、“订单号”这类的业务主键该怎么办？我们可以使用创建数据时的数据库主键作为业务主键。
+                    员工ID	姓名	生日	业务ID	版本号
+                    1	张三	1984/12/29	1	1
+                3.明细和batch表
+                    明细和订单表不以id为关联，因为当订单变化时，明细无需重新绑定关联。而是在明细表中添加业务id 比如订单号.
+
+          3.历史拉链表
+                1.业务数据表的数据量不会因为历史版本记录而膨胀。因为历史数据都记录到了另外一个表中，所以业务数据表只记录了一份数据。
+                2. 业务数据表的Schema不需要调整，增加额外的版本字段。由于对原有数据表不做Schema变更，所以原有查询逻辑也不用更改。对于一个现有的数据库设计，在增加历史数据记录功能时更简单。
+                3.业务数据表可以直接进行update操作，不会生成新的ID。由于ID不会变，所以我们并需要业务主键应用到程序逻辑中。
+                4.使用历史表记录历史版本主要是要对数据操作方法（增加、删除、修改）进行修改，使得每次数据操作时，先在历史表中留痕，然后再进行数据操作。另外就是对查询历史版本功能进行修改，因为历史数据在另外一个表中，所以对于的SQL是不一样的。当然，我们也可以创建历史版本数据库，里面保存了所有的历史表。
+
+          4.历史表字段顺序，尽量减少表结构变更对代码影响
+                1.t_user_his表的字段，把历史操作相关字段前置，后续字段保持与t_user完全一致，
+                  例如t_user_his字段可以这样安排：his_id,oper_time,oper_remark,id,name,sex,age。
+
+                  insert into t_user_his(id,name,sex,age,phone,his_id,oper_time,oper_remark) select id,name,sex,age,phone,'历史表id',timestamp,'修改姓名' from t_user where id=18970；
+                  update t_user set name='xxx' where id=18970；
+                  优化后 - 保证新加字段后无需修改代码
+                  insert into t_user_his select ,'历史表id',timestamp,'修改姓名' ,a.* from t_user a  where id=18970；
+                  update t_user set name='xxx' where id=18970；
+
+          5.时间段统计 拉链表 - 连续性
+                  begin_date /end_date
+
+
+          为了和core模块关联，这里将表设计为：一个人在生活中不同的角度，一个人的状态，有些是限制的。比如
+          上学状态不能去滑雪.... 扮演不同角色
+
+
+
+    2.流程 vs 行为 vs 状态
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-package com.process;
+package com.process.activityDemo;
 
 import org.activiti.spring.SpringProcessEngineConfiguration;
 import org.activiti.spring.boot.ProcessEngineConfigurationConfigurer;

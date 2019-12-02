@@ -27,4 +27,17 @@ public enum BooleanEnum implements BaseEnum {
     public String getMsg() {
         return null;
     }
+
+    /**
+     *
+     *对于不定义属性的枚举，可以直接借助自身的属性.name / ordinal 参考：java中Enum.class实现
+     //已完结
+     FEED_BACKED;
+
+     public static EnumMap<OrderStatusEnum, String> getMap() {
+     EnumMap<OrderStatusEnum, String> map = new EnumMap<>(OrderStatusEnum.class);
+     Arrays.stream(OrderStatusEnum.values()).forEach(x -> map.put(x, x.name()));
+     return map;
+     }
+     */
 }

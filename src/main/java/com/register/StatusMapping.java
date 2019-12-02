@@ -1,4 +1,4 @@
-package com.regist;
+package com.register;
 
 /**
  * @author YangWenjun
