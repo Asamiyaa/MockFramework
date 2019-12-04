@@ -394,6 +394,43 @@
        6.官方文档 Spring Boot参考指南 ：https://www.springcloud.cc/spring-boot.html
          一定要从官方的地方学习。权威，少走弯路。这些都是建立在基础扎实基础上完成的。
 
+20191204
+       1.spring是一个框架，需要客户端配置，组合。
+         springboot 像一个系统，为你提供默认配置及作为一个系统需要组合的。比如缓存、测试、db...
+         springcloud像一个分布式系统，从服务治理、熔断、监控、协调、分发等角度。所以说从原来的物理机间
+                    下沉到代码 - 微服务 分布式  拆分
+
+       2.框架的使用等同于在地基基础上学习工具，难点在：如何在合理的场景使用、拆分、如何提高扩展性、
+         容错性、如何组合这些技术点。所以说springboot\cloud、dubbo等都是容易的。只要学习了‘ 源码 ’
+         如何去定义接口...这些才是重点
+
+       3.springboot框架学习 纯洁的微笑：http://www.ityouknow.com/spring-boot.html
+            1.@Configuration注解来表明该类是一个Spring的配置，相当于一个xml文件 用于实例化Spring容器
+              @bean用于向容器中注入对象，如果在UserDao类前面打上@Repository注解就不用@Bean方式
+              @ComponentScan配置扫描的包。
+              springBoot注解详解:https://www.cnblogs.com/tanwei81/p/6814022.html
+              Spring Boot 最核心的 25 个注解:https://zhuanlan.zhihu.com/p/57689422
+
+              统一异常处理：https://blog.csdn.net/lafengwnagzi/article/details/53034369
+              https://segmentfault.com/a/1190000014966727
+
+              监控 = spring-Actuator   + springboot admin
+              Spring Boot 2 增强了对 Micrometer 的集成。RabbitMQ、JVM 线程和垃圾收集指标会自动进行 instrument 监控，异步控制器(controller)也会自动添加到监控里。通过集成，还可以对 InfluxDB 服务器进行监控。
+
+              敏捷开发：docker + jeckins
+
+              CommandLineRunner：适合在应用程序启动之初进行一些数据初始化的工作
+
+
+    //todo:开发仿真 面向多用户，并发的需求，对分布式、微服务、调优方面发展
+
+dao @transaction配置
+    超时
+    一对多，多对多...
+
+    restful定义
+
+
 
 
 
