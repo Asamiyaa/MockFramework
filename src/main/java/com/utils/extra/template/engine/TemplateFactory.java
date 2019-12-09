@@ -1,18 +1,9 @@
 package com.utils.extra.template.engine;
 
-import com.jfinal.template.Engine;
-
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.extra.template.TemplateConfig;
-import cn.hutool.extra.template.TemplateEngine;
-import cn.hutool.extra.template.TemplateException;
-import cn.hutool.extra.template.engine.beetl.BeetlEngine;
-import cn.hutool.extra.template.engine.enjoy.EnjoyEngine;
-import cn.hutool.extra.template.engine.freemarker.FreemarkerEngine;
-import cn.hutool.extra.template.engine.rythm.RythmEngine;
-import cn.hutool.extra.template.engine.thymeleaf.ThymeleafEngine;
-import cn.hutool.extra.template.engine.velocity.VelocityEngine;
-import cn.hutool.log.StaticLog;
+import com.utils.core.util.StrUtil;
+import com.utils.extra.template.TemplateConfig;
+import com.utils.extra.template.TemplateEngine;
+import com.utils.log.StaticLog;
 
 /**
  * 简单模板工厂，用于根据用户引入的模板引擎jar，自动创建对应的模板引擎对象
@@ -26,7 +17,6 @@ public class TemplateFactory {
 	 * 推荐创建的引擎单例使用，此方法每次调用会返回新的引擎
 	 * 
 	 * @param config 模板配置，包括编码、模板文件path等信息
-	 * @return {@link Engine}
 	 */
 	public static TemplateEngine create(TemplateConfig config) {
 		final TemplateEngine engine = doCreate(config);
@@ -39,9 +29,8 @@ public class TemplateFactory {
 	 * 推荐创建的引擎单例使用，此方法每次调用会返回新的引擎
 	 * 
 	 * @param config 模板配置，包括编码、模板文件path等信息
-	 * @return {@link Engine}
 	 */
-	private static TemplateEngine doCreate(TemplateConfig config) {
+	private static TemplateEngine doCreate(TemplateConfig config) {/*
 		try {
 			return new BeetlEngine(config);
 		} catch (NoClassDefFoundError e) {
@@ -72,6 +61,7 @@ public class TemplateFactory {
 		} catch (NoClassDefFoundError e) {
 			// ignore
 		}
-		throw new TemplateException("No template found ! Please add one of template jar to your project !");
+		throw new TemplateException("No template found ! Please add one of template jar to your project !");*/
+		return  null ;
 	}
 }

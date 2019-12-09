@@ -1,5 +1,7 @@
 package com.utils.log.dialect.commons;
 
+import com.utils.core.util.StrUtil;
+import com.utils.log.AbstractLog;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

@@ -1,12 +1,10 @@
 package com.utils.aop;
 
+import com.utils.aop.aspects.Aspect;
+import com.utils.core.util.ClassUtil;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
-
-import cn.hutool.aop.aspects.Aspect;
-import cn.hutool.aop.proxy.ProxyFactory;
-import cn.hutool.core.util.ClassUtil;
-import com.utils.aop.proxy.ProxyFactory;
 
 /**
  * 代理工具类
@@ -23,8 +21,9 @@ public final class ProxyUtil {
 	 * @param aspectClass 切面对象类
 	 * @return 代理对象
 	 */
-	public static <T> T proxy(T target, Class<? extends Aspect> aspectClass){
-		return ProxyFactory.createProxy(target, aspectClass);
+	public static <T> T proxy(T target, Class<? extends Aspect> aspectClass){/*
+		return ProxyFactory.createProxy(target, aspectClass);*/
+		return  null ;
 	}
 	
 	/**
@@ -34,8 +33,9 @@ public final class ProxyUtil {
 	 * @param aspect 切面对象
 	 * @return 代理对象
 	 */
-	public static <T> T proxy(T target, Aspect aspect){
-		return ProxyFactory.createProxy(target, aspect);
+	public static <T> T proxy(T target, Aspect aspect){/*
+		return ProxyFactory.createProxy(target, aspect);*/
+		return null ;
 	}
 
 	/**

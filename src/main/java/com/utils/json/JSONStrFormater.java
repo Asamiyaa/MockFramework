@@ -1,6 +1,6 @@
 package com.utils.json;
 
-import cn.hutool.core.util.StrUtil;
+import com.utils.core.util.StrUtil;
 
 /**
  * JSON字符串格式化工具，用于简单格式化JSON字符串<br>

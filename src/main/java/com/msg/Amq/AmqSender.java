@@ -1,6 +1,6 @@
 package com.msg.Amq;
 
-import com.com.INetCom;
+import com.msg.INetCom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;

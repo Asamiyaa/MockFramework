@@ -1,16 +1,15 @@
 package com.utils.http.webservice;
 
+import com.utils.core.exceptions.UtilException;
+import com.utils.core.util.CharsetUtil;
+import com.utils.core.util.XmlUtil;
+
+import javax.xml.soap.SOAPException;
+import javax.xml.soap.SOAPMessage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
-
-import javax.xml.soap.SOAPException;
-import javax.xml.soap.SOAPMessage;
-
-import cn.hutool.core.exceptions.UtilException;
-import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.core.util.XmlUtil;
 
 /**
  * SOAP相关工具类
@@ -79,7 +78,7 @@ public class SoapUtil {
 		try {
 			message.writeTo(out);
 		} catch (SOAPException | IOException e) {
-			throw new SoapRuntimeException(e);
+			//throw new SoapRuntimeException(e);
 		}
 		String messageToString = null;
 		try {

@@ -1,34 +1,28 @@
 package com.utils.http;
 
+import com.utils.core.collection.CollUtil;
+import com.utils.core.collection.CollectionUtil;
+import com.utils.core.convert.Convert;
+import com.utils.core.io.FastByteArrayOutputStream;
+import com.utils.core.io.FileUtil;
+import com.utils.core.io.IoUtil;
+import com.utils.core.io.StreamProgress;
+import com.utils.core.map.MapUtil;
+import com.utils.core.text.StrBuilder;
+import com.utils.core.util.CharsetUtil;
+import com.utils.core.util.ReUtil;
+import com.utils.core.util.StrUtil;
+import com.utils.core.util.URLUtil;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
-
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.io.FastByteArrayOutputStream;
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.IoUtil;
-import cn.hutool.core.io.StreamProgress;
-import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.text.StrBuilder;
-import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.core.util.ReUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.core.util.URLUtil;
 
 /**
  * Http请求工具类

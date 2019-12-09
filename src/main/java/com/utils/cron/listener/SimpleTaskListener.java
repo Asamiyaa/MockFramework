@@ -1,6 +1,6 @@
 package com.utils.cron.listener;
 
-import cn.hutool.cron.TaskExecutor;
+import com.utils.cron.TaskExecutor;
 
 /**
  * 简单监听实现，不做任何操作<br>
@@ -10,18 +10,19 @@ import cn.hutool.cron.TaskExecutor;
  */
 public class SimpleTaskListener implements TaskListener{
 
+
 	@Override
 	public void onStart(TaskExecutor executor) {
+
 	}
 
 	@Override
 	public void onSucceeded(TaskExecutor executor) {
-		
+
 	}
 
 	@Override
 	public void onFailed(TaskExecutor executor, Throwable exception) {
 
 	}
-
 }

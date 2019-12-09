@@ -1,20 +1,20 @@
 package com.utils.http.cookie;
 
+import com.utils.core.io.IORuntimeException;
+import com.utils.core.map.MapUtil;
+import com.utils.core.util.StrUtil;
+import com.utils.core.util.URLUtil;
+import com.utils.http.Header;
+import com.utils.http.HttpConnection;
+import com.utils.log.Log;
+import com.utils.log.LogFactory;
+
 import java.io.IOException;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import cn.hutool.core.io.IORuntimeException;
-import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.core.util.URLUtil;
-import cn.hutool.http.Header;
-import cn.hutool.http.HttpConnection;
-import cn.hutool.log.Log;
-import cn.hutool.log.LogFactory;
 
 /**
  * 全局Cooki管理器，只针对Hutool请求有效
@@ -78,8 +78,7 @@ public class GlobalCookieManager {
 	/**
 	 * 存储响应的Cookie信息到本地
 	 * 
-	 * @param uri 域名URI
-	 * @param responseHeaders 响应的头信息
+	 sponseHeaders 响应的头信息
 	 */
 	public static void store(HttpConnection conn) {
 		if(null == cookieManager) {

@@ -1,8 +1,8 @@
 package com.utils.system;
 
-import java.io.Serializable;
+import com.utils.core.util.StrUtil;
 
-import cn.hutool.core.util.StrUtil;
+import java.io.Serializable;
 
 /**
  * 代表当前运行的JRE的信息。

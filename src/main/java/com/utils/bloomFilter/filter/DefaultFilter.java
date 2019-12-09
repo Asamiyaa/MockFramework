@@ -1,6 +1,6 @@
 package com.utils.bloomFilter.filter;
 
-import cn.hutool.core.util.HashUtil;
+import com.utils.core.util.HashUtil;
 
 /**
  * 默认Bloom过滤器，使用Java自带的Hash算法

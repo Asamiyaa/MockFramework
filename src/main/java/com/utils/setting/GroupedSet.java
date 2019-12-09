@@ -1,24 +1,19 @@
 package com.utils.setting;
 
+import com.utils.core.collection.CollectionUtil;
+import com.utils.core.io.IoUtil;
+import com.utils.core.util.ArrayUtil;
+import com.utils.core.util.CharsetUtil;
+import com.utils.core.util.StrUtil;
+import com.utils.core.util.URLUtil;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.io.IoUtil;
-import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.core.util.URLUtil;
+import java.util.*;
 
 /**
  * 分组化的Set集合类<br>

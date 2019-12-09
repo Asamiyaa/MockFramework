@@ -1,32 +1,14 @@
 package com.utils.log;
 
-import java.net.URL;
+import com.utils.core.lang.caller.CallerUtil;
+import com.utils.log.dialect.console.ConsoleLogFactory;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import cn.hutool.core.io.resource.ResourceUtil;
-import cn.hutool.core.lang.caller.CallerUtil;
-import cn.hutool.log.dialect.commons.ApacheCommonsLogFactory;
-import cn.hutool.log.dialect.console.ConsoleLogFactory;
-import cn.hutool.log.dialect.jboss.JbossLogFactory;
-import cn.hutool.log.dialect.jdk.JdkLogFactory;
-import cn.hutool.log.dialect.log4j.Log4jLogFactory;
-import cn.hutool.log.dialect.log4j2.Log4j2LogFactory;
-import cn.hutool.log.dialect.slf4j.Slf4jLogFactory;
-import cn.hutool.log.dialect.tinylog.TinyLogFactory;
-
 /**
  * 日志工厂类
- * 
- * @see Slf4jLogFactory
- * @see Log4j2LogFactory
- * @see Log4jLogFactory
- * @see ApacheCommonsLogFactory
- * @see TinyLogFactory
- * @see JbossLogFactory
- * @see ConsoleLogFactory
- * @see JdkLogFactory
- * 
+
  * @author Looly
  *
  */
@@ -124,16 +106,7 @@ public abstract class LogFactory {
 
 	/**
 	 * 自定义日志实现
-	 * 
-	 * @see Slf4jLogFactory
-	 * @see Log4j2LogFactory
-	 * @see Log4jLogFactory
-	 * @see ApacheCommonsLogFactory
-	 * @see TinyLogFactory
-	 * @see JbossLogFactory
-	 * @see ConsoleLogFactory
-	 * @see JdkLogFactory
-	 * 
+
 	 * @param logFactoryClass 日志工厂类
 	 * @return 自定义的日志工厂类
 	 */
@@ -143,16 +116,7 @@ public abstract class LogFactory {
 
 	/**
 	 * 自定义日志实现
-	 * 
-	 * @see Slf4jLogFactory
-	 * @see Log4j2LogFactory
-	 * @see Log4jLogFactory
-	 * @see ApacheCommonsLogFactory
-	 * @see TinyLogFactory
-	 * @see JbossLogFactory
-	 * @see ConsoleLogFactory
-	 * @see JdkLogFactory
-	 * 
+
 	 * @param logFactory 日志工厂类对象
 	 * @return 自定义的日志工厂类
 	 */
@@ -192,18 +156,11 @@ public abstract class LogFactory {
 	 * <p>
 	 * 依次按照顺序检查日志库的jar是否被引入，如果未引入任何日志库，则检查ClassPath下的logging.properties，存在则使用JdkLogFactory，否则使用ConsoleLogFactory
 	 * 
-	 * @see Slf4jLogFactory
-	 * @see Log4j2LogFactory
-	 * @see Log4jLogFactory
-	 * @see ApacheCommonsLogFactory
-	 * @see TinyLogFactory
-	 * @see JbossLogFactory
-	 * @see ConsoleLogFactory
-	 * @see JdkLogFactory
+
 	 * @return 日志实现类
 	 */
 	public static LogFactory create() {
-		final LogFactory factory = doCreate();
+		final LogFactory factory = null ;// doCreate();
 		factory.getLog(LogFactory.class).debug("Use [{}] Logger As Default.", factory.name);
 		return factory;
 	}
@@ -213,17 +170,10 @@ public abstract class LogFactory {
 	 * <p>
 	 * 依次按照顺序检查日志库的jar是否被引入，如果未引入任何日志库，则检查ClassPath下的logging.properties，存在则使用JdkLogFactory，否则使用ConsoleLogFactory
 	 * 
-	 * @see Slf4jLogFactory
-	 * @see Log4j2LogFactory
-	 * @see Log4jLogFactory
-	 * @see ApacheCommonsLogFactory
-	 * @see TinyLogFactory
-	 * @see JbossLogFactory
-	 * @see ConsoleLogFactory
-	 * @see JdkLogFactory
+
 	 * @return 日志实现类
 	 */
-	private static LogFactory doCreate() {
+	private static ConsoleLogFactory doCreate() {/*
 		try {
 			return new Slf4jLogFactory(true);
 		} catch (NoClassDefFoundError e) {
@@ -257,7 +207,8 @@ public abstract class LogFactory {
 
 		// 未找到任何可支持的日志库时判断依据：当JDK Logging的配置文件位于classpath中，使用JDK Logging，否则使用Console
 		final URL url = ResourceUtil.getResource("logging.properties");
-		return (null != url) ? new JdkLogFactory() : new ConsoleLogFactory();
+		return (null != url) ? new JdkLogFactory() : new ConsoleLogFactory();*/
+		return new ConsoleLogFactory();
 	}
 	// ------------------------------------------------------------------------- Static end
 }

@@ -1,22 +1,19 @@
 package com.utils.random;
 
-import java.awt.AlphaComposite;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
+import com.utils.core.codec.Base64;
+import com.utils.core.img.ImgUtil;
+import com.utils.core.io.FileUtil;
+import com.utils.core.io.IORuntimeException;
+import com.utils.core.io.IoUtil;
+import com.utils.random.generator.CodeGenerator;
+import com.utils.random.generator.RandomGenerator;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
-
-import cn.hutool.captcha.generator.CodeGenerator;
-import cn.hutool.captcha.generator.RandomGenerator;
-import cn.hutool.core.codec.Base64;
-import cn.hutool.core.img.ImgUtil;
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.IORuntimeException;
-import cn.hutool.core.io.IoUtil;
 
 /**
  * 抽象验证码<br>

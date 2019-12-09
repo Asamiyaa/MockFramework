@@ -1,6 +1,6 @@
 package com.core.draft.tmpBBSP.parse;
 
-import com.draft1.dto.RequestInfo;
+import com.core.draft.tmpBBSP.dto.RequestInfo;
 
 /**
  * @author YangWenjun

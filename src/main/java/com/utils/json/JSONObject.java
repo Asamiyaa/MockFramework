@@ -1,5 +1,15 @@
 package com.utils.json;
 
+import com.utils.core.bean.BeanDesc;
+import com.utils.core.bean.BeanPath;
+import com.utils.core.bean.BeanUtil;
+import com.utils.core.collection.CollectionUtil;
+import com.utils.core.convert.Convert;
+import com.utils.core.lang.TypeReference;
+import com.utils.core.map.CaseInsensitiveLinkedMap;
+import com.utils.core.map.CaseInsensitiveMap;
+import com.utils.core.util.*;
+
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -7,25 +17,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
-
-import cn.hutool.core.bean.BeanDesc.PropDesc;
-import cn.hutool.core.bean.BeanPath;
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.lang.TypeReference;
-import cn.hutool.core.map.CaseInsensitiveLinkedMap;
-import cn.hutool.core.map.CaseInsensitiveMap;
-import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.core.util.CharUtil;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.ReflectUtil;
-import cn.hutool.core.util.StrUtil;
+import java.util.*;
 
 /**
  * JSON对象<br>
@@ -672,11 +664,11 @@ public class JSONObject extends JSONGetter<String> implements JSON, Map<String, 
 	 * @param ignoreNullValue 是否忽略空值
 	 */
 	private void populateMap(Object bean) {
-		final Collection<PropDesc> props = BeanUtil.getBeanDesc(bean.getClass()).getProps();
+		final Collection<BeanDesc.PropDesc> props = BeanUtil.getBeanDesc(bean.getClass()).getProps();
 
 		Method getter;
 		Object value;
-		for (PropDesc prop : props) {
+		for (BeanDesc.PropDesc prop : props) {
 			// 得到property对应的getter方法
 			getter = prop.getGetter();
 			if (null == getter) {

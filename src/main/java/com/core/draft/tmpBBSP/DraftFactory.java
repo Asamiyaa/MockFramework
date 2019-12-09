@@ -1,6 +1,6 @@
 package com.core.draft.tmpBBSP;
 
-import com.draft1.builder.base.AbstractDraftBuilder;
+import com.core.draft.tmpBBSP.builder.base.AbstractDraftBuilder;
 
 /**
  * @author YangWenjun

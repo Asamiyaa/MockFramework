@@ -1,9 +1,9 @@
 package com.utils.cache.file;
 
-import java.io.File;
+import com.utils.cache.Cache;
+import com.utils.cache.impl.LRUCache;
 
-import cn.hutool.cache.Cache;
-import cn.hutool.cache.impl.LRUCache;
+import java.io.File;
 
 /**
  *  使用LRU缓存文件，以解决频繁读取文件引起的性能问题

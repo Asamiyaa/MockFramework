@@ -1,6 +1,6 @@
 package com.utils.cron.listener;
 
-import cn.hutool.cron.TaskExecutor;
+import com.utils.cron.TaskExecutor;
 
 /**
  * 定时任务监听接口<br>

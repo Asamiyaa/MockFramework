@@ -1,6 +1,6 @@
 package com.busi.seckill.dao;
 
-import com.secKill.dataObj.UserPasswordDo;
+import com.busi.seckill.dataObj.UserPasswordDo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

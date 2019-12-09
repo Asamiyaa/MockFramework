@@ -1,8 +1,8 @@
 package com.utils.socket;
 
-import java.io.Serializable;
+import com.utils.core.io.IoUtil;
 
-import cn.hutool.core.io.IoUtil;
+import java.io.Serializable;
 
 /**
  * Socket通讯配置

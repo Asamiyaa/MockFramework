@@ -3,6 +3,7 @@ package com.utils.poi.excel.cell;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.utils.poi.excel.editors.TrimEditor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;

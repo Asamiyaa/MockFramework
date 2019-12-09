@@ -1,6 +1,6 @@
 package com.utils.cron;
 
-import cn.hutool.cron.task.Task;
+import com.utils.cron.task.Task;
 
 /**
  * 作业执行器<br>
@@ -29,11 +29,11 @@ public class TaskExecutor implements Runnable{
 	@Override
 	public void run() {
 		try {
-			scheduler.listenerManager.notifyTaskStart(this);
+//			scheduler.listenerManager.notifyTaskStart(this);
 			task.execute();
-			scheduler.listenerManager.notifyTaskSucceeded(this);
+//			scheduler.listenerManager.notifyTaskSucceeded(this);
 		} catch (Exception e) {
-			scheduler.listenerManager.notifyTaskFailed(this, e);
+//			scheduler.listenerManager.notifyTaskFailed(this, e);
 		}finally{
 			scheduler.taskExecutorManager.notifyExecutorCompleted(this);
 		}

@@ -1,5 +1,8 @@
+/*
 package com.utils.extra.template.engine.thymeleaf;
 
+import com.utils.extra.template.TemplateConfig;
+import com.utils.extra.template.TemplateEngine;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.DefaultTemplateResolver;
@@ -13,40 +16,44 @@ import cn.hutool.extra.template.Template;
 import cn.hutool.extra.template.TemplateConfig;
 import cn.hutool.extra.template.TemplateEngine;
 
-/**
+*
  * Thymeleaf模板引擎实现
  * 
  * @author looly
  * @since 4.1.11
- */
+
+
 public class ThymeleafEngine implements TemplateEngine {
 
 	org.thymeleaf.TemplateEngine engine;
 	TemplateConfig config;
 
 	// --------------------------------------------------------------------------------- Constructor start
-	/**
+*
 	 * 默认构造
-	 */
+
+
 	public ThymeleafEngine() {
 		this(new TemplateConfig());
 	}
 
-	/**
+*
 	 * 构造
 	 * 
 	 * @param config 模板配置
-	 */
+
+
 	public ThymeleafEngine(TemplateConfig config) {
 		this(createEngine(config));
 		this.config = config;
 	}
 
-	/**
+*
 	 * 构造
 	 * 
 	 * @param engine {@link org.thymeleaf.TemplateEngine}
-	 */
+
+
 	public ThymeleafEngine(org.thymeleaf.TemplateEngine engine) {
 		this.engine = engine;
 	}
@@ -57,12 +64,13 @@ public class ThymeleafEngine implements TemplateEngine {
 		return ThymeleafTemplate.wrap(this.engine, resource, (null == this.config) ? null : this.config.getCharset());
 	}
 
-	/**
+*
 	 * 创建引擎
 	 * 
 	 * @param config 模板配置
 	 * @return {@link TemplateEngine}
-	 */
+
+
 	private static org.thymeleaf.TemplateEngine createEngine(TemplateConfig config) {
 		if (null == config) {
 			config = new TemplateConfig();
@@ -107,3 +115,4 @@ public class ThymeleafEngine implements TemplateEngine {
 		return engine;
 	}
 }
+*/

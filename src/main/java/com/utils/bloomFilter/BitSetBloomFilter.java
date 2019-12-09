@@ -1,12 +1,12 @@
 package com.utils.bloomFilter;
 
+import com.utils.core.io.FileUtil;
+import com.utils.core.io.IoUtil;
+import com.utils.core.util.HashUtil;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.BitSet;
-
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.IoUtil;
-import cn.hutool.core.util.HashUtil;
 
 /**
  * BloomFilter实现方式2，此方式使用BitSet存储。<br>

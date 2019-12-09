@@ -1,35 +1,24 @@
 package com.utils.poi.excel;
 
+import com.utils.core.bean.BeanUtil;
+import com.utils.core.collection.CollUtil;
+import com.utils.core.comparator.IndexedComparator;
+import com.utils.core.io.FileUtil;
+import com.utils.core.io.IORuntimeException;
+import com.utils.core.io.IoUtil;
+import com.utils.core.lang.Assert;
+import com.utils.core.map.MapUtil;
+import com.utils.core.util.StrUtil;
+import com.utils.poi.excel.cell.CellUtil;
+import com.utils.poi.excel.style.Align;
+import org.apache.poi.ss.usermodel.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.HeaderFooter;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.comparator.IndexedComparator;
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.IORuntimeException;
-import cn.hutool.core.io.IoUtil;
-import cn.hutool.core.lang.Assert;
-import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.poi.excel.cell.CellUtil;
-import cn.hutool.poi.excel.style.Align;
 
 /**
  * Excel 写入器<br>
@@ -552,7 +541,7 @@ public class ExcelWriter extends ExcelBase<ExcelWriter> {
 		// 设置内容
 		if (null != content) {
 			final Cell cell = getOrCreateCell(firstColumn, firstRow);
-			CellUtil.setCellValue(cell, content, this.styleSet, isSetHeaderStyle);
+			//CellUtil.setCellValue(cell, content, this.styleSet, isSetHeaderStyle);
 		}
 		return this;
 	}
@@ -754,7 +743,7 @@ public class ExcelWriter extends ExcelBase<ExcelWriter> {
 	 */
 	public ExcelWriter writeCellValue(int x, int y, Object value) {
 		final Cell cell = getOrCreateCell(x, y);
-		CellUtil.setCellValue(cell, value, this.styleSet, false);
+		//CellUtil.setCellValue(cell, value, this.styleSet, false);
 		return this;
 	}
 

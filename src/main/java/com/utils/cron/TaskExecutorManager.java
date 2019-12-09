@@ -1,9 +1,9 @@
 package com.utils.cron;
 
+import com.utils.cron.task.Task;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.hutool.cron.task.Task;
 
 /**
  * 作业执行管理器<br>
@@ -29,7 +29,7 @@ public class TaskExecutorManager {
 	 * @return {@link TaskExecutor}
 	 */
 	public TaskExecutor spawnExecutor(Task task) {
-		final TaskExecutor executor = new TaskExecutor(this.scheduler, task);
+		final TaskExecutor executor = null ;// new TaskExecutor(this.scheduler, task);
 		synchronized (this.executors) {
 			this.executors.add(executor);
 		}

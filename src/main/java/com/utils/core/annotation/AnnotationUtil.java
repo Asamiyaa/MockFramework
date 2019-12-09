@@ -1,22 +1,17 @@
 package com.utils.core.annotation;
 
-import java.lang.annotation.Annotation;
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import cn.hutool.core.lang.Filter;
+import com.utils.core.exceptions.UtilException;
+import com.utils.core.lang.Filter;
+import com.utils.core.util.ArrayUtil;
+import com.utils.core.util.ReflectUtil;
+
+import java.lang.annotation.*;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-
-import cn.hutool.core.exceptions.UtilException;
-import cn.hutool.core.lang.Filter;
-import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.core.util.ReflectUtil;
 
 /**
  * 注解工具类<br>
@@ -117,6 +112,10 @@ public class AnnotationUtil {
 
 		final Method[] methods = ReflectUtil.getMethods(annotationType, new Filter<Method>() {
 			@Override
+			public boolean accept(Method method) {
+				return false;
+			}/*
+			@Override
 			public boolean accept(Method t) {
 				if (ArrayUtil.isEmpty(t.getParameterTypes())) {
 					// 只读取无参方法
@@ -129,7 +128,7 @@ public class AnnotationUtil {
 				}
 				return false;
 			}
-		});
+		*/;
 
 		final HashMap<String, Object> result = new HashMap<>(methods.length, 1);
 		for (Method method : methods) {

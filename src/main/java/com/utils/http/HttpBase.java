@@ -1,17 +1,13 @@
 package com.utils.http;
 
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
+import com.utils.core.collection.CollectionUtil;
+import com.utils.core.map.CaseInsensitiveMap;
+import com.utils.core.util.CharsetUtil;
+import com.utils.core.util.StrUtil;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.map.CaseInsensitiveMap;
-import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.core.util.StrUtil;
+import java.nio.charset.Charset;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * http基类

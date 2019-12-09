@@ -1,8 +1,8 @@
 package com.utils.system;
 
-import java.io.Serializable;
+import com.utils.core.io.FileUtil;
 
-import cn.hutool.core.io.FileUtil;
+import java.io.Serializable;
 
 /**
  * 运行时信息，包括内存总大小、已用大小、可用大小等

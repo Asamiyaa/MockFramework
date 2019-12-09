@@ -1,12 +1,12 @@
 package com.busi.seckill.controller;
 
-import com.secKill.controller.viewObj.UserVO;
-import com.secKill.error.BusiException;
-import com.secKill.error.EmBusiError;
-import com.secKill.response.CommonReturnType;
-import com.secKill.service.UserService;
-import com.secKill.service.model.UserModel;
-import com.utils.codeUtils.EncodeUtil;
+import com.busi.seckill.controller.viewObj.UserVO;
+import com.busi.seckill.error.BusiException;
+import com.busi.seckill.error.EmBusiError;
+import com.busi.seckill.response.CommonReturnType;
+import com.busi.seckill.service.UserService;
+import com.busi.seckill.service.model.UserModel;
+import com.utils.EncodeUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,12 +28,12 @@ public class UserController extends  BaseController{
     @RequestMapping(value="/register",method={RequestMethod.POST},consumes={"application/x-www-form-urlencoded"})
     @ResponseBody
     public CommonReturnType register(@RequestParam(name="telphone")String  telphone,
-                                   @RequestParam(name="otpCode")String  otpCode,
-                                   @RequestParam(name="name")String  name ,
-                                   //@RequestParam(name="gender")Boolean  gender , boolean 是没有传递的
-                                   @RequestParam(name="gender")Integer  gender ,
-                                   @RequestParam(name="age") Integer age,
-                                   @RequestParam(name="password") String password) throws Exception {
+                                     @RequestParam(name="otpCode")String  otpCode,
+                                     @RequestParam(name="name")String  name ,
+                                     //@RequestParam(name="gender")Boolean  gender , boolean 是没有传递的
+                                     @RequestParam(name="gender")Integer  gender ,
+                                     @RequestParam(name="age") Integer age,
+                                     @RequestParam(name="password") String password) throws Exception {
         //验证对应的手机号和otp码
         //String otp = (String) httpServletRequest.getSession().getAttribute("telphone");不要盲目用串，要明确
         String otp = (String) httpServletRequest.getSession().getAttribute(telphone);

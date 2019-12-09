@@ -1,14 +1,14 @@
 package com.utils.extra.ftp;
 
+import com.utils.core.collection.CollUtil;
+import com.utils.core.io.FileUtil;
+import com.utils.core.util.CharsetUtil;
+import com.utils.core.util.StrUtil;
+
 import java.io.Closeable;
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.List;
-
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.core.util.StrUtil;
 
 /**
  * 抽象FTP类，用于定义通用的FTP方法

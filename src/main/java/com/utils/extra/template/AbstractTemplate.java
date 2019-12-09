@@ -1,12 +1,12 @@
 package com.utils.extra.template;
 
+import com.utils.core.io.FileUtil;
+import com.utils.core.io.IoUtil;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.StringWriter;
 import java.util.Map;
-
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.IoUtil;
 
 /**
  * 抽象模板，提供将模板融合后写出到文件、返回字符串等方法

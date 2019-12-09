@@ -1,23 +1,14 @@
 package com.utils.system;
 
+import com.utils.core.convert.Convert;
+import com.utils.core.lang.Console;
+import com.utils.core.lang.Singleton;
+import com.utils.core.util.StrUtil;
+
 import java.io.PrintWriter;
-import java.lang.management.ClassLoadingMXBean;
-import java.lang.management.CompilationMXBean;
-import java.lang.management.GarbageCollectorMXBean;
-import java.lang.management.ManagementFactory;
-import java.lang.management.MemoryMXBean;
-import java.lang.management.MemoryManagerMXBean;
-import java.lang.management.MemoryPoolMXBean;
-import java.lang.management.OperatingSystemMXBean;
-import java.lang.management.RuntimeMXBean;
-import java.lang.management.ThreadMXBean;
+import java.lang.management.*;
 import java.util.List;
 import java.util.Properties;
-
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.lang.Console;
-import cn.hutool.core.lang.Singleton;
-import cn.hutool.core.util.StrUtil;
 
 /**
  * Java的System类封装工具类。<br>

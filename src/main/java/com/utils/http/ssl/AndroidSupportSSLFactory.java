@@ -1,12 +1,9 @@
 package com.utils.http.ssl;
 
-import static cn.hutool.http.ssl.SSLSocketFactoryBuilder.SSLv3;
-import static cn.hutool.http.ssl.SSLSocketFactoryBuilder.TLSv1;
-import static cn.hutool.http.ssl.SSLSocketFactoryBuilder.TLSv11;
-import static cn.hutool.http.ssl.SSLSocketFactoryBuilder.TLSv12;
-
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+
+import static com.utils.http.ssl.SSLSocketFactoryBuilder.*;
 
 /**
  * 兼容android低版本SSL连接

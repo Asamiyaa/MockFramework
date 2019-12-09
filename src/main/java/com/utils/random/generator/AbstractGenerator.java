@@ -1,6 +1,6 @@
 package com.utils.random.generator;
 
-import cn.hutool.core.util.RandomUtil;
+import com.utils.core.util.RandomUtil;
 
 /**
  * 随机字符验证码生成器<br>

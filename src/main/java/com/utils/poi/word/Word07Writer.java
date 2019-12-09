@@ -1,21 +1,20 @@
 package com.utils.poi.word;
 
-import java.awt.Font;
-import java.io.Closeable;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-
+import com.utils.core.io.FileUtil;
+import com.utils.core.io.IORuntimeException;
+import com.utils.core.io.IoUtil;
+import com.utils.core.lang.Assert;
+import com.utils.core.util.ArrayUtil;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.IORuntimeException;
-import cn.hutool.core.io.IoUtil;
-import cn.hutool.core.lang.Assert;
-import cn.hutool.core.util.ArrayUtil;
+import java.awt.*;
+import java.io.Closeable;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Word生成器
@@ -214,7 +213,7 @@ public class Word07Writer implements Closeable {
 	 * 关闭Word文档但是不写出
 	 */
 	protected void closeWithoutFlush() {
-		IoUtil.close(this.doc);
+		IoUtil.close((Closeable) this.doc);
 		this.isClosed = true;
 	}
 }

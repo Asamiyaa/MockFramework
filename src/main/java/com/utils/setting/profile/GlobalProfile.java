@@ -1,7 +1,7 @@
 package com.utils.setting.profile;
 
-import cn.hutool.core.lang.Singleton;
-import cn.hutool.setting.Setting;
+import com.utils.core.lang.Singleton;
+import org.apache.coyote.http2.Setting;
 
 /**
  * 全局的Profile配置中心

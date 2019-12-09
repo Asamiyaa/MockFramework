@@ -1,8 +1,29 @@
 package com.utils.setting.dialect;
 
-import java.io.BufferedReader;
+import com.utils.core.collection.CollectionUtil;
+import com.utils.core.convert.Convert;
+import com.utils.core.getter.BasicTypeGetter;
+import com.utils.core.getter.OptBasicTypeGetter;
+import com.utils.core.io.FileUtil;
+import com.utils.core.io.IORuntimeException;
+import com.utils.core.io.IoUtil;
+import com.utils.core.io.resource.ClassPathResource;
+import com.utils.core.io.resource.FileResource;
+import com.utils.core.io.resource.ResourceUtil;
+import com.utils.core.io.resource.UrlResource;
+import com.utils.core.io.watch.SimpleWatcher;
+import com.utils.core.io.watch.WatchMonitor;
+import com.utils.core.io.watch.WatchUtil;
+import com.utils.core.lang.Assert;
+import com.utils.core.util.CharsetUtil;
+import com.utils.core.util.StrUtil;
+import com.utils.log.Log;
+import com.utils.log.LogFactory;
+import org.springframework.core.io.Resource;
+
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Writer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -13,28 +34,6 @@ import java.nio.file.Path;
 import java.nio.file.WatchEvent;
 import java.util.Date;
 import java.util.Properties;
-
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.getter.BasicTypeGetter;
-import cn.hutool.core.getter.OptBasicTypeGetter;
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.IORuntimeException;
-import cn.hutool.core.io.IoUtil;
-import cn.hutool.core.io.resource.ClassPathResource;
-import cn.hutool.core.io.resource.FileResource;
-import cn.hutool.core.io.resource.Resource;
-import cn.hutool.core.io.resource.ResourceUtil;
-import cn.hutool.core.io.resource.UrlResource;
-import cn.hutool.core.io.watch.SimpleWatcher;
-import cn.hutool.core.io.watch.WatchMonitor;
-import cn.hutool.core.io.watch.WatchUtil;
-import cn.hutool.core.lang.Assert;
-import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.log.Log;
-import cn.hutool.log.LogFactory;
-import cn.hutool.setting.SettingRuntimeException;
 
 /**
  * Properties文件读取封装类
@@ -59,7 +58,7 @@ public final class Props extends Properties implements BasicTypeGetter<String>, 
 	 * @param resource 资源（相对Classpath的路径）
 	 * @return Properties
 	 */
-	public static Properties getProp(String resource) {
+	public static Properties getProp(String resource) throws IOException {
 		return new Props(resource);
 	}
 
@@ -70,7 +69,7 @@ public final class Props extends Properties implements BasicTypeGetter<String>, 
 	 * @param charsetName 字符集
 	 * @return Properties
 	 */
-	public static Properties getProp(String resource, String charsetName) {
+	public static Properties getProp(String resource, String charsetName) throws IOException {
 		return new Props(resource, charsetName);
 	}
 
@@ -81,7 +80,7 @@ public final class Props extends Properties implements BasicTypeGetter<String>, 
 	 * @param charset 字符集
 	 * @return Properties
 	 */
-	public static Properties getProp(String resource, Charset charset) {
+	public static Properties getProp(String resource, Charset charset) throws IOException {
 		return new Props(resource, charset);
 	}
 
@@ -98,7 +97,7 @@ public final class Props extends Properties implements BasicTypeGetter<String>, 
 	 * 
 	 * @param path
 	 */
-	public Props(String path) {
+	public Props(String path) throws IOException {
 		this(path, CharsetUtil.CHARSET_ISO_8859_1);
 	}
 
@@ -108,7 +107,7 @@ public final class Props extends Properties implements BasicTypeGetter<String>, 
 	 * @param path 相对或绝对路径
 	 * @param charsetName 字符集
 	 */
-	public Props(String path, String charsetName) {
+	public Props(String path, String charsetName) throws IOException {
 		this(path, CharsetUtil.charset(charsetName));
 	}
 
@@ -118,12 +117,12 @@ public final class Props extends Properties implements BasicTypeGetter<String>, 
 	 * @param path 相对或绝对路径
 	 * @param charset 字符集
 	 */
-	public Props(String path, Charset charset) {
+	public Props(String path, Charset charset) throws IOException {
 		Assert.notBlank(path, "Blank properties file path !");
 		if(null != charset) {
 			this.charset = charset;
 		}
-		this.load(ResourceUtil.getResourceObj(path));
+		this.load((InputStream) ResourceUtil.getResourceObj(path));
 	}
 
 	/**
@@ -244,7 +243,7 @@ public final class Props extends Properties implements BasicTypeGetter<String>, 
 	 * 
 	 * @param urlResource {@link UrlResource}
 	 */
-	public void load(Resource urlResource) {
+	public void load(Resource urlResource) {/*
 		this.propertiesFileUrl = urlResource.getUrl();
 		if (null == this.propertiesFileUrl) {
 			throw new SettingRuntimeException("Can not find properties file: [{}]", urlResource);
@@ -254,13 +253,14 @@ public final class Props extends Properties implements BasicTypeGetter<String>, 
 			super.load(reader);
 		} catch (Exception e) {
 			log.error(e, "Load properties error!");
-		}
+		}*/
 	}
 
 	/**
 	 * 重新加载配置文件
+	 * @param urlResource
 	 */
-	public void load() {
+	public void load(UrlResource urlResource) {
 		this.load(new UrlResource(this.propertiesFileUrl));
 	}
 
@@ -269,7 +269,7 @@ public final class Props extends Properties implements BasicTypeGetter<String>, 
 	 * 
 	 * @param autoReload 是否自动加载
 	 */
-	public void autoLoad(boolean autoReload) {
+	public void autoLoad(boolean autoReload) {/*
 		if (autoReload) {
 			Assert.notNull(this.propertiesFileUrl, "Properties URL is null !");
 			if (null != this.watchMonitor) {
@@ -286,7 +286,7 @@ public final class Props extends Properties implements BasicTypeGetter<String>, 
 		} else {
 			IoUtil.close(this.watchMonitor);
 			this.watchMonitor = null;
-		}
+		}*/
 	}
 
 	// ----------------------------------------------------------------------- Get start

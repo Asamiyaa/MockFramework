@@ -1,13 +1,13 @@
 package com.busi.seckill.service.impl;
 
-import com.secKill.dao.UserDoMapper;
-import com.secKill.dao.UserPasswordDoMapper;
-import com.secKill.dataObj.UserDo;
-import com.secKill.dataObj.UserPasswordDo;
-import com.secKill.error.BusiException;
-import com.secKill.error.EmBusiError;
-import com.secKill.service.UserService;
-import com.secKill.service.model.UserModel;
+import com.busi.seckill.dao.UserDoMapper;
+import com.busi.seckill.dao.UserPasswordDoMapper;
+import com.busi.seckill.dataObj.UserDo;
+import com.busi.seckill.dataObj.UserPasswordDo;
+import com.busi.seckill.error.BusiException;
+import com.busi.seckill.error.EmBusiError;
+import com.busi.seckill.service.UserService;
+import com.busi.seckill.service.model.UserModel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +16,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDoMapper userDoMapper;
     @Autowired
-    private UserPasswordDoMapper  userPasswordDoMapper;
+    private UserPasswordDoMapper userPasswordDoMapper;
     /***
      * 思考1：为什么不直接将dao层的UserDao返回给前台？
      *        service层必须要有 Model 模型概念，避免字段透传 ，新建Model目录，并常见UserModel类,并修改void返回为UserModel

@@ -1,9 +1,9 @@
 package com.utils.cron.pattern.matcher;
 
+import com.utils.core.util.StrUtil;
+
 import java.util.Collections;
 import java.util.List;
-
-import cn.hutool.core.util.StrUtil;
 
 /**
  * 将表达式中的数字值列表转换为Boolean数组，匹配时匹配相应数组位

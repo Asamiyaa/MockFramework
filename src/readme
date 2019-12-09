@@ -424,13 +424,42 @@
 
     //todo:开发仿真 面向多用户，并发的需求，对分布式、微服务、调优方面发展
 
+
+20191206
+        1.springcloud   http://www.ityouknow.com/spring-cloud.html
+        2.报文处理模块 + mq配置 + 其他..
+        3.切面 对拿到的值处理  注解标识
+
+20191209
+    1.报文标识号  生成逻辑 及通信级错误  交割单啥时生成
+    2.核心的就是业务和票据登记  --- 所以说所有的周边都是为 ‘业务’ 服务
+    企业级 - 工业级
+    4.数据库这一层的设计，而不是简单的将业务场景中的对应新建表 。设计设计
+    5.清算结算要素参考行内信息展示对应的报价单信息
+    6.缓存 存放哪些数据  如何刷新？https://juejin.im/post/5b849878e51d4538c77a974a
+    7.全局统一 --> 锁控制  生成对应的编号
+    8.springboot下的统一异常  类 baseController
+    9.自动生成dao注意model \ vo \ bean 定义  ，以及生成的sql 添加必要的sql ;以及生成的注释太多
+    10.表设计  主键 、 字段 、 字段名 、 约束
+    11.public static int hash(String str, int k) {
+    		switch (k) {
+    			case 0:
+    				return HashUtil.rsHash(str);
+    			case 1:
+    12.mockframework中工具类中定时任务，结构 + listener...
+    13.时间 日期工具类
+    14.工具类中泛型。。
+    15.别人engine的写法 extra - freemarker ...engine
+
+
+
 dao @transaction配置
     超时
     一对多，多对多...
 
     restful定义
 
-
+Spring 5核心原理与30个类手写实战 + 《Spring Boot编程思想核心篇》
 
 
 

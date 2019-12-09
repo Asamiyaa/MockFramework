@@ -1,9 +1,9 @@
 package com.utils.aop.aspects;
 
-import java.lang.reflect.Method;
+import com.utils.core.date.TimeInterval;
+import com.utils.core.lang.Console;
 
-import cn.hutool.core.date.TimeInterval;
-import cn.hutool.core.lang.Console;
+import java.lang.reflect.Method;
 
 /**
  * 通过日志打印方法的执行时间的切面

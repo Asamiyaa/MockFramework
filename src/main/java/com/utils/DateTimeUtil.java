@@ -15,7 +15,6 @@ import java.util.*;
  *          String和Date、Timestamp之间的转换:https://www.iteye.com/blog/yunnick-1074495
  *          simpleDateFormat :是非线程安全的  避免多线程中出现问题
  */
-public class DateUtil {
 
 /**
  *
@@ -213,12 +212,13 @@ public class DateUtil {
             try{
                 DateFormat dateFormat=new SimpleDateFormat(timeFromat);
                 return dateFormat.format(time);
-            }catch (Exception e){
+            }catch (Exception e){/*
                 if(defaultValue!=null)
                     return parseDateToStr(defaultValue, timeFromat);
                 else
-                    return parseDateToStr(new Date(), timeFromat);
+                    return parseDateToStr(new Date(), timeFromat);*/
             }
+            return null ;
         }
 
         /**
@@ -300,7 +300,7 @@ public class DateUtil {
             list.add(DATE_FORMAT_YYYY);
 
 
-            for (Iterator iter = list.iterator(); iter.hasNext();) {
+            for (Iterator iter = list.iterator(); iter.hasNext();) {/*
                 String format = (String) iter.next();
                 if(strTime.indexOf("-")>0 && format.indexOf("-")<0)
                     continue;
@@ -310,7 +310,7 @@ public class DateUtil {
                     continue;
                 date = parseStrToDate(strTime, format);
                 if (date != null)
-                    break;
+                    break;*/
             }
 
             return date;
@@ -449,7 +449,7 @@ public class DateUtil {
         /**
          * 获取某一年各星期的始终时间
          * 实例：getWeekList(2016)，第52周(从2016-12-26至2017-01-01)
-         * @param 年份
+         * @param
          * @return
          */
         public static HashMap<Integer,String> getWeekTimeOfYear(int year) {
@@ -577,7 +577,8 @@ public class DateUtil {
             Calendar   c   =   Calendar.getInstance();
             c.set(Calendar.YEAR, year);
             c.set(Calendar.MONTH, month);
-            int day = c.getActualMaximum(c.DAY_OF_MONTH);
+            //int day = c.getActualMaximum(c.DAY_OF_MONTH);
+            int day = 1; //c.getActualMaximum(c.DAY_OF_MONTH);
             c.set(Calendar.DAY_OF_MONTH, day);
             c.set(Calendar.HOUR_OF_DAY, 23);
             c.set(Calendar.MINUTE, 59);
@@ -597,8 +598,8 @@ public class DateUtil {
             cal.setTime(date);
 
             int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
-            if (w < 0)
-                w = 0;
+            /*if (w < 0)
+                w = 0;*/
 
             return weekDays[w];
         }
@@ -640,7 +641,7 @@ public class DateUtil {
             //list.add(DATE_FORMAT_YYYYMM);
             //list.add(DATE_FORMAT_YYYY);
 
-            for (Iterator iter = list.iterator(); iter.hasNext();) {
+            for (Iterator iter = list.iterator(); iter.hasNext();) {/*
                 String format = (String) iter.next();
                 if(strTime.indexOf("-")>0 && format.indexOf("-")<0)
                     continue;
@@ -651,8 +652,8 @@ public class DateUtil {
                 date = parseStrToDate(strTime.trim(), format);
                 if (date != null)
                     break;
+            }*/
             }
-
             if (date != null) {
                 return true;
             }
@@ -724,15 +725,14 @@ public class DateUtil {
             if(year1 == year2){
                 int month1 = getMonth(date1);
                 int month2 = getMonth(date2);
-                if(month1 == month2)flag = true;
+                //if(month1 == month2)flag = true;
             }
             return flag;
         }
 
         /**
          * 获得两个时间相差距离多少天多少小时多少分多少秒
-         * @param str1 时间参数 1 格式：1990-01-01 12:00:00
-         * @param str2 时间参数 2 格式：2009-01-01 12:00:00
+         ：2009-01-01 12:00:00
          * @return long[] 返回值为：{天, 时, 分, 秒}
          */
         public static long[] getDistanceTime(Date one, Date two) {
@@ -799,8 +799,6 @@ public class DateUtil {
 
         /**
          * 两个时间之间相差距离多少天
-         * @param one 时间参数 1：
-         * @param two 时间参数 2：
          * @return 相差天数
          */
         public static Long getDistanceDays(String str1, String str2) throws Exception{
@@ -895,4 +893,3 @@ public class DateUtil {
  5.TimeZone时区
  */
 
-}

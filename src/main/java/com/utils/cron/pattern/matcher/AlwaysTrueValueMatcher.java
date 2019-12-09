@@ -1,6 +1,6 @@
 package com.utils.cron.pattern.matcher;
 
-import cn.hutool.core.util.StrUtil;
+import com.utils.core.util.StrUtil;
 
 /**
  * 值匹配，始终返回<code>true</code>

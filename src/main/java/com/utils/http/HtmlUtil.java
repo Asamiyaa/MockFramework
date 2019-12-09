@@ -1,7 +1,7 @@
 package com.utils.http;
 
-import cn.hutool.core.util.ReUtil;
-import cn.hutool.core.util.StrUtil;
+import com.utils.core.util.ReUtil;
+import com.utils.core.util.StrUtil;
 
 /**
  * HTML工具类

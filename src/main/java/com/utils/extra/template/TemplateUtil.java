@@ -1,7 +1,5 @@
 package com.utils.extra.template;
 
-import cn.hutool.extra.template.engine.TemplateFactory;
-
 /**
  * 模板工具类
  * 
@@ -29,6 +27,6 @@ public class TemplateUtil {
 	 * @return {@link TemplateEngine}
 	 */
 	public static TemplateEngine createEngine(TemplateConfig config) {
-		return TemplateFactory.create(config);
+		return null;//TemplateFactory.create(config);
 	}
 }

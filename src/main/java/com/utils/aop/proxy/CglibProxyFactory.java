@@ -1,8 +1,9 @@
 package com.utils.aop.proxy;
 
-import cn.hutool.aop.aspects.Aspect;
-import cn.hutool.aop.interceptor.CglibInterceptor;
-import net.sf.cglib.proxy.Enhancer;
+import com.utils.aop.aspects.Aspect;
+import com.utils.aop.interceptor.CglibInterceptor;
+import org.mockito.cglib.proxy.Callback;
+import org.mockito.cglib.proxy.Enhancer;
 
 /**
  * 基于Cglib的切面代理工厂
@@ -10,15 +11,14 @@ import net.sf.cglib.proxy.Enhancer;
  * @author looly
  *
  */
-public class CglibProxyFactory extends ProxyFactory{
+public abstract class CglibProxyFactory extends ProxyFactory{
 	private static final long serialVersionUID = 1L;
 
-	@Override
 	@SuppressWarnings("unchecked")
 	public <T> T proxy(T target, Aspect aspect) {
 		final Enhancer enhancer = new Enhancer();
 		enhancer.setSuperclass(target.getClass());
-		enhancer.setCallback(new CglibInterceptor(target, aspect));
+		enhancer.setCallback((Callback) new CglibInterceptor(target, aspect));
 		return (T) enhancer.create();
 	}
 

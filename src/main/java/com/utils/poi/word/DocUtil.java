@@ -1,15 +1,13 @@
 package com.utils.poi.word;
 
-import java.io.File;
-import java.io.IOException;
-
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import com.utils.core.io.FileUtil;
+import com.utils.core.io.IORuntimeException;
+import com.utils.poi.exceptions.POIException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.IORuntimeException;
-import cn.hutool.poi.exceptions.POIException;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Word Document工具
@@ -27,8 +25,8 @@ public class DocUtil {
 	 */
 	public static XWPFDocument create(File file) {
 		try {
-			return FileUtil.exist(file) ? new XWPFDocument(OPCPackage.open(file)) : new XWPFDocument();
-		} catch (InvalidFormatException e) {
+			return FileUtil.exist(file) ? new XWPFDocument(OPCPackage.open(String.valueOf(file))) : new XWPFDocument();
+		} catch (org.apache.poi.openxml4j.exceptions.InvalidFormatException e) {
 			throw new POIException(e);
 		} catch (IOException e) {
 			throw new IORuntimeException(e);

@@ -1,14 +1,8 @@
 package com.utils.extra.tokenizer.engine.analysis;
 
-import java.io.IOException;
-
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.TokenStream;
-
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.extra.tokenizer.Result;
-import cn.hutool.extra.tokenizer.TokenizerEngine;
-import cn.hutool.extra.tokenizer.TokenizerException;
+import com.utils.extra.tokenizer.Result;
+import com.utils.extra.tokenizer.TokenizerEngine;
+import jdk.internal.org.objectweb.asm.tree.analysis.Analyzer;
 
 /**
  * Lucene-analysis分词抽象封装<br>
@@ -31,15 +25,17 @@ public class AnalysisEngine implements TokenizerEngine {
 	}
 
 	@Override
-	public Result parse(CharSequence text) {
+	public Result parse(CharSequence text) {/*
 		TokenStream stream;
 		try {
-			stream = analyzer.tokenStream("text", StrUtil.str(text));
-			stream.reset();
+			stream =null ;// analyzer.tokenStream("text", StrUtil.str(text));
+			//stream.reset();
 		} catch (IOException e) {
 			throw new TokenizerException(e);
 		}
 		return new AnalysisResult(stream);
+	}*/
+		return null;
 	}
 
 }

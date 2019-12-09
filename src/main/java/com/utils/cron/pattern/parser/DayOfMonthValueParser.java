@@ -1,6 +1,6 @@
 package com.utils.cron.pattern.parser;
 
-import cn.hutool.cron.CronException;
+import com.utils.cron.CronException;
 
 /**
  * 每月的几号值处理<br>

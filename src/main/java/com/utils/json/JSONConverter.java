@@ -1,16 +1,15 @@
 package com.utils.json;
 
+import com.utils.core.convert.Convert;
+import com.utils.core.convert.ConvertException;
+import com.utils.core.convert.Converter;
+import com.utils.core.convert.ConverterRegistry;
+import com.utils.core.util.ObjectUtil;
+import com.utils.core.util.StrUtil;
+import com.utils.core.util.TypeUtil;
+
 import java.lang.reflect.Type;
 import java.util.List;
-
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.convert.ConvertException;
-import cn.hutool.core.convert.Converter;
-import cn.hutool.core.convert.ConverterRegistry;
-import cn.hutool.core.convert.impl.ArrayConverter;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.core.util.TypeUtil;
 
 /**
  * JSON转换器
@@ -36,7 +35,8 @@ public class JSONConverter implements Converter<JSON> {
 	 * @return 数组对象
 	 */
 	protected static Object toArray(JSONArray jsonArray, Class<?> arrayClass) {
-		return new ArrayConverter(arrayClass).convert(jsonArray, null);
+		//return new ArrayConverter(arrayClass).convert(jsonArray, null);
+		return new Object();
 	}
 
 	/**

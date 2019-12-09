@@ -1,9 +1,9 @@
 package com.utils.aop.proxy;
 
-import java.io.Serializable;
+import com.utils.aop.aspects.Aspect;
+import com.utils.core.util.ReflectUtil;
 
-import cn.hutool.aop.aspects.Aspect;
-import cn.hutool.core.util.ReflectUtil;
+import java.io.Serializable;
 
 /**
  * 代理工厂<br>
@@ -22,7 +22,7 @@ public abstract class ProxyFactory implements Serializable{
 	 * @param aspect 切面实现
 	 * @return 代理对象
 	 */
-	public abstract <T> T proxy(T target, Aspect aspect);
+	//public abstract <T> T proxy(T target, Aspect aspect);
 	
 	/**
 	 * 根据用户引入Cglib与否自动创建代理对象
@@ -32,9 +32,9 @@ public abstract class ProxyFactory implements Serializable{
 	 * @param aspectClass 切面对象类
 	 * @return 代理对象
 	 */
-	public static <T> T createProxy(T target, Class<? extends Aspect> aspectClass){
+	/*public static <T> T createProxy(T target, Class<? extends Aspect> aspectClass){
 		return createProxy(target, ReflectUtil.newInstance(aspectClass));
-	}
+	}*/
 
 	/**
 	 * 根据用户引入Cglib与否自动创建代理对象
@@ -44,9 +44,9 @@ public abstract class ProxyFactory implements Serializable{
 	 * @param aspect 切面实现
 	 * @return 代理对象
 	 */
-	public static <T> T createProxy(T target, Aspect aspect) {
+	/*public static <T> T createProxy(T target, Aspect aspect) {
 		return create().proxy(target, aspect);
-	}
+	}*/
 
 	/**
 	 * 根据用户引入Cglib与否创建代理工厂
@@ -55,7 +55,7 @@ public abstract class ProxyFactory implements Serializable{
 	 */
 	public static ProxyFactory create() {
 		try {
-			return new CglibProxyFactory();
+			//return new CglibProxyFactory();
 		} catch (NoClassDefFoundError e) {
 			// ignore
 		}

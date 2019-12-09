@@ -22,6 +22,7 @@ import cn.hutool.db.sql.Query;
 import cn.hutool.db.sql.SqlExecutor;
 import cn.hutool.db.sql.SqlUtil;
 import cn.hutool.db.sql.Wrapper;
+import com.utils.db.dialect.Dialect;
 
 /**
  * 抽象数据库操作类<br>

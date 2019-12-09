@@ -1,13 +1,8 @@
 package com.utils.extra.tokenizer.engine.analysis;
 
-import java.io.IOException;
-
-import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
-
-import cn.hutool.extra.tokenizer.AbstractResult;
-import cn.hutool.extra.tokenizer.TokenizerException;
-import cn.hutool.extra.tokenizer.Word;
+import com.utils.extra.tokenizer.AbstractResult;
+import com.utils.extra.tokenizer.Word;
+import jdk.nashorn.internal.parser.TokenStream;
 
 /**
  * Lucene-analysis分词抽象结果封装<br>
@@ -30,14 +25,14 @@ public class AnalysisResult extends AbstractResult {
 	}
 
 	@Override
-	protected Word nextWord() {
+	protected Word nextWord() {/*
 		try {
 			if(this.stream.incrementToken()) {
 				return new AnalysisWord(this.stream.getAttribute(CharTermAttribute.class));
 			}
 		} catch (IOException e) {
 			throw new TokenizerException(e);
-		}
+		}*/
 		return null;
 	}
 }

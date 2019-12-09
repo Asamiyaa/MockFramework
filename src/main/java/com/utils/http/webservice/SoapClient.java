@@ -1,32 +1,23 @@
 package com.utils.http.webservice;
 
+import com.utils.core.collection.CollUtil;
+import com.utils.core.map.MapUtil;
+import com.utils.core.util.CharsetUtil;
+import com.utils.core.util.ObjectUtil;
+import com.utils.core.util.StrUtil;
+import com.utils.core.util.XmlUtil;
+import com.utils.http.HttpRequest;
+import com.utils.http.HttpResponse;
+
+import javax.xml.XMLConstants;
+import javax.xml.namespace.QName;
+import javax.xml.soap.*;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import javax.xml.XMLConstants;
-import javax.xml.namespace.QName;
-import javax.xml.soap.MessageFactory;
-import javax.xml.soap.MimeHeaders;
-import javax.xml.soap.Name;
-import javax.xml.soap.SOAPBodyElement;
-import javax.xml.soap.SOAPElement;
-import javax.xml.soap.SOAPException;
-import javax.xml.soap.SOAPHeader;
-import javax.xml.soap.SOAPHeaderElement;
-import javax.xml.soap.SOAPMessage;
-
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.core.util.XmlUtil;
-import cn.hutool.http.HttpRequest;
-import cn.hutool.http.HttpResponse;
 
 /**
  * SOAP客户端
@@ -120,7 +111,7 @@ public class SoapClient {
 	public SoapClient(String url, SoapProtocol protocol, String namespaceURI) {
 		this.url = url;
 		this.namespaceURI = namespaceURI;
-		init(protocol);
+		//init(protocol);
 	}
 
 	/**
@@ -129,7 +120,7 @@ public class SoapClient {
 	 * @param protocol 协议版本枚举，见{@link SoapProtocol}
 	 * @return this
 	 */
-	public SoapClient init(SoapProtocol protocol) {
+	public SoapClient init(SoapProtocol protocol) throws SoapRuntimeException {
 		// 创建消息工厂
 		try {
 			this.factory = MessageFactory.newInstance(protocol.getValue());
@@ -177,9 +168,9 @@ public class SoapClient {
 	 * @param name 头信息标签名
 	 * @return this
 	 */
-	public SoapClient setHeader(QName name) {
+	/*public SoapClient setHeader(QName name) {
 		return setHeader(name, null, null, null, null);
-	}
+	}*/
 
 	/**
 	 * 设置头信息
@@ -191,7 +182,7 @@ public class SoapClient {
 	 * @param relay relay属性
 	 * @return this
 	 */
-	public SoapClient setHeader(QName name, String actorURI, String roleUri, Boolean mustUnderstand, Boolean relay) {
+	public SoapClient setHeader(QName name, String actorURI, String roleUri, Boolean mustUnderstand, Boolean relay) throws SoapRuntimeException {
 		SOAPHeader header;
 		SOAPHeaderElement ele;
 		try {
@@ -238,7 +229,7 @@ public class SoapClient {
 	 * @return this
 	 */
 	public SoapClient setMethod(QName name, Map<String, Object> params, boolean useMethodPrefix) {
-		setMethod(name);
+		//setMethod(name);
 		final String prefix = name.getPrefix();
 		final SOAPBodyElement methodEle = this.methodEle;
 		for (Entry<String, Object> entry : MapUtil.wrap(params)) {
@@ -277,7 +268,7 @@ public class SoapClient {
 		} else {
 			qName = new QName(namespaceURI, methodName);
 		}
-		return setMethod(qName);
+		return null ;//setMethod(qName);
 	}
 
 	/**
@@ -286,7 +277,7 @@ public class SoapClient {
 	 * @param name 方法名及其命名空间
 	 * @return this
 	 */
-	public SoapClient setMethod(QName name) {
+	public SoapClient setMethod(QName name) throws SoapRuntimeException {
 		try {
 			this.methodEle = this.message.getSOAPBody().addBodyElement(name);
 		} catch (SOAPException e) {
@@ -388,7 +379,7 @@ public class SoapClient {
 		try {
 			this.message.writeTo(out);
 		} catch (SOAPException | IOException e) {
-			throw new SoapRuntimeException(e);
+			//throw new SoapRuntimeException(e);
 		}
 		return this;
 	}
@@ -453,8 +444,9 @@ public class SoapClient {
 		try {
 			return this.factory.createMessage(headers, res.bodyStream());
 		} catch (IOException | SOAPException e) {
-			throw new SoapRuntimeException(e);
+			//throw new SoapRuntimeException(e);
 		}
+		return  null ;
 	}
 
 	/**
@@ -521,7 +513,7 @@ public class SoapClient {
 				childEle = ele.addChildElement(name);
 			}
 		} catch (SOAPException e) {
-			throw new SoapRuntimeException(e);
+			//throw new SoapRuntimeException(e);
 		}
 		
 		if(null != value) {
@@ -530,22 +522,30 @@ public class SoapClient {
 				try {
 					ele.addChildElement((SOAPElement) value);
 				} catch (SOAPException e) {
-					throw new SoapRuntimeException(e);
+					//throw new SoapRuntimeException(e);
 				}
 			} else if (value instanceof Map) {
 				// 多个字节点
 				Entry entry;
 				for (Object obj : ((Map) value).entrySet()) {
 					entry = (Entry) obj;
-					setParam(childEle, entry.getKey().toString(), entry.getValue(), prefix);
+					//setParam(childEle, entry.getKey().toString(), entry.getValue(), prefix);
 				}
 			} else {
 				// 单个值
-				childEle.setValue(value.toString());
+				//childEle.setValue(value.toString());
 			}
 		}
 		
-		return childEle;
+		return  null ;
+
+		// return childEle;
+	}
+
+	private static class SoapRuntimeException extends Throwable {
+		public SoapRuntimeException(SOAPException e) {
+
+		}
 	}
 	// -------------------------------------------------------------------------------------------------------- Private method end
 }

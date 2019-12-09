@@ -1,7 +1,5 @@
 package com.utils.extra.tokenizer;
 
-import cn.hutool.extra.tokenizer.engine.TokenizerFactory;
-
 /**
  * 分词工具类
  * 
@@ -16,6 +14,7 @@ public class TokenizerUtil {
 	 * @return {@link TokenizerEngine}
 	 */
 	public static TokenizerEngine createEngine() {
-		return TokenizerFactory.create();
+		return null ;
+		// return TokenizerFactory.create();
 	}
 }

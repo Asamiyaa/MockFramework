@@ -1,6 +1,6 @@
 package com.utils.cron.pattern.matcher;
 
-import cn.hutool.core.lang.Matcher;
+import com.utils.core.lang.Matcher;
 
 /**
  * 值匹配器<br>
@@ -8,6 +8,6 @@ import cn.hutool.core.lang.Matcher;
  * @author Looly
  *
  */
-public interface ValueMatcher extends Matcher<Integer>{
+public interface ValueMatcher extends Matcher<Integer> {
 
 }

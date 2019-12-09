@@ -1,6 +1,6 @@
 package com.msg.Amq;
 
-import com.utils.constant.YON;
+import com.core.constant.YON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.listener.DefaultMessageListenerContainer;

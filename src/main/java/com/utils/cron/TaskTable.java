@@ -1,13 +1,13 @@
 package com.utils.cron;
 
+import com.utils.cron.pattern.CronPattern;
+import com.utils.cron.task.Task;
+
 import java.util.ArrayList;
 import java.util.TimeZone;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-
-import cn.hutool.cron.pattern.CronPattern;
-import cn.hutool.cron.task.Task;
 
 /**
  * 定时任务表<br>
@@ -216,7 +216,7 @@ public class TaskTable {
 	protected void executeTaskIfMatchInternal(long millis) {
 		for (int i = 0; i < size; i++) {
 			if (patterns.get(i).match(timezone, millis, this.scheduler.matchSecond)) {
-				this.scheduler.taskExecutorManager.spawnExecutor(tasks.get(i));
+				//this.scheduler.taskExecutorManager.spawnExecutor(tasks.get(i));
 			}
 		}
 	}

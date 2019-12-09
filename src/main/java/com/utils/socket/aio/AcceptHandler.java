@@ -1,10 +1,10 @@
 package com.utils.socket.aio;
 
+import com.utils.log.StaticLog;
+
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
-
-import cn.hutool.log.StaticLog;
 
 /**
  * 接入完成回调，单例使用

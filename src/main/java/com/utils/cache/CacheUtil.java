@@ -1,11 +1,6 @@
 package com.utils.cache;
 
-import cn.hutool.cache.impl.FIFOCache;
-import cn.hutool.cache.impl.LFUCache;
-import cn.hutool.cache.impl.LRUCache;
-import cn.hutool.cache.impl.NoCache;
-import cn.hutool.cache.impl.TimedCache;
-import cn.hutool.cache.impl.WeakCache;
+import com.utils.cache.impl.*;
 
 /**
  * 缓存工具类

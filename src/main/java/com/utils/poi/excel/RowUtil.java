@@ -1,15 +1,14 @@
 package com.utils.poi.excel;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.utils.core.util.StrUtil;
+import com.utils.poi.excel.cell.CellEditor;
+import com.utils.poi.excel.cell.CellUtil;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.poi.excel.cell.CellEditor;
-import cn.hutool.poi.excel.cell.CellUtil;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Excel中的行{@link Row}封装工具类
@@ -78,7 +77,7 @@ public class RowUtil {
 		Cell cell;
 		for (Object value : rowData) {
 			cell = row.createCell(i);
-			CellUtil.setCellValue(cell, value, styleSet, isHeader);
+			//CellUtil.setCellValue(cell, value, styleSet, isHeader);
 			i++;
 		}
 	}

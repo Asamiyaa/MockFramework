@@ -1,7 +1,7 @@
 package com.core.draft.tmpBBSP.builder.base;
 
-import com.draft1.dto.DraftBuildInfo;
-import com.draft1.dto.DraftHead;
+import com.core.draft.tmpBBSP.dto.DraftBuildInfo;
+import com.core.draft.tmpBBSP.dto.DraftHead;
 
 /**
  * @author YangWenjun

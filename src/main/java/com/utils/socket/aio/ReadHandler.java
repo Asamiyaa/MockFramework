@@ -1,8 +1,8 @@
 package com.utils.socket.aio;
 
-import java.nio.channels.CompletionHandler;
+import com.utils.socket.SocketRuntimeException;
 
-import cn.hutool.socket.SocketRuntimeException;
+import java.nio.channels.CompletionHandler;
 
 /**
  * 数据读取完成回调，调用Session中相应方法处理消息，单例使用

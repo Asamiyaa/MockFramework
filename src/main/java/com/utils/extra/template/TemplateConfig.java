@@ -1,9 +1,9 @@
 package com.utils.extra.template;
 
+import com.utils.core.util.CharsetUtil;
+
 import java.io.Serializable;
 import java.nio.charset.Charset;
-
-import cn.hutool.core.util.CharsetUtil;
 
 /**
  * 模板配置

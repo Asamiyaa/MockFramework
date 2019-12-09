@@ -1,6 +1,6 @@
 package com.msg.http;
 
-import com.com.INetCom;
+import com.msg.INetCom;
 
 /**
  * @author YangWenjun

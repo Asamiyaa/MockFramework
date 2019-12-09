@@ -1,8 +1,8 @@
 package com.utils.cache.impl;
 
-import java.util.Iterator;
+import com.utils.core.map.FixedLinkedHashMap;
 
-import cn.hutool.core.map.FixedLinkedHashMap;
+import java.util.Iterator;
 
 /**
  * LRU (least recently used)最近最久未使用缓存<br>

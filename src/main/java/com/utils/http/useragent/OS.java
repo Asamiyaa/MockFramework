@@ -1,8 +1,8 @@
 package com.utils.http.useragent;
 
-import java.util.List;
+import com.utils.core.collection.CollUtil;
 
-import cn.hutool.core.collection.CollUtil;
+import java.util.List;
 
 /**
  * 系统对象

@@ -1,26 +1,19 @@
 package com.utils.cron;
 
-import java.util.LinkedHashMap;
-import java.util.Map.Entry;
+import com.utils.core.thread.ExecutorBuilder;
+import com.utils.core.thread.ThreadFactoryBuilder;
+import com.utils.core.util.IdUtil;
+import com.utils.cron.listener.TaskListener;
+import com.utils.cron.listener.TaskListenerManager;
+import com.utils.cron.pattern.CronPattern;
+import com.utils.cron.task.RunnableTask;
+import com.utils.cron.task.Task;
+import org.apache.coyote.http2.Setting;
+
 import java.util.TimeZone;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.thread.ExecutorBuilder;
-import cn.hutool.core.thread.ThreadFactoryBuilder;
-import cn.hutool.core.util.CharUtil;
-import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.cron.listener.TaskListener;
-import cn.hutool.cron.listener.TaskListenerManager;
-import cn.hutool.cron.pattern.CronPattern;
-import cn.hutool.cron.task.InvokeTask;
-import cn.hutool.cron.task.RunnableTask;
-import cn.hutool.cron.task.Task;
-import cn.hutool.log.StaticLog;
-import cn.hutool.setting.Setting;
 
 /**
  * 任务调度器<br>
@@ -178,7 +171,7 @@ public class Scheduler {
 	 * @param cronSetting 定时任务设置文件
 	 * @return this
 	 */
-	public Scheduler schedule(Setting cronSetting) {
+	public Scheduler schedule(Setting cronSetting) {/*
 		if (CollectionUtil.isNotEmpty(cronSetting)) {
 			String group;
 			for (Entry<String, LinkedHashMap<String, String>> groupedEntry : cronSetting.getGroupedMap().entrySet()) {
@@ -197,7 +190,7 @@ public class Scheduler {
 					}
 				}
 			}
-		}
+		}*/
 		return this;
 	}
 
@@ -209,7 +202,7 @@ public class Scheduler {
 	 * @return ID
 	 */
 	public String schedule(String pattern, Runnable task) {
-		return schedule(pattern, new RunnableTask(task));
+		return schedule(pattern, (Runnable) new RunnableTask(task));
 	}
 
 	/**

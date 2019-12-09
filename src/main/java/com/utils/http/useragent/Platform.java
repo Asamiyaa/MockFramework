@@ -1,9 +1,9 @@
 package com.utils.http.useragent;
 
+import com.utils.core.collection.CollUtil;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.hutool.core.collection.CollUtil;
 
 /**
  * 平台对象

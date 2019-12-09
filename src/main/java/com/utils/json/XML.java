@@ -1,9 +1,9 @@
 package com.utils.json;
 
-import java.util.Iterator;
+import com.utils.core.util.CharUtil;
+import com.utils.core.util.XmlUtil;
 
-import cn.hutool.core.util.CharUtil;
-import cn.hutool.core.util.XmlUtil;
+import java.util.Iterator;
 
 /**
  * 提供静态方法在XML和JSONObject之间转换

@@ -3,6 +3,7 @@ package com.utils.extra.ssh;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.channels.Channel;
 import java.nio.charset.Charset;
 
 import com.jcraft.jsch.Channel;
@@ -18,6 +19,9 @@ import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.net.LocalPortGenerater;
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.StrUtil;
+import com.utils.core.net.LocalPortGenerater;
+
+import javax.jms.Session;
 
 /**
  * Jsch工具类<br>
@@ -269,7 +273,7 @@ public class JschUtil {
 	 * @return {@link ChannelExec}
 	 * @since 4.3.1
 	 */
-	public static String exec(Session session, String cmd, Charset charset, OutputStream errStream) {
+	public static String exec(Session session, String cmd, Charset charset, OutputStream errStream) {/*
 		if (null == charset) {
 			charset = CharsetUtil.CHARSET_UTF_8;
 		}
@@ -289,7 +293,7 @@ public class JschUtil {
 		} finally {
 			IoUtil.close(in);
 			close(channel);
-		}
+		}*/
 	}
 
 	/**
@@ -297,11 +301,11 @@ public class JschUtil {
 	 * 
 	 * @param session SSH会话
 	 */
-	public static void close(Session session) {
+	public static void close(Session session) {/*
 		if (session != null && session.isConnected()) {
 			session.disconnect();
 		}
-		JschSessionPool.INSTANCE.remove(session);
+		JschSessionPool.INSTANCE.remove(session);*/
 	}
 
 	/**
@@ -310,10 +314,10 @@ public class JschUtil {
 	 * @param channel 会话通道
 	 * @since 4.0.3
 	 */
-	public static void close(Channel channel) {
+	public static void close(Channel channel) {/*
 		if (channel != null && channel.isConnected()) {
 			channel.disconnect();
-		}
+		}*/
 	}
 
 	/**

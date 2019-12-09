@@ -1,6 +1,5 @@
 package com.msg.Amq;
 
-import com.com.INetCom;
 import com.msg.INetCom;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;

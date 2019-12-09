@@ -1,15 +1,13 @@
 
 package com.utils.cron;
 
+import com.utils.core.exceptions.UtilException;
+import com.utils.cron.pattern.CronPattern;
+import com.utils.cron.task.Task;
+import org.apache.coyote.http2.Setting;
+
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
-import cn.hutool.core.exceptions.UtilException;
-import cn.hutool.core.io.resource.NoResourceException;
-import cn.hutool.cron.pattern.CronPattern;
-import cn.hutool.cron.task.Task;
-import cn.hutool.setting.Setting;
-import cn.hutool.setting.SettingRuntimeException;
 
 /**
  * 定时任务工具类<br>
@@ -43,12 +41,12 @@ public class CronUtil {
 	 * 
 	 * @param cronSettingPath 定时任务配置文件路径（相对绝对都可）
 	 */
-	public static void setCronSetting(String cronSettingPath) {
+	public static void setCronSetting(String cronSettingPath) {/*
 		try {
 			crontabSetting = new Setting(cronSettingPath, Setting.DEFAULT_CHARSET, false);
 		} catch (SettingRuntimeException | NoResourceException e) {
 			// ignore setting file parse error and no config error
-		}
+		}*/
 	}
 
 	/**
@@ -69,7 +67,8 @@ public class CronUtil {
 	 * @return 定时任务ID
 	 */
 	public static String schedule(String schedulingPattern, Task task) {
-		return scheduler.schedule(schedulingPattern, task);
+		//return scheduler.schedule(schedulingPattern, task);
+		return  null ;
 	}
 
 	/**
@@ -82,7 +81,7 @@ public class CronUtil {
 	 * @since 3.3.0
 	 */
 	public static String schedule(String id, String schedulingPattern, Task task) {
-		scheduler.schedule(id, schedulingPattern, task);
+		//scheduler.schedule(id, schedulingPattern, task);
 		return id;
 	}
 
@@ -102,9 +101,9 @@ public class CronUtil {
 	 * 
 	 * @param cronSetting 定时任务设置文件
 	 */
-	public static void schedule(Setting cronSetting) {
+	/*public static void schedule(Setting cronSetting) {
 		scheduler.schedule(cronSetting);
-	}
+	}*/
 
 	/**
 	 * 移除任务
@@ -122,9 +121,9 @@ public class CronUtil {
 	 * @param pattern {@link CronPattern}
 	 * @since 4.0.10
 	 */
-	public static void updatePattern(String id, CronPattern pattern) {
+	/*public static void updatePattern(String id, CronPattern pattern) {
 		scheduler.updatePattern(id, pattern);
-	}
+	}*/
 
 	/**
 	 * @return 获得Scheduler对象
@@ -166,7 +165,7 @@ public class CronUtil {
 			lock.unlock();
 		}
 
-		schedule(crontabSetting);
+		//schedule(crontabSetting);
 		scheduler.start(isDeamon);
 	}
 
@@ -179,7 +178,7 @@ public class CronUtil {
 		try {
 			if (null != crontabSetting) {
 				//重新读取配置文件
-				crontabSetting.load();
+				//crontabSetting.load();
 			}
 			if (scheduler.isStarted()) {
 				//关闭并清除已有任务
@@ -190,7 +189,7 @@ public class CronUtil {
 		}
 		
 		//重新加载任务
-		schedule(crontabSetting);
+		//schedule(crontabSetting);
 		//重新启动
 		scheduler.start();
 	}

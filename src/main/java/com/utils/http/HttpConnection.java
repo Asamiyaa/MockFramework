@@ -1,13 +1,21 @@
 package com.utils.http;
 
+import com.utils.core.map.MapUtil;
+import com.utils.core.util.StrUtil;
+import com.utils.core.util.URLUtil;
+import com.utils.http.ssl.AndroidSupportSSLFactory;
+import com.utils.http.ssl.SSLSocketFactoryBuilder;
+import com.utils.http.ssl.TrustAnyHostnameVerifier;
+import com.utils.log.Log;
+import com.utils.log.LogFactory;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSocketFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.ProtocolException;
-import java.net.Proxy;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 import java.security.KeyManagementException;
@@ -15,19 +23,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLSocketFactory;
-
-import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.core.util.URLUtil;
-import cn.hutool.http.ssl.AndroidSupportSSLFactory;
-import cn.hutool.http.ssl.SSLSocketFactoryBuilder;
-import cn.hutool.http.ssl.TrustAnyHostnameVerifier;
-import cn.hutool.log.Log;
-import cn.hutool.log.LogFactory;
 
 /**
  * http连接对象，对HttpURLConnection的包装
@@ -500,8 +495,7 @@ public class HttpConnection {
 	 * 初始化http或https请求参数<br>
 	 * 有些时候htts请求会出现com.sun.net.ssl.internal.www.protocol.https.HttpsURLConnectionOldImpl的实现，此为sun内部api，按照普通http请求处理
 	 * 
-	 * @param hostnameVerifier 域名验证器，非https传入null
-	 * @param ssf SSLSocketFactory，非https传入null
+	 * tFactory，非https传入null
 	 * @return {@link HttpURLConnection}，https返回{@link HttpsURLConnection}
 	 */
 	private HttpURLConnection openHttp() throws IOException {

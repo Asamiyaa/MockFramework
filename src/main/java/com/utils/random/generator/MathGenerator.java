@@ -1,8 +1,8 @@
 package com.utils.random.generator;
 
-import cn.hutool.core.util.CharUtil;
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.core.util.StrUtil;
+import com.utils.core.util.CharUtil;
+import com.utils.core.util.RandomUtil;
+import com.utils.core.util.StrUtil;
 
 /**
  * 数字计算验证码生成器

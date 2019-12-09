@@ -1,8 +1,8 @@
 package com.utils.socket.protocol;
 
-import java.nio.ByteBuffer;
+import com.utils.socket.aio.AioSession;
 
-import cn.hutool.socket.aio.AioSession;
+import java.nio.ByteBuffer;
 
 /**
  * 消息编码器

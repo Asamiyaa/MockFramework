@@ -1,8 +1,8 @@
 package com.utils.log;
 
-import cn.hutool.core.lang.caller.CallerUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.log.level.Level;
+import com.utils.core.lang.caller.CallerUtil;
+import com.utils.core.util.StrUtil;
+import com.utils.log.level.Level;
 
 /**
  * 静态日志类，用于在不引入日志对象的情况下打印日志

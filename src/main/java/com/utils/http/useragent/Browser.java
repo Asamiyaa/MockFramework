@@ -1,10 +1,10 @@
 package com.utils.http.useragent;
 
+import com.utils.core.collection.CollUtil;
+import com.utils.core.util.ReUtil;
+
 import java.util.List;
 import java.util.regex.Pattern;
-
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.ReUtil;
 
 /**
  * 浏览器对象

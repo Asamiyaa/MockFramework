@@ -1,7 +1,7 @@
 package com.core.draft.tmpBBSP;
 
-import com.draft1.dto.DraftBuildInfo;
-import com.draft1.dto.RequestInfo;
+import com.core.draft.tmpBBSP.dto.DraftBuildInfo;
+import com.core.draft.tmpBBSP.dto.RequestInfo;
 
 /**
  * @author YangWenjun

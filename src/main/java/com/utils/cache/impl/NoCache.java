@@ -1,9 +1,11 @@
 package com.utils.cache.impl;
 
-import java.util.Iterator;
+import com.utils.cache.Cache;
+import com.utils.core.lang.func.Func0;
 
-import cn.hutool.cache.Cache;
-import cn.hutool.core.lang.func.Func0;
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 
 /**
  * 无缓存实现，用于快速关闭缓存
@@ -45,6 +47,11 @@ public class NoCache<K, V> implements Cache<K, V> {
 		return null;
 	}
 
+	/*@Override
+	public V get(K key, Func0<V> supplier) {
+		return null;
+	}*/
+
 	@Override
 	public V get(K key, boolean isUpdateLastAccess) {
 		return null;
@@ -63,7 +70,17 @@ public class NoCache<K, V> implements Cache<K, V> {
 	public Iterator<V> iterator() {
 		return null;
 	}
-	
+
+	@Override
+	public void forEach(Consumer<? super V> action) {
+
+	}
+
+	@Override
+	public Spliterator<V> spliterator() {
+		return null;
+	}
+
 	@Override
 	public Iterator<CacheObj<K, V>> cacheObjIterator() {
 		return null;

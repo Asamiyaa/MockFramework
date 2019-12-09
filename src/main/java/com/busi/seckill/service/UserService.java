@@ -1,7 +1,7 @@
 package com.busi.seckill.service;
 
-import com.secKill.error.BusiException;
-import com.secKill.service.model.UserModel;
+import com.busi.seckill.error.BusiException;
+import com.busi.seckill.service.model.UserModel;
 
 public interface UserService {
     UserModel getUserById(Integer id);

@@ -1,8 +1,8 @@
 package com.busi.seckill.controller;
 
-import com.secKill.error.BusiException;
-import com.secKill.error.EmBusiError;
-import com.secKill.response.CommonReturnType;
+import com.busi.seckill.error.BusiException;
+import com.busi.seckill.error.EmBusiError;
+import com.busi.seckill.response.CommonReturnType;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

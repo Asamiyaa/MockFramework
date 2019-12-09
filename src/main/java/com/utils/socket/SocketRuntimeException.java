@@ -1,7 +1,7 @@
 package com.utils.socket;
 
-import cn.hutool.core.exceptions.ExceptionUtil;
-import cn.hutool.core.util.StrUtil;
+import com.utils.core.exceptions.ExceptionUtil;
+import com.utils.core.util.StrUtil;
 
 /**
  * Socket异常

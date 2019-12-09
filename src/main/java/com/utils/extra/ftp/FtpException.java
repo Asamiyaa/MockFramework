@@ -1,7 +1,7 @@
 package com.utils.extra.ftp;
 
-import cn.hutool.core.exceptions.ExceptionUtil;
-import cn.hutool.core.util.StrUtil;
+import com.utils.core.exceptions.ExceptionUtil;
+import com.utils.core.util.StrUtil;
 
 /**
  * Ftp异常

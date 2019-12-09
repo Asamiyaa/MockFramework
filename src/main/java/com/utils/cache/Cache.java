@@ -1,10 +1,10 @@
 package com.utils.cache;
 
+import com.utils.cache.impl.CacheObj;
+import com.utils.core.lang.func.Func0;
+
 import java.io.Serializable;
 import java.util.Iterator;
-
-import cn.hutool.cache.impl.CacheObj;
-import cn.hutool.core.lang.func.Func0;
 
 /**
  * 缓存接口

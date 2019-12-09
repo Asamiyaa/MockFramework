@@ -1,8 +1,8 @@
 package com.utils.http.useragent;
 
-import java.util.regex.Pattern;
+import com.utils.core.util.ReUtil;
 
-import cn.hutool.core.util.ReUtil;
+import java.util.regex.Pattern;
 
 /**
  * User-agent信息

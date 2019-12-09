@@ -1,6 +1,6 @@
 package com.utils.extra.tokenizer.engine.analysis;
 
-import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
+import jdk.internal.org.objectweb.asm.tree.analysis.Analyzer;
 
 /**
  * Lucene-smartcn分词引擎实现<br>
@@ -10,12 +10,22 @@ import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
  *
  */
 public class SmartcnEngine extends AnalysisEngine {
+	/**
+	 * 构造
+	 *
+	 * @param analyzer 分析器{@link Analyzer}
+	 */
+	public SmartcnEngine(Analyzer analyzer) {
+		super(analyzer);
+	}
 
 	/**
 	 * 构造
 	 */
-	public SmartcnEngine() {
-		super(new SmartChineseAnalyzer());
-	}
+	/*public SmartcnEngine() {
+
+		//super(new SmartChineseAnalyzer());
+
+	}*/
 	
 }

@@ -1,8 +1,8 @@
 package com.utils.http;
 
-import java.nio.charset.Charset;
+import com.utils.core.util.StrUtil;
 
-import cn.hutool.core.util.StrUtil;
+import java.nio.charset.Charset;
 
 /**
  * 常用Content-Type类型枚举

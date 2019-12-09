@@ -1,15 +1,12 @@
 package com.utils.random;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
+import com.utils.core.img.GraphicsUtil;
+import com.utils.core.img.ImgUtil;
+import com.utils.core.util.ObjectUtil;
+import com.utils.core.util.RandomUtil;
 
-import cn.hutool.core.img.GraphicsUtil;
-import cn.hutool.core.img.ImgUtil;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.RandomUtil;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * 扭曲干扰验证码

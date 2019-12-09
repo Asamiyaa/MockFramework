@@ -1,13 +1,11 @@
 package com.utils.setting.profile;
 
+import org.apache.coyote.http2.Setting;
+
 import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import cn.hutool.core.lang.Assert;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.setting.Setting;
 
 /**
  * Profile可以让我们定义一系列的配置信息，然后指定其激活条件。<br>
@@ -26,41 +24,51 @@ import cn.hutool.setting.Setting;
 public class Profile implements Serializable {
 	private static final long serialVersionUID = -4189955219454008744L;
 
-	/** 默认环境 */
+	/**
+	 * 默认环境
+	 */
 	public static final String DEFAULT_PROFILE = "default";
 
-	/** 条件 */
+	/**
+	 * 条件
+	 */
 	private String profile;
-	/** 编码 */
+	/**
+	 * 编码
+	 */
 	private Charset charset;
-	/** 是否使用变量 */
+	/**
+	 * 是否使用变量
+	 */
 	private boolean useVar;
-	/** 配置文件缓存 */
+	/**
+	 * 配置文件缓存
+	 */
 	private Map<String, Setting> settingMap = new ConcurrentHashMap<>();
 
 	// -------------------------------------------------------------------------------- Constructor start
 	/**
 	 * 默认构造，环境使用默认的：default，编码UTF-8，不使用变量
 	 */
-	public Profile() {
+	/*public Profile() {
 		this(DEFAULT_PROFILE);
-	}
+	}*/
 
 	/**
 	 * 构造，编码UTF-8，不使用变量
-	 * 
+	 *
 	 * @param profile 环境
 	 */
-	public Profile(String profile) {
+	/*public Profile(String profile) {
 		this(profile, Setting.DEFAULT_CHARSET, false);
-	}
+	}*/
 
 	/**
 	 * 构造
-	 * 
+	 *
 	 * @param profile 环境
 	 * @param charset 编码
-	 * @param useVar 是否使用变量
+	 * @param useVar  是否使用变量
 	 */
 	public Profile(String profile, Charset charset, boolean useVar) {
 		super();
@@ -72,23 +80,25 @@ public class Profile implements Serializable {
 
 	/**
 	 * 获取当前环境下的配置文件
-	 * 
+	 *
 	 * @param name 文件名，如果没有扩展名，默认为.setting
 	 * @return 当前环境下配置文件
 	 */
-	public Setting getSetting(String name) {
+	public Setting getSetting(String name) {/*
 		String nameForProfile = fixNameForProfile(name);
 		Setting setting = settingMap.get(nameForProfile);
 		if (null == setting) {
 			setting = new Setting(nameForProfile, this.charset, this.useVar);
 			settingMap.put(nameForProfile, setting);
 		}
-		return setting;
+		return setting;*/
+		//return new Setting(1);
+	return null ;
 	}
 
 	/**
 	 * 设置环境
-	 * 
+	 *
 	 * @param profile 环境
 	 * @return 自身
 	 */
@@ -99,7 +109,7 @@ public class Profile implements Serializable {
 
 	/**
 	 * 设置编码
-	 * 
+	 *
 	 * @param charset 编码
 	 * @return 自身
 	 */
@@ -110,7 +120,7 @@ public class Profile implements Serializable {
 
 	/**
 	 * 设置是否使用变量
-	 * 
+	 *
 	 * @param useVar 变量
 	 * @return 自身
 	 */
@@ -121,7 +131,7 @@ public class Profile implements Serializable {
 
 	/**
 	 * 清空所有环境的配置文件
-	 * 
+	 *
 	 * @return 自身
 	 */
 	public Profile clear() {
@@ -130,19 +140,22 @@ public class Profile implements Serializable {
 	}
 
 	// -------------------------------------------------------------------------------- Private method start
+
 	/**
 	 * 修正文件名
-	 * 
+	 *
 	 * @param name 文件名
 	 * @return 修正后的文件名
 	 */
-	private String fixNameForProfile(String name) {
+	private String fixNameForProfile(String name) {/*
 		Assert.notBlank(name, "Setting name must be not blank !");
 		final String actralProfile = StrUtil.nullToEmpty(this.profile);
 		if (false == name.contains(StrUtil.DOT)) {
 			return StrUtil.format("{}/{}.setting", actralProfile, name);
 		}
 		return StrUtil.format("{}/{}", actralProfile, name);
+	}*/
+		return null;
+		// -------------------------------------------------------------------------------- Private method end
 	}
-	// -------------------------------------------------------------------------------- Private method end
 }

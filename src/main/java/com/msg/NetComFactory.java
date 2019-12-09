@@ -1,6 +1,6 @@
 package com.msg;
 
-import com.com.Amq.AmqSender;
+import com.msg.Amq.AmqSender;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.ApplicationContext;
@@ -15,7 +15,7 @@ import java.util.Map;
  * @title: NetComFactory
  * @description:通过策略模式加载不同net com impl
  */
-public class NetComFactory implements ApplicationContextAware,FactoryBean<INetCom>
+public class NetComFactory implements ApplicationContextAware,FactoryBean<AmqSender>
 {
 
     private Map<String,INetCom> netComMap ;
@@ -33,7 +33,7 @@ public class NetComFactory implements ApplicationContextAware,FactoryBean<INetCo
 
     private void init(){
        // netComMap.put("mq", ActiveMQComImpl.getActiveMQCom()); spring 中不应该通过单例/new来操作获取 通过
-        netComMap.put("mq", applicationContext.getBean(AmqSender.class)); //或者可以将不使用接口将applicationContext封装成工具类
+        //netComMap.put("mq", applicationContext.getBean(AmqSender.class)); //或者可以将不使用接口将applicationContext封装成工具类
         //...
     }
 
@@ -44,7 +44,7 @@ public class NetComFactory implements ApplicationContextAware,FactoryBean<INetCo
     //------------method2 通过FactoryBean来实现初始化实现----------------
 
     @Override
-    public INetCom getObject() throws Exception {
+    public AmqSender getObject() throws Exception {
         if("mq".equalsIgnoreCase(netComType)){
             return applicationContext.getBean(AmqSender.class);
         }else if(true){

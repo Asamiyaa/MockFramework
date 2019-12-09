@@ -1,21 +1,16 @@
 package com.utils.json;
 
+import com.utils.core.bean.BeanPath;
+import com.utils.core.collection.ArrayIter;
+import com.utils.core.collection.CollUtil;
+import com.utils.core.util.CharUtil;
+import com.utils.core.util.ObjectUtil;
+import com.utils.core.util.StrUtil;
+
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.RandomAccess;
-
-import cn.hutool.core.bean.BeanPath;
-import cn.hutool.core.collection.ArrayIter;
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.CharUtil;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
+import java.util.*;
 
 /**
  * JSON数组<br>
@@ -194,10 +189,10 @@ public class JSONArray extends JSONGetter<Integer> implements JSON, List<Object>
 		return this.rawList.get(index);
 	}
 
-	@Override
+	/*@Override
 	public Object getObj(Integer index, Object defaultValue) {
 		return (index < 0 || index >= this.size()) ? defaultValue : this.rawList.get(index);
-	}
+	}*/
 
 	@Override
 	public Object getByPath(String expression) {
@@ -252,7 +247,7 @@ public class JSONArray extends JSONGetter<Integer> implements JSON, List<Object>
 		}
 		JSONObject jo = new JSONObject();
 		for (int i = 0; i < names.size(); i += 1) {
-			jo.put(names.getStr(i), this.getObj(i));
+			//jo.put(names.getStr(i), this.getObj(i));
 		}
 		return jo;
 	}

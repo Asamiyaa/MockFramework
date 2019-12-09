@@ -1,43 +1,32 @@
 package com.utils.http;
 
+import com.utils.core.codec.Base64;
+import com.utils.core.collection.CollectionUtil;
+import com.utils.core.convert.Convert;
+import com.utils.core.io.IoUtil;
+import com.utils.core.io.resource.BytesResource;
+import com.utils.core.io.resource.FileResource;
+import com.utils.core.io.resource.MultiFileResource;
+import com.utils.core.lang.Assert;
+import com.utils.core.map.MapUtil;
+import com.utils.core.util.*;
+import com.utils.http.cookie.GlobalCookieManager;
+import com.utils.http.ssl.SSLSocketFactoryBuilder;
+import com.utils.json.JSON;
+import com.utils.log.StaticLog;
+import org.springframework.core.io.Resource;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSocketFactory;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.CookieManager;
-import java.net.HttpCookie;
-import java.net.HttpURLConnection;
-import java.net.Proxy;
-import java.net.URLStreamHandler;
+import java.net.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSocketFactory;
-
-import cn.hutool.core.codec.Base64;
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.io.IoUtil;
-import cn.hutool.core.io.resource.BytesResource;
-import cn.hutool.core.io.resource.FileResource;
-import cn.hutool.core.io.resource.MultiFileResource;
-import cn.hutool.core.io.resource.MultiResource;
-import cn.hutool.core.io.resource.Resource;
-import cn.hutool.core.lang.Assert;
-import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.core.util.URLUtil;
-import cn.hutool.http.cookie.GlobalCookieManager;
-import cn.hutool.http.ssl.SSLSocketFactoryBuilder;
-import cn.hutool.json.JSON;
-import cn.hutool.log.StaticLog;
 
 /**
  * http请求类<br>
@@ -1078,7 +1067,7 @@ public class HttpRequest extends HttpBase<HttpRequest> {
 	 * @param out Http流
 	 * @since 4.1.0
 	 */
-	private void appendPart(String formFieldName, Resource resource, OutputStream out) {
+	private void appendPart(String formFieldName, Resource resource, OutputStream out) {/*
 		if (resource instanceof MultiResource) {
 			// 多资源
 			for (Resource subResource : (MultiResource) resource) {
@@ -1099,7 +1088,7 @@ public class HttpRequest extends HttpBase<HttpRequest> {
 				IoUtil.close(in);
 			}
 			IoUtil.write(out, this.charset, false, StrUtil.CRLF);
-		}
+		}*/
 
 	}
 

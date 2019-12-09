@@ -1,11 +1,11 @@
 package com.utils.socket.nio;
 
+import com.utils.core.io.IORuntimeException;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
-
-import cn.hutool.core.io.IORuntimeException;
 
 /**
  * NIO客户端

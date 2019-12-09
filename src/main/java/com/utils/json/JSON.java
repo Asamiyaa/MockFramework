@@ -3,8 +3,6 @@ package com.utils.json;
 import java.io.Serializable;
 import java.io.Writer;
 
-import cn.hutool.core.bean.BeanPath;
-
 /**
  * JSON接口
  * 
@@ -31,7 +29,6 @@ public interface JSON extends Cloneable, Serializable{
 	 * 
 	 * @param expression 表达式
 	 * @return 对象
-	 * @see BeanPath#get(Object)
 	 * @since 4.0.6
 	 */
 	public Object getByPath(String expression);
@@ -81,7 +78,6 @@ public interface JSON extends Cloneable, Serializable{
 	 * @param expression 表达式
 	 * @param resultType 返回值类型
 	 * @return 对象
-	 * @see BeanPath#get(Object)
 	 * @since 4.0.6
 	 */
 	public <T> T getByPath(String expression, Class<T> resultType);

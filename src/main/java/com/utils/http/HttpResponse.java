@@ -1,32 +1,21 @@
 package com.utils.http;
 
-import java.io.ByteArrayInputStream;
-import java.io.Closeable;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import com.utils.core.convert.Convert;
+import com.utils.core.io.*;
+import com.utils.core.util.CharsetUtil;
+import com.utils.core.util.ReUtil;
+import com.utils.core.util.StrUtil;
+import com.utils.core.util.URLUtil;
+import com.utils.http.cookie.GlobalCookieManager;
+import com.utils.log.StaticLog;
+
+import java.io.*;
 import java.net.HttpCookie;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.zip.DeflaterInputStream;
 import java.util.zip.GZIPInputStream;
-
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.io.FastByteArrayOutputStream;
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.IORuntimeException;
-import cn.hutool.core.io.IoUtil;
-import cn.hutool.core.io.StreamProgress;
-import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.core.util.ReUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.core.util.URLUtil;
-import cn.hutool.http.cookie.GlobalCookieManager;
-import cn.hutool.log.StaticLog;
 
 /**
  * Http响应类<br>
@@ -363,7 +352,7 @@ public class HttpResponse extends HttpBase<HttpResponse> implements Closeable {
 		}
 		
 		// 存储服务端设置的Cookie信息
-		GlobalCookieManager.store(httpConnection);
+		//GlobalCookieManager.stosre(httpConnection);
 		
 		final Charset charset = httpConnection.getCharset();
 		this.charsetFromResponse = charset;
