@@ -1,8 +1,8 @@
 package com.utils.core.date;
 
-import java.io.Serializable;
+import com.utils.core.util.StrUtil;
 
-import cn.hutool.core.util.StrUtil;
+import java.io.Serializable;
 
 /**
  * 时长格式化器

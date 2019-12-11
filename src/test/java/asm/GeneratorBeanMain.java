@@ -15,7 +15,7 @@ import static org.objectweb.asm.Opcodes.*;
  * @date 2019/11/1 14:07
  * @project MockFramework
  * @title: GeneratorBeanMain
- * @description:
+ * @description:   参考：https://blog.csdn.net/wjy160925/article/details/85288569
  */
 public class GeneratorBeanMain {
 

@@ -1,6 +1,6 @@
 package com.utils.core.exceptions;
 
-import cn.hutool.core.util.StrUtil;
+import com.utils.core.util.StrUtil;
 
 /**
  * 工具类异常

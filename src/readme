@@ -450,6 +450,30 @@
     13.时间 日期工具类
     14.工具类中泛型。。
     15.别人engine的写法 extra - freemarker ...engine
+-------这是堆泛型、工具、注解以及反射整合 。将不起眼的属性抽象为类在灵活组合，拆分，学习别人的组合规律 .
+       类之间的组合 结构 --------
+
+-------将多线程整合进来-------
+uu劣化
+20191210
+    0.行内统一的平台 仿真平台 引入springbootAdmin和springBoot+elk日志监控
+    1.行内框架查看 如何设计统一平台 在这基础上应用仿真
+            “微核心”+ “业务组件”的设计
+            平台自带互联网基因，前台采用VUE+ELEMENT-UI+NODEJS+WEBPACK等技术，实现前后台分离开发。
+            后台微服务采用spring cloud 微服务治理技术，分布式缓存（redis）,消息中间件kafka，rabbitmq等,
+             高性能数据源连接池技术（Druid），分布式日志查询（ElasticSearch、Logstash和Kiabana），
+             API管理工具（swager），JWT跨域身份验证
+            jeckens + docker 整合  http://blog.itpub.net/69926045/
+    2.如果说 反射是动态的操作对象，那么asm则是动态的对类(对象模板)进行操作，想要持久化永久，则一定用到序列化
+            Java字节码处理框架ASM设计思想解析：https://www.jianshu.com/p/26e99d39b3fb
+    3.engine
+
+    1.instanceof 反射
+
+20191211
+    1.maven中type  scope  version 属性
+    2.打包 plugin exclude ..war jar
+    3.http://wangpuv.com/sDBx/
 
 
 

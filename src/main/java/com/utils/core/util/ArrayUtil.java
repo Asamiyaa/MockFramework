@@ -13,6 +13,7 @@ import cn.hutool.core.collection.IterUtil;
 import cn.hutool.core.exceptions.UtilException;
 import cn.hutool.core.lang.Editor;
 import cn.hutool.core.lang.Filter;
+import com.utils.core.exceptions.UtilException;
 
 /**
  * 数组工具类

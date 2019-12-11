@@ -1,9 +1,9 @@
 package com.utils.core.date;
 
+import com.utils.core.date.format.FastDateFormat;
+
 import java.util.Locale;
 import java.util.TimeZone;
-
-import cn.hutool.core.date.format.FastDateFormat;
 
 /**
  * 日期格式化类，提供常用的日期格式化对象

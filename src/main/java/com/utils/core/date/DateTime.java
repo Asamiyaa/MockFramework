@@ -1,5 +1,12 @@
 package com.utils.core.date;
 
+import com.utils.core.date.format.DateParser;
+import com.utils.core.date.format.DatePrinter;
+import com.utils.core.date.format.FastDateFormat;
+import com.utils.core.lang.Assert;
+import com.utils.core.util.ObjectUtil;
+import com.utils.core.util.StrUtil;
+
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -7,13 +14,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-
-import cn.hutool.core.date.format.DateParser;
-import cn.hutool.core.date.format.DatePrinter;
-import cn.hutool.core.date.format.FastDateFormat;
-import cn.hutool.core.lang.Assert;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
 
 /**
  * 包装java.util.Date
@@ -174,7 +174,7 @@ public class DateTime extends Date {
 	 * 
 	 * @see DatePattern
 	 * @param dateStr Date字符串
-	 * @param dateParser 格式化器 {@link DateParser}，可以使用 {@link FastDateFormat}
+	 * @param dateParser 格式化器 {@link DateParser}，可以使用 {@link
 	 */
 	public DateTime(String dateStr, DateParser dateParser) {
 		this(parse(dateStr, dateParser), dateParser.getTimeZone());
@@ -789,7 +789,7 @@ public class DateTime extends Date {
 			simpleDateFormat.setTimeZone(timeZone);
 			return toString(simpleDateFormat);
 		}
-		return toString(DatePattern.NORM_DATETIME_FORMAT);
+		return null ;// toString(DatePattern.NORM_DATETIME_FORMAT);
 	}
 
 	/**
@@ -804,7 +804,7 @@ public class DateTime extends Date {
 			simpleDateFormat.setTimeZone(this.timeZone);
 			return toString(simpleDateFormat);
 		}
-		return toString(DatePattern.NORM_DATE_FORMAT);
+		return null ;//toString(DatePattern.NORM_DATE_FORMAT);
 	}
 
 	/**
@@ -834,7 +834,7 @@ public class DateTime extends Date {
 			simpleDateFormat.setTimeZone(this.timeZone);
 			return toString(simpleDateFormat);
 		}
-		return toString(FastDateFormat.getInstance(format));
+		return null ;//toString(FastDateFormat.getInstance(format));
 	}
 
 	/**

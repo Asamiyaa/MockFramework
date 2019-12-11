@@ -1,43 +1,29 @@
 package com.utils.core.img;
 
-import java.awt.AlphaComposite;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.Toolkit;
+import com.utils.core.io.FileUtil;
+import com.utils.core.io.IORuntimeException;
+import com.utils.core.io.IoUtil;
+import com.utils.core.lang.Assert;
+import com.utils.core.util.NumberUtil;
+import com.utils.core.util.ObjectUtil;
+import com.utils.core.util.StrUtil;
+import org.springframework.core.io.Resource;
+
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
+import javax.imageio.stream.ImageOutputStream;
+import java.awt.*;
 import java.awt.color.ColorSpace;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.RoundRectangle2D;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
-import java.awt.image.ColorConvertOp;
-import java.awt.image.CropImageFilter;
-import java.awt.image.FilteredImageSource;
-import java.awt.image.ImageFilter;
+import java.awt.image.*;
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URL;
 import java.nio.file.Path;
-
-import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
-import javax.imageio.stream.ImageOutputStream;
-
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.IORuntimeException;
-import cn.hutool.core.io.IoUtil;
-import cn.hutool.core.io.resource.Resource;
-import cn.hutool.core.lang.Assert;
-import cn.hutool.core.util.NumberUtil;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
 
 /**
  * 图像编辑器
@@ -85,7 +71,7 @@ public class Img implements Serializable{
 	 * @since 4.4.1
 	 */
 	public static Img from(Resource resource) {
-		return from(resource.getStream());
+		return null ;//from(resource.getStream());
 	}
 
 	/**
@@ -631,7 +617,7 @@ public class Img implements Serializable{
 	}
 
 	/**
-	 * 修正矩形框位置，如果{@link Img#setPositionFromCentre(boolean)} 设为{@code true}，则坐标修正为基于图形中心，否则基于左上角
+	 * 修正矩形框位置，如果{@link Img#(boolean)} 设为{@code true}，则坐标修正为基于图形中心，否则基于左上角
 	 * 
 	 * @param rectangle 矩形
 	 * @param baseWidth 参考宽

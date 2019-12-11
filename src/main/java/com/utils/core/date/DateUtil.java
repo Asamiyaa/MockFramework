@@ -1,23 +1,15 @@
 package com.utils.core.date;
 
+import com.utils.core.collection.CollUtil;
+import com.utils.core.convert.Convert;
+import com.utils.core.date.format.DateParser;
+import com.utils.core.date.format.DatePrinter;
+import com.utils.core.date.format.FastDateFormat;
+import com.utils.core.util.StrUtil;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.LinkedHashSet;
-import java.util.List;
-
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.date.DateModifier.ModifyType;
-import cn.hutool.core.date.format.DateParser;
-import cn.hutool.core.date.format.DatePrinter;
-import cn.hutool.core.date.format.FastDateFormat;
-import cn.hutool.core.lang.PatternPool;
-import cn.hutool.core.lang.Validator;
-import cn.hutool.core.util.ReUtil;
-import cn.hutool.core.util.StrUtil;
+import java.util.*;
 
 /**
  * 时间工具类
@@ -482,7 +474,7 @@ public class DateUtil {
 		if (null == format || null == date) {
 			return null;
 		}
-		return format.format(date);
+		return null ;//format.format(date);
 	}
 
 	/**
@@ -708,7 +700,7 @@ public class DateUtil {
 	 * @param dateStr 日期字符串
 	 * @return 日期
 	 */
-	public static DateTime parse(String dateStr) {
+	public static DateTime parse(String dateStr) {/*
 		if (null == dateStr) {
 			return null;
 		}
@@ -752,7 +744,8 @@ public class DateUtil {
 		}
 
 		// 没有更多匹配的时间格式
-		throw new DateException("No format fit for date String [{}] !", dateStr);
+		throw new DateException("No format fit for date String [{}] !", dateStr);*/
+		return null ;
 	}
 
 	// ------------------------------------ Parse end ----------------------------------------------
@@ -779,7 +772,7 @@ public class DateUtil {
 	 * @since 4.5.7
 	 */
 	public static Calendar truncate(Calendar calendar, DateField dateField) {
-		return DateModifier.modify(calendar, dateField.getValue(), ModifyType.TRUNCATE);
+		return DateModifier.modify(calendar, dateField.getValue(), DateModifier.ModifyType.TRUNCATE);
 	}
 
 	/**
@@ -803,7 +796,7 @@ public class DateUtil {
 	 * @since 4.5.7
 	 */
 	public static Calendar round(Calendar calendar, DateField dateField) {
-		return DateModifier.modify(calendar, dateField.getValue(), ModifyType.ROUND);
+		return DateModifier.modify(calendar, dateField.getValue(), DateModifier.ModifyType.ROUND);
 	}
 
 	/**
@@ -827,7 +820,7 @@ public class DateUtil {
 	 * @since 4.5.7
 	 */
 	public static Calendar ceiling(Calendar calendar, DateField dateField) {
-		return DateModifier.modify(calendar, dateField.getValue(), ModifyType.CEILING);
+		return DateModifier.modify(calendar, dateField.getValue(), DateModifier.ModifyType.CEILING);
 	}
 
 	/**

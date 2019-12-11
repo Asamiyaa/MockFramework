@@ -1,6 +1,6 @@
 package com.utils.core.exceptions;
 
-import cn.hutool.core.util.StrUtil;
+import com.utils.core.util.StrUtil;
 
 /**
  * 带有状态码的异常

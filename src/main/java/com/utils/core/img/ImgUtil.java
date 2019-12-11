@@ -1,50 +1,33 @@
 package com.utils.core.img;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Rectangle;
+import com.utils.core.codec.Base64;
+import com.utils.core.convert.Convert;
+import com.utils.core.exceptions.UtilException;
+import com.utils.core.io.FileUtil;
+import com.utils.core.io.IORuntimeException;
+import com.utils.core.io.IoUtil;
+import com.utils.core.lang.Assert;
+import com.utils.core.util.ArrayUtil;
+import com.utils.core.util.NumberUtil;
+import com.utils.core.util.RandomUtil;
+import com.utils.core.util.StrUtil;
+import org.springframework.core.io.Resource;
+
+import javax.imageio.*;
+import javax.imageio.stream.ImageInputStream;
+import javax.imageio.stream.ImageOutputStream;
+import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.RenderedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
-import javax.imageio.IIOImage;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
-import javax.imageio.ImageTypeSpecifier;
-import javax.imageio.ImageWriteParam;
-import javax.imageio.ImageWriter;
-import javax.imageio.stream.ImageInputStream;
-import javax.imageio.stream.ImageOutputStream;
-
-import cn.hutool.core.codec.Base64;
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.exceptions.UtilException;
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.IORuntimeException;
-import cn.hutool.core.io.IoUtil;
-import cn.hutool.core.io.resource.Resource;
-import cn.hutool.core.lang.Assert;
-import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.core.util.NumberUtil;
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.core.util.StrUtil;
 
 /**
  * 图片处理工具类：<br>
@@ -1571,7 +1554,7 @@ public class ImgUtil {
 	 * @since 4.4.1
 	 */
 	public static BufferedImage read(Resource resource) {
-		return read(resource.getStream());
+		return null;//read(resource.getStream());
 	}
 
 	/**
