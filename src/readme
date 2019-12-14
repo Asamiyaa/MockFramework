@@ -476,6 +476,40 @@ uu劣化
     3.http://wangpuv.com/sDBx/
 
 
+20191214
+    1.spring boot admin 监控  --> elk 日志分析  --> 整合进来提交
+    2.xml generator -  序列话
+            领域知识
+                1.由xsd可以想到xml，bean  反过来也一样
+                2.jaxbUtil - 回顾工具类编写归范及idea提示变量设计思路
+                3.借助https://www.iteye.com/blog/fengyilin-2344183完成了基本转化，但如何实现上
+                  传xsd自动生成对应代码呢?找对应框架 vs java代码中上传xsd后执行java mvn 相关命令刷新
+                  就像调用存储过程和shell一样。所以：https://blog.csdn.net/xietansheng/article/details/64129876
+                     类对象的生成、加载、部署
+                4.其实第二步，塞入 反射 其实就是使用对test中main中代码的抽象  生成绑定对象就是为了和业务对象交互，
+                  因为业务对象会做许多操作。额度、风险、账务..但这里其实就一个普通对象而不是业务对象只是一个do.
+                  李老师的那种不生成对象都用map数据结构处理，我前台校验...如何完成呢？
+                  我这种的话如何定义do.对应生成，不仅仅要前台、后台转化、以及xml绑定
+
+                5.我生成的类(反射生成的是对象)被引入对应的包并且在其他代码中可以使用呢？
+                  1.生成字节码实体类和代码类(不是.java文件区分开) https://xilesou.hk.gg363.site/search?bih=686&biw=1396&ei=Hpv0XbPdOMP19AOP8Z-QAg&q=java+%E5%8A%A8%E6%80%81+%E7%94%9F%E6%88%90+%E5%AD%97%E8%8A%82%E7%A0%81&oq=java+%E5%8A%A8%E6%80%81+%E7%94%9F%E6%88%90+%E5%AD%97%E8%8A%82%E7%A0%81&gs_l=psy-ab.3..0i12.3619.5053..5290...1.0..0.599.2550.3-3j2j1....2..0....1..gws-wiz.......0i333.QyLbbVWQyAU&ved=0ahUKEwiz5NKf2rTmAhXDOn0KHY_4ByI4ChDh1QMICw&uact=5
+                  2.反射操作的是对象属性方法和类、上面是构建一个新类，切面，动态代码(这些都不会写道.class中)
+                  3.根据拿到的map去生成对应的字节码文件 asm
+                  动态代理解释-JDK,CGLIB,JAVASSIST,ASM:https://yq.aliyun.com/articles/135955
+
+                6.这里引申出来了反射 泛型 注解标识切面、切面植入、切面和spring获取要素以及对象的序列化传输和retry+设计表注意什么
+                         以及源码中的二次认识
+
+  TODO: 以上的这些解决方案都是自己想到的，应该是最low的，因为出了工具类这里，许多知识没有形成关系图--refactor
+
+
+    3.出了问题一定要先看日志而不是猜测：No changes detected in schema or binding files - skipping source generation.
+
+    4.ctrl+数字0 下一个错误地方 + 快速移动光标https://blog.csdn.net/tang9140/article/details/52333601
+
+    玩具版 - 规范性 健壮性(异常分支、日志) 风险(安全) 可扩展(设计模式..)
+                    - 框架(注解标识、切面、自定义规则配置文件) - 平台（尽可能自动化，参数之间某种关系、各种异常处理）
+
 
 dao @transaction配置
     超时
