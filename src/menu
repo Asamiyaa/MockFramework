@@ -1,5 +1,7 @@
 无论是哪个设计，架构、数据库、类..都是在对  ‘ 业务特别了解，对未来发展方向预测；并合理抽象   ’
 
+-1:编码命名归范 缩写：https://www.iteye.com/blog/lihaiming-2317036
+
 1.架构设计  https://blog.csdn.net/hguisu/article/details/78258430
 
 1.如何编写工具类：JaxbUtil.class
