@@ -1,0 +1,62 @@
+        ------- this file is to make self-project industrialize --------
+
+1.事务补偿
+  幂等
+      1.异步 顺序
+      2.重复 防重  vs  retry
+      3.丢失
+
+       1.流水号(支付该商品钱编号。可能一笔业务对应多个流水号) vs  单号(单笔业务 比如买面被)
+
+                   2.重复消息是SOA服务实现中常见的问题，你永远不要指望调用方每次请求消息不一样，对于读操作，重复消息可能无害，可对于写操作很可能就是灾难。
+
+                          可以通过幂等(Idempotent)模式处理重复的消息，基本处理思路是：
+                          1、调用者给消息一个唯一请求ID标识。ID标识一个工作单元，这个工作单元只应执行一次，工作单元ID可以是Schema的一部分，也可以是一个定制的SOAP Header，服务的Contract 可以说明这个唯一请求ID标识是必须的；
+                          2、接收者在执行一个工作单元必须先检验该工作单元是否已经执行过。检查是否执行的逻辑通常是根据唯一请求ID ，在服务端查询请求是否有记录，是否有对应的响应信息，如果有，直接把响应信息查询后返回；如果没有，那么就当做新请求去处理。
+                      更多基本信息
+                     3.重试机制
+
+ 全局异常处理
+     异常处理平台:总结起来这套机制：两道屏障、三个原则。所谓两道屏障，第一道是每个模块系统要充分自治，要有完善的系统自偿机制。第二道屏障，建立公共的异常处理平台，在第一道屏障处理失败的情况下，异常信息抛给异常处理平台，由统一的技术运营岗进行后续处理。三个原则是各模块与异常处理平台的关系，一是各模块能够进行异常通知；二是能够接收异常处理平台的查询请求；三是各模块能够处理异常处理平台发出的处理请求。总结三个原则，异常处理平台的目的和作用就是：通过技术手段解决流程集成在分布式系统下，由系统异常、应用异常导致的数据不一致问题。使应用系统在分布式系统下的流程集成质量，就像在集中式系统下工作一样。
+     Spring事务异常回滚，捕获异常不抛出就不会回滚:https://blog.csdn.net/yipanbo/article/details/46048413
+
+     超时
+
+ 一致性  强 /最终...  线程同步 vs 业务级(转账/转账撤销)
+
+ 分片/批量操作/
+
+
+
+2.数据结构和算法中数据结构设计  - 各种结构适合场景及取舍
+    大数据量读入内存
+
+3.验证码
+    1.登录时为什么要输入验证码?有什么意义?  https://zhidao.baidu.com/question/332816.html
+                1.自动化测试如何解决验证码的问题  http://blog.sina.com.cn/s/blog_65a4a5910102xm1x.html
+                Jmeter+Badbody压力测试，登录+验证码  https://www.jianshu.com/p/6320e26c8bc5
+                badboy录制脚本时，界面图片无法加载？ https://ask.csdn.net/questions/769484
+                滑动验证码的一种破解  https://www.wacky.one/blog/dragging-captcha-bypass/
+                Jmeter录制Https脚本 https://blog.csdn.net/Foreverlemon/article/details/78062940
+                使用 JMeter 进行压力测试  https://www.cnblogs.com/stulzq/p/8971531.html
+
+                对于简单的数字/字母可以通配
+                对于  图形拖拽 -  手机验证码呢？如何破解？
+
+4.善于使用工具 站在巨人肩膀上   工具的problem注意查看和处理快速定位
+    1.idea   https://juejin.im/entry/5c4f9f9d6fb9a049a5714c8c
+    2.ue
+    3.excel
+    4.db
+    5.processon/visio/powerpoint/ppt 画图
+
+5.微服务   www.ibm.com/developerworks/community/blogs/3302cc3b-074e-44da-90b1-5055f1dc0d9c/entry/%E8%A7%A3%E6%9E%90%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84_%E4%B8%80_%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AE%E6%9C%8D%E5%8A%A1?lang=en
+
+6.敏捷开发 、 持续集成 、  devops
+
+7.参数系统模块设计：https://juejin.im/post/5ba9fbc65188255c6418fce5
+
+8.engine
+
+
+

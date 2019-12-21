@@ -156,6 +156,9 @@ public class ApacheCommonTest {
             put("c","c");
         }};
         */
+
+//new HashMap(){{put("id", "001");}} map内部类初始化  是否允许使用
+
 /*for (Map.Entry<String, String> entry:map.entrySet()){
             这里由于上面初始化map时，泛型的位置应该在前面，才能map.entryset时返回对应的泛型参数，而不是object
         }*//*

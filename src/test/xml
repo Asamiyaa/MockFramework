@@ -1,0 +1,23 @@
+1.xml 菜鸟教程 https://www.runoob.com/xml/xml-attributes.html
+				XML 相关技术：https://www.runoob.com/xml/xml-technologies.html
+											SOAP (简单对象访问协议)
+											允许应用程序在 HTTP 之上交换信息的基于 XML 的协议。
+
+											WSDL (Web 服务描述语言)
+											用于描述网络服务的基于 XML 的语言。
+
+											xpath:XPath 是一门在 XML 文档中查找信息的语言  https://www.w3school.com.cn/xpath/index.asp
+
+											xQuery:https://www.w3school.com.cn/xquery/index.asp
+
+	      schema:   https://www.runoob.com/schema/schema-tutorial.html
+							      	定义可出现在文档中的元素
+											定义可出现在文档中的属性
+											定义哪个元素是子元素
+											定义子元素的次序
+											定义子元素的数目
+											定义元素是否为空，或者是否可包含文本
+											定义元素和属性的数据类型
+											定义元素和属性的默认值以及固定值
+	      对于spring.其他框架配置多时，其本质是理解其内部逻辑，配置..都是对外提供的接口，完全信赖。
+

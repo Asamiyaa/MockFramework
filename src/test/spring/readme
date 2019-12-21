@@ -1,0 +1,73 @@
+            this file to make me learn spring and expand
+1.注解
+    1.1.@Controller("zzz") @Service @Repository @Component（前面三个的父类） @Scope  @Configuretion+@bean（将方法返回定义bean对象，bean name为方法名）
+    2.@Autowired(required=false) (可以不用写getter/setter..反射+属性) 写在字段上，或者方法上 默认情况下必须要求依赖对象必须存在，如果要允许null值，可以设置它的required属性为false
+        @Resource相当于@Autowire 默认以byname注入 ..可以通过配置name type 指定注入顺序
+        @Qualifier("xx")
+        @Value 注解加载属性值的时候可以支持两种表达式来进行配置， 如下所示:
+                        一种是PlaceHolder 方式， 格式为＄｛．．．｝， 大括号内为PlaceHolder。
+                        另一种是使用SpEL 表达式(Spring Expression Language), 格式为＃｛．．．｝， 大括号
+                        内为SpEL 表达式。
+
+    3.@Controller + @Responsebody = @RestController 返回json数据  ==@RequestMapping("/test") 可方法可类  ==@RequestParam public Resp test(@RequestParam(required = "false " value="course_id") Integer id)
+        @ModeAttribute
+        @ModelAttribute(value="user_name") public?String?before2(@RequestParam(required?=?false)?String?name,?Model?model)?{3????????System.out.println("进入了2："?+?name);4????????return?name;5????}
+                    @SessionAttributes
+                4.@Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
+                5.@Cacheable  @CacheEvict
+    6.@PostConstruct @PreDestroy
+
+2.单例和安全
+    为什么spring单例模式可以支持多线程并发访问  https://blog.csdn.net/csj50/article/details/83016508
+  	Spring解决单例bean线程不安全问题 	  https://blog.csdn.net/weixin_42324471/article/details/90603651
+
+
+3.源码理解
+    0.abstractApplicaitonContext refresh() 从整体查看流程  --- https://blog.csdn.net/greedystar/article/list/2?
+      IOC(定位-Resource|加载-beanDefinition|注册-DefaultListableBeanFactory)
+      DI（getBean()- 真正将beanDefinition实例化，并将依赖关联）
+
+      AOP(动态代理)- （动态代理 - 切面） -动态代理将变化的部分通过构造和参数传入，形成面(一个接口 该接口下对象，方法随client的传入而变化，但是代理的逻辑是类似的，不能说相同 不是简单的sysout 可能涉及到 运行时数据 )
+                                火车票售卖点/媒婆/中介  双方各自集中在自己的领域
+                                jdk在哪里调用了invoke() 流程在哪里？$Proxy0 调用在客户端拿到代理对象.接口方法() 本质就是子类中的invoke() - 为什么？我们无需编写及实现handlerxx和用户接口的类。https://blog.csdn.net/u012033124/article/details/53645727
+
+                                aop 元素 通知 切点 ...LogAspect <aop:config> <aop:aspect> <aop:pointcut> <aop:before>....  注解
+
+                                拦截器链 / 适配器
+                                1.注册时,bean 从容器中getBean() populateBean 实例化 or 注入的是代理对象 initializeBean 初始化 如果是代理那么就aop - 后置处理器
+                                    initializeBean：Bean实例对象包装相关属性，如名称，类加载器，所属容器等信息，调用BeanPostProcessor.postProcessBeforeInitialization()
+
+                                2.AbstractAutoProxyCreator - wrapIfNecessary - wrappedBean - AopProxy(JdkDynamicAopProxy/CglibAopProxy) - 链(https://blog.csdn.net/u012843873/article/details/80540499 多个aspect/每个aspect的前置，后置....) -advised(interceptor)
+
+     transaction - 关联数据库级别的特性
+                                  1.@Transactional 只能应用到 public 方法才有效
+                                  2.避免 Spring 的 AOP 的自调用问题
+                                  1.transaction 如何关联aop
+                                                                        2.如何从库的事务中封装
+                                                                        3.orm session关系
+                                                            ****锁和数据库隔离级别(***知乎上一个关于 锁/隔离级别/ 现有问题 后有解答  但是当前还是没有找到****)
+                                                                        spring事务源码对几个属性是如何控制的呢  隔离级别 - 物理隔离级别 - 锁 /传播行为
+                                                                        传播行为：https://www.cnblogs.com/shoshana-kong/p/10712834.html
+                                                                        锁和隔离级别:https://tech.meituan.com/2014/08/20/innodb-lock.html
+                                                                        spring传播行为和Conn如何关联隔离级别的物理
+                                                                        Conn中包装了。有个个驱动实现
+
+                                                                        https://blog.csdn.net/BuquTianya/article/details/78946473
+                                                                        https://www.jianshu.com/p/1becdc376f5d
+     orm-oxm-jms
+
+              configuration - mapper（sqlsession.getMapper）-MapperProxy***很多框架中都使用代理+反射完成高层次的抽象MappedStatement - Executor - StatementHandler - ResultSetHandler/typeHandler（都是interceptor 类型转化器）
+
+                mybatis: 很多配置元素都有对应的源码bean+handler...例如：configi下的envoriment . 所以说：使用别人的框架接口遵循规则，因为他们底层是按照这个逻辑进行解析的。当学习新框架时，文档直到如何用，自己想底层实现。
+                SqlSession的getMapper方法是联系应用程序和Mybatis纽带，应用程序访问getMapper时，Mybatis会根据传入的接口类型和对应的XML配置文件生成一个代理对象，这个代理对象就叫Mapper对象
+                        UserDao userMapper = sqlSession.getMapper(UserDao.class); 传入接口形成代理。真正实现是自己按照规则写的xml
+                        真正做到配置化，交互，就必须熟悉xml/json - reader...转义/ 递归 xpath等的操作  从spring/myabtis等框架中可以学习到 - oxm知识
+                        offset
+
+                        TODO:复杂sql如何编写映射  / 一对多，多对多呢？https://my.oschina.net/xianggao/blog/549015
+
+                        字符串代入法# 默认的情况下，使用#{}语法会促使MyBatis 生成PreparedStatement 属性并且使用PreparedStatement 的参数（=？）来安全的设置值。
+                        尽量这些是快捷安全，也是经常使用的。---安全+解析了
+                        但有时候你可能想直接未更改的字符串代入到SQL 语句中。比如说，对于ORDER BY，你可能会这样使用：ORDER BY ${columnName}但MyBatis 不会修改和规避掉这个字符串。
+                        这样地接收和应用一个用户输入到未更改的语句中，是非常不安全的。这会让用户能植入破坏代码，所以，要么要求字段不要允许客户输入，要么你直接来检测他的合法性 。
+                        不安全+不解析(有sql注入风险)

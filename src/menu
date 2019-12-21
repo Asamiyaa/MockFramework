@@ -1,10 +1,18 @@
-https://www.processon.com/diagraming/5c1b64a8e4b095ccfee8d4ae
+人生和技术
+        https://www.processon.com/diagraming/5c1b64a8e4b095ccfee8d4ae
+        维度
 
-无论是哪个设计，架构、数据库、类..都是在对  ‘ 业务特别了解，对未来发展方向预测；并合理抽象   ’
+        产品开发经验总结-让你少奋斗一年的经验之谈
+            https://www.cnblogs.com/lixinghua/p/9745870.html
+        pjs仿真设计
 
--1:编码命名归范 缩写：https://www.iteye.com/blog/lihaiming-2317036
 
-1.架构设计  https://blog.csdn.net/hguisu/article/details/78258430
+***** 无论是哪个设计，架构、数据库、类..都是在对  ‘ 业务特别了解，对未来发展方向预测；并合理抽象   ’+ 混合编程、全栈编程*****
+***** 最后发现，官方文档才是正规的。也是最可以扩展点。可以完全信赖’*****
+
+-1:编码命名归范  naming.class
+
+0.架构设计  https://blog.csdn.net/hguisu/article/details/78258430
 
 1.如何编写工具类：JaxbUtil.class
 
@@ -14,12 +22,15 @@ https://www.processon.com/diagraming/5c1b64a8e4b095ccfee8d4ae
 
         转化思路重写sql?
 
-3.类  看的书籍 + 极客时间
+3.类  看的书籍 + 极客时间   --> 工业化
      玩具版 - 流程图 这个是和需求紧密的，也必须是无差别正确的。 RuleManager.class + jaxbTest.class
-        - 规范性（命名 - 使用第三方类库简化代码 apache-guava ApacheCommonTest.class） 健壮性(前置校验、返回包装、异常分支、日志) 风险(安全、注入)
-            - 可扩展(反射+泛型+注解+重构、设计模式 springFathrer.class+ + https://www.processon.com/apps/5dad0672e4b0e43392ee5d41..)
+        - 规范性（命名 - 使用第三方类库简化代码 apache-guava ApacheCommonTest.class） 健壮性(前置校验、返回包装、异常分支、边界、日志、事务) 风险(安全、注入)
+                事务：所谓的事务挂起其实就是一个移除当前线程、数据源活动事务对象的过程。
+                     事务的本质其实是对数据库自动提交的关闭与开启，传播特性是Spring提出、实现、控制的概念，而隔离级别是对数据库实现的封装。
+            - 可扩展(反射+泛型+注解 、重构、设计模式 SpringMain.class+ + https://www.processon.com/apps/5dad0672e4b0e43392ee5d41..)
                   - 框架(利用已有框架api扩展 SpringMain 、 注解标识 AnnotationUtils 、 切面、自定义规则配置文件 studentRule -xsd )
-                         - 平台（尽可能自动化，参数之间某种关系、各种异常处理）
+                         - 平台（尽可能自动化(1.动态sql即通过if判断拼接条件,)，参数之间某种关系、各种异常处理）
+
 
      是否启用线程
          D:\Data\mySrc\MockFramework\src\test\thread\MainClass
@@ -29,6 +40,11 @@ https://www.processon.com/diagraming/5c1b64a8e4b095ccfee8d4ae
 
 
 4.问题定位
-
+    1.outOfMemory
+    2.空间不足 app / db 表空间
+    3.thread deadlock
+    4.table lock
+    5.mq block
+    6.network 抖动
 
 5.性能优化

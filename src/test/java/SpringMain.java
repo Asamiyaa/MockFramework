@@ -80,10 +80,31 @@ import java.util.concurrent.CyclicBarrier;
  *              面向对象 + 面向过程(复杂大业务)
  *              java + sql（存储过程 视图..）+ shell + js ...
  *
- *
- *
- *
- *
+        4.整合spring / 其他框架 扩展点
+            框架自身监听器扩展 - quartz
+            spring自身(包装了..) - 其他比如factory applicationContext ..初始化/实例化 销毁
+            sessionAwareMessageListner   接受时必要性
+            BeanFactoryPostPorcessor     假设没有spring不是都在构造方法中进行相关操作吗？--spring提供了哪些特殊操作
+            DisposableBean
+            spring在线手册：http://www.shouce.ren/api/spring2.5/ ***any goto read to lijiao keneng kuozhandian
+            不仅仅是这个相关接口，还有用到其他初始化接口
+            contextLoaderListener
+            是不是有些类不应该由spring管理，比如这些类再构造方法init一些东西，如果由spring管理永远调用不到。--可以将这些初始化操作到一起，实现contexxtLOADERlI...
+            上面是不是由的项目中不是扫描文件夹，而是配置bean呢。
+
+            bean的jvm和spring下生命周期：(扩展点)
+            com.SpringTest
+            1.AmqMsgListenerContainer extends DefaultMessageListenerContainer  发
+            2.AmqMsgListener implements SessionAwareMessageListener           收
+            3.整个模块的启停加载																								 容器加载
+            comProcessor implements BeanFactoryPostProcessor , DisposableBean
+            4.配置高级的属性 pool,factory,time-out,auth...
+            4.回调
+            5.事务
+            6.日志
+
+            如何知道扩展哪些呢? 如何知道下面实现api? 上面阅读书籍/博客/github 项目 -- 一部来，不要随意修改demo,manman kuo zhan
+
  */
 
 
@@ -1425,7 +1446,13 @@ class Obser{
  * Chain of Responsibility
  *   抽象类一定是从子类公共部分抽象起来的。所以从抽象类往下看不容易. 每个类是有 级别(是否责任匹配)/下一个日志/写     拦截器
  *   参考：https://www.runoob.com/design-pattern/chain-of-responsibility-pattern.html
- */
+ *
+ *
+ *   状态机 https://sparxsystems.cn/resources/uml2_tutorial/uml2_statediagram.html
+     状态模式 https://www.runoob.com/design-pattern/design-pattern-intro.html
+     状态模式->状态机 http://yukai.space/2017/08/10/%E7%8A%B6%E6%80%81%E6%9C%BA%E4%B8%8E%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/
+     https://glumes.com/post/android/understand-state-machine/
+     */
 class TestChainOfResp{
 
 

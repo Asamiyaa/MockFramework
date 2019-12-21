@@ -1,0 +1,103 @@
+
+---------keymap----------
+	ctrl+home / end 到页面最前最后
+	shift+home / end选中
+	pageup / pageDown
+
+	ctrl+n 新建
+
+	ctrl+q 上次编辑的地方
+
+	ctrl+alt+h 调用结构
+
+	alt+左右  上次编辑
+	ctrl+e 	 显示编辑类下拉列表
+	ctrl+k   参照选中word定位到下一个
+	ctrl+shift+k 参照选中word定位到上一个
+	ctrl+j   ..向下
+	ctrl+shift+p 定位到匹配符{}
+	ctrl+shift+X 大小写
+	ctrl+shift+F8 debug和ee窗口切换
+	ctrl+f11 运行程序快捷键
+	alt+enter 查看类文件目录
+	ctrl+m 大小窗口
+	alt+shift+z 添加if 、 try.catch  --> idea:ctrl+alt+t
+	ctrl+shift+enter 句尾加； 两次切到下一行
+
+	alt+shift+r rename
+	alt+shift+m method r
+
+	ctrl+. 折叠方法
+	ctrl+数字0 下一个错误地方
+	shift+tab 向前缩进
+
+
+
+	elipse工具栏快速切换
+			alt+有下划线字母
+			如何从编辑页面到类目录
+
+	ctrl+shift+空格 查看方法详情
+
+	跳到行末
+
+	debug
+		  varible  修改参数  window show.. variable
+		  重新执行
+		  点击线程 查看信息
+		  远程连接
+		  ctrl+shift+i 查看变量信息
+		  ctrl+shift+ii 添加到表达式
+		 	--查看高级的debug
+
+	compare
+			ctrl+n
+		  ctrl+l替换
+			ctrl+shift+del
+			ctrl+alt+del
+
+			全量构建又需要对比代码，直接和远程服务器对比。
+			cpm和dvm都需要。
+
+	文件夹：alt+左右键
+
+
+  chrome:
+					ctrl+shift+n : chrome隐藏模式
+					二指向左：上一页
+					二指向右：下一页
+
+
+
+	window触摸板:
+					一指：鼠标
+					二指：向下向上   捏合 - 缩小  放大
+					三指：上 展示当前所有窗口  下 回到桌面   左|右 左右切换
+
+
+	github:
+		1.超链接 []()
+		2.图片
+		3.换行   两个空格
+
+
+
+
+项目报错：
+   class文件下是否编译 - 重新加载jar和efwk项目 - 最后发现是efwk svn update有问题
+   delete --force C:/git_work/efwk/WebRoot/WEB-INF/classes/com
+   Previous operation has not finished; run 'cleanup' if it was interrupted
+
+   maven包冲突 导致爆红，删掉包下该jar 所有版本，ctrl+x repository.xml clean 重新导入
+
+   右键报错的文件/文件夹选择不校验
+   查看probolem视图
+
+    /weblogic/project_yanshi/cpm/WEB-INF/classes/conf/channel/efwk/spring   注意是在classes下只有com 、 conf 前者代码后者配置文件 虽然
+    项目中可能看到project / product　／resource 都是目录 不是包  编译编译的是包
+
+
+
+
+
+

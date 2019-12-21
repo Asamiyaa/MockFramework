@@ -7,6 +7,37 @@ package com.core.rule;
  * @title: RuleHandler
  * @description:     过滤器模式对 当前页面对象过滤
  *                    参考：Ruler    从报文页面配置(是否超时...) 父类/抽象类 --> 页面填入参数 进行判断
+ *
+ *
+ *      tips:
+            1. return (a == b) || (a != null && a.equals(b));  vs flag  vs 本身是同一个对象就无需进行其他浪费操作
+            2. if(a == b)
+                return true;
+                else if(a == null || b == null)
+                return false;
+                else
+                return Arrays.deepEquals0(a, b);
+                null 判断  - 通过if判断将“筛选条件过滤掉” 所以这里的if..条件不是一个维度的  这里的else if 也可以写成if.表示向下的流
+                比较数组长度
+
+            3.T[] copy = ((Object) newType == (Object) Object[].class)
+                    ? (T[]) new Object[newLength]
+                    : (T[]) Array.newInstance(newType.getComponentType(), newLength);
+                    System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
+
+            4.map 遍历  map.entrySet
+            5.super(h) 在构造中调用父类..
+            6. static final char[] digits = {'0', '1', '2', '3'}
+            7.受检异常:来自api 或者 自定义try{}catch()..throw出来，表示这段逻辑本身
+
+                根据自己逻辑，抛出异常；并不完全依赖于调用第三方别人定义的异常，也可以根据自己逻辑进行抛出
+                尽可能先使用已定义异常(统一性)，再去定义自己的异常
+
+            8.使用中断使代码流程更加明确，明确else场景下程序的处理逻辑
+            9.精度问题 int 转float 精度丢失   转double 不会  科学计数法处理 bd.setScale(2, BigDecimal.ROUND_HALF_UP
+            10.当想要增加功能 ， 增加接口 ， 对应的实现去实现该接口
+            11.强制类型转换 instanceof  ....  / Class判断
+            12.Assert.notNull(code, "Code must not be null"); https://uule.iteye.com/blog/898842
  */
 
 import com.core.Cache.ICache;
