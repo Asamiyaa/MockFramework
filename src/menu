@@ -13,8 +13,13 @@
 -1:编码命名归范  naming.class
 
 0.架构设计  https://blog.csdn.net/hguisu/article/details/78258430
+   ===> 3.0详设版本1.0 -> 2.0 业务需求文档从业务角度出发 --> 详设从系统，开发角度 泳道图 交互。这种转化也是 ‘代码开发’的依据而不是业务流程图
+   ===> 仿真文档自己版  -> 李老师版本  场景全面 -
 
 1.如何编写工具类：JaxbUtil.class
+
+  需求 - 仿真表设计2 从业务需求出发，设计表，保证字段  ---> 反模式+mysql..表架构  ---> 下面的具体实现 ---> 分库分表分布式环境下
+   ===> 其实无论是架构还是类，都是从业务-架构-实现往下走，粒度越来越细
 
 2.设计表结构：RuleDo.class + statusDo.class（状态机表 - 未考虑字段、继承、业务等 -- 需要重新结合看的书写）
         如何编写高效sql: 函数..(好的表设计肯定是设计时就考虑了查询，所以可能有冗余)
@@ -35,7 +40,7 @@
      是否启用线程
          D:\Data\mySrc\MockFramework\src\test\thread\MainClass
 
-     单元测试  RuleDaoMapperTest.class
+     单元测试  TestRulerDraft.class
            明确修改点 - 局部测试 - 联合测试( debug修改参数值 )
 
 
