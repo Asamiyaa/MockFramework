@@ -21,7 +21,11 @@ import java.util.Map;
  * @title: DraftManager
  * @description: 区分开spring定义的解析器，他的哪种解析器是“ 提前固定好解析规则 ”
  */
-@Service
+//@Service
+
+/**
+ * 20191227 启动报错 ，先注掉，查看起到是否成功 。 门面模式的初始化问题
+ */
 public class DraftManager {
 
     @Autowired

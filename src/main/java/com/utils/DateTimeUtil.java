@@ -1,3 +1,4 @@
+/*
 package com.utils;
 
 import java.sql.Timestamp;
@@ -6,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+*/
 /**
  * @author YangWenjun
  * @date 2019/11/7 11:27
@@ -14,8 +16,10 @@ import java.util.*;
  * @description:
  *          String和Date、Timestamp之间的转换:https://www.iteye.com/blog/yunnick-1074495
  *          simpleDateFormat :是非线程安全的  避免多线程中出现问题
- */
+ *//*
 
+
+*/
 /**
  *
  *  @author  YangWenjun
@@ -32,146 +36,191 @@ import java.util.*;
  *  @todo  TODO
  *
  *
- */
+ *//*
 
+
+*/
 /**
  * 以下内容是
  *                  1.bbsp中日期维护方法 - 手工维护 - 代码在哪里实现？？？
  *                  2.提供哪些可能出现的转化  date-date? date-str-date来实现吗？还是可以
- */
+ *//*
 
 
 
-    /**
+
+    */
+/**
      * 日期工具类
-     */
+     *//*
+
     public class DateTimeUtil{
 
         // ==格式到年==
-        /**
+        */
+/**
          * 日期格式，年份，例如：2004，2008
-         */
+         *//*
+
         public static final String DATE_FORMAT_YYYY = "yyyy";
 
 
         // ==格式到年月 ==
-        /**
+        */
+/**
          * 日期格式，年份和月份，例如：200707，200808
-         */
+         *//*
+
         public static final String DATE_FORMAT_YYYYMM = "yyyyMM";
 
-        /**
+        */
+/**
          * 日期格式，年份和月份，例如：200707，2008-08
-         */
+         *//*
+
         public static final String DATE_FORMAT_YYYY_MM = "yyyy-MM";
 
 
         // ==格式到年月日==
-        /**
+        */
+/**
          * 日期格式，年月日，例如：050630，080808
-         */
+         *//*
+
         public static final String DATE_FORMAT_YYMMDD = "yyMMdd";
 
-        /**
+        */
+/**
          * 日期格式，年月日，用横杠分开，例如：06-12-25，08-08-08
-         */
+         *//*
+
         public static final String DATE_FORMAT_YY_MM_DD = "yy-MM-dd";
 
-        /**
+        */
+/**
          * 日期格式，年月日，例如：20050630，20080808
-         */
+         *//*
+
         public static final String DATE_FORMAT_YYYYMMDD = "yyyyMMdd";
 
-        /**
+        */
+/**
          * 日期格式，年月日，用横杠分开，例如：2006-12-25，2008-08-08
-         */
+         *//*
+
         public static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
 
-        /**
+        */
+/**
          * 日期格式，年月日，例如：2016.10.05
-         */
+         *//*
+
         public static final String DATE_FORMAT_POINTYYYYMMDD = "yyyy.MM.dd";
 
-        /**
+        */
+/**
          * 日期格式，年月日，例如：2016年10月05日
-         */
+         *//*
+
         public static final String DATE_TIME_FORMAT_YYYY年MM月DD日 = "yyyy年MM月dd日";
 
 
         // ==格式到年月日 时分 ==
 
-        /**
+        */
+/**
          * 日期格式，年月日时分，例如：200506301210，200808081210
-         */
+         *//*
+
         public static final String DATE_FORMAT_YYYYMMDDHHmm = "yyyyMMddHHmm";
 
-        /**
+        */
+/**
          * 日期格式，年月日时分，例如：20001230 12:00，20080808 20:08
-         */
+         *//*
+
         public static final String DATE_TIME_FORMAT_YYYYMMDD_HH_MI = "yyyyMMdd HH:mm";
 
-        /**
+        */
+/**
          * 日期格式，年月日时分，例如：2000-12-30 12:00，2008-08-08 20:08
-         */
+         *//*
+
         public static final String DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI = "yyyy-MM-dd HH:mm";
 
 
         // ==格式到年月日 时分秒==
-        /**
+        */
+/**
          * 日期格式，年月日时分秒，例如：20001230120000，20080808200808
-         */
+         *//*
+
         public static final String DATE_TIME_FORMAT_YYYYMMDDHHMISS = "yyyyMMddHHmmss";
 
-        /**
+        */
+/**
          * 日期格式，年月日时分秒，年月日用横杠分开，时分秒用冒号分开
          * 例如：2005-05-10 23：20：00，2008-08-08 20:08:08
-         */
+         *//*
+
         public static final String DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI_SS = "yyyy-MM-dd HH:mm:ss";
 
 
         // ==格式到年月日 时分秒 毫秒==
-        /**
+        */
+/**
          * 日期格式，年月日时分秒毫秒，例如：20001230120000123，20080808200808456
-         */
+         *//*
+
         public static final String DATE_TIME_FORMAT_YYYYMMDDHHMISSSSS = "yyyyMMddHHmmssSSS";
 
 
         // ==特殊格式==
-        /**
+        */
+/**
          * 日期格式，月日时分，例如：10-05 12:00
-         */
+         *//*
+
         public static final String DATE_FORMAT_MMDDHHMI = "MM-dd HH:mm";
 
 
-        /* ************工具方法***************   */
+        */
+/* ************工具方法***************   *//*
 
-        /**
+
+        */
+/**
          * 获取某日期的年份
          * @param date
          * @return
-         */
+         *//*
+
         public static Integer getYear(Date date) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
             return cal.get(Calendar.YEAR);
         }
 
-        /**
+        */
+/**
          * 获取某日期的月份
          * @param date
          * @return
-         */
+         *//*
+
         public static Integer getMonth(Date date) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
             return cal.get(Calendar.MONTH) + 1;
         }
 
-        /**
+        */
+/**
          * 获取某日期的日数
          * @param date
          * @return
-         */
+         *//*
+
         public static Integer getDay(Date date){
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
@@ -179,55 +228,65 @@ import java.util.*;
             return day;
         }
 
-        /**
+        */
+/**
          * 格式化Date时间
          * @param time Date类型时间
          * @param timeFromat String类型格式
          * @return 格式化后的字符串
-         */
+         *//*
+
         public static String parseDateToStr(Date time, String timeFromat){
             DateFormat dateFormat=new SimpleDateFormat(timeFromat);
             return dateFormat.format(time);
         }
 
-        /**
+        */
+/**
          * 格式化Timestamp时间
          * @param timestamp Timestamp类型时间
          * @param timeFromat
          * @return 格式化后的字符串
-         */
+         *//*
+
         public static String parseTimestampToStr(Timestamp timestamp, String timeFromat){
             SimpleDateFormat df = new SimpleDateFormat(timeFromat);
             return df.format(timestamp);
         }
 
-        /**
+        */
+/**
          * 格式化Date时间
          * @param time Date类型时间
          * @param timeFromat String类型格式
          * @param defaultValue 默认值为当前时间Date
          * @return 格式化后的字符串
-         */
+         *//*
+
         public static String parseDateToStr(Date time, String timeFromat, final Date defaultValue){
             try{
                 DateFormat dateFormat=new SimpleDateFormat(timeFromat);
                 return dateFormat.format(time);
-            }catch (Exception e){/*
+            }catch (Exception e){*/
+/*
                 if(defaultValue!=null)
                     return parseDateToStr(defaultValue, timeFromat);
                 else
-                    return parseDateToStr(new Date(), timeFromat);*/
+                    return parseDateToStr(new Date(), timeFromat);*//*
+
             }
             return null ;
         }
 
-        /**
+        */
+/**
          * 格式化Date时间
          * @param time Date类型时间
          * @param timeFromat String类型格式
          * @param defaultValue 默认时间值String类型
          * @return 格式化后的字符串
-         */
+         *//*
+
         public static String parseDateToStr(Date time, String timeFromat, final String defaultValue){
             try{
                 DateFormat dateFormat=new SimpleDateFormat(timeFromat);
@@ -237,12 +296,14 @@ import java.util.*;
             }
         }
 
-        /**
+        */
+/**
          * 格式化String时间
          * @param time String类型时间
          * @param timeFromat String类型格式
          * @return 格式化后的Date日期
-         */
+         *//*
+
         public static Date parseStrToDate(String time, String timeFromat) {
             if (time == null || time.equals("")) {
                 return null;
@@ -258,13 +319,15 @@ import java.util.*;
             return date;
         }
 
-        /**
+        */
+/**
          * 格式化String时间
          * @param strTime String类型时间
          * @param timeFromat String类型格式
          * @param defaultValue 异常时返回的默认值
          * @return
-         */
+         *//*
+
         public static Date parseStrToDate(String strTime, String timeFromat,
                                           Date defaultValue) {
             try {
@@ -275,14 +338,16 @@ import java.util.*;
             }
         }
 
-        /**
+        */
+/**
          * 当strTime为2008-9时返回为2008-9-1 00:00格式日期时间，无法转换返回null.
          * @param strTime
          * @return
-         */
+         *//*
+
         public static Date strToDate(String strTime) {
-            if(strTime==null || strTime.trim().length()<=0)
-                return null;
+            if(strTime==null || strTime.trim().length()<=0){
+                return null;}
 
             Date date = null;
             List<String> list = new ArrayList<String>(0);
@@ -300,7 +365,8 @@ import java.util.*;
             list.add(DATE_FORMAT_YYYY);
 
 
-            for (Iterator iter = list.iterator(); iter.hasNext();) {/*
+            for (Iterator iter = list.iterator(); iter.hasNext();) {*/
+/*
                 String format = (String) iter.next();
                 if(strTime.indexOf("-")>0 && format.indexOf("-")<0)
                     continue;
@@ -310,18 +376,21 @@ import java.util.*;
                     continue;
                 date = parseStrToDate(strTime, format);
                 if (date != null)
-                    break;*/
+                    break;*//*
+
             }
 
             return date;
         }
 
-        /**
+        */
+/**
          * 解析两个日期之间的所有月份
          * @param beginDateStr 开始日期，至少精确到yyyy-MM
          * @param endDateStr 结束日期，至少精确到yyyy-MM
          * @return yyyy-MM日期集合
-         */
+         *//*
+
         public static List<String> getMonthListOfDate(String beginDateStr, String endDateStr) {
             // 指定要解析的时间格式
             SimpleDateFormat f = new SimpleDateFormat("yyyy-MM");
@@ -363,12 +432,14 @@ import java.util.*;
             }
         }
 
-        /**
+        */
+/**
          * 解析两个日期段之间的所有日期
          * @param beginDateStr 开始日期  ，至少精确到yyyy-MM-dd
          * @param endDateStr 结束日期  ，至少精确到yyyy-MM-dd
          * @return yyyy-MM-dd日期集合
-         */
+         *//*
+
         public static List<String> getDayListOfDate(String beginDateStr, String endDateStr) {
             // 指定要解析的时间格式
             SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
@@ -408,12 +479,14 @@ import java.util.*;
             }
         }
 
-        /**
+        */
+/**
          * 获取当下年份指定前后数量的年份集合
          * @param before 当下年份前年数
          * @param behind 当下年份后年数
          * @return 集合
-         */
+         *//*
+
         public static List<Integer> getYearListOfYears(int before,int behind) {
             if (before<0 || behind<0) {
                 return null;
@@ -432,11 +505,13 @@ import java.util.*;
             return list;
         }
 
-        /**
+        */
+/**
          * 获取当前日期是一年中第几周
          * @param date
          * @return
-         */
+         *//*
+
         public static Integer getWeekthOfYear(Date date) {
             Calendar c = new GregorianCalendar();
             c.setFirstDayOfWeek(Calendar.MONDAY);
@@ -446,12 +521,14 @@ import java.util.*;
             return c.get(Calendar.WEEK_OF_YEAR);
         }
 
-        /**
+        */
+/**
          * 获取某一年各星期的始终时间
          * 实例：getWeekList(2016)，第52周(从2016-12-26至2017-01-01)
          * @param
          * @return
-         */
+         *//*
+
         public static HashMap<Integer,String> getWeekTimeOfYear(int year) {
             HashMap<Integer,String> map = new LinkedHashMap<Integer,String>();
             Calendar c = new GregorianCalendar();
@@ -470,11 +547,13 @@ import java.util.*;
 
         }
 
-        /**
+        */
+/**
          * 获取某一年的总周数
          * @param year
          * @return
-         */
+         *//*
+
         public static Integer getWeekCountOfYear(int year){
             Calendar c = new GregorianCalendar();
             c.set(year, Calendar.DECEMBER, 31, 23, 59, 59);
@@ -482,11 +561,13 @@ import java.util.*;
             return count;
         }
 
-        /**
+        */
+/**
          * 获取指定日期所在周的第一天
          * @param date
          * @return
-         */
+         *//*
+
         public static Date getFirstDayOfWeek(Date date) {
             Calendar c = new GregorianCalendar();
             c.setFirstDayOfWeek(Calendar.MONDAY);
@@ -495,11 +576,13 @@ import java.util.*;
             return c.getTime();
         }
 
-        /**
+        */
+/**
          * 获取指定日期所在周的最后一天
          * @param date
          * @return
-         */
+         *//*
+
         public static Date getLastDayOfWeek(Date date) {
             Calendar c = new GregorianCalendar();
             c.setFirstDayOfWeek(Calendar.MONDAY);
@@ -508,12 +591,14 @@ import java.util.*;
             return c.getTime();
         }
 
-        /**
+        */
+/**
          * 获取某年某周的第一天
          * @param year 目标年份
          * @param week 目标周数
          * @return
-         */
+         *//*
+
         public static Date getFirstDayOfWeek(int year, int week) {
             Calendar c = new GregorianCalendar();
             c.set(Calendar.YEAR, year);
@@ -526,12 +611,14 @@ import java.util.*;
             return getFirstDayOfWeek(cal.getTime());
         }
 
-        /**
+        */
+/**
          * 获取某年某周的最后一天
          * @param year 目标年份
          * @param week 目标周数
          * @return
-         */
+         *//*
+
         public static Date getLastDayOfWeek(int year, int week) {
             Calendar c = new GregorianCalendar();
             c.set(Calendar.YEAR, year);
@@ -544,12 +631,14 @@ import java.util.*;
             return getLastDayOfWeek(cal.getTime());
         }
 
-        /**
+        */
+/**
          * 获取某年某月的第一天
          * @param year 目标年份
          * @param month 目标月份
          * @return
-         */
+         *//*
+
         public static Date getFirstDayOfMonth(int year,int month){
             month = month-1;
             Calendar   c   =   Calendar.getInstance();
@@ -566,12 +655,14 @@ import java.util.*;
             return c.getTime();
         }
 
-        /**
+        */
+/**
          * 获取某年某月的最后一天
          * @param year 目标年份
          * @param month 目标月份
          * @return
-         */
+         *//*
+
         public static Date getLastDayOfMonth(int year,int month){
             month = month-1;
             Calendar   c   =   Calendar.getInstance();
@@ -587,28 +678,34 @@ import java.util.*;
             return c.getTime();
         }
 
-        /**
+        */
+/**
          * 获取某个日期为星期几
          * @param date
          * @return String "星期*"
-         */
+         *//*
+
         public static String getDayWeekOfDate1(Date date) {
             String[] weekDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
 
             int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
-            /*if (w < 0)
-                w = 0;*/
+            */
+/*if (w < 0)
+                w = 0;*//*
+
 
             return weekDays[w];
         }
 
-        /**
+        */
+/**
          * 获得指定日期的星期几数
          * @param date
          * @return int
-         */
+         *//*
+
         public static Integer getDayWeekOfDate2(Date date){
             Calendar aCalendar = Calendar.getInstance();
             aCalendar.setTime(date);
@@ -616,15 +713,17 @@ import java.util.*;
             return weekDay;
         }
 
-        /**
+        */
+/**
          * 验证字符串是否为日期
          * 验证格式:YYYYMMDD、YYYY_MM_DD、YYYYMMDDHHMISS、YYYYMMDD_HH_MI、YYYY_MM_DD_HH_MI、YYYYMMDDHHMISSSSS、YYYY_MM_DD_HH_MI_SS
          * @param strTime
          * @return null时返回false;true为日期，false不为日期
-         */
+         *//*
+
         public static boolean validateIsDate(String strTime) {
             if (strTime == null || strTime.trim().length() <= 0)
-                return false;
+            {return false;}
 
             Date date = null;
             List<String> list = new ArrayList<String>(0);
@@ -641,7 +740,8 @@ import java.util.*;
             //list.add(DATE_FORMAT_YYYYMM);
             //list.add(DATE_FORMAT_YYYY);
 
-            for (Iterator iter = list.iterator(); iter.hasNext();) {/*
+            for (Iterator iter = list.iterator(); iter.hasNext();) {*/
+/*
                 String format = (String) iter.next();
                 if(strTime.indexOf("-")>0 && format.indexOf("-")<0)
                     continue;
@@ -652,7 +752,8 @@ import java.util.*;
                 date = parseStrToDate(strTime.trim(), format);
                 if (date != null)
                     break;
-            }*/
+            }*//*
+
             }
             if (date != null) {
                 return true;
@@ -660,11 +761,13 @@ import java.util.*;
             return false;
         }
 
-        /**
+        */
+/**
          * 将指定日期的时分秒格式为零
          * @param date
          * @return
-         */
+         *//*
+
         public static Date formatHhMmSsOfDate(Date date) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
@@ -675,7 +778,8 @@ import java.util.*;
             return cal.getTime();
         }
 
-        /**
+        */
+/**
          * 获得指定时间加减参数后的日期(不计算则输入0)
          * @param date 指定日期
          * @param year 年数，可正可负
@@ -686,7 +790,8 @@ import java.util.*;
          * @param second 秒数，可正可负
          * @param millisecond 毫秒数，可正可负
          * @return 计算后的日期
-         */
+         *//*
+
         public static Date addDate(Date date,int year,int month,int day,int hour,int minute,int second,int millisecond){
             Calendar c = Calendar.getInstance();
             c.setTime(date);
@@ -701,23 +806,27 @@ import java.util.*;
             return c.getTime();
         }
 
-        /**
+        */
+/**
          * 获得两个日期的时间戳之差
          * @param startDate
          * @param endDate
          * @return
-         */
+         *//*
+
         public static Long getDistanceTimestamp(Date startDate,Date endDate){
             long daysBetween=(endDate.getTime()-startDate.getTime()+1000000)/(3600*24*1000);
             return daysBetween;
         }
 
-        /**
+        */
+/**
          * 判断二个时间是否为同年同月
          * @param date1
          * @param date2
          * @return
-         */
+         *//*
+
         public static Boolean compareIsSameMonth(Date date1,Date date2){
             boolean flag = false;
             int year1  = getYear(date1);
@@ -730,11 +839,13 @@ import java.util.*;
             return flag;
         }
 
-        /**
+        */
+/**
          * 获得两个时间相差距离多少天多少小时多少分多少秒
          ：2009-01-01 12:00:00
          * @return long[] 返回值为：{天, 时, 分, 秒}
-         */
+         *//*
+
         public static long[] getDistanceTime(Date one, Date two) {
             long day = 0;
             long hour = 0;
@@ -761,12 +872,14 @@ import java.util.*;
             return times;
         }
 
-        /**
+        */
+/**
          * 两个时间相差距离多少天多少小时多少分多少秒
          * @param str1 时间参数 1 格式：1990-01-01 12:00:00
          * @param str2 时间参数 2 格式：2009-01-01 12:00:00
          * @return String 返回值为：{天, 时, 分, 秒}
-         */
+         *//*
+
         public static long[] getDistanceTime(String str1, String str2) {
             DateFormat df = new SimpleDateFormat(DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI_SS);
             Date one;
@@ -797,10 +910,12 @@ import java.util.*;
             return times;
         }
 
-        /**
+        */
+/**
          * 两个时间之间相差距离多少天
          * @return 相差天数
-         */
+         *//*
+
         public static Long getDistanceDays(String str1, String str2) throws Exception{
             DateFormat df = new SimpleDateFormat(DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI_SS);
             Date one;
@@ -824,11 +939,13 @@ import java.util.*;
             return days;
         }
 
-        /**
+        */
+/**
          * 获取指定时间的那天 00:00:00.000 的时间
          * @param date
          * @return
-         */
+         *//*
+
         public static Date getDayBeginTime(final Date date) {
             Calendar c = Calendar.getInstance();
             c.setTime(date);
@@ -839,11 +956,13 @@ import java.util.*;
             return c.getTime();
         }
 
-        /**
+        */
+/**
          * 获取指定时间的那天 23:59:59.999 的时间
          * @param date
          * @return
-         */
+         *//*
+
         public static Date getDayEndTime(final Date date) {
             Calendar c = Calendar.getInstance();
             c.setTime(date);
@@ -866,6 +985,7 @@ import java.util.*;
 
         }
     }
+*/
 /**
  * bbsp dateTimeUitl
  * 1.时间分为两类  1是格式 2是calendar 获取年/月/ 几天后 / 日历 两天之间时间差（笨办法是获取最基本值，除以小时*分*秒.....）
@@ -891,5 +1011,7 @@ import java.util.*;
 
  4.获取月份最后一天 / 是否为某月最后一天/两日期时间间隔-算前不算后.......DateTimeUtil
  5.TimeZone时区
- */
+ *//*
 
+
+*/

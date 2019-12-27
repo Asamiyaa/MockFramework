@@ -118,7 +118,7 @@ import java.lang.reflect.Method;
              */
         }
 
-        @Around("execution(* com.secKill.controller.UserController.getTest(..))")
+       // @Around("execution(* com.secKill.controller.UserController.getTest(..))")
         public Object aroundMethod(ProceedingJoinPoint pjd) {
             Object result = null;
 
