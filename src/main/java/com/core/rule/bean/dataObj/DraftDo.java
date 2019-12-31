@@ -1,5 +1,8 @@
 package com.core.rule.bean.dataObj;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class DraftDo {
     /**
      *

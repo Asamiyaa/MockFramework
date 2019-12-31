@@ -1,5 +1,7 @@
 package com.core.rule.bean.dataObj;
 
+import org.springframework.stereotype.Repository;
+
 /**数据库设计没有最好，只有最合适( 不同场景和未来方向 )  -  过程迭代和逐步求精
  * 如何设计表 - 扩展性（ 当前 - 未来发展方向 ）、性能  （数据库修改会涉及到数据迁移、上下游、各种风险 所以改类的代价小于数据库）
  *
@@ -229,7 +231,7 @@ package com.core.rule.bean.dataObj;
  */
 
 
-
+@Repository
 public class RuleDo {
     /**
      *

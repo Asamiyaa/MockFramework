@@ -13,7 +13,7 @@ import org.springframework.cache.annotation.EnableCaching;
  */
 
     @org.springframework.boot.autoconfigure.SpringBootApplication(scanBasePackages = {"com"})
-    @MapperScan("com.core.rule.dao") //需要对应的mapperScan
+    @MapperScan({"com.core.rule.dao","com.register.dao"}) //需要对应的mapperScan
     @EnableCaching
     public class SpringBootApplication {
 
