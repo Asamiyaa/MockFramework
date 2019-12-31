@@ -178,23 +178,7 @@ package com.core.rule.bean.dataObj;
                          * 尽可能使用 not null 定义字段
                          尽量少用 text，非用不可最好分表
 
-                      3.***sql 的编写需要注意优化
 
-                         1. 使用 limit 对查询结果的记录进行限定
-                         2. 避免 select *，将需要查找的字段列出来
-                         3. 使用连接（join）来代替子查询
-                         4. 拆分大的 delete 或 insert 语句
-                         5. 可通过开启慢查询日志来找出较慢的 SQL
-                         6. 不做列运算：SELECT id WHERE age + 1 = 10，‘ 任何对列的操作都将导致表扫描 ’，它包括数据库教程函数、计算表达式等等，查询时要尽可能将操作移至等号右边
-                         7.sql 语句尽可能简单：一条 sql 只能在一个 cpu 运算；大语句拆小语句，减少锁时间；一条大 sql 可以堵死整个库
-                         8.OR 改写成 IN：OR 的效率是 n 级别，IN 的效率是 log (n) 级别，in 的个数建议控制在 200 以内
-                         9. 不用函数和触发器，在应用程序实现
-                         10. 避免 % xxx 式查询
-                         11. 少用 JOIN
-                         12. 使用同类型进行比较，比如用 '123' 和 '123' 比，123 和 123 比
-                         13. 尽量避免在 WHERE 子句中使用！= 或 <> 操作符，否则将引擎放弃使用索引而进行全表扫描
-                         14. 对于连续数值，使用 BETWEEN 不用 IN：SELECT id FROM t WHERE num BETWEEN 1 AND 5
-                         15. 列表数据不要拿全表，要使用 LIMIT 来分页，每页数量也不要太大
          *
          *             4.分区 、分表 、分库
          *               1. 分区
@@ -239,9 +223,7 @@ package com.core.rule.bean.dataObj;
                                 mysql 性能不行，那就换个。为保证源程序代码不修改，保证现有业务平稳迁移，故需要换一个 100% 兼容 mysql 的数据库。
 
 
-         *              6.数据库的查询优化技术：https://blog.csdn.net/littledream/article/details/4243491
-         *                                  https://blog.csdn.net/littledream/article/details/4439812
- *
+         *
  *                      7.万字归总表设计与 SQL 编写技巧  https://www.infoq.cn/article/DGMlqL9x0maeHGRltOKT
  *
  */
