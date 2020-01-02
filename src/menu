@@ -30,7 +30,7 @@
 
 
 4.类  看的书籍 + 极客时间   --> 工业化
-     -实现版 - 流程图 这个是和需求紧密的，也必须是无差别正确的。 RuleManager.class + jaxbTest.class( 未进行类设计 )
+     1.-实现版 - 流程图 这个是和需求紧密的，也必须是无差别正确的。 RuleManager.class + jaxbTest.class( 未进行类设计 )
         **** 结合极客时间：<设计模式之美> 类的构建 简洁****
         每个模块出流程外，涉及一些公共组件，比如流水号生成器
 
@@ -45,10 +45,10 @@
                         - 平台（尽可能自动化(1.动态sql即通过if判断拼接条件,)，参数之间某种关系、各种异常处理）
 
 
-     是否启用线程
-         D:\Data\mySrc\MockFramework\src\test\thread\MainClass
+     2.线程  SerialNumGenerator
+            D:\Data\mySrc\MockFramework\src\test\thread\MainClass
 
-     单元测试  TestRulerDraft.class
+     3.单元测试  TestRulerDraft.class
            明确修改点 - 局部测试 - 联合测试( debug修改参数值 )
 
 
