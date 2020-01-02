@@ -60,8 +60,8 @@ public class AmqMsgContainerFactory {
         factory.setConnectionFactory(connectionFactory()); //because use createListenerContainer so remove here
         //设置连接数
         factory.setConcurrency("3-10");
-        //重连间隔时间
-        factory.setRecoveryInterval(1000L);
+        //重连间隔时间  - 这里暂时用不到，所以这样设置
+        factory.setRecoveryInterval(100000000000000L);
 
         //TODO:糅不进去 那么应该在哪里处理呢?
         /*factory.createListenerContainer(new JmsListenerEndpoint() {

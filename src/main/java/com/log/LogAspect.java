@@ -1,5 +1,7 @@
+/*
 package com.log;
 
+*/
 /*@author YangWenjun
 * @date 2019/11/23 11:30
 * @project MockFramework
@@ -41,7 +43,8 @@ package com.log;
            TransactionInterceptor
            BeanNameAutoProxyCreator
 
-* */
+* *//*
+
 
 import com.log.annotation.AfterLog;
 import org.aspectj.lang.JoinPoint;
@@ -59,26 +62,30 @@ import java.lang.reflect.Method;
     @Component
     public class LogAspect {
 
-        @Autowired
-        /* private  LogService logService ;*/
+        //@Autowired
+        */
+/* private  LogService logService ;*//*
+
         //private Logger logger = LoggerFactory.getLogger(LogAspect.class);
         //前置通知
-        //@Before("execution(* com.secKill.controller.UserController.getTest(..))")
+        @Before("execution(* seckill.controller.UserController.getTest(..))")
         public void before(JoinPoint joinPoint) throws ClassNotFoundException {
             System.out.println("---前置通知执行---");
             System.out.println(joinPoint.getArgs()[0]);
             System.out.println(joinPoint.getSignature() + "  this is signature----");
 
-            /**
-             * 融合 reflect 获取类信息，进一步从切面进行信息传递
-             * 1.JoinPoint对象封装了SpringAop中切面方法的信息,在切面方法中添加JoinPoint参数,就可以获取到封装了该方法信息的JoinPoint对象.
-             常用api:
-             方法名	功能
-             Signature getSignature();	获取封装了署名信息的对象,在该对象中可以获取到目标方法名,所属类的Class等信息
-             Object[] getArgs();	获取传入目标方法的参数对象
-             Object getTarget();	获取被代理的对象
-             Object getThis();	获取代理对象
-             */
+            */
+/**
+ * 融合 reflect 获取类信息，进一步从切面进行信息传递
+ * 1.JoinPoint对象封装了SpringAop中切面方法的信息,在切面方法中添加JoinPoint参数,就可以获取到封装了该方法信息的JoinPoint对象.
+ 常用api:
+ 方法名	功能
+ Signature getSignature();	获取封装了署名信息的对象,在该对象中可以获取到目标方法名,所属类的Class等信息
+ Object[] getArgs();	获取传入目标方法的参数对象
+ Object getTarget();	获取被代理的对象
+ Object getThis();	获取代理对象
+ *//*
+
             // 拿到切点的类名、方法名、方法参数
             String className = joinPoint.getTarget().getClass().getName();
             String methodName = joinPoint.getSignature().getName();
@@ -89,7 +96,9 @@ import java.lang.reflect.Method;
             for (Method method :
                     methods) {
                 // 如果遍历到类中的方法名与切点的方法名一致，并且参数个数也一致，就说明切点找到了 -- 有漏洞
-                /***反射中方法使用，以及对方法的访问***/
+                */
+/***反射中方法使用，以及对方法的访问***//*
+
                 if (method.getName().equalsIgnoreCase(methodName)) {
                     Class<?>[] clazzs = method.getParameterTypes();
                     if (clazzs.length == args.length) {
@@ -106,19 +115,21 @@ import java.lang.reflect.Method;
                 }
             }
 
-            /***
-             *ProceedingJoinPoint对象
-             ProceedingJoinPoint对象是JoinPoint的子接口,该对象只用在@Around的切面方法中,
-             添加了
-             Object proceed() throws Throwable //执行目标方法
-             Object proceed(Object[] var1) throws Throwable //传入的新的参数去执行目标方法
-             两个方法.
-             *
-             *
-             */
+            */
+/***
+ *ProceedingJoinPoint对象
+ ProceedingJoinPoint对象是JoinPoint的子接口,该对象只用在@Around的切面方法中,
+ 添加了
+ Object proceed() throws Throwable //执行目标方法
+ Object proceed(Object[] var1) throws Throwable //传入的新的参数去执行目标方法
+ 两个方法.
+ *
+ *
+ *//*
+
         }
 
-       // @Around("execution(* com.secKill.controller.UserController.getTest(..))")
+       @Around("execution(* seckill.controller.UserController.getTest(..))")
         public Object aroundMethod(ProceedingJoinPoint pjd) {
             Object result = null;
 
@@ -146,11 +157,14 @@ import java.lang.reflect.Method;
 
     ;
 
-    /***
-     * 同一个切入点只能是一个吗？
-     */
+    */
+/***
+ * 同一个切入点只能是一个吗？
+ *//*
+
     //后置通知
-    /*@AfterReturning("execution(* com.secKill.controller.UserController.getTest(..))")
+    */
+/*@AfterReturning("execution(* com.secKill.controller.UserController.getTest(..))")
     public void afterReturning(){
         System.out.println("---后置通知执行---");
     };
@@ -168,7 +182,9 @@ import java.lang.reflect.Method;
     @Before("execution(* com.secKill.controller.UserController.getTest(..))")
     public void after(){
         System.out.println("---最终通知执行---");
-    };*/
+    };*//*
+
     //自定义日志注解处理，如何触发：将该方法放到类似于@before等hook下，在调用时触发该方法
 
 
+*/

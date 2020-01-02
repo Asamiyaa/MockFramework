@@ -2,6 +2,7 @@ package boot;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 
 /**
@@ -12,7 +13,7 @@ import org.springframework.cache.annotation.EnableCaching;
  * @description:
  */
 
-    @org.springframework.boot.autoconfigure.SpringBootApplication(scanBasePackages = {"com"})
+    @org.springframework.boot.autoconfigure.SpringBootApplication(scanBasePackages = {"com"},exclude = SecurityAutoConfiguration.class)
     @MapperScan({"com.core.rule.dao","com.register.dao"}) //需要对应的mapperScan
     @EnableCaching
     public class SpringBootApplication {

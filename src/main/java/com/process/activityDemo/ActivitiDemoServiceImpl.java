@@ -1,3 +1,4 @@
+/*
 package com.process.activityDemo;
 
 import org.activiti.engine.HistoryService;
@@ -37,27 +38,32 @@ public class ActivitiDemoServiceImpl {
     @Autowired
     private ProcessEngineConfigurationImpl processEngineConfiguration;
 
-    /**
+    */
+/**
      * 启动流程
      * @param bizId 业务id
-     */
+     *//*
+
     public void startProcesses(String bizId) {
         ProcessInstance pi = runtimeService.startProcessInstanceByKey("demo5", bizId);//流程图id，业务表id
         System.out.println("流程启动成功，流程id:"+pi.getId());
     }
 
-    /**
+    */
+/**
      *
      * <p>描述: 根据用户id查询待办任务列表</p>
      * @author 范相如
      * @date 2018年2月25日
-     */
+     *//*
+
     public List<Task> findTasksByUserId(String userId) {
         List<Task> resultTask = taskService.createTaskQuery().processDefinitionKey("demo5").taskCandidateOrAssigned(userId).list();
         return resultTask;
     }
 
-    /**
+    */
+/**
      *
      * <p>描述:任务审批 	（通过/拒接） </p>
      * @author 范相如
@@ -65,7 +71,8 @@ public class ActivitiDemoServiceImpl {
      * @param taskId 任务id
      * @param userId 用户id
      * @param result false OR true
-     */
+     *//*
+
     public void completeTask(String taskId,String userId,String result) {
         //获取流程实例
         taskService.claim(taskId, userId);
@@ -75,11 +82,13 @@ public class ActivitiDemoServiceImpl {
         taskService.complete(taskId, vars);
     }
 
-    /**
+    */
+/**
      * 更改业务流程状态#{ActivityDemoServiceImpl.updateBizStatus(execution,"tj")}
      * @param execution
      * @param status
-     */
+     *//*
+
     public void updateBizStatus(DelegateExecution execution,String status) {
         String bizId = execution.getProcessInstanceBusinessKey();
         //根据业务id自行处理业务表
@@ -97,7 +106,8 @@ public class ActivitiDemoServiceImpl {
         return Arrays.asList("spy1","uspy2");
     }
 
-    /**
+    */
+/**
      *
      * <p>描述:  生成流程图
      * 首先启动流程，获取processInstanceId，替换即可生成</p>
@@ -105,7 +115,8 @@ public class ActivitiDemoServiceImpl {
      * @date 2018年2月25日
      * @param processInstanceId
      * @throws Exception
-     */
+     *//*
+
     public void queryProImg(String processInstanceId) throws Exception {
         //获取历史流程实例
         HistoricProcessInstance processInstance =  historyService.createHistoricProcessInstanceQuery().processInstanceId(processInstanceId).singleResult();
@@ -128,7 +139,8 @@ public class ActivitiDemoServiceImpl {
     }
 
 
-    /**
+    */
+/**
      * 流程图高亮显示
      * 首先启动流程，获取processInstanceId，替换即可生成
      * @throws Exception
@@ -215,5 +227,7 @@ public class ActivitiDemoServiceImpl {
         }
         return highFlows;
     }
-    ***/
+    ***//*
+
 }
+*/

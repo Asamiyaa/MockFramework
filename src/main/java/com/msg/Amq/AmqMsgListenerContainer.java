@@ -45,7 +45,7 @@ import org.springframework.jms.listener.DefaultMessageListenerContainer;
  */
 @SuppressWarnings("ALL")
 //@Component("amqMsgListenerContainer") //不去扫描该类,扫描会报后面的错。Property 'connectionFactory' is required
-public class AmqMsgListenerContainer extends DefaultMessageListenerContainer{
+public class AmqMsgListenerContainer {//extends DefaultMessageListenerContainer{
 
     @Value("${amq.listener.switch}")
     private String listener ;//注入 + 从配置文件读取 （配置文件）
@@ -58,12 +58,13 @@ public class AmqMsgListenerContainer extends DefaultMessageListenerContainer{
 
   //TODO:可以debug吗?
 
-    @Override
+    //@Override
     public void initialize(){
-        super.initialize();
+        /**避免当前你环境报错，先注销掉**/
+        /*super.initialize();
         if(YON.NO.getValue().equalsIgnoreCase(listener)){
             super.setConnectionFactory(null);
-        }
+        }*/
     }
 
     public void setListener(String listener) {

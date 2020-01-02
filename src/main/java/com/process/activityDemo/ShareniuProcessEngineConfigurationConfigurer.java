@@ -1,14 +1,17 @@
+/*
 package com.process.activityDemo;
 
 import org.activiti.spring.SpringProcessEngineConfiguration;
 import org.activiti.spring.boot.ProcessEngineConfigurationConfigurer;
 import org.springframework.stereotype.Component;
 
+*/
 /**
  * 解决乱码问题
  * @author Administrator
  *
- */
+ *//*
+
 @Component
 public class ShareniuProcessEngineConfigurationConfigurer implements ProcessEngineConfigurationConfigurer {
     public void configure(SpringProcessEngineConfiguration processEngineConfiguration) {
@@ -19,3 +22,4 @@ public class ShareniuProcessEngineConfigurationConfigurer implements ProcessEngi
         System.out.println(processEngineConfiguration.getActivityFontName());
     }
 }
+*/

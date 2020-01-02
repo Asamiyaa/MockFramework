@@ -277,17 +277,17 @@
       </dependency>
 
       <!--springboot对activity整合-->
-      <dependency>
+     <!-- <dependency>
         <groupId>org.activiti</groupId>
         <artifactId>activiti-spring-boot-starter-basic</artifactId>
         <version>6.0.0</version>
-      </dependency>
+      </dependency>-->
 
       <!--spring quartz-->
-      <dependency>
+      <!--<dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-quartz</artifactId>
-      </dependency>
+      </dependency>-->
 
       <!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-all -->
       <dependency>

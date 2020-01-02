@@ -1,3 +1,4 @@
+/*
 package com.process.activityDemo.service;
 
 import org.activiti.engine.RuntimeService;
@@ -30,10 +31,11 @@ public class JoinService {
         if (bool) {
             Long personId = execution.getVariable("personId", Long.class);
             Long compId = execution.getVariable("compId",Long.class);
-            /*Comp comp = compRepository.findById(compId).get();
+Comp comp = compRepository.findById(compId).get();
             Person person = personRepository.findById(personId).get();
             person.setComp(comp);
-            personRepository.save(person);*/
+            personRepository.save(person);
+
             System.out.println("加入组织成功"+personId+"  -- "+compId);
         } else {
             System.out.println("加入组织失败");
@@ -48,3 +50,4 @@ public class JoinService {
 }
 
 
+*/

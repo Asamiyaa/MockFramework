@@ -8,10 +8,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.RestController;
 
 //@EnableAutoConfiguration
-@SpringBootApplication(scanBasePackages = {"com"},exclude = SecurityAutoConfiguration.class)
-@RestController
-@MapperScan("com.secKill.dao")
-@EnableScheduling
+//@SpringBootApplication(scanBasePackages = {"com"},exclude = SecurityAutoConfiguration.class)
+//@RestController
+//@MapperScan("com.secKill.dao")
+//@EnableScheduling
 public class boot {
 
     /*@Autowired
