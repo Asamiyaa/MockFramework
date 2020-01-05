@@ -279,7 +279,7 @@
       <!--springboot对activity整合-->
      <!-- <dependency>
         <groupId>org.activiti</groupId>
-        <artifactId>activiti-spring-boot-starter-basic</artifactId>
+          <artifactId>activiti-spring-boot-starter-basic</artifactId>
         <version>6.0.0</version>
       </dependency>-->
 

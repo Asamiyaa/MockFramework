@@ -1,5 +1,22 @@
 1.线程
+    返回 - 顺序执行该变量相关操作  --如何保证安全性？这里把粒度放到最小使用了atomic.increaseAndGet...
+
+    线程局部变量原理
+    当使用ThreadLocal维护变量时，ThreadLocal为每个使用该变量的线程提供独立的变量副本，每个线程都可以独立地改变自己的副本，而不会影响其它线程所对应的副本，是线程隔离的。线程隔离的秘密在于ThreadLocalMap类(ThreadLocal的静态内部类)
+    线程局部变量是局限于线程内部的变量，属于线程自身所有，不在多个线程间共享。Java 提供 ThreadLocal 类来支持线程局部变量，是一种实现线程安全的方式。但是在管理环境下（如 web 服务器）使用线程局部变量的时候要特别小心，在这种情况下，工作线程的生命周期比任何应用变量的生命周期都要长。任何线程局部变量一旦在工作完成后没有释放，Java 应用就存在内存泄露的风险。
+    ThreadLocal的方法：void set(T value)、T get()以及T initialValue()。
+    ThreadLocal是如何为每个线程创建变量的副本的：
+    首先，在每个线程Thread内部有一个ThreadLocal.ThreadLocalMap类型的成员变量threadLocals，这个threadLocals就是用来存储实际的变量副本的，键值为当前ThreadLocal变量，value为变量副本（即T类型的变量）。初始时，在Thread里面，threadLocals为空，当通过ThreadLocal变量调用get()方法或者set()方法，就会对Thread类中的threadLocals进行初始化，并且以当前ThreadLocal变量为键值，以ThreadLocal要保存的副本变量为value，存到threadLocals。然后在当前线程里面，如果要使用副本变量，就可以通过get方法在threadLocals里面查找。
+    总结：
+
+    实际的通过ThreadLocal创建的副本是存储在每个线程自己的threadLocals中的
+    为何threadLocals的类型ThreadLocalMap的键值为ThreadLocal对象，因为每个线程中可有多个threadLocal变量，就像上面代码中的longLocal和stringLocal；
+    在进行get之前，必须先set，否则会报空指针异常；如果想在get之前不需要调用set就能正常访问的话，必须重写initialValue()方法
+
+    https://www.cnblogs.com/-new/p/7190092.html
+
+    获得全局唯一值并返回/或者向下操作？如何执行不怕覆盖 。直接使用synchronized?粒度 如果没有太耗cpu/内存的有没有必要使用细粒度锁- 考虑更多
 2.迁移
 3.vue
-4.框架
+4.-- 框架 -
 5.同业授信
