@@ -54,7 +54,7 @@ package com.serialNumber;
             最优解决方案。每当你需要解决这其中的某个问题，就可以使用它们来避免做重复工作。
             其中，单例模式（Singleton）和工厂模式（Factory）是几乎每个应用程序中都要用到的通用设计模式。
             并发处理也有其自己的设计模式。本节，我们将介绍一些最常用的并发设计模式，以及它们的Java语言实现
-            aqs/samophare/countLatchDown..
+            /samophare/countLatchDown/cycleBarrier
             1.5.1　信号模式 这种设计模式介绍了如何实现某一任务向另一任务通告某一事件的情形。实现这种设计模式最简单的方式是采用信号量或者互斥，使用Java语言中的ReentrantLock类或Semaphore类即可，甚至可以采用Object类中的wait()方法和notify()方法 sleep/yield/join。 请看下面的例子。 public void task1() { section1(); commonObject.notify(); } public void task2() { commonObject.wait(); section2(); } 在上述情况下，section2()方法总是在section1()方法之后执行。
             1.5.2　会合模式 这种设计模式是信号模式的推广。在这种情况下，第一个任务将等待第二个任务的某一事件，而第二个任务又在等待第一个任务的某一事件。其解决方案和信号模式非常相似，只不过在这种情况下，你必须使用两个对象而不是一个。 请看下面的例子。 public void task1() { section1_1(); commonObject1.notify(); commonObject2.wait(); section1_2(); } public void task2() { section2_1(); commonObject2.notify(); commonObject1.wait(); section2_2(); } 在上述情况下，section2_2()方法总是会在section1_1()方法之后执行，而section1_2()方法总是会在section2_1()方法之后执行。仔细想想就会发现，如果你将对wait()方法的调用放在对notify()方法的调用之前，那么就会出现死锁。
             1.5.3　互斥模式 互斥这种机制可以用来实现临界段，确保操作相互排斥。这就是说，一次只有一个任务可以执行由互斥机制保护的代码片段。在Java中，你可以使用synchronized关键字（这允许你保护一段代码或者一个完整的方法）、ReentrantLock类或者Semaphore类来实现一个临界段。 让我们看看下面的例子。 public void task() { preCriticalSection(); try { lockObject.lock() // 临界段开始 criticalSection(); } catch (Exception e) { } finally { lockObject.unlock(); // 临界段结束 postCriticalSection(); }
@@ -73,8 +73,17 @@ package com.serialNumber;
  *
  *      3.协作和同步 ：D:\Data\mySrc\MockFramework\src\test\thread\MainClass.java
      *      - JUC（Autoxxx）
-     *      -并发(属性修饰符 -ThreadLocal / ConcurrentHashMap CopyOnWriteArrayList:/volitile.
-            - 锁(synchronized / lock) | wait notify condition
+     *      - 并发(属性修饰符 -ThreadLocal / ConcurrentHashMap CopyOnWriteArrayList:/volitile.
+            - 锁(synchronized / lock - reentrantLock / ReadWriteLock) | wait notify condition
+                      lock vs synchronized  二者都是可重入锁  对象head中monitor
+                            1.提供了灵活的lockInterruptibly() 中断  / newCondition() 条件 /tryLock(long time, TimeUnit unit) 超时
+                                synchrozed 无法实现
+                            2.lock提供了获取queue\count\fair\owner..
+                            3.synchronized与wait()和nitofy()/notifyAll()方法相结合可以实现等待/通知模型，ReentrantLock同样可以，但是需要借助Condition，且Condition有更好的灵活性，具体体现在：
+                                1、一个Lock里面可以创建多个Condition实例，实现多路通知
+                                2、notify()方法进行通知时，被通知的线程时Java虚拟机随机选择的，但是ReentrantLock结合Condition可以实现有选择性地通知，这是非常重要的
+                                    而synchronized就相当于整个Lock对象中只有一个单一的Condition对象，所有的线程都注册在这个对象上。线程开始notifyAll时，需要通知所有的WAITING线程，没有选择权，会有相当大的效率问题。
+            - volitale / aqs
 
         4.创建和调用
             1.创建方式  thread runnable Callable+Executor（可以和callable配合也可以和runnable配合）

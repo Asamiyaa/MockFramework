@@ -314,8 +314,9 @@ public class MainClass {
         /**
          *  共享锁和独占结合 控制访问资源操作数  也可以for 线程，对特定资源进行限制
          *  避免信号量和实际size不一致(信号未执行完插入操作 中断性)
+         *  控制局部并发 可能大线程进去会有瓶颈，其他处理可以各自处理，但是公共资源访问部分使用信号量限制线程数
          */
-            Semaphore  isUse = new Semaphore(1  );
+            Semaphore  isUse = new Semaphore(1);
             List list  = new LinkedList();
         new Thread(()->{
             for(;;){
@@ -364,6 +365,7 @@ public class MainClass {
                      * 等待5s ,10个Thread 同时输出
                      */
                     semaphore.acquire();
+                    //可能大线程进去会有瓶颈，其他处理可以各自处理，但是公共资源访问部分使用信号量限制线程数
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -411,10 +413,25 @@ public class MainClass {
         //等待前置条件完成后执行下面  提高并发
         int count = 10 ;
         CountDownLatch cdl = new CountDownLatch(count);
+        //TODO:使用阿里手动创建ThreadPoolExcutor
+        //TODO:核心线程大小和最大线程大小设置  https://blog.csdn.net/u011519624/article/details/69263460 + 最大线程数https://www.cnblogs.com/waytobestcoder/p/5323130.html
         ExecutorService executorService = Executors.newFixedThreadPool(3);
-
+        //从已有的集合中取。集合是否安全 从别的地方获获取的数据
+        // 不参与共享
+        ArrayList datas = new ArrayList<String>(Arrays.asList(new String[]{"1","2","3",
+                "4","5","6","7","8","9","10"}));
+        //换成同步队列
+        List synDatas = Collections.synchronizedList(datas);
+        System.out.println(synDatas.size());
         try{
-            for (int i = 0; i < count; i++) {
+            /**
+             * 从已有的集合中取。集合是否安全
+             */
+
+            // for (int i = 0; i < count; i++) {
+            for (int i = 0; i < datas.size(); i++) {
+                //for (int i = 0; i < synDatas.size(); i++) {
+
                 //ExecutorService executorService = Executors.newFixedThreadPool(2);//pool-2-thread-1 二号线程池 一线程
                 executorService.submit(()->{
                     System.out.println("this is " + Thread.currentThread().getName());
@@ -474,9 +491,49 @@ public class MainClass {
         System.out.println("闭锁退出，共耗时" + (end-start));
     }
 
+    /**
+     * 它允许一组线程互相等待，直到到达某个公共屏障点 (common barrier point)。barrier 在释放等待线程后可以重用
+     * 可以配合countDownLatch使用，二者从不同角度理解
+     *
+     * TODO:分组 - 线程/组关系间有依赖关系
+     */
     private void testCyclicBarrier(){
 
-    }
+                ExecutorService service = Executors.newCachedThreadPool();
+                //final  CyclicBarrier cb = new CyclicBarrier(3);//创建CyclicBarrier对象并设置3个公共屏障点
+                final  CyclicBarrier cb = new CyclicBarrier(3,new Runnable(){
+                    @Override
+                    public void run() {
+                        System.out.println("********我最先执行***********");
+                    }
+                });
+                for(int i=0;i<3;i++){
+                    Runnable runnable = new Runnable(){
+                        public void run(){
+                            try {
+                                Thread.sleep((long)(Math.random()*10000));
+                                System.out.println("线程" + Thread.currentThread().getName() +
+                                        "即将到达集合地点1，当前已有" + cb.getNumberWaiting() + "个已经到达，正在等候");
+                                cb.await();//到此如果没有达到公共屏障点，则该线程处于等待状态，如果达到公共屏障点则所有处于等待的线程都继续往下运行
+
+                                Thread.sleep((long)(Math.random()*10000));
+                                System.out.println("线程" + Thread.currentThread().getName() +
+                                        "即将到达集合地点2，当前已有" + cb.getNumberWaiting() + "个已经到达，正在等候");
+                                cb.await();    //这里CyclicBarrier对象又可以重用
+                                Thread.sleep((long)(Math.random()*10000));
+                                System.out.println("线程" + Thread.currentThread().getName() +
+                                        "即将到达集合地点3，当前已有" + cb.getNumberWaiting() + "个已经到达，正在等候");
+                                cb.await();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+                    service.execute(runnable);
+                }
+                service.shutdown();
+            }
+
 
 
     /***

@@ -87,7 +87,7 @@
            引擎：工作流/规则..
 
 
-5.问题定位
+4.问题定位  性能优化
     1.outOfMemory
     2.空间不足 app / db 表空间
     3.thread deadlock
@@ -95,4 +95,4 @@
     5.mq block
     6.network 抖动
 
-6.性能优化
+    C:\Users\73699\Desktop\think\性能+生产问题思考
