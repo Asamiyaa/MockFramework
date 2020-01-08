@@ -54,7 +54,7 @@ package com.serialNumber;
             最优解决方案。每当你需要解决这其中的某个问题，就可以使用它们来避免做重复工作。
             其中，单例模式（Singleton）和工厂模式（Factory）是几乎每个应用程序中都要用到的通用设计模式。
             并发处理也有其自己的设计模式。本节，我们将介绍一些最常用的并发设计模式，以及它们的Java语言实现
-            aqs/samophare/countLatchDown..
+                samophare(允许多个线程访问共享 vs 互斥锁只允许一个 )/countLatchDown/cycleBarry
             1.5.1　信号模式 这种设计模式介绍了如何实现某一任务向另一任务通告某一事件的情形。实现这种设计模式最简单的方式是采用信号量或者互斥，使用Java语言中的ReentrantLock类或Semaphore类即可，甚至可以采用Object类中的wait()方法和notify()方法 sleep/yield/join。 请看下面的例子。 public void task1() { section1(); commonObject.notify(); } public void task2() { commonObject.wait(); section2(); } 在上述情况下，section2()方法总是在section1()方法之后执行。
             1.5.2　会合模式 这种设计模式是信号模式的推广。在这种情况下，第一个任务将等待第二个任务的某一事件，而第二个任务又在等待第一个任务的某一事件。其解决方案和信号模式非常相似，只不过在这种情况下，你必须使用两个对象而不是一个。 请看下面的例子。 public void task1() { section1_1(); commonObject1.notify(); commonObject2.wait(); section1_2(); } public void task2() { section2_1(); commonObject2.notify(); commonObject1.wait(); section2_2(); } 在上述情况下，section2_2()方法总是会在section1_1()方法之后执行，而section1_2()方法总是会在section2_1()方法之后执行。仔细想想就会发现，如果你将对wait()方法的调用放在对notify()方法的调用之前，那么就会出现死锁。
             1.5.3　互斥模式 互斥这种机制可以用来实现临界段，确保操作相互排斥。这就是说，一次只有一个任务可以执行由互斥机制保护的代码片段。在Java中，你可以使用synchronized关键字（这允许你保护一段代码或者一个完整的方法）、ReentrantLock类或者Semaphore类来实现一个临界段。 让我们看看下面的例子。 public void task() { preCriticalSection(); try { lockObject.lock() // 临界段开始 criticalSection(); } catch (Exception e) { } finally { lockObject.unlock(); // 临界段结束 postCriticalSection(); }
@@ -72,9 +72,10 @@ package com.serialNumber;
  *                  分工：thread-per-message
  *
  *      3.协作和同步 ：D:\Data\mySrc\MockFramework\src\test\thread\MainClass.java
-     *      - JUC（Autoxxx）
-     *      -并发(属性修饰符 -ThreadLocal / ConcurrentHashMap CopyOnWriteArrayList:/volitile.
-            - 锁(synchronized / lock) | wait notify condition
+     *      - JUC（Autoxxx）< - cas  只有单个变量 、简单场景   atomicIntegerArray atomicRefrence<User>
+     *      - 并发属性修饰符 -ThreadLocal / ConcurrentHashMap CopyOnWriteArrayList concurrentLinkedList concurrentSkiplistMap
+            - 锁(synchronized / lock - condition) | wait notify
+            - volitale(底层的、容易出错的) / aqs
 
         4.创建和调用
             1.创建方式  thread runnable Callable+Executor（可以和callable配合也可以和runnable配合）
@@ -97,7 +98,7 @@ package com.serialNumber;
  *                              shutdown()启动有序关闭，其中先前提交的任务将被执行，但不会接受任何新任务。
  *
              2.返回值处理及主线程阻塞
-                <T> Future<T> submit(Callable<T> task);
+                <T> Future<T> submit(Callable<T> task); Callable和Future
                 <T> Future<T> submit(Runnable task, T result);
                 Future<?> submit(Runnable task);
                 1.callable 可接受返回值    可以抛出异常
@@ -114,6 +115,9 @@ package com.serialNumber;
                  *                      IllegalMonitorStateException:
                  *              2.先后考虑 ：1.信号量 / 栅栏 / 门闩 / 队列
                  *                           2.小粒度  成员变量修饰符  AtomicInteger.. 并发容器vector -->concurrentHashamap /阻塞队列 linkedBlockQueue 协作  threadLocal  volatile  reetrentLock 读写锁  死锁  超时
+ *           3.fork-join框架  TODO http://ifeve.com/fork-join-2/
+ *              Fork/Join并行方式是获取良好的并行计算性能的一种最简单同时也是最有效的设计技术。Fork/Join并行算法是我们所熟悉的分治算法的并行版本
+ *              Fork/Join算法，如同其他分治算法一样，总是会递归的、反复的划分子任务，直到这些子任务可以用足够简单的、短小的顺序方法来执行。
 
         5.多线程融合其他技术 - netty/tomcat框架
             1.java 设计模式
