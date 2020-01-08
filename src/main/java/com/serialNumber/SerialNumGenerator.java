@@ -83,6 +83,8 @@ package com.serialNumber;
                                 1、一个Lock里面可以创建多个Condition实例，实现多路通知
                                 2、notify()方法进行通知时，被通知的线程时Java虚拟机随机选择的，但是ReentrantLock结合Condition可以实现有选择性地通知，这是非常重要的
                                     而synchronized就相当于整个Lock对象中只有一个单一的Condition对象，所有的线程都注册在这个对象上。线程开始notifyAll时，需要通知所有的WAITING线程，没有选择权，会有相当大的效率问题。
+                            4.lock和condition配合 https://www.cnblogs.com/xiaoxi/p/7651360.html
+                               实现生产消费 / 顺序执行线程  TODO: lock的高级应用 ---> ?
             - volitale / aqs
 
         4.创建和调用
