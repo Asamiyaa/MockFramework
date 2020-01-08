@@ -28,6 +28,7 @@ public class ConcurrentHashMapCopyWite {
         vector.add("3");
         vector.add("4");
         vector.add("5");
+
         vector.add("6");
         vector.add("7");
         vector.add("8");

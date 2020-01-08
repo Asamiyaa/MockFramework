@@ -76,6 +76,18 @@ package com.serialNumber;
      *      - 并发属性修饰符 -ThreadLocal / ConcurrentHashMap CopyOnWriteArrayList concurrentLinkedList concurrentSkiplistMap
             - 锁(synchronized / lock - condition) | wait notify
             - volitale(底层的、容易出错的) / aqs
+     *      - JUC（Autoxxx）
+     *      - 并发(属性修饰符 -ThreadLocal / ConcurrentHashMap CopyOnWriteArrayList:/volitile.
+            - 锁(synchronized / lock - reentrantLock / ReadWriteLock) | wait notify condition
+                      lock vs synchronized  二者都是可重入锁  对象head中monitor
+                            1.提供了灵活的lockInterruptibly() 中断  / newCondition() 条件 /tryLock(long time, TimeUnit unit) 超时
+                                synchrozed 无法实现
+                            2.lock提供了获取queue\count\fair\owner..
+                            3.synchronized与wait()和nitofy()/notifyAll()方法相结合可以实现等待/通知模型，ReentrantLock同样可以，但是需要借助Condition，且Condition有更好的灵活性，具体体现在：
+                                1、一个Lock里面可以创建多个Condition实例，实现多路通知
+                                2、notify()方法进行通知时，被通知的线程时Java虚拟机随机选择的，但是ReentrantLock结合Condition可以实现有选择性地通知，这是非常重要的
+                                    而synchronized就相当于整个Lock对象中只有一个单一的Condition对象，所有的线程都注册在这个对象上。线程开始notifyAll时，需要通知所有的WAITING线程，没有选择权，会有相当大的效率问题。
+            - volitale / aqs
 
         4.创建和调用
             1.创建方式  thread runnable Callable+Executor（可以和callable配合也可以和runnable配合）
