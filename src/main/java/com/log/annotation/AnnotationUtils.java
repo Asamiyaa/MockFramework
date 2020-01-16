@@ -8,26 +8,30 @@ package com.log.annotation;
  * @description:
  */
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.lang.annotation.*;
+import java.lang.reflect.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * spring 学习中 - 造轮子
- *          先定义流程  简写和脑海
- *          整洁
+ *      0.反射整体https://www.processon.com/diagraming/5dc3eac4e4b0335f1e52d611
+ *      1.反射基本 Class - Filed - Method - con..
  *
- *          涉及：注解(定义-对应属性方法获取api)
- *                反射(真正理解高一层抽象 / 动态 获取当前调用对象的属性，方法，并对其做对应的操作逻辑 api--> proxy)
- *                     获取obj的值，或者注解，获取注解的值
+ *      2.反射 + 泛型   Type
+ *           1.Java reflect Type类及其子类用法分析  : https://blog.csdn.net/fang_qiming/article/details/78155271
+ *
+ *      3.反射 + 注解  Annotation
+ *           1.
  *
  *
- *           编写中的问题：1.没有思路 流程
- *                         2. 对api不熟悉导致 调试 (必要的return .. 初始化..参数 class<T> .[])
- *                         3.调试定位  sysout ...debug...
+ *
+ *
+ *
+ *
+ *
+ *
  */
 public class AnnotationUtils {
 
@@ -126,12 +130,162 @@ public class AnnotationUtils {
      * util测试 直接main
      * @param args
      */
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
-        Student student = new Student();
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException, NoSuchFieldException, NoSuchMethodException, InvocationTargetException, ClassNotFoundException {
+        /*Student student = new Student();
         student.setMoney(100);
-        AnnotationUtils.volidate(student);
+        AnnotationUtils.volidate(student);*/
+
+        //测试反射和泛型
+        //new AnnotationUtils().testGenericAndRef();
+
+        //测试反射和注解
+        new AnnotationUtils().testAnnotationAndRef();
+
+    }
+
+    /**--------------------反射+泛型---------------------------------------**/
+        public void testGenericAndRef() throws NoSuchFieldException {
+
+            //------ParimeterizedType   list<T>
+            Student1 student1 = new Student1() ;
+            Field courses = student1.getClass().getDeclaredField("courses");
+            Type genericType = courses.getGenericType(); //generic 通用 - 泛
+            System.out.println(genericType.getTypeName()); //java.util.ArrayList<java.lang.String>
+            if(genericType instanceof ParameterizedType){ //ParameterizedType 就是 List<String>
+               //  (ParameterizedType)genericType  -- 强转     raw 原
+                System.out.println(ParameterizedType.class.cast(genericType).getRawType());   //class java.util.ArrayList
+                System.out.println(ParameterizedType.class.cast(genericType).getActualTypeArguments()[0]); //class java.lang.String
+
+
+            //------genericArrayType  T[]
+                Field tt = student1.getClass().getDeclaredField("tt");
+                Type genericType1 = tt.getGenericType();
+                String typeName = genericType1.getTypeName();
+                System.out.println(typeName);              //T[]
+                if(genericType1 instanceof GenericArrayType){
+                    System.out.println(((GenericArrayType) genericType1).getGenericComponentType().getTypeName());// T
+                }
+
+            //------TypeVariable   T extends Map
+                Field ll = student1.getClass().getDeclaredField("ll");
+                Type genericType2 = ll.getGenericType();
+                //TypeVariable tv = (TypeVariable)genericType2; 先获取到param..Type ,在获取参数
+                ParameterizedType pt  = (ParameterizedType)genericType2;
+                Type[] types=pt.getActualTypeArguments();
+                TypeVariable typeVariable=(TypeVariable)types[0];
+                Type[] types2=typeVariable.getBounds();
+                for(Type type : types2){
+                    System.out.print(type + " ");
+                }
+
+            //------WildcardType  ? extends Number / ? super Integer
+
+            }
+        }
+
+    /**--------------------反射+注解---------------------------------------**/
+    public void testAnnotationAndRef() throws NoSuchFieldException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
+        Student1 student1 = new Student1();
+        System.out.println(student1.getClass().getAnnotations()[0].annotationType()); //interface com.log.annotation.foramt
+        System.out.println(student1.getClass().getDeclaredField("ann").getDeclaredAnnotation(foramt.class)); //@com.log.annotation.foramt(name=b, length=1)
+
+        foramt foramt = student1.getClass().getDeclaredField("ann").getDeclaredAnnotation(foramt.class);
+        System.out.println(foramt.name()); //***获取对应的注解的值**8
+        //foramt.annotationType()  获得该注解的class对象 ，之后使用 Class方法  --- 获取都是 注解对象/属性对象
+
+        //遍历获取属性列表 -- 遍历注解方法 -- 获取对应值   和  当前对象的值进行对比  <-- 工具类 . 上面定义了每个注解具体的比对逻辑 反射获取
+        System.out.println(foramt.annotationType().getDeclaredMethods()[0].getName());
+        System.out.println(foramt.annotationType().getDeclaredMethods()[0].getDefaultValue()); //默认值/当前值
+
+        Field[] fields = student1.getClass().getDeclaredFields();
+        for (Field f :
+                fields) {
+            Annotation[] annotations = f.getAnnotations();
+            if(annotations == null){ continue; }
+            for (Annotation ann :
+                    annotations) {
+                //-----省略
+                String typeName = ann.annotationType().getTypeName();
+                if(typeName.equals("foramt")){
+                    //doForamt(f.get(student1),((foramt)ann).name());
+                    //doForamt(f.get(student1),ann);
+                    //doForamt(f,ann);
+                    //--通过反射获取对应的注解类，并获取相关方法。这样的可以去掉if.
+                }else if(typeName.equals("format1")){
+                    doForamt1();
+                }
+                //---  省略
+
+                //放到缓存中 -- 提供对应的类 包装该内部结构并提供获取和对比方法
+
+                String annName = AnnHolder.getAnnName(ann);
+                //反射获取对应的注解中的doValidate()来 。 所以注解都应该实现一个接口
+                Method mm = Class.forName(annName).getMethod("doValidate",null);
+                Map ret = (Map)mm.invoke(this, "", "");//对应的对象
+
+               // if(ret){} 判断是否进行下一个循环校验
+
+
+            }
+            
+        }
+    }
+
+    private void doForamt1() {
+    }
+//将这个对比逻辑放到对应的注解中，定义方法。因为他们更近
+    private void doForamt(Field f , Annotation ann) {
+        
     }
 
 
+}
+@foramt(length = 1,name = "b")
+class Student1<T extends Map >{
+
+    private  String  name = "student1";
+    private  ArrayList<String> courses ;
+    private T[] tt ;
+    private ArrayList<T> ll ;
+    @foramt(length = 1,name = "b")
+    @foramt2
+    private String ann ;
+
+
+}
+
+@Target({ElementType.FIELD,ElementType.METHOD,ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)  //定义枚举 也是作为控制的一种
+@interface foramt{
+    int length() default 0 ;
+    String name() default "a";
+}
+
+@Target({ElementType.FIELD,ElementType.METHOD,ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)  //定义枚举 也是作为控制的一种
+@interface foramt2{
+    int length() default 0 ;
+    String name() default "a";
+}
+
+class AnnHolder {
+
+    //不提供
+    /*public ArrayList getAnnLiist() {
+        return annLiist;
+    }
+*/
+    //TODO :扫描所有的属性获得对应的注解 --> spring ??
+   static  ArrayList<String> annLiist = new ArrayList(Arrays.asList(new String[]{"foramt", "format1"}));
+
+    public static String getAnnName(Annotation annotation){
+        for (String ann :
+                annLiist) {
+           if(ann.equals(annotation.annotationType().getName())){
+                return  ann ;
+           }
+        }
+        return null ;
+    }
 
 }

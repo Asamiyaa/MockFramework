@@ -52,8 +52,13 @@
 
              C:\Users\73699\Desktop\think\高效实现思考
 
-            - 可扩展(反射+泛型+注解 、重构、设计模式 SpringMain.class+ + https://www.processon.com/diagraming/5dc3eac4e4b0335f1e52d611.. 重构 )
-                    ParamRuleCheckImpl + AnnotationUtils + XMLConvertUtil
+            - 可扩展(反射+泛型+注解 、重构、设计模式 )
+                    AnnotationUtils +  + XMLConvertUtil
+                        设计模式： 总体 - SpringMain
+                                责任链 - ParamRuleCheckImpl
+                                外观/门面（Facade） - RuleManager
+                                模板方法 - AbstractCallBack
+                                适配器 -
 
                   - 框架(利用已有框架api扩展 SpringMain 、 切面、自定义规则配置文件 studentRule -xsd )
 

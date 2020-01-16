@@ -1,18 +1,18 @@
 package com.register.impl;
 
 import com.exception.CallBackException;
-import com.register.ICallback;
 import com.register.bean.dataObj.RgctStudentHist;
 import com.register.bean.dataObj.RgctStudentInfo;
 
 /**
  * @author YangWenjun
- * @date 2019/12/3 16:35
+ * @date 2020/1/16 14:37
  * @project MockFramework
- * @title: CallBackImpl
+ * @title: FirstCallBack
  * @description:
  */
-public class CallBackImpl implements ICallback {
+public class FirstCallBack extends AbstractCallBack {
+
     @Override
     public boolean execute(RgctStudentInfo rgctStudentInfo, RgctStudentHist rgctStudentHist) throws CallBackException {
         return false;
