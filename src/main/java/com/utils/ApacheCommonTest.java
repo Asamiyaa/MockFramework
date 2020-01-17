@@ -25,7 +25,7 @@ package com.utils;
                     BasicThreadFactory,,Diff,RandomUtils,TypeUitls
                     Validate等等.
 
-                    ClassUtils - MethodUtils - FieldUtils
+                    ClassUtils - MethodUtils - FieldUtils - TypeUtils
 
                     stringUtils.leftPad/compare/LastIndexOfAny/split
                     //无需判断是否为空直接截取
@@ -45,6 +45,8 @@ package com.utils;
                     //* . ? + $ ^ [ ] ( ) { } | \ /
                     System.out.println(Arrays.toString("ab.c.dd".split(".")));//[]
                     System.out.println(Arrays.toString("ab.c.dd".split("\\.")));//[ab, c, dd]
+
+                    FileUtils.readFileToString
 
 
 Collections	java集合框架操作. 集合 -jdk Arrays/collections - >
