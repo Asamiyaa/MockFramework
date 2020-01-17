@@ -21,11 +21,33 @@ package com.utils;
 
              组件	功能介绍
 
-             Lang	Java基本对象方法的工具类包 如：StringUtils,ArrayUtils,AnnotationUtils,
-                    BasicThreadFactory,ClassUtils,Diff,RandomUtils,TypeUitls
+             Lang	Java基本对象方法的工具类包 如：StringUtils - / split,ArrayUtils,AnnotationUtils,
+                    BasicThreadFactory,,Diff,RandomUtils,TypeUitls
                     Validate等等.
 
-             Collections	java集合框架操作. 集合 -jdk Arrays/collections - >
+                    ClassUtils - MethodUtils - FieldUtils
+
+                    stringUtils.leftPad/compare/LastIndexOfAny/split
+                    //无需判断是否为空直接截取
+                    System.out.println(StringUtils.lastIndexOfIgnoreCase("abccde", "c"));
+                    System.out.println(StringUtils.lastIndexOfIgnoreCase(null, "c")); // -1
+
+                    System.out.println(StringUtils.substringAfter("abccde", "c"));//cde
+                    System.out.println(StringUtils.appendIfMissing("abc", "tt", "gg"));//abctt
+
+                    正则
+                    String[] strings = StringUtils.splitPreserveAllTokens("ab.c.dd,  ", ".", 3);
+                    for (String s :
+                    strings) {
+                    System.out.println(s); //ab  c dd, 一定要考虑边界问题 - 空白问题
+                    }
+                    //正则表达式需要转义的特殊字符  - https://blog.csdn.net/lvshubao1314/article/details/51222978
+                    //* . ? + $ ^ [ ] ( ) { } | \ /
+                    System.out.println(Arrays.toString("ab.c.dd".split(".")));//[]
+                    System.out.println(Arrays.toString("ab.c.dd".split("\\.")));//[ab, c, dd]
+
+
+Collections	java集合框架操作. 集合 -jdk Arrays/collections - >
 
              BeanUtils	提供了对于JavaBean进行各种操作，克隆对象,属性等等.
                     copyProperties(Object dest, Object orig)  the same. name
@@ -105,6 +127,14 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 */
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.util.ArrayList;
+import java.util.Map;
+
 /**
  *      Google Guava官方教程
  *                          --->http://ifeve.com/google-guava/
@@ -288,6 +318,60 @@ public class ApacheCommonTest {
         System.out.println("--mail send end--");
 
 
+
+    private void testCommonUtils() throws IllegalAccessException, NoSuchFieldException {
+
+        System.out.println(ClassUtils.getCanonicalName(temp.class));//完整类名  com.temp
+        System.out.println(ClassUtils.getName(temp.class));//完整类名  com.temp
+        System.out.println(ClassUtils.getShortCanonicalName(temp.class));//temp
+
+        //getFieldsListWithAnnotation(Class<?> cls, Class<? extends Annotation> annotationCls)
+        //使用工具类可以 ‘ 一步包含多个步骤 ’达到快速
+        //将.annotation 包含
+        List<Field> fieldsListWithAnnotation = FieldUtils.getFieldsListWithAnnotation(Student1.class, foramt.class);
+        for (Field fi :
+                fieldsListWithAnnotation) {
+            System.out.println(fi.getName()); //tt ann
+        }
+        //将.accessable 包含
+        Student1<HashMap> util = new Student1<>("util");
+        System.out.println(FieldUtils.readDeclaredField(util, "name",true)+"-1-1-");
+        System.out.println(util.getClass().getDeclaredField("name").get(util)+"2-2-2-");
+
+
+    }
+
     }
 }
 */
+
+@foramt(length = 1,name = "b")
+class Student1<T extends Map>{
+
+    private  String  name = "student1";
+    private ArrayList<String> courses ;
+    @foramt(length = 1,name = "b")
+    private T[] tt ;
+    private ArrayList<T> ll ;
+    @foramt(length = 1,name = "b")
+    @foramt2
+    private String ann ;
+
+    public Student1(String name) {
+        this.name = name;
+    }
+}
+
+@Target({ElementType.FIELD,ElementType.METHOD,ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)  //定义枚举 也是作为控制的一种
+@interface foramt{
+    int length() default 0 ;
+    String name() default "a";
+}
+
+@Target({ElementType.FIELD,ElementType.METHOD,ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)  //定义枚举 也是作为控制的一种
+@interface foramt2{
+    int length() default 0 ;
+    String name() default "a";
+}
