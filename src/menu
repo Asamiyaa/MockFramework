@@ -18,9 +18,32 @@
 
 -1:编码命名归范  naming.class
 
-0.架构设计  https://blog.csdn.net/hguisu/article/details/78258430
+0.1.架构设计  https://blog.csdn.net/hguisu/article/details/78258430
    ===> 3.0详设版本1.0 -> 2.0 业务需求文档从业务角度出发 --> 详设从系统，开发角度 泳道图 交互。这种转化也是 ‘代码开发’的依据而不是业务流程图
    ===> 仿真文档自己版  -> 李老师版本  场景全面 - 可行性 - 从简单实例完成到迭代
+
+
+   2. 学习新模块的方式学习实践 - 从jdk的使用什么 -- 到这里的不同的模块注意什么、如何融合
+         1.登录官网  quickstart   https://rocketmq.apache.org/docs/quick-start/   + 左侧对应的其他example和tips
+         2.既然写模块，肯定要结合起来写 实现企业级  那么如何和springboot 整合呢  查看springboot文档  https://spring.io/projects/spring-framework
+             springboot: https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/reference/html/index.html
+                         https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/reference/html/spring-boot-features.html#boot-features  整合
+             我还是不清楚要配置哪些必要信息、注意哪些信息 - 其实在springboot中@configure和@bean就是spring中xml配置方式
+
+             其实这里在官方简单入门基础上，+ 提供的api = (参考源码的test init/调用方式 - 指导如何使用)企业级开发 = 别人总结了部分(不同角度 综合 取舍) 如果系统整合参考对应的书籍 全面  <-- 这也是后续考虑全面或者说线上问题的解决
+
+             从官方-民间(不同的角度比如property-spring env ../构造方法、后置处理器、)-自己项目企业级 这个过程是渐进的 -- 所以高内聚低耦合 接口 门面的作用就出来了
+                    就像java简单main和api一样，需要不断的演化熟练学习使用，其次是参考源码。 比如这里从springboot的application.p中可以知道配置property也就是注意点
+                    这样我们在@bean中对这些必要的控制 结合场景 https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/reference/html/appendix-application-properties.html#common-application-properties
+
+             这样才对接了真正的源码 ，开源项目整洁。合理。内聚
+
+
+   3. 学习新的文档api,根据其设计对应的代码 比如票交所的规范，如何根据规范设计对应的代码
+
+
+
+
 
 1.如何编写工具类：JaxbUtil.class
 
