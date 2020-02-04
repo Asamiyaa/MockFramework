@@ -24,11 +24,18 @@
 
 
    2. 学习新模块的方式学习实践 - 从jdk的使用什么 -- 到这里的不同的模块注意什么、如何融合
-         1.登录官网  quickstart   https://rocketmq.apache.org/docs/quick-start/   + 左侧对应的其他example和tips
-         2.既然写模块，肯定要结合起来写 实现企业级  那么如何和springboot 整合呢  查看springboot文档  https://spring.io/projects/spring-framework
-             springboot: https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/reference/html/index.html
-                         https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/reference/html/spring-boot-features.html#boot-features  整合
-             我还是不清楚要配置哪些必要信息、注意哪些信息 - 其实在springboot中@configure和@bean就是spring中xml配置方式
+         1.登录官网  quickstart   https://rocketmq.apache.org/docs/quick-start/   + 左侧对应的其他example和tips + best practice就是核心设计-源码注意点
+
+         2.既然写模块，肯定要结合起来写 实现企业级
+             那么如何和springboot 整合呢  查看springboot文档  https://spring.io/projects/spring-framework
+             springboot:
+                         1.@configure和@bean 将引入的模块注入到spring管理，其中的属性来自前面该模块需要注意的东西+配置文件配置+方法中判断 = spring中xml配置 - 跑起来
+                         2.https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/reference/html/spring-boot-features.html#boot-features  整合
+                     *************优雅的整合***********
+                           使用哪个注解 - 使用哪个springfactory - 后置处理器 - 从spring上下文中获得哪些东西和这里进行柔和 - 类结构 接口定义
+                             实现https://www.cnblogs.com/SimpleWu/p/12112351.html
+                             所以必须了解spring的整个结构以及扩展点、注解、参数.. 系统性就和学习前面模块一样而不是片解。在不段使用学习中完善
+                     ************************
 
              其实这里在官方简单入门基础上，+ 提供的api = (参考源码的test init/调用方式 - 指导如何使用)企业级开发 = 别人总结了部分(不同角度 综合 取舍) 如果系统整合参考对应的书籍 全面  <-- 这也是后续考虑全面或者说线上问题的解决
 

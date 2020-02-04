@@ -1,6 +1,7 @@
 package com.register.impl;
 
 import com.exception.CallBackException;
+import com.msg.xml.msgBuilder.DraftBuildData;
 import com.register.bean.dataObj.RgctStudentHist;
 import com.register.bean.dataObj.RgctStudentInfo;
 
@@ -12,6 +13,11 @@ import com.register.bean.dataObj.RgctStudentInfo;
  * @description:
  */
 public class FirstCallBack extends AbstractCallBack {
+
+    @Override
+    protected String buildBody(DraftBuildData dbd) {
+        return null;
+    }
 
     @Override
     public boolean execute(RgctStudentInfo rgctStudentInfo, RgctStudentHist rgctStudentHist) throws CallBackException {

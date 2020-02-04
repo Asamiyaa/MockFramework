@@ -22,6 +22,9 @@
     handleInput
     composite
     clz
+    deleteWhen
+    ConsumeFromWhere
+    isWaitStoreMsgOK
 
 
 缩写：https://www.iteye.com/blog/lihaiming-2317036
