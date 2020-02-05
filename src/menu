@@ -23,19 +23,43 @@
    ===> 仿真文档自己版  -> 李老师版本  场景全面 - 可行性 - 从简单实例完成到迭代
 
 
-   2. 学习新模块的方式学习实践 - 从jdk的使用什么 -- 到这里的不同的模块注意什么、如何融合
+   2. 学习新模块的方式学习实践 - 从jdk的使用什么 -- 到这里的不同的模块注意什么、如何融合  --- 这些也是基础学习以后可以在自己扩展或使用别人的博客
          1.登录官网  quickstart   https://rocketmq.apache.org/docs/quick-start/   + 左侧对应的其他example和tips + best practice就是核心设计-源码注意点
 
-         2.既然写模块，肯定要结合起来写 实现企业级
-             那么如何和springboot 整合呢  查看springboot文档  https://spring.io/projects/spring-framework
+         2.既然写模块，肯定要结合起来写 实现企业级 - 不要嘲笑工具的使用，因为直接接触的就是你对使用越合理越熟练才会越好。原理是用来提升的
+             那么如何和springboot 整合呢  查看springboot文档   -- 繁多并且都是一些简单的(高层次)，肯定根据经验删选重要的，--->跑起来
+                    springboot:https://spring.io/projects/spring-framework
+                    spring:https://docs.spring.io/spring/docs/5.2.3.RELEASE/spring-framework-reference/index.html
              springboot:
                          1.@configure和@bean 将引入的模块注入到spring管理，其中的属性来自前面该模块需要注意的东西+配置文件配置+方法中判断 = spring中xml配置 - 跑起来
                          2.https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/reference/html/spring-boot-features.html#boot-features  整合
                      *************优雅的整合***********
-                           使用哪个注解 - 使用哪个springfactory - 后置处理器 - 从spring上下文中获得哪些东西和这里进行柔和 - 类结构 接口定义
+
+                           使用哪个注解 - 使用哪个springfactory - 后置处理器 - 从spring上下文(线程上下文、自定义上下文)中获得哪些东西和这里进行柔和 - > 下面的类的东西规范-可扩展...{ 类结构 接口定义 - 设计模式 }
                              实现https://www.cnblogs.com/SimpleWu/p/12112351.html
                              所以必须了解spring的整个结构以及扩展点、注解、参数.. 系统性就和学习前面模块一样而不是片解。在不段使用学习中完善
-                     ************************
+
+                                        注解：https://blog.csdn.net/u010648555/article/details/76299467 + https://blog.csdn.net/weixin_37490221/article/details/78406810
+                                                 @ComponentScan, @ConfigurationPropertiesScan, @EntityScan, or @SpringBootApplication
+                                                 @Configuration  @ImportResource  @Import{ MyConfig.class, MyAnotherConfig.class })
+                                                 @SpringBootApplication or @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})--->通过查看源码知道配置哪些属性
+                                                 @Autowired @Component, @Service, @Repository, @Controller
+                                                 @SpringBootApplication = @EnableAutoConfiguration+@ComponentScan+@Configuration
+                                            简单使用：Spring Boot中使用@Async实现异步调用 http://blog.didispace.com/springbootasync/
+                                                      @EnableScheduling和@Scheduled的使用：https://blog.csdn.net/u014231523/article/details/76263304
+                                                      Spring缓存注解 https://blog.csdn.net/wjacketcn/article/details/50945887
+                                                      springmvc注解：https://www.cnblogs.com/leskang/p/5445698.html
+                                ---spring注解没有解决，即通用的没有提供的，则通过源码bean扩展---
+                                        扩展：https://www.cnblogs.com/xrq730/p/5721366.html <-- SpringMain.class （一定程度上因为自己的简单，所以赋值没有那么深究，可以从多个地方多种方式进行赋值）
+                                        PropertyPlaceholderConfigurer
+                                        AbstractRoutingDataSource(多数据源动态切换，子类可继承并重写determineCurrentLookupKey方法）
+                                        聊聊spring的那些扩展机制:https://juejin.im/post/5ba45a94f265da0aa94a0d71
+                                        ApplicationListener 扩展:https://juejin.im/post/5b7964d6f265da43412866c7
+
+                                 --java 扩展 spi https://juejin.im/post/5af952fdf265da0b9e652de3
+
+
+                      ************************
 
              其实这里在官方简单入门基础上，+ 提供的api = (参考源码的test init/调用方式 - 指导如何使用)企业级开发 = 别人总结了部分(不同角度 综合 取舍) 如果系统整合参考对应的书籍 全面  <-- 这也是后续考虑全面或者说线上问题的解决
 
@@ -130,7 +154,7 @@
            消息中间件 mq思考
            引擎：工作流/规则..
 
-
+     6>spring-boot-devtools - 热部署 - 构建-发布- 部署  gradle(ant+maven)-> devops
 4.问题定位  性能优化
     1.outOfMemory
     2.空间不足 app / db 表空间
