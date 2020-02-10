@@ -39,6 +39,6 @@ TODO :将menu中的异步那里改为性能  因为异步只是提高性能的�
 5.业务流程优化，数据结构调整  比如kafka就将从pageCache - 用户内存 - socket内存转为 pageCache - socket
 6.分段、分片、分库表　分组　设权限
 
-
+IDEA查看接口或类的继承实现关系图:https://blog.csdn.net/Jae_Wang/article/details/80058541 - 源码分析时
 
 TODO:1.设计关于jms中使用mq\需要注意的东西 各种特性 幂等、事务、...的处理 明确问题和解决方案 取舍
