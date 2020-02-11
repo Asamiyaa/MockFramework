@@ -109,6 +109,7 @@ public class RedisCacheConfiguer {
         return redisTemplate.opsForHash();
     }
 
+
   /*  *
      * 对redis字符串类型数据操作
      *

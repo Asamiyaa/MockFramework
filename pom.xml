@@ -256,6 +256,14 @@
         <artifactId>spring-boot-starter-data-redis</artifactId>
       </dependency>
 
+      <!--为了单独测试redis在不集成域spring https://mvnrepository.com/artifact/redis.clients/jedis -->
+      <dependency>
+        <groupId>redis.clients</groupId>
+        <artifactId>jedis</artifactId>
+        <version>3.1.0</version>
+      </dependency>
+
+
       <!--aop-->
       <dependency>
         <groupId>org.springframework.boot</groupId>

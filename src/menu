@@ -23,7 +23,7 @@
    ===> 仿真文档自己版  -> 李老师版本  场景全面 - 可行性 - 从简单实例完成到迭代
 
 
-   2. 学习新模块的方式学习实践 - 从jdk的使用什么 -- 到这里的不同的模块注意什么、如何融合  --- 这些也是基础学习以后可以在自己扩展或使用别人的博客
+   2. 学习新模块的方式学习实践(DefaultProducer + RedisUse) - 从jdk的使用什么 -- 到这里的不同的模块注意什么、如何融合  --- 这些也是基础学习以后可以在自己扩展或使用别人的博客
          1.登录官网  quickstart   https://rocketmq.apache.org/docs/quick-start/   + 左侧对应的其他example和tips + best practice就是核心设计-源码注意点
 
          2.既然写模块，肯定要结合起来写 实现企业级 - 不要嘲笑工具的使用，因为直接接触的就是你对使用越合理越熟练才会越好。原理是用来提升的
@@ -33,10 +33,18 @@
                            *****  https://spring.io/guides *****使用示例
              springboot:
                          1.@configure和@bean 将引入的模块注入到spring管理，其中的属性来自前面该模块需要注意的东西+配置文件配置+方法中判断 = spring中xml配置 - 跑起来
-                         2.https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/reference/html/spring-boot-features.html#boot-features  整合
-                     *************优雅的整合***********
+                         2.https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/reference/html/spring-boot-features.html#boot-features  整合 配置信息一部分用于
+                           springbootstarter内部判断 ，一部分需要在bean定义时判断 ${"xx"}
 
-                           使用哪个注解 - 使用哪个springfactory - 后置处理器 - 从spring上下文(线程上下文、自定义上下文)中获得哪些东西和这里进行柔和 - > 下面的类的东西规范-可扩展...{ 类结构 接口定义 - 设计模式 }
+             以redis整合为例，查看如何spring和jedis结合
+                 一直到 JedisConnectionFactory  终于找到了关于jedis的引用
+                 - PersistenceExceptionTranslator（统一异常处理） -RedisConnectionFactory - JedisConnectionFactory
+                 											   	- redisTempate 	- xxmanager(RedisCacheWriter - RedisCacheConfiguration)abstract..cacheMaxx
+                 																																																封装子系统中的多个api,无需客户端组合 build /create / get..
+                 源码阅读过程中看到了spring的封装层次和引用的类，工具...学习
+
+        3.优雅的整合
+                         1.使用哪个注解 - 使用哪个springfactory - 后置处理器 - 从spring上下文(线程上下文、自定义上下文)中获得哪些东西和这里进行柔和
                              实现https://www.cnblogs.com/SimpleWu/p/12112351.html
                              所以必须了解spring的整个结构以及扩展点、注解、参数.. 系统性就和学习前面模块一样而不是片解。在不段使用学习中完善
 
@@ -61,6 +69,7 @@
 
                                  --java 扩展 spi https://juejin.im/post/5af952fdf265da0b9e652de3
 
+                        2.下面的类的东西规范-可扩展...{ 类结构 接口定义 - 设计模式 ....}
 
                       ************************
 
@@ -71,7 +80,7 @@
              这样才对接了真正的源码 ，开源项目整洁。合理。内聚
 
 
-   3. 学习新的文档api,根据其设计对应的代码 比如票交所的规范，如何根据规范设计对应的代码
+   4. 学习新的文档api,根据其设计对应的代码 比如票交所的规范，如何根据规范设计对应的代码 --> 转化比如将逻辑、算法等转化为对应的代码实现
         xml组装
 
 
@@ -108,19 +117,30 @@
 
         当发现传递参数较多时，注意 ‘ 从不同角度抽象为bean - xxsearchBean - CacheInitBean - UserLogonBean  ’
 
-        - 规范性（命名 naming.class - 使用第三方类库简化代码 apache-guava ApacheCommonTest.class --查看该项目已有-->自己定义工具类 String../ MathUtil / beanUtil / MethodUtils/FieldUtils/Ref..） 健壮性(前置校验、返回包装、异常分支、边界、日志、事务) 风险(安全、注入)
+        - 规范性（命名 naming.class - 使用第三方类库简化代码 apache-guava ApacheCommonTest.class --查看该项目已有-->自己定义工具类 String../ MathUtil / beanUtil /
+                MethodUtils/FieldUtils/Ref..） 健壮性(前置校验、返回包装、统一异常/异常分支(流程图)return/break/try..catch/throws、边界、日志、事务、切面) 风险(安全、注入)
                 事务：所谓的事务挂起其实就是一个移除当前线程、数据源活动事务对象的过程。
                      事务的本质其实是对数据库自动提交的关闭与开启，传播特性是Spring提出、实现、控制的概念，而隔离级别是对数据库实现的封装。
-
              C:\Users\73699\Desktop\think\高效实现思考
 
-            - 可扩展(反射+泛型+注解 、重构、设计模式 )
+            - 可扩展(基本实现-父类、抽象类接口- 反射(spring RelectionUitls/classUtils...)+泛型+注解 、重构(属性、方法定义合理性 - 属性bean通过依赖、关联、静态、默认、spring..初始化
+                    构造、方法重载、this的使用)、设计模式 )
                     AnnotationUtils +  + XMLConvertUtil
                         设计模式： 总体 - SpringMain
                                 责任链 - ParamRuleCheckImpl
-                                外观/门面（Facade） - RuleManager
-                                模板方法 - AbstractCallBack
+                                外观/门面（Facade） - RuleManager 、RedisCacheManager(允许客户定义的接口信息，内部的接口无需客户知道暴露)
+                                模板方法 - AbstractCallBack  相对于父类，抽象类不具有暴露即没有默认..；比如这里定义了流程或者为了不用实现接口的所有提供部分默认。
+                                                             但父类可以单独提供完整功能 。
+                                                             模板方法、父类都是从所有‘子类明确实现中抽象的，而不是先开始就定义的了’
+                                            RedisTemplate
                                 适配器 -
+                                包装器  WrapperParameter  WrapperInputStream 类似于dto 、代替继承、核心、公共、不同维度、除了实现核心所有的this.xx.xx（）外，还提供该维度扩展方法
+                                        比如图形 -形状 扩展颜色。
+                                        实际思考过程：重新定义类copy - 继承父类会造成膨胀 - 引用作为属性(这种其他属性轻重和核心属性是由区别的)
+                                        比如eod任务类 除了核心service还有自己的日志系统和监控系统
+                                委派模式：dispatcher - handler: if - 比起实现更庞大 / 策略
+                                        https://muyinchen.github.io/2017/08/05/Spring5%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-Spring%E4%B8%AD%E7%9A%84%E5%A4%84%E7%90%86%E5%99%A8handlers/
+                                        https://blog.csdn.net/JDream314/article/details/8433889
 
                   - 框架(利用已有框架api扩展 SpringMain 、 切面、自定义规则配置文件 studentRule -xsd )
 
@@ -149,6 +169,7 @@
            治理：
 
      5>源码
+          阅读源码难原因 1.基础不够实践不够  2.不知道使用场景和问题(见得多了不同之间汇通) 3.实现-模式优雅
            体会其中的取舍，解决思路，技术的综合使用，反射使用
            spring：C:\Users\73699\Desktop\think\框架学习认识使用思考\spring  +  沽咆笔记
            /mybatis/dubbo/
