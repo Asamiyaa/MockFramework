@@ -6,6 +6,7 @@ import com.core.rule.dao.DraftDoMapper;
 import com.core.rule.impl.ParamRuleCheckImpl;
 import com.exception.DraftBindException;
 import com.exception.ServiceCheckException;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,12 @@ import java.util.logging.Logger;
  * @project MockFramework
  * @title: TestRuler
  * @description:
+ *
+ *
+ *          1.volidate 校验规则 -- hibernate=spring - 切面 - 校验框架
+ *          2.
+
+
  */
 
 
@@ -111,12 +118,12 @@ public class TestRulerDraft {
         //<student><name></name><age></age><className></className></student>
 //        System.out.println(System.getProperty("line.separator"));
     }
-    @Autowired
+   /* @Autowired
     private DraftManager draftManager;
-
+*/
     @Test
     public  void testDraftXml2() throws IOException {
-        draftManager.parseAndPersist(new File("src/main/resources/studentDraft.xml"));
+     //   draftManager.parseAndPersist(new File("src/main/resources/studentDraft.xml"));
     }
     @Test
     public void testDoSelf() throws UnsupportedEncodingException {
@@ -139,8 +146,18 @@ public class TestRulerDraft {
 
         /**
          * 验证通过，但validator的逻辑正确性没有验证到 - debug 没有生成链
+         *
          */
+        //Assert.assertArrayEquals(); junit中断言
     }
+
+
+
+
+
+
+
+
 
 
 }

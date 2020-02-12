@@ -1,7 +1,7 @@
-/*
+
 package com.utils;
 
-*/
+
 /**
  * @author YangWenjun
  * @date 2019/11/1 17:52
@@ -60,10 +60,10 @@ Collections	java集合框架操作. 集合 -jdk Arrays/collections - >
                                                               readLine
                     closeQuietly(Closeable... closeables)
                     contentEquals(InputStream input1, InputStream input2)
-                    copy(InputStream input, OutputStream output, int bufferSize)
+                    copy(InputStream input, OutputStream output, int bufferSize)  - 代替那种while... read..
                     read(InputStream input, byte[] buffer)
                  将流转为string相关来处理
-                    List<String>	readLines(InputStream input, String encoding)
+                    List<String> readLines(InputStream input, String encoding)
                     String	resourceToString(String name, Charset encoding)
 
              Codec	处理常用的编码方法的工具类包 例如AES、DES、SHA1、MD5、hash、Base64等.
@@ -107,10 +107,12 @@ Collections	java集合框架操作. 集合 -jdk Arrays/collections - >
              //Logging	提供的是一个Java 的日志接口.                    --由logback、log4j代替
              //Validator	提供了客户端和服务器端的数据验证框架.          -- 由正则-注解-自定义校验框架代替
 
- *//*
+ */
 
 
+import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.reflect.FieldUtils;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 import org.apache.http.client.HttpClient;
@@ -122,13 +124,14 @@ import org.apache.http.impl.client.HttpClients;
 import sun.misc.IOUtils;
 
 import java.io.*;
+import java.lang.reflect.Field;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-*/
+
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -160,11 +163,11 @@ import java.util.Map;
  *            Math
  *            Reflection
  *
- *//*
+ */
 
 public class ApacheCommonTest {
 
-    public static void main(String[] args) throws IOException, NoSuchAlgorithmException, EmailException {
+    public static void main(String[] args) throws IOException, NoSuchAlgorithmException, EmailException, IllegalAccessException, NoSuchFieldException {
 
         //https://blog.csdn.net/lonely_fireworks/article/details/7962171
         String str=null;
@@ -182,18 +185,18 @@ public class ApacheCommonTest {
 
         System.out.println(Arrays.deepEquals(new String[]{"a", "b"}, new String[]{"b", "a"})); //false
 
-        Map<String,String> map = new HashMap(){{
+        HashMap<String,String> map = new HashMap(){{
             put("a","a");
             put("b","b");
             put("c","c");
         }};
-        */
+
 
 //new HashMap(){{put("id", "001");}} map内部类初始化  是否允许使用
 
-/*for (Map.Entry<String, String> entry:map.entrySet()){
-            这里由于上面初始化map时，泛型的位置应该在前面，才能map.entryset时返回对应的泛型参数，而不是object
-        }*//*
+for (Map.Entry<String, String> entry:map.entrySet()){
+            //这里由于上面初始化map时，泛型的位置应该在前面，才能map.entryset时返回对应的泛型参数，而不是object
+        }//*
 
 
         for (Map.Entry<String, String> entry:map.entrySet()){
@@ -220,11 +223,11 @@ public class ApacheCommonTest {
         //InputStream in = new BufferedInputStream(new FileInputStream(new File("d:\\a.txt")));//路径有问题吗？
         InputStream in = new BufferedInputStream(new FileInputStream(new File("d:/a.txt")));
         OutputStream out = new FileOutputStream("d:\\b.txt"); //是否存在？文件权限 目录..创建...
-            */
+
 /*@Override
             public void write(int b) throws IOException {
                 out.write(b);
-            }*//*
+            }*/
 
             //流和代码如何转换  输入输出， 这里为了验证 copy功能  -- 来定义一个数组,读到数组中
             int length ;
@@ -321,12 +324,12 @@ public class ApacheCommonTest {
 
 
 
-    private void testCommonUtils() throws IllegalAccessException, NoSuchFieldException {
-
-        System.out.println(ClassUtils.getCanonicalName(temp.class));//完整类名  com.temp
+//    private void testCommonUtils(){
+/*private void testCommonUtils(){
+       *//* System.out.println(ClassUtils.getCanonicalName(temp.class));//完整类名  com.temp
         System.out.println(ClassUtils.getName(temp.class));//完整类名  com.temp
         System.out.println(ClassUtils.getShortCanonicalName(temp.class));//temp
-
+*//*
         //getFieldsListWithAnnotation(Class<?> cls, Class<? extends Annotation> annotationCls)
         //使用工具类可以 ‘ 一步包含多个步骤 ’达到快速
         //将.annotation 包含
@@ -341,11 +344,11 @@ public class ApacheCommonTest {
         System.out.println(util.getClass().getDeclaredField("name").get(util)+"2-2-2-");
 
 
-    }
+    };*/
 
     }
 }
-*/
+
 
 @foramt(length = 1,name = "b")
 class Student1<T extends Map>{
