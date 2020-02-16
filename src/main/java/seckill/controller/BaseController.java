@@ -1,5 +1,7 @@
 package seckill.controller;
 
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import seckill.error.BusiException;
 import seckill.error.EmBusiError;
 import seckill.response.CommonReturnType;
@@ -25,7 +27,15 @@ public class BaseController {
             BusiException busiException = (BusiException) ex;
             responseData.put("errorCode", busiException.getErrorCode());
             responseData.put("errorMsg", busiException.getErrorMsg());
-        } else {
+       //将切面的判断放到这里统一
+        }else if(ex instanceof MethodArgumentNotValidException){
+            MethodArgumentNotValidException methodArgumentNotValidException =(MethodArgumentNotValidException)ex;
+            for (FieldError fieldError :methodArgumentNotValidException.getBindingResult().getFieldErrors()) {
+                responseData.put("errorCode",fieldError);
+                responseData.put("errorMsg", fieldError.getDefaultMessage());
+            }
+        }
+        else {
             responseData.put("errorCode", EmBusiError.UNKNOWN.getErrorCode());
             responseData.put("errorMsg", EmBusiError.UNKNOWN.getErrorMsg());
         }

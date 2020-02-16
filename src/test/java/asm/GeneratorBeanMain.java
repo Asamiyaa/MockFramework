@@ -6,9 +6,14 @@ import org.objectweb.asm.MethodVisitor;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import static org.objectweb.asm.Opcodes.*;
+
+
+
 
 /**
  * @author YangWenjun
@@ -20,6 +25,11 @@ import static org.objectweb.asm.Opcodes.*;
 public class GeneratorBeanMain {
 
     public static void main(String[] args) throws Exception {
+        generateClass();
+
+    }
+
+    public static void generateClass() throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         /**
          * 不做限制,可随意命名aaa/LeakInfo或bb/aa/cc/LeakInfo
          */
@@ -120,4 +130,6 @@ public class GeneratorBeanMain {
         Object name = getNameMethod.invoke(o);
         System.out.println(name);
     }
+
+
 }

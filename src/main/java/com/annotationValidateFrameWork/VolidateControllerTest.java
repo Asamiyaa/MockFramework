@@ -26,6 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * 4.如何选择更少加载更少东西而不是整个扫描springBootTest all
  * 5.修改返回不是都是 ok 导致无法通过颜色判断是否成功
  * 6.不启动正式的spring项目也可以
+ * 7.后台调用、事务配置 数据库mock..
  */
 @SpringBootTest(classes = SpringBootApplication.class)
 @RunWith(SpringJUnit4ClassRunner.class)

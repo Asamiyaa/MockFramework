@@ -1,7 +1,9 @@
 常用命名
-	proxy listner factory  handler adapter wrapper .Context.. 设计模式对应类  call/excute  ..asString Template    holder ParameterParser xxdefinition Defaultxx
+	proxy listner factory  handler adapter wrapper .Context.. 设计模式对应类  call/excute  ..asString Template    holder ParameterParser xxdefinition Defaultxx  xxprovider xxhelper xxor
 	RedisAccessor  ExceptionTranslationStrategy  xxConverter  dispacher
 	xxManager（RedisCacheConfiguer）
+
+	ValidatorFactoryImpl - 212行 - 查看每个
 
 	invokeParam  QueryCondition OrderBean  rangeCheck  searchBean  req对象 /retVal  nameValuePair
 

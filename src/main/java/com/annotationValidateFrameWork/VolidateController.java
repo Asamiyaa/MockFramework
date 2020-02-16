@@ -76,7 +76,7 @@ public class VolidateController {
         return Result.success();
     }
 
-    //创建切面  是否需要valida 不能，否则不走切面  -- 需要
+    //创建切面  是否需要valida 不能，否则不走切面  -- 需要  --> @RequestBody
     @RequestMapping({"/volidateAspect"})
     public Result volidate5(@Valid User user , BindingResult result){
         /*if (result.hasErrors()) {

@@ -118,7 +118,8 @@
         当发现传递参数较多时，注意 ‘ 从不同角度抽象为bean - xxsearchBean - CacheInitBean - UserLogonBean  ’
 
         - 规范性（命名 naming.class - 使用第三方类库简化代码 apache-guava ApacheCommonTest.class --查看该项目已有-->自己定义工具类 String../ MathUtil / beanUtil / MethodUtils/FieldUtils/Ref..）
-                健壮性(前置校验、返回包装json、统一异常/异常分支(流程图)return/break/try..catch/throws、边界、日志、事务、切面) 风险(安全、注入)
+                健壮性(前置校验-validate VolidateController、返回包装json-对象+responsebody、统一异常baseController/异常分支(流程图)return/break/try..catch-有时即使api没有抛出异常该调用又不是关键为了后面继续，或者说远程调用，都要进行catch转义
+                /throws、边界( 数据结构、算法 )、日志、事务、切面) 风险(安全、注入)
                          事务：所谓的事务挂起其实就是一个移除当前线程、数据源活动事务对象的过程。
                          事务的本质其实是对数据库自动提交的关闭与开启，传播特性是Spring提出、实现、控制的概念，而隔离级别是对数据库实现的封装。
              C:\Users\73699\Desktop\think\高效实现思考
@@ -158,7 +159,7 @@
 
 
 
-     3>单元测试 测试驱动开发  手术刀 准确定位  TestRulerDraft.class
+     3>单元测试 测试驱动开发  手术刀 准确定位  TestRulerDraft.class、VolidateControllerTest.class
            明确修改点 - 局部测试 - 联合测试( debug修改参数值 )
            bbsp 新需求变更导致商票流程不可使用 ==> 关联影响性饭一定要到位，修改之前一定要对涉及部分清晰。
                                           ==> 流程至少跑一边(各个场景、开发角度过滤是否对分支有必要)
@@ -178,12 +179,15 @@
            引擎：工作流/规则..
 
      6>spring-boot-devtools - 热部署 - 构建-发布- 部署  gradle(ant+maven)-> devops
-4.问题定位  性能优化
+4.问题定位  性能优化  PerformTool.class
     1.outOfMemory
     2.空间不足 app / db 表空间
     3.thread deadlock
     4.table lock
     5.mq block
     6.network 抖动
+
+
+
 
     C:\Users\73699\Desktop\think\性能+生产问题思考
