@@ -24,6 +24,7 @@
     handleInput
     composite
     clz
+    holder
     deleteWhen
     ConsumeFromWhere
     isWaitStoreMsgOK

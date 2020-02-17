@@ -19,6 +19,11 @@
 -1:编码命名归范  naming.class
 
 0.1.架构设计  https://blog.csdn.net/hguisu/article/details/78258430
+
+        _____而那些看到别人代码有点瑕疵就一顿乱骂，或者花尽心思去构
+             思一个完美设计的人，往往都是因为没有树立正确的代码质量观，没有持续重构意识。_____
+        人生也是如此，没有说没有问题的。人生就是面对、解决。学习接受能力
+0.架构设计  https://blog.csdn.net/hguisu/article/details/78258430
    ===> 3.0详设版本1.0 -> 2.0 业务需求文档从业务角度出发 --> 详设从系统，开发角度 泳道图 交互。这种转化也是 ‘代码开发’的依据而不是业务流程图
    ===> 仿真文档自己版  -> 李老师版本  场景全面 - 可行性 - 从简单实例完成到迭代
 
@@ -126,6 +131,7 @@
 
             - 可扩展(基本实现-父类、抽象类接口- 反射(spring RelectionUitls/classUtils...)+泛型+注解 、重构(属性、方法定义合理性 - 属性bean通过依赖、关联、静态、默认、spring..初始化
                     构造、方法重载、this的使用)、设计模式 )
+            - 可扩展(反射+泛型+注解 、重构、设计模式(中间层比如代理、委托..接口上升) ) 原则(简洁、易用、可读、可维护、高内聚松耦合..) - 思想(6大..) - 模式(设计模式) - 归范 - 单元测试 - 重构
                     AnnotationUtils +  + XMLConvertUtil
                         设计模式： 总体 - SpringMain  ---结合 naming.class
                                 责任链 - ParamRuleCheckImpl
@@ -150,12 +156,19 @@
        当耗时操作比如插库，并且插库前有逻辑规则，可以先放到临时表，启新线程处理
      2>异步 - 异步编程思考(为什么使用线程处理 https://juejin.im/post/5a8fc6345188257a804aa956) 某个节点上异步，内部还是同步 (event - callback -listner)
               将接口拆成两个，异步返回、调用者再去查询结果
+              回调实例 ，借助监听机制
            1> SerialNumGenerator
                 D:\Data\mySrc\MockFramework\src\test\thread\MainClass
                 C:\Users\73699\Desktop\think\极客时间\极客 并发
+
            2> mq
                 AmqMsgContainerFactory.java
 
+           3> netty NIO/AIO
+                netty.java
+
+             ---数据传输基础：序列化 Serializable.java---
+             ---            传输协议
 
 
 
@@ -164,6 +177,11 @@
            bbsp 新需求变更导致商票流程不可使用 ==> 关联影响性饭一定要到位，修改之前一定要对涉及部分清晰。
                                           ==> 流程至少跑一边(各个场景、开发角度过滤是否对分支有必要)
                                           ==> 没有绑定nullPointException 本事还是对业务场景分析不够导致存在情况漏洞 见：processon
+
+             开发 + 单元测试（逻辑的缜密） + code-review
+
+
+
 
      4>微服务
            拆分：https://www.cnblogs.com/aibabel/p/11214026.html

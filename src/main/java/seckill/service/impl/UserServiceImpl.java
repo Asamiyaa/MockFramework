@@ -86,6 +86,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void register(UserModel userModel) throws BusiException {
+
         if(userModel == null){
             throw new BusiException(EmBusiError.PARAMETER_VALIDATE_ERROR);
         }

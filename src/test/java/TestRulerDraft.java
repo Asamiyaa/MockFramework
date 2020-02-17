@@ -25,11 +25,53 @@ import java.util.logging.Logger;
  * @title: TestRuler
  * @description:
  *
+ *      -- 缜密性 --- 落地性 ---
+ *      volidate 校验规则 -- hibernate=spring - 切面 - 校验框架
+     1.为什么写单元测试
+            1.单元测试能有效地帮你发现代码中的 bug
+            2.写单元测试能帮你发现代码设计上的问题 -可测试性
+                如果很难为其编写单元测试，或者单元测试写起来很吃力，需要依靠单元测试框架里很高级的特性才
+                能完成，那往往就意味着代码设计得不够合理，比如，没有使用依赖注入、大量使用静态函
+                数、全局变量、代码高度耦合等。
+            3.单元测试是对集成测试的有力补充
+                一些边界条件、异常情况下，比如，除数未判空、网络超时。
+                而大部分异常情况都比较难在测试环境中模拟。而单元测试可以利用下一节课中讲到的
+                mock 的方式，控制 mock 的对象返回我们需要模拟的异常
+                对于复杂系统，复杂的交易场景，交易模块组合，-- 影响性范围分析
+            4.写单元测试的过程本身就是代码重构的过程
+
+     TODO:问题：1.我为什么思考没那么全面？所有可能 - 数据库字段/类字段 场景 合理不是过度 这些是  技术套路 + 业务套路
+                    例子：
+                    为了保证测试的全面性，针对 toNumber() 函数，我们需要设计下面这样几个测试用例。
+                    如果字符串只包含数字：“123”，toNumber() 函数输出对应的整数：123。
+                    如果字符串是空或者 null，toNumber() 函数返回：null。
+                    如果字符串包含首尾空格：“ 123”，“123 ”，“ 123 ”，toNumber() 返回对应的
+                    整数：123。
+                    如果字符串包含多个首尾空格：“ 123 ”，toNumber() 返回对应的整数：123；
+                    如果字符串包含非数字字符：“123a4”，“123 4”，toNumber() 返回 null；
+    TODO:2.哪些需要单元测试，不代表所有的都取测试。高效，手术刀
+    TODO:3.测试环境搭建  mock -解依赖
+                    如果代码中依赖了外部系统或者不可控组件，比如，需
+                    要依赖数据库、网络通信、文件系统等，那我们就需要将被测代码与外部系统解依赖，而这
+                    种解依赖的方法就叫作“mock”
+                1.写新测试类实现一样接口，并在方法中return想要的数据。-- 真实代码通过注入对象而不是new来灵活修改测试对象
+                2.当依赖的对象不是自己维护，无条件修改时，可以在真实实现基础上，包装一层，返回自己需要的
+                3.包含跟“时间”有关的“未决行为”逻辑。一般的处理方式是将这种未决行为逻辑重新封装。--重构了代码保证可测试性
+                    protected boolean isExpired() {
+                    long executionInvokedTimestamp = System.currentTimestamp();
+                    return executionInvokedTimestamp - createdTimestamp > 14days;
+
+    测试困难点：1.未决条件  2.成员变量  3.静态变量  4.继承
+
  *
- *          1.volidate 校验规则 -- hibernate=spring - 切面 - 校验框架
- *          2.
-
-
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  */
 
 
@@ -118,12 +160,12 @@ public class TestRulerDraft {
         //<student><name></name><age></age><className></className></student>
 //        System.out.println(System.getProperty("line.separator"));
     }
-   /* @Autowired
+    @Autowired
     private DraftManager draftManager;
-*/
+
     @Test
     public  void testDraftXml2() throws IOException {
-     //   draftManager.parseAndPersist(new File("src/main/resources/studentDraft.xml"));
+        draftManager.parseAndPersist(new File("src/main/resources/studentDraft.xml"));
     }
     @Test
     public void testDoSelf() throws UnsupportedEncodingException {
