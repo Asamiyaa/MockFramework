@@ -1,4 +1,17 @@
 
+
+----idea
+
+
+
+--linux
+    1.vi xx --> /关键字  -> n（next）--> 操作
+    2.查看端口是否启动：lsof -i:xxx端口号
+
+
+
+
+
 ---------keymap----------
 	ctrl+home / end 到页面最前最后
 	shift+home / end选中

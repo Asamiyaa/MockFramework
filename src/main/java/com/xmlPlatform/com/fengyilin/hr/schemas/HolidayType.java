@@ -2,15 +2,18 @@
 // 此文件是由 JavaTM Architecture for XML Binding (JAXB) 引用实现 v2.2.7 生成的
 // 请访问 <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // 在重新编译源模式时, 对此文件的所有修改都将丢失。
-// 生成时间: 2019.12.14 时间 11:08:38 AM CST 
+// 生成时间: 2020.02.20 时间 10:42:28 AM CST 
 //
 
 
-package com.xmlPlatform.com.fengyilin.hr.schemas;
+package com.fengyilin.hr.schemas;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
-import java.util.Date;
 
 
 /**
@@ -42,10 +45,10 @@ public class HolidayType {
 
     @XmlElement(name = "StartDate", required = true)
     @XmlSchemaType(name = "date")
-    protected Date startDate;
+    protected XMLGregorianCalendar startDate;
     @XmlElement(name = "EndDate", required = true)
     @XmlSchemaType(name = "date")
-    protected Date endDate;
+    protected XMLGregorianCalendar endDate;
 
     /**
      * 获取startDate属性的值。
@@ -55,19 +58,19 @@ public class HolidayType {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public Date getStartDate() {
+    public XMLGregorianCalendar getStartDate() {
         return startDate;
     }
 
     /**
      * 设置startDate属性的值。
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setStartDate(Date value) {
+    public void setStartDate(XMLGregorianCalendar value) {
         this.startDate = value;
     }
 
@@ -79,19 +82,19 @@ public class HolidayType {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public Date getEndDate() {
+    public XMLGregorianCalendar getEndDate() {
         return endDate;
     }
 
     /**
      * 设置endDate属性的值。
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setEndDate(Date value) {
+    public void setEndDate(XMLGregorianCalendar value) {
         this.endDate = value;
     }
 

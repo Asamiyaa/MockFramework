@@ -197,7 +197,11 @@
            引擎：工作流/规则..
 
      6>spring-boot-devtools - 热部署 - 构建-发布- 部署  gradle(ant+maven)-> devops
+           1.打包 - linux环境搭建  package.java
 4.问题定位  性能优化  PerformTool.class
+    扩展idea远程调试同样可以连接远程服务器和这里监控一个道理。判断是数据问题还是程序问题，判断当前运行环境而无需dump后才看
+    工具的使用任然要积极借助官方api
+    启动应用后可以顺带查看日志信息是否启动成功，是否有报错信息 tail
     1.outOfMemory
     2.空间不足 app / db 表空间
     3.thread deadlock

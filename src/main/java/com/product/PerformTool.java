@@ -25,8 +25,19 @@ package com.product;
  *
  *      4.jmap+mat
  *            方式1.-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=./   -->C:\YangWenjunData\mySrc\MockFramework11
- *            方式2.使用jmap  --> jps jmap -help  jmap -dump:format=b,file=heap.hprof 进程号
+ *            方式2.使用jmap  --> jps查看已开启进程 jmap -help  jmap -dump:format=b,file=heap.hprof 进程号
  *                      jmap -heap 进程号 查看进程信息
+ *        jprofile初试
+ *
+ *       5.jstack 进程号 - 线程间状态转化 - 代码层级
+ *          实战死循环导致cpu飙高：
+ *                  1.现在本地此时代码可以访问
+ *                  2.打包远程 --为了结合linux命令
+ *                          1.mvn clean package
+ *                          2.
+ *          远程推送代码并启动：1.为了部署流程  2.为了 使用linux相关命令进行定位问题
+ *                  1.切到项目目录 mvn clean package -Dmaven.test.skiip
+ *                  2.nohup java -jar xxxx.jar &
  *
  *
  *

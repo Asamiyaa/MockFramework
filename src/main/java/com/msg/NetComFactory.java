@@ -15,6 +15,7 @@ import java.util.Map;
  * @title: NetComFactory
  * @description:通过策略模式加载不同net com impl
  */
+
 public class NetComFactory implements ApplicationContextAware,FactoryBean<AmqSender>
 {
 
@@ -73,4 +74,9 @@ public class NetComFactory implements ApplicationContextAware,FactoryBean<AmqSen
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
             this.applicationContext = applicationContext;
     }
+    @Override
+     public boolean isSingleton() {
+        return true;
+    }
 }
+

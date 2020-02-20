@@ -2,13 +2,11 @@
 // 此文件是由 JavaTM Architecture for XML Binding (JAXB) 引用实现 v2.2.7 生成的
 // 请访问 <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // 在重新编译源模式时, 对此文件的所有修改都将丢失。
-// 生成时间: 2019.12.14 时间 11:08:38 AM CST 
+// 生成时间: 2020.02.20 时间 10:42:28 AM CST 
 //
 
 
-package com.xmlPlatform.com.fengyilin.hr.schemas;
-
-import com.xmlPlatform.com.fengyilin.hr.schemas.EmployeeType;
+package com.fengyilin.hr.schemas;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -51,10 +49,11 @@ public class HolidayRequest {
 
     /**
      * 获取holiday属性的值。
-     *
+     * 
      * @return
      *     possible object is
-     *
+     *     {@link HolidayType }
+     *     
      */
     public HolidayType getHoliday() {
         return holiday;
@@ -65,7 +64,8 @@ public class HolidayRequest {
      * 
      * @param value
      *     allowed object is
-     *
+     *     {@link HolidayType }
+     *     
      */
     public void setHoliday(HolidayType value) {
         this.holiday = value;

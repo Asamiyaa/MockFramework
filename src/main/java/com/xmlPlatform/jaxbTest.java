@@ -1,3 +1,4 @@
+/*
 package com.xmlPlatform;
 
 import com.xmlPlatform.com.fengyilin.hr.schemas.EmployeeType;
@@ -8,13 +9,15 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+*/
 /**
  * @author YangWenjun
  * @date 2019/12/14 11:44
  * @project MockFramework
  * @title: jaxbTest
  * @description:
- */
+ *//*
+
 public class jaxbTest {
 
     public static void main(String[] args) {
@@ -36,7 +39,8 @@ public class jaxbTest {
         System.out.println(JaxbUtil.convertBeanToXML(request));
     }
 
-    /**
+    */
+/**
      * 通过反射轮询对应目录下的类就是该报文对应的类，--> 如何知道类之间的嵌套关系呢？
      *  1.解析xsd只要知道结构就好 - 根据schema生成一个xml形式的嵌套bean对象用于接受前台信息
      *          1.解析xml schema 而不是 绑定此时。就是为了清楚结构
@@ -51,7 +55,8 @@ public class jaxbTest {
      *
      *  2.配置文件解析 这样的话其实客户清晰了知道了xml结构，有这个必要吗？到这一步是不是都可以自己上传个报文模板了以及
      *    第一版的各种定义规则，而不是使用schema.
-     */
+     *//*
+
 
 
     public String parseXsdToDO(File xsd){
@@ -112,3 +117,4 @@ public class jaxbTest {
         return ret ;
     }
 }
+*/
