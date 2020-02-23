@@ -1,4 +1,4 @@
-/*
+package com.timing.quartz;/*
 package com.timing.quartz;
 
 import org.quartz.Job;
@@ -27,6 +27,11 @@ public class secKillJob implements Job {
     }
 
     */
+
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+
 /**为了方便直接在这里测试 复杂模块到形成test目录**//*
 
     public static void main(String[] args) {
@@ -34,3 +39,10 @@ public class secKillJob implements Job {
     }
 }
 */
+public class MyJob implements Job {
+
+    @Override
+    public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+        System.out.println("do Job");
+    }
+}

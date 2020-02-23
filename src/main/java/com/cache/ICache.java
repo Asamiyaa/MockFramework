@@ -8,7 +8,7 @@ import java.util.Set;
  * @date 2019/8/22 17:14
  * @project hook
  * @title: ICache  泛型
- * @description:   整个项目的缓存，区分core目录下作为缓存，二者可能需要分析存在场景及策略
+ * @description:   整个项目的缓存，区分core目录下作为缓存，二者可能需要分析存在场景及策略 ---> 策略模式
  */
 public interface ICache<K,V> {
 

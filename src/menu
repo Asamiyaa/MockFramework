@@ -1,3 +1,4 @@
+
 人生和技术
         https://www.processon.com/diagraming/5c1b64a8e4b095ccfee8d4ae
         维度
@@ -27,8 +28,9 @@
    ===> 3.0详设版本1.0 -> 2.0 业务需求文档从业务角度出发 --> 详设从系统，开发角度 泳道图 交互。这种转化也是 ‘代码开发’的依据而不是业务流程图
    ===> 仿真文档自己版  -> 李老师版本  场景全面 - 可行性 - 从简单实例完成到迭代
 
-
-   2. 学习新模块的方式学习实践(DefaultProducer + RedisUse) - 从jdk的使用什么 -- 到这里的不同的模块注意什么、如何融合  --- 这些也是基础学习以后可以在自己扩展或使用别人的博客
+           不断迭代才是真理，不要想着一次设计就是最终，那是不可能，高手也是迭代思考出来的，不要害怕丑陋，解决就好
+   2. 学习新模块的方式学习实践(DefaultProducer + RedisUse + QurarzMain + Callback + ICache)
+            - 从jdk的使用什么 -- 到这里的不同的模块注意什么、如何融合  --- 这些也是基础学习以后可以在自己扩展或使用别人的博客
          1.登录官网  quickstart   https://rocketmq.apache.org/docs/quick-start/   + 左侧对应的其他example和tips + best practice就是核心设计-源码注意点
 
          2.既然写模块，肯定要结合起来写 实现企业级 - 不要嘲笑工具的使用，因为直接接触的就是你对使用越合理越熟练才会越好。原理是用来提升的
@@ -213,3 +215,10 @@
 
 
     C:\Users\73699\Desktop\think\性能+生产问题思考
+1.记录 url..启动 驱动问题
+    https://blog.csdn.net/qing_mei_xiu/article/details/89284278  -- 删除target.重新生成
+    jianshu.com/p/6f110c4163ae
+    https://blog.csdn.net/fanrenxiang/article/details/80533950
+    方向 思维定势导致  springboot 默认配置点以及哪些可以修改哪些
+
+    2.主键生成 https://blog.csdn.net/beyondchx/article/details/8734915

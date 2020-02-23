@@ -84,7 +84,7 @@
           </configurationFile>
         </configuration>
 
-      </plugin>-->
+      </plugin>
 
       <!-- AspectJ 编译插件 -->
       <plugin>
@@ -386,6 +386,14 @@
             <systemPath>C:/btrace/build/btrace-agent.jar</systemPath>
 
         </dependency>
+      <!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+      <dependency>
+        <groupId>org.quartz-scheduler</groupId>
+        <artifactId>quartz</artifactId>
+        <version>2.3.0</version>
+      </dependency>
+
+
 
         <dependency>
 
