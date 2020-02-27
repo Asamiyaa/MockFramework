@@ -19,6 +19,11 @@ import java.util.List;
      性能优化之查询转换 - 子查询类：http://www.10tiao.com/html/188/201612/2650272664/1.html
 
 
+
+ 1.循环赋值修改  https://blog.51cto.com/alun51cto/2050064
+   DB2 游标  https://blog.csdn.net/feier7501/article/details/25922303
+
+
  * 1.sql编写技巧 - sql 的编写需要注意优化
  *
  * 数据库的查询优化技术：https://blog.csdn.net/littledream/article/details/4243491

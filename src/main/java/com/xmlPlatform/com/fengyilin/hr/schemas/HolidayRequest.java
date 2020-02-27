@@ -1,3 +1,4 @@
+/*
 //
 // 此文件是由 JavaTM Architecture for XML Binding (JAXB) 引用实现 v2.2.7 生成的
 // 请访问 <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
@@ -15,6 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
+*/
 /**
  * <p>anonymous complex type的 Java 类。
  * 
@@ -34,7 +36,8 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  * 
- */
+ *//*
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
 
@@ -43,56 +46,65 @@ import javax.xml.bind.annotation.XmlType;
 public class HolidayRequest {
 
     @XmlElement(name = "Holiday", required = true)
-    protected HolidayType holiday;
+    protected com.fengyilin.hr.schemas.HolidayType holiday;
     @XmlElement(name = "Employee", required = true)
-    protected EmployeeType employee;
+    protected com.fengyilin.hr.schemas.EmployeeType employee;
 
-    /**
+    */
+/**
      * 获取holiday属性的值。
      * 
      * @return
      *     possible object is
      *     {@link HolidayType }
      *     
-     */
+     *//*
+
     public HolidayType getHoliday() {
         return holiday;
     }
 
-    /**
+    */
+/**
      * 设置holiday属性的值。
      * 
      * @param value
      *     allowed object is
      *     {@link HolidayType }
      *     
-     */
+     *//*
+
     public void setHoliday(HolidayType value) {
         this.holiday = value;
     }
 
-    /**
+    */
+/**
      * 获取employee属性的值。
      * 
      * @return
      *     possible object is
      *     {@link EmployeeType }
      *     
-     */
+     *//*
+
     public EmployeeType getEmployee() {
         return employee;
     }
 
-    /**
+    */
+/**
      * 设置employee属性的值。
      * 
      * @param value
      *     allowed object is
      *     {@link EmployeeType }
      *     
-     */
+     *//*
+
     public void setEmployee(EmployeeType value) {
         this.employee = value;
     }
 
 }
+*/

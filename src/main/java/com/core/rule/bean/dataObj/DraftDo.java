@@ -72,7 +72,9 @@ public class DraftDo {
      * @mbg.generated Fri Nov 22 09:03:32 CST 2019
      */
     public void setId(Long id) {
-        this.id = id;
+
+//        this.id = id+100000000000l;
+     this.id = id;
     }
 
     /**

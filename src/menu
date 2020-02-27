@@ -29,7 +29,7 @@
    ===> 仿真文档自己版  -> 李老师版本  场景全面 - 可行性 - 从简单实例完成到迭代
 
            不断迭代才是真理，不要想着一次设计就是最终，那是不可能，高手也是迭代思考出来的，不要害怕丑陋，解决就好
-   2. 学习新模块的方式学习实践(DefaultProducer + RedisUse + QurarzMain + Callback + ICache)
+   2. 学习新模块的方式学习实践(DefaultProducer + RedisUse + QurarzMain + Callback + ICache + MybatisMain + MVC.java)
             - 从jdk的使用什么 -- 到这里的不同的模块注意什么、如何融合  --- 这些也是基础学习以后可以在自己扩展或使用别人的博客
          1.登录官网  quickstart   https://rocketmq.apache.org/docs/quick-start/   + 左侧对应的其他example和tips + best practice就是核心设计-源码注意点
 
@@ -99,7 +99,7 @@
   需求 - 仿真表设计2 从业务需求出发，设计表，保证字段  ---> 反模式+mysql..表架构  ---> 下面的具体实现 ---> 分库分表分布式环境下
    ===> 其实无论是架构还是类，都是从业务-架构-实现往下走，粒度越来越细
 
-2.  1>设计表结构：RuleDo.class + statusDo.class（状态机表 - 未考虑字段、继承、业务等 -- 需要重新结合看的书写）
+2.  1>设计表结构：RuleDo.java + statusDo.class（状态机表 - 未考虑字段、继承、业务等 -- 需要重新结合看的书写）
         如何编写高效sql: 函数..(好的表设计肯定是设计时就考虑了查询，所以可能有冗余)
         利用数据库主键冲突做唯一控制 分布式下
        C:\Users\73699\Desktop\think\极客时间\06-MySQL实战45讲
@@ -107,7 +107,7 @@
        C:\Users\73699\Desktop\think\表设计思考\深入浅出MySQL数据库开发优化与管理维护
 
     2>.sql(转化思路重写sql?)
-       RuleDoMapper
+       RuleDoMapper.interface
        C:\Users\73699\Desktop\think\极客时间\44-SQL必知必会
 
 

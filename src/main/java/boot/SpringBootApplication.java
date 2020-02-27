@@ -13,7 +13,9 @@ import org.springframework.cache.annotation.EnableCaching;
  * @description:
  */
 
-    @org.springframework.boot.autoconfigure.SpringBootApplication(scanBasePackages = {"com"},exclude = SecurityAutoConfiguration.class)
+   /*全部的加载*/ //@org.springframework.boot.autoconfigure.SpringBootApplication(scanBasePackages = {"com"},exclude = SecurityAutoConfiguration.class)
+
+    /*为了测试mybatis快速加载 配合MybatisMain*/@org.springframework.boot.autoconfigure.SpringBootApplication(scanBasePackages = {"com.core.rule"},exclude = SecurityAutoConfiguration.class)
     @MapperScan({"com.core.rule.dao","com.register.dao"}) //需要对应的mapperScan
     @EnableCaching
     public class SpringBootApplication {

@@ -88,6 +88,7 @@ public class VolidateControllerTest {
                 .andReturn().getResponse().getContentAsString();
         System.out.println("mock v is "+ retVal);
     }
+
     @Test
     public void testVolidate5() throws Exception {
         String retVal  = mockMvc.perform(get("/volidatePath").param("id","mockUserPathid")
@@ -117,5 +118,8 @@ public class VolidateControllerTest {
                 .andReturn().getResponse().getContentAsString();
         System.out.println("mock v is "+ retVal);
     }
+
+
+    //TODO:对象相关
 
 }

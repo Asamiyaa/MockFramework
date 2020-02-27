@@ -68,7 +68,7 @@ import java.util.Map;
 //    以及保存/更新rule
 
     //对外暴露 firstLoad  以及check调用
-@Service
+//@Service
 public class RuleManager {
 
     /*public IParamCheck instance(){
