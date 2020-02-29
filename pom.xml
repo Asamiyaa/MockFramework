@@ -48,7 +48,7 @@
       </plugin>
 
       <!--mybatis生成映射文件插件 打包时报错 所以先注掉-->
-      <!--<plugin>
+      <plugin>
         <groupId>org.mybatis.generator</groupId>
         <artifactId>mybatis-generator-maven-plugin</artifactId>
         <version>1.3.5</version>
@@ -64,7 +64,7 @@
             <version>5.1.41</version>
           </dependency>
         </dependencies>
-        &lt;!&ndash;mybatis&ndash;&gt;
+    <!--    &lt;!&ndash;mybatis&ndash;&gt;-->
         <executions>
           <execution>
             <id>mybatis generator</id>
@@ -74,10 +74,10 @@
             </goals>
           </execution>
         </executions>
-        &lt;!&ndash;mybatis允许移动生成的文件&ndash;&gt;
+        <!--&lt;!&ndash;mybatis允许移动生成的文件&ndash;&gt;-->
         <configuration>
           <verbose>true</verbose>
-          &lt;!&ndash;mybatis便于演示，生产环境是不可以的&ndash;&gt;
+          <!--&lt;!&ndash;mybatis便于演示，生产环境是不可以的&ndash;&gt;-->
           <overwrite>true</overwrite>
           <configurationFile>
             src/main/resources/mybatis-generator.xml
@@ -85,8 +85,8 @@
         </configuration>
 
       </plugin>
+      <!--AspectJ 编译插件 -->
 
-      <!-- AspectJ 编译插件 -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
@@ -422,6 +422,13 @@
             <systemPath>C:/btrace/build/btrace-client.jar</systemPath>
 
         </dependency>
+        <!--hibernate volidate-->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.1.2.Final</version>
+        </dependency>
+
     </dependencies>
 
 </project>
