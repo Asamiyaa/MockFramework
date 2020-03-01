@@ -29,7 +29,8 @@
    ===> 仿真文档自己版  -> 李老师版本  场景全面 - 可行性 - 从简单实例完成到迭代
 
            不断迭代才是真理，不要想着一次设计就是最终，那是不可能，高手也是迭代思考出来的，不要害怕丑陋，解决就好
-   2. 学习新模块的方式学习实践(DefaultProducer + RedisUse + QurarzMain + Callback + ICache + MybatisMain + MVC.java + AnnotationValidateFrameWork)
+   2. 学习新模块的方式学习实践(DefaultProducer + RedisUse + QurarzMain + Callback + ICache + MybatisMain + MVC.java + AnnotationValidateFrameWork
+                                 + PorformMain)
             - 从jdk的使用什么 -- 到这里的不同的模块注意什么、如何融合  --- 这些也是基础学习以后可以在自己扩展或使用别人的博客
          1.登录官网  quickstart   https://rocketmq.apache.org/docs/quick-start/   + 左侧对应的其他example和tips + best practice就是核心设计-源码注意点
 
@@ -83,6 +84,8 @@
              从官方-民间(不同的角度比如property-spring env ../构造方法、后置处理器、)-自己项目企业级 这个过程是渐进的 -- 所以高内聚低耦合 接口 门面的作用就出来了
                     就像java简单main和api一样，需要不断的演化熟练学习使用，其次是参考源码。 比如这里从springboot的application.p中可以知道配置property也就是注意点
                     这样我们在@bean中对这些必要的控制 结合场景 https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/reference/html/appendix-application-properties.html#common-application-properties
+
+                    从Github搜索相关，借鉴别人的思路进行学习整合
 
              这样才对接了真正的源码 ，开源项目整洁。合理。内聚
 

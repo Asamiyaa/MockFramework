@@ -10,6 +10,8 @@ import org.quartz.impl.StdSchedulerFactory;
  * @project MockFramework
  * @title: Main
  * @description:
+ *
+ * ****TODO:GITHUB 开源项目  https://github.com/xuxueli/xxl-job  **************
  *          1.quarz:http://www.quartz-scheduler.org/
  *                  https://www.w3cschool.cn/quartz_doc/
  *                 1.org.quartz.threadPool.threadCount 意味着是否需要线程?
