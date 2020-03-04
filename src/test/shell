@@ -9,10 +9,11 @@ Intellij IDEA使用技巧
 2.F3进入源码
 3.ctrl+e不仅仅是选择类，还有左侧的一系列view 直接单词还可以筛选
 4.当alt+r不能打开时，可以直接使用alt+z 再左右移动
-
-
-
-
+5.tool中还有shell、远程 下面那排的东西都可以在上面的bar中得到，并且更加全面
+6.当调出的矿口不知道什么意思的时候，可以点击最下面的？
+7.debug左侧的线程栈 也是查看源代码的途径。执行流程。反向。以及参数值 - run to cursor - 右侧按钮可以查看内存  可以在debug过程中添加语句比如sysout/if
+  移动执行到cursor即可  - 改值、重跑、异常....
+  https://blog.csdn.net/yxl_1207/article/details/80973622
 
 ----idea
 

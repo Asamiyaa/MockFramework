@@ -343,6 +343,8 @@ public class HibernateValidate {
                 validator.validateValue(Car.class, /*"licensePlate1"*//*"seatCount1"*/"topSpeed1", /*"1"*//*1*/900d,MyIntergface.class);
         assertEquals( 1, constraintViolations.size() );
         ConstraintViolation cv =  constraintViolations.iterator().next();
+        System.out.println(constraintViolations.size());
+        abc();
         System.out.println(cv.getMessage());     //The license plate '1' must be between 2 and 14 characters long   -- 取到对应的值
         System.out.println(cv.getPropertyPath());//licensePlate1
         System.out.println(cv.getInvalidValue());//1
@@ -350,7 +352,12 @@ public class HibernateValidate {
 
     }
 
-
+ private void abc(){
+     System.out.println("abc");
+     System.out.println("abc");
+     System.out.println("abc");
+     System.out.println("abc");
+ }
 
     @Test
     public void testCustomer() {
