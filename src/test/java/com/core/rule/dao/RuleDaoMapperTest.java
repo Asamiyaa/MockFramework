@@ -5,13 +5,11 @@ import com.core.rule.IParamRule;
 import com.core.rule.RuleManager;
 import com.core.rule.bean.CombinedRuler;
 import com.core.rule.bean.dataObj.DraftDo;
+import com.register.dao.PropertyDoMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
-import org.springframework.core.env.Environment;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
@@ -52,7 +50,7 @@ public class RuleDaoMapperTest {
     IParamRule paramRule1 ;
     @Autowired
     private DraftDoMapper draftDoMapper1;
-    @Autowired
+    //@Autowired
     private PropertyDoMapper propertyDoMapper;
     @Autowired
     private RuleDoMapper ruleDoMapper;

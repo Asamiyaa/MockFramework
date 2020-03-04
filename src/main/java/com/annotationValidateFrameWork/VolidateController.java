@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import seckill.controller.BaseController;
 
 import javax.validation.Valid;
 
@@ -16,7 +17,7 @@ import javax.validation.Valid;
 @ResponseBody
 @RequestMapping({"/"})
 //注意这三个注解
-public class VolidateController {
+public class VolidateController extends BaseController{ //为了验证切面抛出异常能否到达baseController
 
     //传统方式
     @RequestMapping({"/volidate"})
@@ -78,7 +79,7 @@ public class VolidateController {
 
     //创建切面  是否需要valida 不能，否则不走切面  -- 需要  --> @RequestBody
     @RequestMapping({"/volidateAspect"})
-    public Result volidate5(@Valid User user , BindingResult result){
+    public Result volidate5(@Valid User user/* , BindingResult result*/){//使用baseController中的@restControllerAdvice进行处理
         /*if (result.hasErrors()) {
             for (ObjectError error : result.getAllErrors()) {
                 // return error.getDefaultMessage(); 添加报错属性

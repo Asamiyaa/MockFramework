@@ -73,6 +73,13 @@ import static org.junit.Assert.assertEquals;
          @PositiveOrZero
          @Size(min=, max=)
 
+         1 @NotEmpty :不能为null，且Size>0
+         2  @NotNull:不能为null，但可以为empty,没有Size的约束
+         3  @NotBlank:只用于String,不能为null且trim()之后size>0
+
+        @Size是一个Bean验证注释,用于验证关联的String具有的长度受最小值和最大值限制的值.
+        @Length是一个Hibernate特定的注释,与@Size具有相同的含义
+
 
  ------------------hibnernate addation -----------
          @CreditCardNumber(ignoreNonDigitCharacters=)
@@ -128,6 +135,17 @@ import static org.junit.Assert.assertEquals;
 
 
  TODO:  相对于AnnotationUtils.class 省略了许多底层反射，注解属性的获取(框架完成)，这里只是按照约定嵌入了自定义的校验器
+
+
+
+        14.结合spring 定义全局validator - 调用
+        15.TODO:springboot 中引入@valite 如何触发
+             public Result volidate4(@Valid User user , BindingResult result){
+             if (result.hasErrors()) {
+
+           TODO: --->切面 统一UserAspect.java
+
+         16.自定义枚举注解解析 MyCaseValidate
  *
  *
  *
@@ -306,7 +324,7 @@ public class HibernateValidate {
         @Test
     public void testEL() {
         Set<ConstraintViolation<Car>> constraintViolations =
-                validator.validateValue(Car.class, /*"licensePlate1"*//*"seatCount1"*/"topSpeed1", /*"1"*//*1*/900d);
+                validator.validateValue(Car.class, /*"licensePlate1"*//*"seatCount1"*/"licensePlate1", /*"1"*//*1*/"1");
         assertEquals( 1, constraintViolations.size() );
         ConstraintViolation cv =  constraintViolations.iterator().next();
         System.out.println(cv.getMessage());     //The license plate '1' must be between 2 and 14 characters long   -- 取到对应的值

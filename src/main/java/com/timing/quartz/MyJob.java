@@ -43,6 +43,9 @@ public class MyJob implements Job {
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+        //获取从jobDetail中的值
+        jobExecutionContext.getJobDetail().getKey();
+        jobExecutionContext.getJobDetail().getJobDataMap();
         System.out.println("do Job");
     }
 }

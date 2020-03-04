@@ -8,6 +8,8 @@ import java.lang.annotation.*;
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+//TODO:自定义校验枚举 注解   查看：validation 自定义注解统一校验枚举类型  https://blog.csdn.net/yan_zuoyu/article/details/80078611
+
 /*
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD,ElementType.ANNOTATION_TYPE,ElementType.METHOD})

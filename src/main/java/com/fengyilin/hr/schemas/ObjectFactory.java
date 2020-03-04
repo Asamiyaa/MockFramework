@@ -1,3 +1,4 @@
+/*
 //
 // 此文件是由 JavaTM Architecture for XML Binding (JAXB) 引用实现 v2.2.7 生成的
 // 请访问 <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
@@ -11,6 +12,7 @@ package com.fengyilin.hr.schemas;
 import javax.xml.bind.annotation.XmlRegistry;
 
 
+*/
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
@@ -24,48 +26,60 @@ import javax.xml.bind.annotation.XmlRegistry;
  * groups.  Factory methods for each of these are 
  * provided in this class.
  * 
- */
+ *//*
+
 @XmlRegistry
 public class ObjectFactory {
 
 
-    /**
+    */
+/**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.fengyilin.hr.schemas
      * 
-     */
+     *//*
+
     public ObjectFactory() {
     }
 
-    /**
+    */
+/**
      * Create an instance of {@link HolidayRequest }
      * 
-     */
+     *//*
+
     public HolidayRequest createHolidayRequest() {
         return new HolidayRequest();
     }
 
-    /**
+    */
+/**
      * Create an instance of {@link HolidayType }
      * 
-     */
-    public HolidayType createHolidayType() {
-        return new HolidayType();
+     *//*
+
+    public com.fengyilin.hr.schemas.HolidayType createHolidayType() {
+        return new com.fengyilin.hr.schemas.HolidayType();
     }
 
-    /**
+    */
+/**
      * Create an instance of {@link EmployeeType }
      * 
-     */
-    public EmployeeType createEmployeeType() {
-        return new EmployeeType();
+     *//*
+
+    public com.fengyilin.hr.schemas.EmployeeType createEmployeeType() {
+        return new com.fengyilin.hr.schemas.EmployeeType();
     }
 
-    /**
+    */
+/**
      * Create an instance of {@link HolidayResponse }
      * 
-     */
+     *//*
+
     public HolidayResponse createHolidayResponse() {
         return new HolidayResponse();
     }
 
 }
+*/

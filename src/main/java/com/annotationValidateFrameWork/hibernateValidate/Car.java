@@ -30,7 +30,8 @@ public class Car {
     @Size(
         min = 2,
         max = 14,
-        message = "The license plate '${validatedValue}' must be between {min} and {max} characters long"
+//        message = "The license plate '${validatedValue}' must be between {min} and {max} characters long"
+        message = "我市好人' ${validatedValue}'"
     )
     private String licensePlate1;
     @Min(

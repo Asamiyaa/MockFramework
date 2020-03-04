@@ -119,7 +119,7 @@ public class VolidateControllerTest {
         System.out.println("mock v is "+ retVal);
     }
 
-
+    //TODO:如何写含有bindingResult的调用
     //TODO:对象相关
 
 }

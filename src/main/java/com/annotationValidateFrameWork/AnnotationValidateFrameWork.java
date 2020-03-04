@@ -4,7 +4,10 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * 整合 注解 + 切面 形成aop
- * https://hibernate.org/validator/documentation/getting-started/
+ *     TODO:     https://hibernate.org/validator/documentation/getting-started/ 结合 AnnotationUtils.java 结合proceeson
+ *     TODO:     对枚举、注解、反射、接口进行再次梳理，如何选择、联通。---> 思考
+ *
+ *
  * 1.volidate 校验规则 -- hibernate=spring - 切面 - 校验框架
  * 2.
  */

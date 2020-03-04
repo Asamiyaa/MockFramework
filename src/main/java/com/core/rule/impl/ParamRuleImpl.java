@@ -2,12 +2,10 @@ package com.core.rule.impl;
 
 import com.core.rule.IParamRule;
 import com.core.rule.bean.CombinedRuler;
-import com.core.rule.bean.dataObj.DraftDo;
-import com.core.rule.bean.dataObj.PropertyDo;
 import com.core.rule.bean.dataObj.RuleDo;
 import com.core.rule.dao.DraftDoMapper;
-import com.core.rule.dao.PropertyDoMapper;
 import com.core.rule.dao.RuleDoMapper;
+import com.register.dao.PropertyDoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +25,7 @@ public class ParamRuleImpl implements IParamRule {
 
     @Autowired
     private DraftDoMapper draftDoMapper;
-    @Autowired
+    //@Autowired
     private PropertyDoMapper propertyDoMapper;
     @Autowired
     private RuleDoMapper ruleDoMapper;

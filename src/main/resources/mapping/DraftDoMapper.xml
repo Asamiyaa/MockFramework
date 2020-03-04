@@ -209,11 +209,11 @@ draftDescribe,draftTemplate)values
         where draftno like #{pattern}
     </select>
 
-    <select id="selectLike"  resultMap="BaseResultMap">
+<!--    <select id="selectLike"  resultMap="BaseResultMap">
         select * from draft
-        <!--拼接可以吗  不可以
+        &lt;!&ndash;拼接可以吗  不可以
          [MyBatis]模糊查询LIKE的三种方式：https://blog.csdn.net/why15732625998/article/details/79081146
-         -->
+         &ndash;&gt;
         where draftno like '%'+#{draftno}+'%'
-    </select>
+    </select>-->
 </mapper>
