@@ -227,7 +227,7 @@ public class QurarzMain {
                         //TODO:这里cron更加通用和明确
 //                        .withMisfireHandlingInstructionNextWithExistingCount())  失火策略
                 )
-                //CronScheduleBuilder.cronSchedule("0/5 * * * * ?")
+                //CronScheduleBuilder.cronSchedule("0/1 * * * * ?")
 //                .startAt(futureDate(5, IntervalUnit.MINUTE)) // use DateBuilder to create a date in the future
 //                .endAt(dateOf(22, 0, 0))  立即触发，每个5分钟执行一次，直到22:00：
                 .build();

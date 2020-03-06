@@ -85,7 +85,7 @@
             targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
             targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
          -->
-        <javaModelGenerator targetPackage="com.register.bean.dataObj" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.timing.quartz.entity" targetProject="src/main/java">
             <!--  for MyBatis3/MyBatis3Simple
                 自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter；
              -->
@@ -133,7 +133,7 @@
 
         <javaClientGenerator targetPackage="com._520it.mybatis.mapper" type="ANNOTATEDMAPPER" targetProject="src/main/java">
          -->
-        <javaClientGenerator targetPackage="com.register.dao" type="XMLMAPPER" targetProject="src/main/java">
+        <javaClientGenerator targetPackage="com.timing.quartz.dao" type="XMLMAPPER" targetProject="src/main/java">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="true"/>
 
@@ -182,7 +182,7 @@
          -->
         <!--这里本该是大写的 作为类-->
         <!--<table tableName="draft" domainObjectName="DraftDo"></table>-->
-        <table tableName="property" domainObjectName="PropertyDo"
+        <table tableName="job" domainObjectName="Job"
                enableUpdateByExample = "true"
         ></table>
         <!--<table tableName="rule" domainObjectName="RuleDo"></table>-->
