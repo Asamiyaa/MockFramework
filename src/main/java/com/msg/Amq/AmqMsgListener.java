@@ -14,10 +14,10 @@ import javax.jms.Session;
  * @title: AmqMsgListener
  * @description: 接受消息
  */
-@Component
+//@Component
 public class AmqMsgListener implements SessionAwareMessageListener {
     @Override
     public void onMessage(Message message, Session session) throws JMSException {
-        System.out.println("--AmqMsgListener----");
+        System.out.println("--------------------------------------AmqMsgListener------------------------------");
     }
 }

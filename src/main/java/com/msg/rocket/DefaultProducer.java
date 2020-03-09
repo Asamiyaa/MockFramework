@@ -68,7 +68,7 @@ public class DefaultProducer {
      *      4.结合spring 关于顺序https://blog.csdn.net/weixin_34452850/article/details/82664799
      *
      */
-    /**
+    /**--已完成
      * broadcast  consumer.setMessageModel(MessageModel.BROADCASTING); 不是在producer那个控制而是在consumer
      * schedual
      * batch

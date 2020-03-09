@@ -189,6 +189,8 @@ Trigger t = newTrigger()
 .build();
  *
  */
+
+//QuartzManageTest
 public class QurarzMain {
 
     public static void main(String[] args) throws SchedulerException, IOException {

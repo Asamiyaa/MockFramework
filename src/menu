@@ -29,7 +29,14 @@ TODO:mybatis - valid - quartz 整理 过程中的问题和知识点  反射 多�
    ===> 仿真文档自己版  -> 李老师版本  场景全面 - 可行性 - 从简单实例完成到迭代
 
            不断迭代才是真理，不要想着一次设计就是最终，那是不可能，高手也是迭代思考出来的，不要害怕丑陋，解决就好
-   2. 学习新模块的方式学习实践(DefaultProducer + RedisUse + QurarzMain + Callback + ICache + MybatisMain + MVC.java + AnnotationValidateFrameWork-UserAspect(切面)-ControllerAdvice
+   2. 学习新模块的方式学习实践
+    MybatisMain
+    AnnotationValidateFrameWork-UserAspect(切面)-ControllerAdvice
+      QurarzMain(timing.quartz目录都是)
+    (DefaultProducer(AmqMsgContainerFactory)
+     + RedisUse +
+
+                 Callback + ICache ++ MVC.java +
                                  + PorformMain)
             - 从jdk的使用什么 -- 到这里的不同的模块注意什么、如何融合  --- 这些也是基础学习以后可以在自己扩展或使用别人的博客
          1.登录官网  quickstart   https://rocketmq.apache.org/docs/quick-start/   + 左侧对应的其他example和tips + best practice就是核心设计-源码注意点

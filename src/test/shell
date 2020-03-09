@@ -17,7 +17,8 @@ Intellij IDEA使用技巧
 
 ----idea
 
-
+--maven
+        Maven 生命周期 :https://www.jianshu.com/p/fd43b3d0fdb0
 
 --linux
     1.vi xx --> /关键字  -> n（next）--> 操作

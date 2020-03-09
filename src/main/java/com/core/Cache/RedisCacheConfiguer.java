@@ -71,7 +71,7 @@ public class RedisCacheConfiguer {
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
 
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        RedisTemplate<String, Object> template = new RedisTemplate<>();//TODO:这里可以注入吗？？？？
         // 配置连接工厂
         template.setConnectionFactory(factory);
 
