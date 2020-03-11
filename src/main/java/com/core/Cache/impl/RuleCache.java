@@ -1,10 +1,9 @@
 package com.core.Cache.impl;
 
-import com.core.Cache.ICache;
+import com.core.Cache.ICache111;
 import com.core.rule.bean.CombinedRuler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @description:
  */
 @Service
-public class RuleCache implements ICache{
+public class RuleCache implements ICache111{
 
     @Autowired
     private RedisTemplate redisTemplate ;

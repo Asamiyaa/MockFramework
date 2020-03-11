@@ -2,6 +2,8 @@ package com.core.rule.bean.dataObj;
 
 import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
+
 @Repository
 public class DraftDo {
     /**
@@ -123,6 +125,16 @@ public class DraftDo {
      */
     public void setDraftdescribe(String draftdescribe) {
         this.draftdescribe = draftdescribe == null ? null : draftdescribe.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "DraftDo{" +
+                "id=" + id +
+                ", draftno='" + draftno + '\'' +
+                ", draftdescribe='" + draftdescribe + '\'' +
+                ", drafttemplate=" + Arrays.toString(drafttemplate) +
+                '}';
     }
 
     /**

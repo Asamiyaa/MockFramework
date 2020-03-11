@@ -1,6 +1,7 @@
 package com.msg.Amq;
 
 import org.apache.activemq.spring.ActiveMQConnectionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
@@ -72,21 +73,35 @@ Kafka 在内的几个常见的开源消息队列，都只能做到 At Least Once
  *
  *      原版：https://activemq.apache.org/features
  *      1.ActiveMQ的安装与配置和登录页面信息:https://www.ilanni.com/?p=13543
- *      2.ActiveMQ的activemq.xml配置（内存设置、策略配置、流控、协议、认证授权） https://blog.csdn.net/fenglongmiao/article/details/79175062
+ *      2.ActiveMQ的activemq.xml配置（内存设置、broker策略配置、流控、协议、认证授权） https://blog.csdn.net/fenglongmiao/article/details/79175062
  *      3.异步、讯息策略、重发策略、持久化、死信队列、消息积压：https://www.cnblogs.com/jinloooong/p/9609420.html额 -->
  *          TODO:****  满足上面mq特性从哪些配置中可以看到 ,解决问题的根本就是上面的特性。关键  . mq提供不同解决策略 + 代码本身实现对应
  *          TODO:二者配合呼应才能完成
  *
  *          TODO: 基本的实现  -- 配合 property配置信息 +  @configure类配置 + xml（比如axtivemq.xml）= 企业级（如何区分呢 依赖于第一步的有哪些配置）
                     从默认配置中获取可以配哪些(https://spring.hhui.top/spring-blog/2018/09/25/180925-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF%E4%B9%8B%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE/)
-                    configure 结合redisConfigure得到重写了redisTemplate加入了除默认属性配置外的其他
-                    CONF
+                                可以在没有配置类的情况下使用springboot自动配置 完成基本的。 使用configure时需要将property中的默认配置通过java的
+                                形式再配置一遍，因为这里是new了对应的工厂....
+                    configure 结合redisConfigure得到重写了redisTempl          ate加入了除默认属性配置外的其他.对象、列表间引用。 同样可以注入自动配置的connenctory
+                                在这个基础上进行添加配置。
+                    CONF/*.xml
+
+
+                 如何去配合选择，共同作用才是最重要的，依据来自哪里？
+
+             TODO: 区分客户端 vs 服务端  2的配置信息内容是接近服务端 3接近client,每个client的配置可以自定义
 
             TODO:****其实这些不同形式的配置都是为了真正发挥外部模块的作用,只不过表现形式不同罢了-****-------------
 
-        4.spring中配置：https://blog.csdn.net/lr131425/article/details/68064022   可以通过参数形式，结合@ConfigurationProperties 完成对@configureation的配置工作
-                        https://ningyu1.github.io/site/post/06-activemq-settings/
-                        https://github.com/DongCarzy/springboot-activemq
+
+            问题：如果我现在在配置文件配置了一些在本身框架比如mq有的属性，并且按照spring的格式进行配置可以解析到吗？
+                  如果没有的属性可以解析吗？
+                  那么configure类的作用是啥？还需要吗？
+
+                    下面的内容来自： https://activemq.apache.org/features **********************
+
+        4.spring中配置：https://blog.csdn.net/lr131425/article/details/68064022    可以通过参数形式，结合@ConfigurationProperties 完成对@configureation的配置工作
+                        https://ningyu1.github.io/site/post/06-activemq-settings/  XML形式配置
                         https://juejin.im/post/5b756fefe51d456643556056
                         https://blog.csdn.net/gwd1154978352/article/details/78772164
                         https://www.devglan.com/spring-boot/spring-boot-jms-activemq-example
@@ -151,6 +166,10 @@ public class AmqMsgContainerFactory {
     @Value("${amq.listener.switch}")
     private String listenerSwitch ;
 
+    @Autowired
+    private ConnectionFactory activeMQConnectionFactory;
+    //***可以通过这种方式获取信息，也可以通过入参来获取。
+    //***可以注入factory 或者 template 获取  参考redisConfigure
 
     /**
      * 创建 ActiveMQ 的连接工厂
@@ -178,7 +197,12 @@ public class AmqMsgContainerFactory {
 
         DefaultJmsListenerContainerFactory factory =
                 new DefaultJmsListenerContainerFactory();
-        factory.setConnectionFactory(connectionFactory()); //这里相当于xml <bean ref="connectionFactory">****
+//        factory.setConnectionFactory(connectionFactory()); //这里相当于xml <bean ref="connectionFactory">****    这个和下面都可以
+        factory.setConnectionFactory(activeMQConnectionFactory); //直接使用默认构建好的工厂 直接注入能不能使用？ 可以 。
+        /**
+         *  template auto  --> 配置listener
+         */
+
         //设置连接数
         factory.setConcurrency("1"); //设置1个就是一个consumer 5
         //重连间隔时间  - 这里暂时用不到，所以这样设置

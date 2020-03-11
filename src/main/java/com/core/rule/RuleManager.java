@@ -40,15 +40,13 @@ package com.core.rule;
             12.Assert.notNull(code, "Code must not be null"); https://uule.iteye.com/blog/898842
  */
 
-import com.core.Cache.ICache;
-import com.core.Cache.impl.RuleCache;
+import com.cache.ICache;
 import com.core.rule.bean.CheckResult;
 import com.core.rule.bean.CombinedRuler;
 import com.core.rule.impl.ParamRuleCheckImpl;
 import com.core.rule.impl.ParamRuleImpl;
 import com.exception.ServiceCheckException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.Arrays;
@@ -114,7 +112,7 @@ public class RuleManager {
         System.out.println(combinedRuler);
 
 
-        cache.synch(combinedRuler);
+//        cache.synch(combinedRuler);
         paramRule.updateParamRule(combinedRuler);
 
     }

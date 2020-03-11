@@ -68,4 +68,6 @@ public interface DraftDoMapper {
     List selectBySearchBean(DraftDo draftDo2);
     List selectByin(List l);
     List selectLike(DraftDo draftDo);
+
+    DraftDo  selectByPrimaryKey(long id);
 }

@@ -1,17 +1,12 @@
 import boot.SpringBootApplication;
-import com.core.Cache.ICache;
-import com.core.Cache.RedisCacheConfiguer;
 import com.core.Cache.impl.RuleCache;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.annotation.Version;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -30,6 +25,7 @@ public class TestCache {
             System.out.println(new Date() + " " + ruleCache.cacheFunctionForRedis(i));
         }
     }
+
 
     /*@Autowired
     RedisCacheConfiguer redisCacheConfiguer;
