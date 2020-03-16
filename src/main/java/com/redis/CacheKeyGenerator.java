@@ -63,6 +63,7 @@ public class CacheKeyGenerator implements KeyGenerator{
                     key.append(Array.get(param, i));
                     key.append(',');
                 }
+            //------------------------------------------------------------------------------------------
             } else if (ClassUtils.isPrimitiveOrWrapper(param.getClass()) || param instanceof String) {
                 key.append(param);
             } else {

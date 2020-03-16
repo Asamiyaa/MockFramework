@@ -16,6 +16,18 @@ import javax.jms.ConnectionFactory;
  * @title: AmqMsgContainerFactory
  * @description: 为了将注解和listener/container连接起来 ， 这里没有继承和实现...
  *
+ *          1.kafaka高性能：全异步化的线程模型、高性能的异步网络传输、
+                自定义的私有传输协议和序列化、反序列化
+                批处理
+                顺序读写：将每批消息写入对应的文件
+                pageCache
+                zeroCopy    直接从 PageCache 中把数据复制到 Socket 缓冲区中，这样不仅减少一次数据复
+                制，更重要的是，由于不用把数据复制到用户内存空间，DMA 控制器可以直接完成数据复
+                制，不需要 CPU 参与，速度更快。
+
+                2.解决一致性 防丢失性的写法 - 代码落地
+ *
+ *
  *
  *          1.使用场景
  *              1.非及时   2 弱一致性(订单删除)

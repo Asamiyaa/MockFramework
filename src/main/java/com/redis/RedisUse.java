@@ -8,6 +8,25 @@ package com.redis;
               Jedis和Lettuce:https://blog.csdn.net/catoop/article/details/93756295
       redis官方文档：https://redis.io/documentation   -- 图示:https://redisbook.readthedocs.io/en/latest/index.html
 
+
+      1.从不同角度理解redis场景  缓存、锁、分布式... RedisUse
+            1.缓存
+                    采用 @Cacheable 注解的方式缓存的命中率如何？或者说怎样才能
+                    提高缓存的命中率？缓存是否总能返回最新的数据？如果缓存返回了过期的数据该怎么办？
+                1.一致性
+                    1.读写缓存  程序写入pageCache-异步磁盘同步 系统问题操作系统保证写入，断电丢失  kafka通过多个副本解决这种丢失
+                    2.读缓存    从磁盘获取数据写入缓存  高并发场景下：你是选择同步还是异步来更新缓存呢？如果是同步更新，更新磁盘成功了，但是更新缓存失
+                                                 败了，你是不是要反复重试来保证更新成功？如果多次重试都失败，那这次更新是算成功还
+                                                 是失败呢？如果是异步更新缓存，怎么保证更新的时序？
+
+                                                 解决方案：分布式事务 vs 定时将磁盘数据同步(不及时) - 全量 vs 增量   vs 过期
+                                                             转账(不适用缓存或者分布式强一致性)      后两者比如邮件、微信头像
+
+                                                             一定要合适的场景使用，不要死扣强一致性  人生也是这样要审时度势
+                2.在内存有限的情况下，要优先缓存哪些数据，让缓存的命中率最高  - 缓存穿透 - 缓存置换  - 策略（命中率最高的置换策略，一定是根据你的业务逻辑，定制化的策略 -  LRU 算法 - 位置权重）
+
+
+
     1.1.redis配置
             Redis-cli: Learn how to master the Redis command line interface, something you'll be using a lot in order to administer, troubleshoot and experiment with Redis.
             Configuration: How to configure redis.

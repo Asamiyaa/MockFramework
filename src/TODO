@@ -16,13 +16,19 @@
     https://www.cnblogs.com/-new/p/7190092.html
 
     获得全局唯一值并返回/或者向下操作？如何执行不怕覆盖 。直接使用synchronized?粒度 如果没有太耗cpu/内存的有没有必要使用细粒度锁- 考虑更多
-2.迁移
+2.--迁移
 3.vue
-4.-- 框架 -
-5.同业授信
 
 
 
 
-1.重新查看秒杀项目  目前仿真已经使用了baseDao和exception 和 return..+ restful
-2.
+
+1.--重新查看秒杀项目  目前仿真已经使用了baseDao和exception 和 return..+ restful
+2.无需创建多个dto等，保存对象高效？ 对于占用相似或者对象进行‘ 池化 ’
+3.xml解析api文档理解 oxm
+4.其他技术运用 springboot + 其他技术
+5.mybatis - valid - quartz 整理 过程中的问题和知识点  反射 多个技术整合  以及spring的扩展 如何整合了别人  debug
+6.mq并没有真正解决项目问题和配置 只是基本集成
+7.RedisUse同上，       并且6.7都需要进一步理解关联知识点(事务、幂等) + 真正整合进项目
+8.源码分析技巧：
+        1.IDEA查看接口或类的继承实现关系图 https://blog.csdn.net/Jae_Wang/article/details/80058541

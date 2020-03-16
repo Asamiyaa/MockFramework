@@ -19,8 +19,11 @@ import java.math.BigDecimal;
 public class Main {
 
     static String s;
+    public  static  Object obj ;
 
     public static <T> void main(String[] args) throws ServiceCheckException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+
+        System.out.println((String) obj);//null可以强转
 
         //BigDecimal bigDecimal = new BigDecimal("1000000000000000.1234567");
         BigDecimal bigDecimal = new BigDecimal(Math.pow(0.2334444444444444444444444444444444444444444444

@@ -8,6 +8,18 @@ import org.springframework.lang.Nullable;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 这里的cache定义最基本的必须的。其他具体比如redisCache extends Cache 扩展接口  ，再去实现
+ *
+ * 既然打算暴露manager,还需要这么详细的接口吗？直接manager返回Opera...对象、set对象、自行操作。这样就不会大范围缩小redis本身的特性
+ * CacheManager如何  策略   缓存实现类呢？
+ *
+ * @param <H>
+ * @param <HK>
+ * @param <HV>
+ */
+
+
 public interface Cache<H, HK, HV>  {
 
     boolean existsKey(String key);
