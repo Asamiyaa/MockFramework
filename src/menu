@@ -37,10 +37,11 @@
       AmqMsgContainerFactory(activemq) - DefaultProducer(rocketmq)
       RedisUse -RedisCacheConfiguer
       LogMain
-      DubboMain
+      DubboMain  -
       ZookeeperMain
-      ElesticSearchMain
+      WebContainerMain - springmvc - session / servlet
       ShardingJdbcMain
+      ElesticSearchMain
       DroolsMain
 
                  Callback + ICache ++ MVC.java +

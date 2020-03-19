@@ -32,3 +32,98 @@
 7.RedisUse同上，       并且6.7都需要进一步理解关联知识点(事务、幂等) + 真正整合进项目
 8.源码分析技巧：
         1.IDEA查看接口或类的继承实现关系图 https://blog.csdn.net/Jae_Wang/article/details/80058541
+
+
+1.反射、泛型、注解、日期工具类等逻辑 threadLocal.get***
+		p.getClass().getGenericInterfaces()[0].getActualTypeArguments()[0]：https://blog.csdn.net/xing930408/article/details/100043633
+2.切面：https://www.google.com/search?q=jdk+cglib+aspectj+%E5%AF%B9%E6%AF%94&oq=jdk+cglib+aspectj+%E5%AF%B9%E6%AF%94&aqs=chrome..69i57.11179j0j8&sourceid=chrome&ie=UTF-8
+	设计模式、代码的层次、原则思考
+3.
+4.参考dubbo的注解进行update和插入的区分
+
+1.多数据源配置
+2.很多在citrix里面的加强版没有挪到外面来。。。比如校验这一块
+3.java8使用
+4.aspectj vs jdk vs cglib -- 字节码生成工具
+
+1.哪些通过dubbo调用，哪些通过直接模块导入?
+
+不要简单的以为一个context就是一个map,要注意主体。因此不要简单的认为一个框架，要细致学习
+dubbo
+@NotNull(groups = ValidationService.Save.class) // 保存时不允许为空，更新时允许为空 ，表示不更新该字段
+KeyGenerator keyGenerator = new ...
+协议区别  - 协议参考手册 章节 - rest协议就是现在仿真的rest结构 。。如何整合？---vs http ..头 body
+不同配置覆盖的意义是什么？
+zk vs redis注册中心对比
+服务化最佳实践：微服务拆分思想 - 划分
+api vs spi Dubbo 的扩展点加载从 JDK 标准的 SPI (Service Provider Interface) 扩展点发现机制加强而来。
+	以及具体的使用场景 如何使用到额
+	没有理解为什么使用spi?和直接反射获取区别是啥？
+框架设计 - 整体设计、调用链、领域模型、....
+拦截器是干预过程的，它是过程的一部分，是基于过程行为的，而事件是基于状态数据的，任何行为改变的相同状态，对事件应该是一致的。
+一些设计上的基本常识：https://dubbo.apache.org/zh-cn/docs/dev/principals/general-knowledge.html
+源码解析章节未具体看，现在看不懂，盲点太多
+
+
+redis
+	Redis高级客户端Lettuce详解:https://cloud.tencent.com/developer/article/1526886
+	aop切面和redis实现自定义缓存注解：https://blog.csdn.net/zhangxiaomin1992/article/details/78296214
+	redis专家：https://yq.aliyun.com/users/a4lvazmocbzco?spm=a2c4e.11153940.0.0.fdaf744aBQNL0m
+
+日志：
+	springboot 并发项目 多模块  日志设计  定位问题  线程  流水号 https://www.google.com/search?safe=strict&sxsrf=ALeKk01O7BzqHt0aooWunVoRyTmDGGiI_g%3A1584203540748&ei=FAdtXvOoLcL7wQOlhZv4DQ&q=springboot+%E5%B9%B6%E5%8F%91%E9%A1%B9%E7%9B%AE+%E5%A4%9A%E6%A8%A1%E5%9D%97++%E6%97%A5%E5%BF%97%E8%AE%BE%E8%AE%A1++%E5%AE%9A%E4%BD%8D%E9%97%AE%E9%A2%98++%E7%BA%BF%E7%A8%8B++%E6%B5%81%E6%B0%B4%E5%8F%B7&oq=springboot+%E5%B9%B6%E5%8F%91%E9%A1%B9%E7%9B%AE+%E5%A4%9A%E6%A8%A1%E5%9D%97++%E6%97%A5%E5%BF%97%E8%AE%BE%E8%AE%A1++%E5%AE%9A%E4%BD%8D%E9%97%AE%E9%A2%98++%E7%BA%BF%E7%A8%8B++%E6%B5%81%E6%B0%B4%E5%8F%B7&gs_l=psy-ab.3...23821.43133..44453...1.0..3.2470.15432.0j54j9j6j2j1j9-1......0....1..gws-wiz.......35i39j33i160.vgobtuGw1Ao&ved=0ahUKEwjzgrGKsproAhXCfXAKHaXCBt84HhDh1QMICw&uact=5
+	基于SpringBoot的日志集中收集、微服务使用及切面的使用：https://cloud.tencent.com/developer/news/276236
+	在Java项目中使用traceId跟踪请求全流程日志：https://blog.csdn.net/yangcheng33/article/details/80796129
+	使用 Spring Boot AOP 实现 Web 日志处理和分布式锁：https://www.ibm.com/developerworks/cn/java/j-spring-boot-aop-web-log-processing-and-distributed-locking/index.html
+
+	SpringBoot使用RequestBodyAdvice进行统一参数处理：https://blog.csdn.net/xingbaozhen1210/article/details/98189562
+	RequestBodyAdvice和ResponseBodyAdvice
+
+并发：
+	我是如何把SpringBoot项目的并发提升十倍量级的：https://yq.aliyun.com/articles/745470
+	SpringBoot：高并发下浏览量入库设计：https://www.w3xue.com/exp/article/20198/52302.html
+
+mybatis
+	缓存机制：https://tech.meituan.com/2018/01/19/mybatis-cache.html
+	db2存储过程：1.终止符 --/
+							 2.简化replace而不是使用存储过程 --- 对函数不熟悉，对场景不熟悉
+
+							 		https://blog.csdn.net/feier7501/article/details/25922303
+							 		https://blog.csdn.net/cuiran/article/details/7090835
+
+	DB2怎么通过select语句创建临时表:https://zhidao.baidu.com/question/271649249.html
+
+	sql的循环,判断,跳转语句:https://www.jianshu.com/p/06a8b7c3d2f8
+	sql 语句“不包含”怎么写 ?：http://www.imooc.com/wenda/detail/456324
+
+spring:
+	applicationrunner 和 init
+	SpringBoot初始化几大招式:http://www.mamicode.com/info-detail-2940976.html?__cf_chl_jschl_tk__=00d6f06fe44238b3b4d54311812938b29f34810b-1584612745-0-AajWOKeu0UjIZ4AGoqAGrHn3J5IXP1sC9Axv1yGVU36V4fin_T8hkm-gyUYgW4te3zwTH1a4LLSCqzDwoHCesDVa4xK3ag-aeTYEK-WD9hx2K22o-HZODYeB7C0Uur9uJbe6AnNOEUFMlFwkgnSWmCAMmvXZVCBGlJDh_rJ7dbDcVQmrOvbrEe3u_yn6ZrtvfgwgRUHlZ02nsXeGhYaoilRDq2VouQNJx4m0cQc7_5UgzTZc-k7W07CpQVYnYqrA5S9R2rTPAEN6GRUoLCvAiUAxu5ggJKho2oxvC9ldH_6ODRGf3GUz6lT49P5MkYrw4g
+
+debug 类图
+	用IntelliJ IDEA看Java类图：https://blog.csdn.net/boling_cavalry/article/details/79418823
+	IDEA中如何使用debug调试项目 ：https://blog.csdn.net/yxl_1207/article/details/80973622
+	修改变量值：https://www.cnblogs.com/acm-bingzi/p/debugModifyValue.html
+	IntelliJ IDEA的工具栏介绍：https://www.cnblogs.com/weixinyu98/p/9829521.html
+	idea中live template的详细使用教程：https://www.jianshu.com/p/3974df6572af
+
+elecsearch:
+	Elasticsearch的由来、原理及应用场景分析:https://my.oschina.net/90888/blog/1619325
+
+一文带你了解微信/支付宝支付的相关概念：http://www.spring4all.com/article/19896
+
+其他设计方面：从产品经理app
+
+
+依赖范围
+maven中三种classpath
+编译，测试，运行
+1.compile：默认范围，编译测试运行都有效
+2.provided：在编译和测试时有效
+3.runtime：在测试和运行时有效
+4.test:只在测试时有效
+5.system:在编译和测试时有效，与本机系统关联，可移植性差
+
+ctrl+n idea相当于右键
+
+

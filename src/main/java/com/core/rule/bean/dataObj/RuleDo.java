@@ -228,6 +228,17 @@ import org.springframework.stereotype.Repository;
          *
  *                      7.万字归总表设计与 SQL 编写技巧  https://www.infoq.cn/article/DGMlqL9x0maeHGRltOKT
  *
+ *
+ *
+ *                      sql编写实战:
+ *                          1.oracle、db2中插入系统当前时间：https://www.testwo.com/blog/5249
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  */
 
 

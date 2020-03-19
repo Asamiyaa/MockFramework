@@ -4,6 +4,8 @@ Intellij IDEA使用技巧
         包括光标切换 - 跳转  ....
         ctrl+n 创建对应
 
+手动安装maven
+    mvn install:install-file -Dfile=C:\tmp\mockito-core-2.23.4.jar -DgroupId=org.mockito -DartifactId=mockito-core -Dversion=2.23.4 -Dpackaging=jar
 
 1.右键内容 --- 关联 alt+上面的导航栏 --- 可以选中内容后ctrl+n调出右键
 2.F3进入源码
