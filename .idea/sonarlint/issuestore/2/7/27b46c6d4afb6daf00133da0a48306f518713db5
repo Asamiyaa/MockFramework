@@ -1,0 +1,29 @@
+
+dsquid:S1192"ODefine a constant instead of duplicating this literal "localhost:9876" 3 times.(÷Ïá¬
+<squid:S1604"(Make this anonymous inner class a lambda(€”Òw
+xsquid:UselessImportCheck"QRemove this unused import 'org.springframework.context.annotation.Configuration'.(¬²Úäşÿÿÿÿ
+jsquid:UselessImportCheck"HRemove this unused import 'org.springframework.context.annotation.Bean'.(‚î‰Ş
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+Gsquid:S1135"2Complete the task associated to this TODO comment.(ğ„²
+Gsquid:S1135"2Complete the task associated to this TODO comment.(¼Ø¡ª
+±%squid:RedundantThrowsDeclarationCheck"}Remove the declaration of thrown exception 'java.io.UnsupportedEncodingException', as it cannot be thrown from method's body.(­ğ°Óûÿÿÿÿ
+«%squid:RedundantThrowsDeclarationCheck"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(­ğ°Óûÿÿÿÿ
+Ä%squid:RedundantThrowsDeclarationCheck"Remove the declaration of thrown exception 'org.apache.rocketmq.client.exception.MQBrokerException', as it cannot be thrown from method's body.(­ğ°Óûÿÿÿÿ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(²Æ‘³
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(•¿Êîşÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(ìİÁËúÿÿÿÿ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(âŸæŒ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(¤å¾ø
+L
+squid:S106"9Replace this use of System.out or System.err by a logger.(€£û)
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(¤å¾ø
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ı‚êÇùÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ùÑ¡¼
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ê—êªøÿÿÿÿ
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Á“ê€ÿÿÿÿÿ

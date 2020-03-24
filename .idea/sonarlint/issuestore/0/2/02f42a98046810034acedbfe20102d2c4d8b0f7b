@@ -1,0 +1,6 @@
+
+usquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡¤¾ãüÿÿÿÿ
+xsquid:S1157"cReplace these toUpperCase()/toLowerCase() and equals() calls with a single equalsIgnoreCase() call.(¤ÔªÎ
+}squid:S1157"cReplace these toUpperCase()/toLowerCase() and equals() calls with a single equalsIgnoreCase() call.(ÉÞ±èûÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÐÐð¼
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(™â»´üÿÿÿÿ

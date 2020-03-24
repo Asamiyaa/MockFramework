@@ -37,12 +37,20 @@
       AmqMsgContainerFactory(activemq) - DefaultProducer(rocketmq)
       RedisUse -RedisCacheConfiguer
       LogMain
-      DubboMain  -
+      Java8Main
+      ReflectMain
+      UtilMain
+      ThreadMain
+      PatternMain
+      DubboMain
       ZookeeperMain
       WebContainerMain - springmvc - session / servlet
       ShardingJdbcMain
       ElesticSearchMain
       DroolsMain
+
+      ProductMain
+
 
                  Callback + ICache ++ MVC.java +
                                  + PorformMain)

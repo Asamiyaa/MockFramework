@@ -1,0 +1,105 @@
+
+csquid:S00101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(úàµ™
+gsquid:UselessImportCheck"ERemove this unused import 'org.springframework.core.env.Environment'.(¹‡¨¹
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+ksquid:S00116"URename this field "SpringMain" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó°ĞÂ
+qsquid:S00116"VRename this field "SpringMain2" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûòùúÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.( ¨’§øÿÿÿÿ
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+ssquid:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÈÃÎ¬
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ş³—îúÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(¬ÊŒ‰ıÿÿÿÿ
+¡%squid:RedundantThrowsDeclarationCheck"sRemove the declaration of thrown exception 'org.springframework.beans.BeansException' which is a runtime exception.(ØÁÌ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(‹ºéÂ
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(ëÏªß
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÊÙÓûÿÿÿÿ
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(€ß‚êşÿÿÿÿ
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+¢%squid:RedundantThrowsDeclarationCheck"sRemove the declaration of thrown exception 'org.springframework.beans.BeansException' which is a runtime exception.(ú±œ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(›ŒÔøÿÿÿÿ
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+¢%squid:RedundantThrowsDeclarationCheck"sRemove the declaration of thrown exception 'org.springframework.beans.BeansException' which is a runtime exception.(¯¶…œ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(ç±¦‰ûÿÿÿÿ
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+¢%squid:RedundantThrowsDeclarationCheck"sRemove the declaration of thrown exception 'org.springframework.beans.BeansException' which is a runtime exception.(¾ıˆ„
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(•í’·úÿÿÿÿ
+¢%squid:RedundantThrowsDeclarationCheck"sRemove the declaration of thrown exception 'org.springframework.beans.BeansException' which is a runtime exception.(ˆ’€·
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(×ş´ü
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ãò•Œøÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.( ¨’§øÿÿÿÿ
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+ssquid:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÈÃÎ¬
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ş³—îúÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(¬ÊŒ‰ıÿÿÿÿ
+¡%squid:RedundantThrowsDeclarationCheck"sRemove the declaration of thrown exception 'org.springframework.beans.BeansException' which is a runtime exception.(ØÁÌ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(‹ºéÂ
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(ëÏªß
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÊÙÓûÿÿÿÿ
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(€ß‚êşÿÿÿÿ
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+¢%squid:RedundantThrowsDeclarationCheck"sRemove the declaration of thrown exception 'org.springframework.beans.BeansException' which is a runtime exception.(ú±œ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(›ŒÔøÿÿÿÿ
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+¢%squid:RedundantThrowsDeclarationCheck"sRemove the declaration of thrown exception 'org.springframework.beans.BeansException' which is a runtime exception.(¯¶…œ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(ç±¦‰ûÿÿÿÿ
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+¢%squid:RedundantThrowsDeclarationCheck"sRemove the declaration of thrown exception 'org.springframework.beans.BeansException' which is a runtime exception.(¾ıˆ„
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(•í’·úÿÿÿÿ
+¢%squid:RedundantThrowsDeclarationCheck"sRemove the declaration of thrown exception 'org.springframework.beans.BeansException' which is a runtime exception.(ˆ’€·
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(×ş´ü
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ãò•Œøÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¯·Ä±
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¯·Ä±
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¯·Ä±
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¯·Ä±

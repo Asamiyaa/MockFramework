@@ -1,0 +1,61 @@
+
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(—§şÿ
+Gsquid:S1135"2Complete the task associated to this TODO comment.(ş£‹Á
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(‹Ü×
+Osquid:S1118":Add a private constructor to hide the implicit public one.(Í°ó¬
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ü­µí
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(’”Àüÿÿÿÿ
+›squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(úâôÖüÿÿÿÿ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(šæŒœ
+ssquid:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Üõıî
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(š„úÿÿÿÿ
+;squid:S1068"&Remove this unused "ll" private field.(öš½Ö
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ó¹Ø‰ıÿÿÿÿ
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¶³˜ìÿÿÿÿÿ
+@squid:S1068"+Remove this unused "courses" private field.(Âİàÿ
+=squid:S1481"(Remove this unused "ret" local variable.(Îî½É
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(õè€ë
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(äÂîá
+›squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÉëÉêüÿÿÿÿ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(åü¾ô
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(ò»Àì
+Lsquid:S1854"7Remove this useless assignment to local variable "ret".(Îî½É
+@squid:S1172"&Remove these unused method parameters.(ÉëÉêüÿÿÿÿ
+Ysquid:S2147"DCombine this catch with the one at line 86, which has the same body.(Å¡ß
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(¿ĞÅ‡
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¡ªÿ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(ª…„İ
+Usquid:UnusedPrivateMethod"-Remove this unused private "doForamt" method.(ÉëÉêüÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(®Ïú“
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ç­«½
+_squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÃÃè]
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(ûîåÇşÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(•Îòå
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ŠĞçÌ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ô— 
+Lsquid:S1135"2Complete the task associated to this TODO comment.(ŸÄıÿÿÿÿ
+asquid:S1192"GDefine a constant instead of duplicating this literal "result" 3 times.(­ì­­øÿÿÿÿ
+Lsquid:S3878"8Remove this array creation and simply pass the elements.(÷Ô±	
+;squid:S1068"&Remove this unused "tt" private field.(½´Ìû
+gsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 28 to the 15 allowed.(½“ŠÇ
+Ysquid:S2147"DCombine this catch with the one at line 86, which has the same body.(åşáÿ
+­%squid:RedundantThrowsDeclarationCheck"yRemove the declaration of thrown exception 'java.lang.InstantiationException', as it cannot be thrown from method's body.(¢Èø’ÿÿÿÿÿ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(¢Âß
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(ˆñğğ

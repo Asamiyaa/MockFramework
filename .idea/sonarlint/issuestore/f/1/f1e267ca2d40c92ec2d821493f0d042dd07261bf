@@ -1,0 +1,11 @@
+
+hsquid:S00101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÉØ•½ûÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(ç¤õêÿÿÿÿÿ
+bsquid:UselessImportCheck";Remove this unused import 'com.core.rule.dao.RuleDoMapper'.(‚¹éðþÿÿÿÿ
+Gsquid:S1135"2Complete the task associated to this TODO comment.(ëº¬§
+tsquid:S4144"ZUpdate this method so that its implementation is not identical to "testRedis2" on line 26.(ÙÞýÓüÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(ç¤õêÿÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(ç¤õêÿÿÿÿÿ

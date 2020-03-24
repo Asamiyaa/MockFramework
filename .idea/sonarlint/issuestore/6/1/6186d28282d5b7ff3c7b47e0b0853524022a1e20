@@ -1,0 +1,55 @@
+
+_squid:S1192"JDefine a constant instead of duplicating this literal "DD-AB-123" 6 times.(ÌóÊ
+wsquid:S2637"cParameter 1 to this call is marked "javax.validation.constraints.NotNull" but null could be passed.(ºÛİG
+squid:S2637"jParameter 1 to this constructor is marked "javax.validation.constraints.NotNull" but null could be passed.(ÌóÊ
+usquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡¤¾ãüÿÿÿÿ
+›squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‡È‚Ğûÿÿÿÿ
+Lsquid:S1135"2Complete the task associated to this TODO comment.(Èİ¶ëùÿÿÿÿ
+Lsquid:S1135"2Complete the task associated to this TODO comment.(ßŸÿ¼úÿÿÿÿ
+Gsquid:S1135"2Complete the task associated to this TODO comment.(Ö™Ã
+Lsquid:S1135"2Complete the task associated to this TODO comment.(ÖîŠûÿÿÿÿ
+=squid:S1125"(Remove the literal "true" boolean value.(‚²„
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(÷ÆÎÚ
+Qsquid:S1854"7Remove this useless assignment to local variable "car".(Şşìàşÿÿÿÿ
+Gsquid:S1135"2Complete the task associated to this TODO comment.(«ã¥ˆ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(÷ÆÎÚ
+Gsquid:S1135"2Complete the task associated to this TODO comment.(“€ªÜ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ü›¦Ê
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(¦­•¬
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(±¡óšúÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(µù˜×ıÿÿÿÿ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ü›¦Ê
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(¦­•¬
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(±¡óšúÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(”ôïƒÿÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(”ôïƒÿÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(”ôïƒÿÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(”ôïƒÿÿÿÿÿ
+Bsquid:S1481"(Remove this unused "car" local variable.(Şşìàşÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(âÔà
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(àÄ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ª¼é 
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(àÄ
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Â¿‹°ıÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¨ÿ½ò
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(äŒïé
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(®Ì¶Éşÿÿÿÿ
+_squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ä©õ&
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(İ¿õòùÿÿÿÿ
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(”ÊÀõøÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¥ãñ
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(˜ˆ»Ÿ

@@ -1,0 +1,35 @@
+常用命名
+	proxy listner factory  handler adapter wrapper .Context.. 设计模式对应类  call/excute  ..asString Template    holder ParameterParser xxdefinition Defaultxx  xxprovider xxhelper xxor
+	RedisAccessor  ExceptionTranslationStrategy  xxConverter  dispacher
+	xxManager（RedisCacheConfiguer）
+
+	ValidatorFactoryImpl - 212行 - 查看每个
+
+	invokeParam  QueryCondition OrderBean  rangeCheck  searchBean  req对象 /retVal  nameValuePair
+
+	putIfAbsent  createTransactionIfNecessary  wrapIfMissing 方法明确具有见名之意
+	getRewxx 原生  orgi  invoke/invocation  proceed  retVal    doUnbindResource   toIndex - fromIndex; offset dot 点  NameValuePair
+
+	patternAndContextMatches(CharSequence input, int i)
+	String:parseOf("xx")  valueOf()....
+	fastJson:toJSONString  toJavaObject   toJSON   fromxxx
+    diff obtain  retrieve
+    ApplicationContext通过继承ApplicationEventPublisher、ResourcePatternResolver、MessageSource、EnvironmentCapable接口，为基本的IOC容器扩展了高级的容器特性，例如：
+    	ApplicationEventPublisher：支持应用事件
+    	MessageSource：支持国际化信息源
+    	ResourcePatternResolver： 允许以路径模式定位Resource
+    	EnvironmentCapable：应用上下文环境检查
+    	AbstractApplicationContext.refresh()
+    originCode
+    handleInput
+    composite
+    clz
+    holder
+    deleteWhen
+    ConsumeFromWhere
+    isWaitStoreMsgOK
+    onMessage - onXXX
+
+
+缩写：https://www.iteye.com/blog/lihaiming-2317036
+    Java各种对象（PO,BO,VO,DTO,POJO,DAO,Entity,JavaBean,JavaBeans）的区分：https://www.cnblogs.com/lyjin/p/6389349.html

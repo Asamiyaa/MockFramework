@@ -1,0 +1,44 @@
+
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(œÀİİúÿÿÿÿ8®ÂÀ™.
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ŸæúÑ8®ÂÀ™.
+S
+squid:S106"9Replace this use of System.out or System.err by a logger.(« P8®ÂÀ™.
+Bsquid:S1172"&Remove these unused method parameters.(³İ¶Î8®ÂÀ™.
+wsquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(’Ú·©8®ÂÀ™.
+[squid:UselessImportCheck"-Remove this unused import 'com.cache.ICache'.(§ì‚ğşÿÿÿÿ8®ÂÀ™.
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ø½ışøÿÿÿÿ8®ÂÀ™.
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(½¥«Ñ8®ÂÀ™.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(ùƒŞ8®ÂÀ™.
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(æÀö€øÿÿÿÿ8®ÂÀ™.
+Nsquid:S1135"2Complete the task associated to this TODO comment.(üÄ…8®ÂÀ™.
+usquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(óâÖ¡8®ÂÀ™.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(í´Á–8®ÂÀ™.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(¨úˆ„8®ÂÀ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(´ŒÚşÿÿÿÿ8®ÂÀ™.
+¢squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ºî¨Øúÿÿÿÿ8®ÂÀ™.
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(›ÃÜÃ8®ÂÀ™.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(Æö‘£8®ÂÀ™.
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(²ãú˜ûÿÿÿÿ8®ÂÀ™.
+Ssquid:S1135"2Complete the task associated to this TODO comment.(íšÜŸûÿÿÿÿ8®ÂÀ™.
+Gsquid:S1172"&Remove these unused method parameters.(ºî¨Øúÿÿÿÿ8®ÂÀ™.
+Msquid:S1135"2Complete the task associated to this TODO comment.(­“­&8®ÂÀ™.
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8®ÂÀ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(ô¹¦ıÿÿÿÿ8®ÂÀ™.
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8®ÂÀ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(¦«ª¡úÿÿÿÿ8®ÂÀ™.
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ìŞ³8®ÂÀ™.
+Hsquid:S3416",Update this logger to use "LogAspect.class".(ãÃì½8®ÂÀ™.
+¢squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ŒÏÎûÿÿÿÿ8®ÂÀ™.
+psquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŒÏÎûÿÿÿÿ8®ÂÀ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(öİÀøÿÿÿÿ8®ÂÀ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(‡„ãçúÿÿÿÿ8®ÂÀ™.
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Å‡Åşÿÿÿÿ8®ÂÀ™.

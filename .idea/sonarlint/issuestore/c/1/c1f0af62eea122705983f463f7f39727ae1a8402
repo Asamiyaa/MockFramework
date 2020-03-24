@@ -1,0 +1,20 @@
+
+£squid:S4449"ˆAnnotate the parameter with @javax.annotation.Nullable in constructor declaration, or make sure that null can not be passed as argument.(õ±ŒÕÿÿÿÿÿ
+Lsquid:S1135"2Complete the task associated to this TODO comment.(ÿ‚°Ãúÿÿÿÿ
+?squid:S1481"*Remove this unused "error" local variable.(§ºÙ
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(‰ø£áúÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(»›Ñ‘
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÙÜïÛ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(àê±Şÿÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ø¯Š
+Dsquid:S1066"/Merge this if statement with the enclosing one.(å‰Ğı
+lsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.( õ¢éşÿÿÿÿ
+Lsquid:S1135"2Complete the task associated to this TODO comment.(»«ÛÀúÿÿÿÿ
+Gsquid:S1135"2Complete the task associated to this TODO comment.(ëµòÛ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(»›Ñ‘
+usquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ËÎ¹úÿÿÿÿ
+Gsquid:S1135"2Complete the task associated to this TODO comment.(­À•Ä
+Lsquid:S1135"2Complete the task associated to this TODO comment.(´şİŠøÿÿÿÿ
+›squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ê”ªàÿÿÿÿÿ
+Gsquid:S1135"2Complete the task associated to this TODO comment.(ã°‡š

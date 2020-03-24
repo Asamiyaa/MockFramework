@@ -1,0 +1,89 @@
+
+isquid:UnusedPrivateMethod":Remove this unused private "distributeLockManager" method.(’Úô€ùÿÿÿÿ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(À¿ÒÖùÿÿÿÿ8öáĞ™.
+S
+squid:S106"9Replace this use of System.out or System.err by a logger.(àü58öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(¤Ê¬¡úÿÿÿÿ8öáĞ™.
+hsquid:S1192"GDefine a constant instead of duplicating this literal "serial" 5 times.(’æô¡ùÿÿÿÿ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÊØ¨Şşÿÿÿÿ8öáĞ™.
+dsquid:S2095"CUse try-with-resources or close this "Jedis" in a "finally" clause.(ûèïüûÿÿÿÿ8öáĞ™.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ë“ñ¡8öáĞ™.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(¨³ˆØ8öáĞ™.
+zsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(•È‡ùÿÿÿÿ8öáĞ™.
+dsquid:S2095"CUse try-with-resources or close this "Jedis" in a "finally" clause.(úšëàøÿÿÿÿ8öáĞ™.
+dsquid:S2095"CUse try-with-resources or close this "Jedis" in a "finally" clause.(úšëàøÿÿÿÿ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(¶°—úÿÿÿÿ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(ì½İ®ÿÿÿÿÿ8öáĞ™.
+dsquid:S2095"CUse try-with-resources or close this "Jedis" in a "finally" clause.(úšëàøÿÿÿÿ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(¤Ê¬¡úÿÿÿÿ8öáĞ™.
+Wsquid:UnusedPrivateMethod"-Remove this unused private "cacheLru" method.(æ›‹˜8öáĞ™.
+Ysquid:S3878"8Remove this array creation and simply pass the elements.(îÃÓìıÿÿÿÿ8öáĞ™.
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(İµìÿÿÿÿÿ8öáĞ™.
+nsquid:S1192"MDefine a constant instead of duplicating this literal "] seconds .." 4 times.(Ş”é¡ûÿÿÿÿ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(³²ó¹ûÿÿÿÿ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(ê¢¨£ûÿÿÿÿ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(Š€¨¤øÿÿÿÿ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ö‹…èıÿÿÿÿ8öáĞ™.
+bsquid:S1192"FDefine a constant instead of duplicating this literal "test1" 4 times.(•Ø³Ÿ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(æŸú¼ıÿÿÿÿ8öáĞ™.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(’Ê•Ú8öáĞ™.
+Zsquid:UnusedPrivateMethod"+Remove this unused private "cluter" method.(ÿŒ’©şÿÿÿÿ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(¡ÿ”şÿÿÿÿ8öáĞ™.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÕÆ°¤8öáĞ™.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(ŸéŞˆ8öáĞ™.
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(„ô¤Åùÿÿÿÿ8öáĞ™.
+dsquid:S2095"CUse try-with-resources or close this "Jedis" in a "finally" clause.(ûèïüûÿÿÿÿ8öáĞ™.
+ksquid:S1192"JDefine a constant instead of duplicating this literal "127.0.0.1" 5 times.(ûèïüûÿÿÿÿ8öáĞ™.
+bsquid:S1854"ARemove this useless assignment to local variable "sortingParams".(ÁÀ§şÿÿÿÿ8öáĞ™.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(ØÑ8öáĞ™.
+usquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¿ˆöä8öáĞ™.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(éİ¦ä8öáĞ™.
+usquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(øóŒö8öáĞ™.
+Ssquid:S3878"8Remove this array creation and simply pass the elements.( øÍ
+8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(‡ªŸêùÿÿÿÿ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ş”é¡ûÿÿÿÿ8öáĞ™.
+squid:S1192"^Define a constant instead of duplicating this literal "------------------------00000" 3 times.(ÊØ¨Şşÿÿÿÿ8öáĞ™.
+‡squid:UselessImportCheck"^Remove this unused import 'org.springframework.boot.autoconfigure.data.redis.RedisProperties'.(÷Âµæ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ö‹…èıÿÿÿÿ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(‘é‡Ïøÿÿÿÿ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(‹î˜úÿÿÿÿ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(Û¦Éûÿÿÿÿ8öáĞ™.
+Ysquid:UnusedPrivateMethod"/Remove this unused private "subPubTest" method.(âñ‡Á8öáĞ™.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ë²¬İ8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(„ëé¼şÿÿÿÿ8öáĞ™.
+Ssquid:S1481"2Remove this unused "sortingParams" local variable.(ÁÀ§şÿÿÿÿ8öáĞ™.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(¯º´Š8öáĞ™.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(©„ú¸8öáĞ™.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(šŸË¯ùÿÿÿÿ8öáĞ™.
+Usquid:S2864"4Iterate over the "entrySet" instead of the "keySet".(®õ–Äúÿÿÿÿ8öáĞ™.
