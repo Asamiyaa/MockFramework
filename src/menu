@@ -37,6 +37,7 @@
       AmqMsgContainerFactory(activemq) - DefaultProducer(rocketmq)
       RedisUse -RedisCacheConfiguer
       LogMain
+   --结合下面的章节3.类
       Java8Main
       ReflectMain
       UtilMain
@@ -212,7 +213,7 @@
 
 
 
-     3>单元测试 测试驱动开发  手术刀 准确定位  TestRulerDraft.class、VolidateControllerTest.class
+     3>单元测试 测试驱动开发  手术刀 准确定位  TestMain.class、VolidateControllerTest.class
            明确修改点 - 局部测试 - 联合测试( debug修改参数值 )
            bbsp 新需求变更导致商票流程不可使用 ==> 关联影响性饭一定要到位，修改之前一定要对涉及部分清晰。
                                           ==> 流程至少跑一边(各个场景、开发角度过滤是否对分支有必要)

@@ -1,2 +1,17 @@
 1.自定义注解 进行属性 / 方法校验
-2.
+2.0.JAVA 代码安全规范 https://blog.csdn.net/shanchahua123456/article/details/85038027
+  1.shiro
+  2.图解密码学：https://blog.csdn.net/weixin_39190897/article/details/82223408
+    数据加解密：https://blog.csdn.net/weixin_39190897/article/details/82220653
+  3.sql注入
+  4.加签验签 / 加密
+      所谓加密(Encryption)是指将一个信息(或称明文－plain text) 经过加密钥匙(Encrypt ion key)及加密函数转换,变成无意义的密文( ciphertext),而接收方则将此密文经过解密函数、解密钥匙(Decrypt on key)还原成明文。这一概念是密码学的基础。
+      md5 不是加密算法，而是摘要算法，摘要算法检查数据的完整性，可检查数据有没有被改过。你想要的那种加密算法可以尝试 AES 对称加密和解密
+      加密都是可以解密的，换句话说就是可逆，md5 是摘要，摘要会有信息丢失，所以是不可逆的
+      加密都是可逆的 摘要都是不可逆的
+      md5 base64 aes 加密 摘要
+      Base64加密解密：https://blog.csdn.net/huangxiaoguo1/article/details/78042715
+      为什么要使用base64编码，有哪些情景需求？:https://www.cnblogs.com/straybirds/p/8395041.html  *****
+      网页登录时密码如何传输?https://blog.csdn.net/u012512762/article/details/41681159
+
+      https://www.cnblogs.com/bjlhx/category/980088.html
