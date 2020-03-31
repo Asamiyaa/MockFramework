@@ -16,7 +16,7 @@ package com.Reflect;
  *              3.枚举  EnumMain.java
  *                      1.自带属性 order ..  自定义属性
  *                      2.枚举可以放在类定义的开始，相当于内部类的位置。减少暴露
- *              4.泛型
+ *              4.泛型  GenericClass.java
  *                      1.对于可以使用Object地方(Object[]为了代码中写for...说明传参可能是数组，也可以在代码中进行类型判断。这样默认传入[]则代表单个也可以传入)
  *                        当返回值和入参有‘类型关系’时则使用或者说T,R.入t返r.
  *                      2.入参有限制需要上下限控制  <T extends Map>..super
@@ -29,7 +29,7 @@ package com.Reflect;
  *
  *              1.异常+枚举    限定了项目中的异常定义，为统一异常、统一返回提供基础  - baseController 二者实现统一接口
  *              2.枚举+泛型
- *              3.泛型+反射    定义泛型类型、值
+ *              3.泛型+反射    定义泛型类型、值  genericUtil
  *              4.注解+反射    获得属性值、注解、注解值并进行逻辑处理  AnnotationUtils、CheckCaseValidator、
  *
  *              6.io/nio
