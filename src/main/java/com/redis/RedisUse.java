@@ -4,30 +4,13 @@ package com.redis;
 @description:
       面试题：https://zhuanlan.zhihu.com/p/29665317
               为什么说Redis是单线程的以及Redis为什么这么快！:https://blog.csdn.net/xlgen157387/article/details/79470556
+              redis多种数据结构应用场景https://www.toutiao.com/i6707445328422896136/?tt_from=weixin&utm_campaign=client_share&wxshare_count=1&timestamp=1585649016&app=news_article&utm_source=weixin&utm_medium=toutiao_android&req_id=202003311803360101310761372A06778B&group_id=6707445328422896136
               Kafka、RabbitMQ、Redis消息中间件对比:http://archwang.top/2018/07/03/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%AF%B9%E6%AF%94/
               Jedis和Lettuce:https://blog.csdn.net/catoop/article/details/93756295
       redis官方文档：https://redis.io/documentation   -- 图示:https://redisbook.readthedocs.io/en/latest/index.html
 
 
-      1.从不同角度理解redis场景  缓存、锁、分布式... RedisUse
-            1.缓存
-                1.场景/哪些数据/是否提升性能
-                    采用 @Cacheable 注解的方式缓存的命中率如何？或者说怎样才能
-                    提高缓存的命中率？缓存是否总能返回最新的数据？如果缓存返回了过期的数据该怎么办？
-                2.一致性/时间点/高可用/异常-数据丢失、连续 rdb/每天从新开始-过期时间 vs 一直/
-                    1.读写缓存  程序写入pageCache-异步磁盘同步 系统问题操作系统保证写入，断电丢失  kafka通过多个副本解决这种丢失
-                    2.读缓存    从磁盘获取数据写入缓存  高并发场景下：你是选择同步还是异步来更新缓存呢？如果是同步更新，更新磁盘成功了，但是更新缓存失
-                                                 败了，你是不是要反复重试来保证更新成功？如果多次重试都失败，那这次更新是算成功还
-                                                 是失败呢？如果是异步更新缓存，怎么保证更新的时序？
-
-                                                 解决方案：分布式事务 vs 定时将磁盘数据同步(不及时) - 全量 vs 增量   vs 过期
-                                                             转账(不适用缓存或者分布式强一致性)      后两者比如邮件、微信头像
-
-                                                             一定要合适的场景使用，不要死扣强一致性  人生也是这样要审时度势
-                2.在内存有限的情况下，要优先缓存哪些数据，让缓存的命中率最高  - 缓存穿透 - 缓存置换  - 策略（命中率最高的置换策略，一定是根据你的业务逻辑，定制化的策略 -  LRU 算法 - 位置权重）
-
-
-
+从不同角度理解redis场景  缓存、锁、分布式... RedisUse
     1.1.redis配置
             Redis-cli: Learn how to master the Redis command line interface, something you'll be using a lot in order to administer, troubleshoot and experiment with Redis.
             Configuration: How to configure redis.

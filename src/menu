@@ -34,8 +34,8 @@
       MybatisMain
       AnnotationValidateFrameWork-UserAspect(切面)-ControllerAdvice
       QurarzMain(timing.quartz目录都是)
-      AmqMsgContainerFactory(activemq) - DefaultProducer(rocketmq)
-      RedisUse -RedisCacheConfiguer
+      AmqMsgContainerFactory(activemq) - RPCManager - DefaultProducer(rocketmq)
+      RedisUse -RedisCacheConfiguer CacheManager
       LogMain
    --结合下面的章节3.类
       Java8Main
@@ -76,7 +76,11 @@
                  																																																封装子系统中的多个api,无需客户端组合 build /create / get..
                  源码阅读过程中看到了spring的封装层次和引用的类，工具...学习
 
-        3.优雅的整合
+          3.设计思考点、注意点以及结合选型后代码中需要控制哪些。外部框架需要设置什么
+                1.CacheManager  设计cache需要注意什么
+                2.RPCManager    设计rpc需要注意什么
+
+          4..优雅的整合 -  定位到 3.类  查看类定义、组合、继承、设计模式....
                          1.使用哪个注解 - 使用哪个springfactory - 后置处理器 - 从spring上下文(线程上下文、自定义上下文)中获得哪些东西和这里进行柔和
                              实现https://www.cnblogs.com/SimpleWu/p/12112351.html
                              所以必须了解spring的整个结构以及扩展点、注解、参数.. 系统性就和学习前面模块一样而不是片解。在不段使用学习中完善
@@ -102,7 +106,7 @@
 
                                  --java 扩展 spi https://juejin.im/post/5af952fdf265da0b9e652de3
 
-                        2.下面的类的东西规范-可扩展...{ 类结构 接口定义 - 设计模式 ....}
+                        2.下面的“ 类 ”的东西规范-可扩展...{ 类结构 接口定义 - 设计模式 ....}
 
                       ************************
 
@@ -180,6 +184,12 @@
                                 委派模式：dispatcher - handler: if - 比起实现更庞大 / 策略
                                         https://muyinchen.github.io/2017/08/05/Spring5%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-Spring%E4%B8%AD%E7%9A%84%E5%A4%84%E7%90%86%E5%99%A8handlers/
                                         https://blog.csdn.net/JDream314/article/details/8433889
+                      设计模式复合使用（https://www.runoob.com/design-pattern/design-pattern-intro.html  关联使用）
+                                0.层设计  Bmain.java
+                                0.初始化  Cmain.java
+                                1.门面-模板-策略-工厂  Amain.java
+                                2.监听-模板 Dmain.java 如何定位哪个实现？资源定位vs反射vs委派
+
 
                   - 框架(利用已有框架api扩展 SpringMain 、 切面、自定义规则配置文件 studentRule -xsd )
 
