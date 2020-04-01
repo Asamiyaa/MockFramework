@@ -187,8 +187,11 @@
                       设计模式复合使用（https://www.runoob.com/design-pattern/design-pattern-intro.html  关联使用）
                                 0.层设计  Bmain.java
                                 0.初始化  Cmain.java
+                                0.定位    Emain.java
                                 1.门面-模板-策略-工厂  Amain.java
-                                2.监听-模板 Dmain.java 如何定位哪个实现？资源定位vs反射vs委派
+                                2.监听-模板 AbstractDraftBuilder.java /AbstractCallBack.java/AbstractDraftParse.java 参考定位。
+                                           spring event机制
+
 
 
                   - 框架(利用已有框架api扩展 SpringMain 、 切面、自定义规则配置文件 studentRule -xsd )
@@ -233,6 +236,15 @@
              开发 + 单元测试（逻辑的缜密） + code-review
 
 
+      4>代码提交 - 不仅仅是归范而且是对代码注意点的重构
+            1.idea自带的Analyze
+            2.alibaba归范 - 插件
+            3.pwd归范     - 插件
+            4....
+            5.github clean code
+            6.github effictive java
+            7.github toBetter
+            8.SubmitCheck
 
 
      4>微服务

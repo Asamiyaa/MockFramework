@@ -14,13 +14,14 @@ import com.register.bean.dataObj.RgctStudentInfo;
  */
 public class FirstCallBack extends AbstractCallBack {
 
-    @Override
-    protected String buildBody(DraftBuildData dbd) {
-        return null;
-    }
 
     @Override
     public boolean execute(RgctStudentInfo rgctStudentInfo, RgctStudentHist rgctStudentHist) throws CallBackException {
         return false;
+    }
+
+    @Override
+    public String getServiceName() {
+        return "firstCallBack";
     }
 }

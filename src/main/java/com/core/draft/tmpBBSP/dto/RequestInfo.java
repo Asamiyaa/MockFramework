@@ -24,5 +24,9 @@ public class RequestInfo {
     private String prcCd ;          //报文处理码
     private String prcMsg ;         //处理信息
 
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
     //....
 }

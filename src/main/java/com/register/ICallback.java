@@ -21,4 +21,6 @@ public interface ICallback {
      * @throws Exception
      */
     boolean execute(RgctStudentInfo rgctStudentInfo , RgctStudentHist rgctStudentHist) throws CallBackException;
+
+    String getServiceName();
 }
