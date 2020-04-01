@@ -1,19 +1,24 @@
+/*
 package com.thread;
 
+*/
 /**
  * @author YangWenjun
  * @date 2019/9/19 16:29
  * @project BaseJava
  * @title: MainClass
  * @description:
- */
+ *//*
+
 
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicIntegerArray;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+*/
 /***
     deadlock
          死锁
@@ -50,7 +55,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
          当一个线程获取了锁之后，是不会被interrupt()方法中断的。
 
- */
+ *//*
+
 public class MainClass {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
@@ -61,27 +67,35 @@ public class MainClass {
         //  new Runnable()
 
         //匿名内部类实现
-            /*new Thread(new Runnable() {
+            */
+/*new Thread(new Runnable() {
                 @Override
                 public void run() {
                     System.out.println("TestThread2");
                 }
-            }).start();*/
+            }).start();*//*
+
 
         //lambda允许把函数(有参，无参)作为一个方法的参数（函数作为参数传递进方法中）。
         //不需要声明参数类型，编译器可以统一识别参数值。
-            /*new Thread(()->{
+            */
+/*new Thread(()->{
                 System.out.println("TestThread3");
             }).start();
 
-*/
+*//*
+
         // ExecutorService executorService = Executors.newFixedThreadPool(5); --创建多个线程池
-            /*executorService.submit(()->{
+            */
+/*executorService.submit(()->{
                 //Callable
 
-            });*/
-           /* Future submit = executorService.submit(new a());
-            System.out.println(submit.get());*/
+            });*//*
+
+           */
+/* Future submit = executorService.submit(new a());
+            System.out.println(submit.get());*//*
+
 
         // }
 
@@ -89,11 +103,15 @@ public class MainClass {
         List good = new ArrayList();
         Object lock = new Object();
        // MainClass main = new MainClass();
-        /*WaitCondition wc = new WaitCondition(good,lock);
-        NotifyCondition nc = new NotifyCondition(good,lock);*/
-        /*new Thread(wc).start();
+        */
+/*WaitCondition wc = new WaitCondition(good,lock);
+        NotifyCondition nc = new NotifyCondition(good,lock);*//*
+
+        */
+/*new Thread(wc).start();
         new Thread(nc).start();
-*/      WaitCondition wc = new WaitCondition(good,lock);
+*//*
+      WaitCondition wc = new WaitCondition(good,lock);
        // new Thread(wc).start();
         NotifyCondition nc = new NotifyCondition(good,lock);
        // new Thread(nc).start();
@@ -125,9 +143,11 @@ public class MainClass {
     }
 
 
-    /**
+    */
+/**
      * create
-     **/
+     **//*
+
     static class TestThread1 extends Thread {
         @Override
         public void run() {
@@ -145,7 +165,8 @@ public class MainClass {
 
     //wait notify 通信
 
-    /**
+    */
+/**
      * Product-consume   监听 while -> 监听器模式    依赖 /关联 ..公共成员控制  main中传入同一个list（是否安全容器）
      * /IllegalMonitorStateException wait notify 必须在锁前提下
      *          1.while中有锁，保证每次循环执行完释放锁 而不是获得锁不释放一直循环  形成交替
@@ -161,7 +182,8 @@ public class MainClass {
      *          问题:不会释放锁,sleep完成后不就释放了吗？
      *          6.notify位置
      *
-     **/
+     **//*
+
     static class WaitCondition implements Runnable {
 
         //List good = Collections.EMPTY_LIST;
@@ -185,13 +207,15 @@ public class MainClass {
                 }
                 synchronized (lock) {
                     //必须先进行判断 ，否则控制不住
-                    /*good.add(new String("a"));
+                    */
+/*good.add(new String("a"));
                     System.out.println("添加一个a");
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                    }*/
+                    }*//*
+
                     if (good.size() == 10) {
                         try {
                             System.out.println("wait()");
@@ -203,11 +227,13 @@ public class MainClass {
                         }
                     }
 
-                    /*try {
+                    */
+/*try {
                         Thread.sleep(1000);
                     } catch (Exception e) {
                         e.printStackTrace();
-                    }*/
+                    }*//*
+
                     good.add(new String("a"));
                     System.out.println("添加一个a");
                     lock.notifyAll();
@@ -242,23 +268,29 @@ public class MainClass {
                     // good.remove(Math.abs(new Random().nextInt()%10));
                     // good.remove(Math.abs(new Random().nextInt()%(good.size())));  异常导致提前终止
                     //good.remove(0); // good.size()-1                         先进先出 vs  先进后出
-                    /*if(good.size() > 0){                //存在漏洞的，如果notify 还是remove线程，那么这里就会一致报错，加了if一定要考虑else 走向
+                    */
+/*if(good.size() > 0){                //存在漏洞的，如果notify 还是remove线程，那么这里就会一致报错，加了if一定要考虑else 走向
                         good.remove(0);
-                    }*/
-                    /*if(good.size() == 0) {              // 执行先后顺序 wait()和前置条件 ，多线程必须考虑更细粒度控制
+                    }*//*
+
+                    */
+/*if(good.size() == 0) {              // 执行先后顺序 wait()和前置条件 ，多线程必须考虑更细粒度控制
                         try {
                             lock.wait();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                         //lock.notifyAll();
-                    }*/
-                    /*try {
+                    }*//*
+
+                    */
+/*try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    System.out.println("删除一个a");*/
+                    System.out.println("删除一个a");*//*
+
                     if (good.size() == 0) {
                         System.out.println("remove()");
                         //this.notifyAll();  //notify vs notifyAll()
@@ -277,7 +309,8 @@ public class MainClass {
         }
     }
 
-    /***
+    */
+/***
      * 1.Semaphore acquire()/release() 信号量 (共享锁)  -  CountDownLatch 闭锁 (共享锁 - 是否和synchronized结合？可以) - CyclicBarrier 栅栏
      *
      *     Semaphore
@@ -302,15 +335,18 @@ public class MainClass {
      * 2.Lock+condition(await()/signal())
      * 3.BlockingQueue
      * 4.PipedInputStream/ PipedOutputStream
-     */
+     *//*
+
     private void testSemaphoreImpl(){
             Semaphore  fullCount = new Semaphore(0);    //不同维度解释同一个东西。可添加信号+可删除信号=总信号 所以这里的fullCount.release()会增加一个信号
             Semaphore  emptyCount = new Semaphore(10);  //控制数量
-        /**
+        */
+/**
          *  共享锁和独占结合 控制访问资源操作数  也可以for 线程，对特定资源进行限制
          *  避免信号量和实际size不一致(信号未执行完插入操作 中断性)
          *  控制局部并发 可能大线程进去会有瓶颈，其他处理可以各自处理，但是公共资源访问部分使用信号量限制线程数
-         */
+         *//*
+
             Semaphore  isUse = new Semaphore(1);
             List list  = new LinkedList();
         new Thread(()->{
@@ -356,9 +392,11 @@ public class MainClass {
         for (int i = 0; i < 10; i++) {
             new Thread(()->{
                 try {
-                    /**
+                    */
+/**
                      * 等待5s ,10个Thread 同时输出
-                     */
+                     *//*
+
                     semaphore.acquire();
                     //可能大线程进去会有瓶颈，其他处理可以各自处理，但是公共资源访问部分使用信号量限制线程数
                     Thread.sleep(1000);
@@ -387,7 +425,9 @@ public class MainClass {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                /**放到线程的最后，这样才可以表示完成后释放**/
+                */
+/**放到线程的最后，这样才可以表示完成后释放**//*
+
                 countdl.countDown();
             }).start();
         }
@@ -395,10 +435,12 @@ public class MainClass {
         System.out.println("this is main" + System.currentTimeMillis());
     }
 
-    /**
+    */
+/**
      * 验证countDownLatch(ThreadCount) 和 总任务数 不一致
      * @throws InterruptedException
-     */
+     *//*
+
     private void testCountDownLatch2() throws InterruptedException {
 
         //其他线程完成的任务
@@ -419,9 +461,11 @@ public class MainClass {
         List synDatas = Collections.synchronizedList(datas);
         System.out.println(synDatas.size());
         try{
-            /**
+            */
+/**
              * 从已有的集合中取。集合是否安全
-             */
+             *//*
+
 
             // for (int i = 0; i < count; i++) {
             for (int i = 0; i < datas.size(); i++) {
@@ -435,25 +479,31 @@ public class MainClass {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    /**如果上面是耗时操作，一定需要完成才可以释放，比如--保存入库--通过返回值--否则容易造成重复录入**/
+                    */
+/**如果上面是耗时操作，一定需要完成才可以释放，比如--保存入库--通过返回值--否则容易造成重复录入**//*
+
                     cdl.countDown();
                 });
             }
             cdl.await();
         }finally {
-            /**
+            */
+/**
              * 释放
              * 异常计数 vs 抛出
              * 执行顺序
-             **/
+             **//*
+
             executorService.shutdown();
         }
         System.out.println("--main--");
     }
 
-    /***
+    */
+/***
      * CountDownLatch 实现 “-闭锁-”
-     */
+     *//*
+
     public void timeTasks(int nThreads, final Runnable task) throws InterruptedException{
         final CountDownLatch startGate = new CountDownLatch(1);
         final CountDownLatch endGate = new CountDownLatch(nThreads);
@@ -479,19 +529,23 @@ public class MainClass {
 
         long start = System.nanoTime();
         System.out.println("打开闭锁");
-        /**------开关-----   配置文件中读取 / spring 读取 / signal 线程 - 这些工具都是基于wait()/notify()**/
+        */
+/**------开关-----   配置文件中读取 / spring 读取 / signal 线程 - 这些工具都是基于wait()/notify()**//*
+
         startGate.countDown();
         endGate.await();
         long end = System.nanoTime();
         System.out.println("闭锁退出，共耗时" + (end-start));
     }
 
-    /**
+    */
+/**
      * 它允许一组线程互相等待，直到到达某个公共屏障点 (common barrier point)。barrier 在释放等待线程后可以重用
      * 可以配合countDownLatch使用，二者从不同角度理解
      *
      * TODO:分组 - 线程/组关系间有依赖关系
-     */
+     *//*
+
     private void testCyclicBarrier(){
 
                 ExecutorService service = Executors.newCachedThreadPool();
@@ -531,7 +585,8 @@ public class MainClass {
 
 
 
-    /***
+    */
+/***
      * 同步属性关键字控制
          1.Atomicxx
                 1.这里的局部变量不也是受到多线程影响吗？和成员局部关系。和线程访问有关
@@ -546,23 +601,30 @@ public class MainClass {
          3.ThreadLocal
                 1.http://www.jasongj.com/java/threadlocal/
          4.volatile
-     */
+     *//*
+
     private void testAtomic(){
-        /**
+        */
+/**
          * larmbda表达式使用规则：
-         */
+         *//*
+
             //int i = 0 ;
-            /*new Thread((i)->{
+            */
+/*new Thread((i)->{
                 //i++;
 
-            });*/
+            });*//*
+
         MainClass.A aa = new MainClass().new A();
         for (int i = 0; i < 1000; i++) {
-            /**
+            */
+/**
              * 1.同一对象 成员 共享   当new Thread中创建内部类时，会出现输出都是int=1
              * 2.不同对象 成员 不共享
              * 3.局部变量 - 方法 - 栈调用 - 线程(栈=线程)
-             */
+             *//*
+
             new Thread(aa).start();
         }
 
@@ -578,27 +640,35 @@ public class MainClass {
         public void run() {
             //i++;
             i.getAndIncrement();
-            /**
+            */
+/**
              * 模拟服务器压力，展示线程读写时差
-             */
-            /*try {
+             *//*
+
+            */
+/*try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }*/
+            }*//*
+
             System.out.println("线程是：" + Thread.currentThread().getName() + "--i值为--" + i.get());
         }
     }
 
-    /***
+    */
+/***
      * concurrentXX
-     */
+     *//*
+
     private void testConcurrent1() throws InterruptedException {
         MainClass.B bb = new MainClass().new B("111"); //创建不同对象了-注意
         new Thread(bb).start();
-        /**
+        */
+/**
          * 思考这几条线程执行先后
-         */
+         *//*
+
         Thread.sleep(2000);//为了顺序执行 ， 这样是不合理的 。 --结果：1---null 1---222  -->
         //去掉：null---222 null---222
         //---所以先要不用sleep并且顺序执行，修改并发容器-----
@@ -606,9 +676,11 @@ public class MainClass {
         new Thread(bb).start();
     }
 
-    /**
+    */
+/**
      * 变量的引入 构造+set..
-     */
+     *//*
+
     class B implements Runnable{
         //HashMap hm = new HashMap(); //由于可能存在两个线程访问 所以结果
         ConcurrentHashMap  hm = new ConcurrentHashMap(); //仍然可以，segment 区段控制  而不是所有的都不同访问容器，保证数据安全即可
@@ -617,10 +689,12 @@ public class MainClass {
         String  s ;
         AtomicInteger integer = new AtomicInteger();
 
-        /**
+        */
+/**
          * 提供构造和set
          * @param val
-         */
+         *//*
+
         B(String val){
             this.s = val;
         }
@@ -635,9 +709,11 @@ public class MainClass {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            /**
+            */
+/**
              * 调整顺序 使得线程间的顺序更加明显
-             */
+             *//*
+
             hm.put(s, s+Thread.currentThread().getName());
             System.out.println("s = " + s);
 
@@ -646,18 +722,22 @@ public class MainClass {
 
 
 
-        /**
+        */
+/**
          * 提供set
-         */
+         *//*
+
         public void setS(String s) {
             this.s = s;
         }
     }
 
 
-    /**
+    */
+/**
      * threadLocal
-     */
+     *//*
+
     private void testThreadLocal(){
         MainClass.C mc = new MainClass().new C();
         new Thread(mc).start();
@@ -667,11 +747,15 @@ public class MainClass {
     class C implements Runnable{
         //公共的成员  可能是1线程先执行，10 ，2线程在执行，20 .也可能交叉执行.也可能任意值，原因在:j.所以循环的可能是10-20任意值
         int j ;
-        /**
+        */
+/**
          * 等价于将变量i / j 定义在 run()中，成员可以在多个方法间共享！
-         */
-        /*ThreadLocal<Integer> j = new ThreadLocal<>();//循环次数
-        ThreadLocal<Integer> i = new ThreadLocal<>();//添加总值*/
+         *//*
+
+        */
+/*ThreadLocal<Integer> j = new ThreadLocal<>();//循环次数
+        ThreadLocal<Integer> i = new ThreadLocal<>();//添加总值*//*
+
 
         //注意这里单单使用j不行，因为j的声明在for域中，即线程中，相当ThreadLocal
         int i = 0 ;
@@ -699,17 +783,21 @@ public class MainClass {
     }
 
 
-    /**
+    */
+/**
      * 是否这里的集合安全性？上面通过锁来控制(synchronized) 如果使用
      *      问题：1.没有中止条件为什么这里还是停止了？ break - continue  --> 死锁问题
      *            2.为什么自己写的多线程似乎线程间有规律执行？而不是乱序的？
      *      扩展：1.ConcurrentHashMap如何高效实现线程安全  https://blog.csdn.net/sinat_27143551/article/details/80780775
      *
      * 是否可以通过  condition对lock条件  进行统一抽象
-     */
-    /**
+     *//*
+
+    */
+/**
      为什么这里没有控制住总数？
-     */
+     *//*
+
     private void testConcurrent() throws InterruptedException {
         ConcurrentLinkedDeque linkDq = new ConcurrentLinkedDeque();
 
@@ -759,7 +847,8 @@ public class MainClass {
     class D implements Runnable{
         int j ;
         Random random = new Random();
-        /***
+        */
+/***
          * 3.----Lock
          * ReentrantReadWriteLock和ReentrantLock的一个相同点和不同点，相同的是使用了同一个关键实现AbstractQueuedSynchronizer，
          * 不同的是ReentrantReadWriteLock使用了两个锁分别实现了AQS，而且WriteLock和ReentrantLock一样，使用了独占锁。
@@ -767,7 +856,8 @@ public class MainClass {
          * 参考：https://juejin.im/post/5b9df6015188255c8f06923a
          *
          * condition 根据不同的条件对wait / notify 进行 个性化 通信
-         */
+         *//*
+
         ReentrantLock lock = new ReentrantLock();
         //扩展
         ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
@@ -775,11 +865,13 @@ public class MainClass {
         @Override
         //1.----public synchronized void run() {
         public  void run() {
-           /* try {
+           */
+/* try {
                 //Thread.sleep(random.nextInt(2000));
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }*/
+            }*//*
+
             //System.out.println("j值："+(j+1));  这里需要将值附回去
             //2. ----synchronized (this) {
 
@@ -795,8 +887,10 @@ public class MainClass {
         }
     }
 
-    /*compareAndSwapObject，compareAndSwapInt和compareAndSwapLong，再看AtomicBoolean源码，发现其是先把Boolean转换成整型，再使用compareAndSwapInt进行CAS，
-    所以原子更新double也可以用类似的思路来实现。*/
+    */
+/*compareAndSwapObject，compareAndSwapInt和compareAndSwapLong，再看AtomicBoolean源码，发现其是先把Boolean转换成整型，再使用compareAndSwapInt进行CAS，
+    所以原子更新double也可以用类似的思路来实现。*//*
+
     class temp {
 
         public static void main(String[] args) {
@@ -860,7 +954,9 @@ public class MainClass {
             }
         }
     }
-    /***原子更新基本类型的AtomicInteger，只能更新一个变量，如果要原子的更新多个变量，就需要使用这个原子更新引用类型提供的类**/
+    */
+/***原子更新基本类型的AtomicInteger，只能更新一个变量，如果要原子的更新多个变量，就需要使用这个原子更新引用类型提供的类**//*
+
     class AtomicReferenceTest {
 
         public static AtomicReference<User> atomicUserRef = new AtomicReference<User>();
@@ -938,7 +1034,8 @@ public class MainClass {
         }
     }
 
-    /**
+    */
+/**
      * https://www.ibm.com/developerworks/cn/java/j-jtp07233/index.html
      * http://ifeve.com/concurrent-collections-1/
      ConcurrentHashMap
@@ -949,7 +1046,8 @@ public class MainClass {
      高效的并发队列，使用链表实现，可看作一个线程安全的 LinkedList。
      ConcurrentSkipListMap
      一个 Map ，跳表实现，使用跳表的数据结构快速查询。
-     */
+     *//*
+
     class TestConcurrentHashMap{
         //static Map map = new HashMap(); 输出的size结果为1
         static ConcurrentHashMap map = new ConcurrentHashMap();
@@ -975,8 +1073,11 @@ public class MainClass {
     }
 
 
-    /***
+    */
+/***
      * 设计模式
      * https://zhuanlan.zhihu.com/p/27897587
-     */
+     *//*
+
 }
+*/

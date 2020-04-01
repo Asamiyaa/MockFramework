@@ -1,0 +1,10 @@
+<location>
+    <property>
+        <name>city</name>
+        <value>beijing</value>
+    </property>
+    <property>
+        <name>district</name>
+        <value>chaoyang</value>
+    </property>
+</location>
