@@ -4,7 +4,7 @@ package com.redis;
 @description:
       面试题：https://zhuanlan.zhihu.com/p/29665317
               为什么说Redis是单线程的以及Redis为什么这么快！:https://blog.csdn.net/xlgen157387/article/details/79470556
-              redis多种数据结构应用场景https://www.toutiao.com/i6707445328422896136/?tt_from=weixin&utm_campaign=client_share&wxshare_count=1&timestamp=1585649016&app=news_article&utm_source=weixin&utm_medium=toutiao_android&req_id=202003311803360101310761372A06778B&group_id=6707445328422896136
+              redis多种数据结构应 用场景https://www.toutiao.com/i6707445328422896136/?tt_from=weixin&utm_campaign=client_share&wxshare_count=1&timestamp=1585649016&app=news_article&utm_source=weixin&utm_medium=toutiao_android&req_id=202003311803360101310761372A06778B&group_id=6707445328422896136
               Kafka、RabbitMQ、Redis消息中间件对比:http://archwang.top/2018/07/03/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%AF%B9%E6%AF%94/
               Jedis和Lettuce:https://blog.csdn.net/catoop/article/details/93756295
       redis官方文档：https://redis.io/documentation   -- 图示:https://redisbook.readthedocs.io/en/latest/index.html

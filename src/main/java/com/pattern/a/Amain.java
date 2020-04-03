@@ -1,5 +1,10 @@
 package com.pattern.a;
 
+import com.redis.Cache;
+import org.springframework.boot.autoconfigure.cache.CacheType;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
+
 /**
  *
  * 1.源码中接口和抽象类、类多重继承结构
@@ -36,25 +41,52 @@ package com.pattern.a;
      map
 
  *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 
-
+//@Component  启动注入
 public class Amain {
+
+    //常量
+//    @Value(${"spring.cache.type"})  注入类型
+    private String cacheType;
+//不注入 因为需要策略模式判断后加载对应实例，注入时这里可能存在多个实现。定义Cache接口就是为了‘给整个项目缓存定义统一的要求，’
+    private Cache cacheInstance;
+
+//这里提供获取实例是作为manager对象可以统一方便对外服务。但是这里提供静态方法是有点问题。又不想从spring中取。这样独立的manager形式就不明显了。但是这里还是有spring管理
+//    所以提供静态实例化方法，实例化后调用
+//    public static CacheManager getInstance(){
+//        return Context.getBean("cacheManager");
+//    }
+
+//从spring加载中可知，spring ApplicationRunner接口作为springContext完成后的扩展接口，所以在runner实现类中调用该方法，使其初始化
+public void initCache(){
+    if(cacheInstance == null){
+        if(!doInitCacheInstance()){
+            return ;
+        }
+    }
+}
+
+    private boolean doInitCacheInstance() {
+  //如果支持多个也是可以直接判断，这里是策略模式。直接通过传入名字通过工厂(ioc)定位到实现类。这里不会通过名字if....new ...获取。省略。通过统一规则 直接获取。
+//        就是策略模式中传入策略。初始化本地变量，直接调用 。这里通过redis名字+ioc初始化了cacheInstance.其他方法调用即可
+        if(!CacheType.REDIS.toString().equalsIgnoreCase(cacheType)){
+//            logger.warn("未指定实现");
+            return  false ;
+        }
+//工厂模式new xximpl()...向ioc转变
+//        cacheInstance = Context.getBean(cacheType + CACHE_SUFFIX);
+        return  true;
+    }
+ //public void setCache(List<CacheBean cacheBean>);
+//    public long getNextId(@NotNull Counter counter){return cacheInstance.getNextId(Counter)}   @NotNull进行调用时参数提示和判断
+
+//manager作为门面肯定是封装了最常用的方法，所以全部底层需要提供获取接口比如jdbcTemplate中query和....接口进行高级开发
+    public Object getRawOperation(){
+//        return cacheInstance.getRawOperation();
+        return null;
+    }
+
+
 }

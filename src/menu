@@ -185,12 +185,16 @@
                                         https://muyinchen.github.io/2017/08/05/Spring5%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-Spring%E4%B8%AD%E7%9A%84%E5%A4%84%E7%90%86%E5%99%A8handlers/
                                         https://blog.csdn.net/JDream314/article/details/8433889
                       设计模式复合使用（https://www.runoob.com/design-pattern/design-pattern-intro.html  关联使用）
-                                0.层设计  Bmain.java
+                                0.层设计  Bmain.java -父类..
                                 0.初始化  Cmain.java
-                                0.定位    Emain.java
+                                0.定位    Emain.java   EMain2.java（通过接口vs注解定位）
+                                0.资源获取 Fmain.java  CacheRunner.java -- shcpe
+                                0.信息结构 Gmain.java  xml解析 json bean-模块baseBean
                                 1.门面-模板-策略-工厂  Amain.java
                                 2.监听-模板 AbstractDraftBuilder.java /AbstractCallBack.java/AbstractDraftParse.java 参考定位。
-                                           spring event机制
+                                           spring event机制 - 比起在发布者线程中new 线程更解耦 。业务逻辑上是异步的，且允许消费者自己订阅的
+                                           异步 详见2>性能 异步实现方式
+                                           ***这个实现模块是在0和1所有的基础上添加了2的东西***
 
 
 
@@ -204,7 +208,7 @@
         1.异步 - 异步编程思考(为什么使用线程处理 https://juejin.im/post/5a8fc6345188257a804aa956) 某个节点上异步，内部还是同步 (event - callback -listner)
               将接口拆成两个，异步返回、调用者再去查询结果
               回调实例 ，借助监听机制
-           1> SerialNumGenerator
+           1> thread     SerialNumGenerator
                 D:\Data\mySrc\MockFramework\src\test\thread\MainClass
                 C:\Users\73699\Desktop\think\极客时间\极客 并发
 

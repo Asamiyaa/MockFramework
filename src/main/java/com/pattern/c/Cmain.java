@@ -1,5 +1,11 @@
 package com.pattern.c;
 
+import com.sun.btrace.BTraceUtils;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+
+import java.util.Map;
+
 /**
  *
  *1.初始化资源 方式 对比(本地保存)
@@ -19,6 +25,39 @@ package com.pattern.c;
  *
  *
  */
+//这么写就是为了加载完spring bean后通过判断，处理一些加载信息  ---  spring 依赖关系
+public class Cmain implements ApplicationRunner {
 
-public class Cmain {
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+
+        //加载缓存实例
+//        Amain.getInstance.initCache();  这里通过这种方式而不是注入就是为了显示manager是一个独立的模块
+
+        //通过spring获取该接口下所有实现类，循环、分组调用方法加载缓存
+//       Map<String,StartUpInitCache> cache  =  Context.getApplicationContext().getBeanOfType(StartupInitCache.class);
+
+//        List key = new Arrayl
+        //循环分批加载
+//        for(Map.Entry ....) {
+//
+//            StartupInitCache si = (StartupInitCache)entry.getValue();
+//
+//            boolean flag = true;
+//            while (flag) {
+//                si.getInitCacheBean(batch,capacity);
+//                if(!BTraceUtils.Collections.isEmpty(initcachebeans)){
+//                    initCache(init.beans..);
+//                }
+//                if(initBeans.size()<capacity){
+//                    flag=false;
+//                }
+//                //循环一次就清空缓存，进行下次存储
+//                key.clear();
+//                batch++;
+//            }
+//        }
+
+    }
 }
