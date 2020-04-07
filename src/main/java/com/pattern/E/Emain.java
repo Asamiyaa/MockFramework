@@ -29,7 +29,7 @@ import java.util.Map;
 
 /**服务定位  -- 父类-子类 | 哪些规则是强制、哪些是client可以扩展的、合理性、哪些需要直接定义成常量写死还是通过更高合理抽象维护其关联性
  * 0.本身之间有关联比如名字有某种约定，路径...无需映射直接写死“com.aa.bb”+msg.toString+"dd.cn"; - afcat builder
- * 1.map
+ * 1.map 、list
  *     --自己思考的mapper和mapperObj本身生成时就是通过插件自定义的。所以这里没有固定而言。全限定类名。所以说通过代码是不可以实现的。那么只能去记录或者映射。方法1-4
  *     那么选择1map问题：何时map.1.客户自己在新增mapper时增加map 2.自动扫描
  *     上下文 ContextFactory 全局的、跨线程   --详情查看Famin.java
@@ -42,7 +42,8 @@ import java.util.Map;
  * 4.dispatcher 委派模式  https://www.jianshu.com/p/38acf37b1e1f  屏蔽了调用方和实现方，中间有leader-dispatcher
  * 5.打标
  *      1.数据库
- *      2.接口  让需要的类进行实现接口无论是否是标识接口   startUpInitCache .。将各个实现子类功能下沉。比如这里的bean中需要判断key/value组拼规则、是否生效等。
+ *      2.接口  让需要的类进行实现接口无论是否是标识接口   startUpInitCache .。将各个实现子类功能  下沉  。比如这里的***bean中需要判断key/value***组拼规则、是否生效等。***选择了这个***
+ *          applicationContext.getBeansByType(Service.class)
  *      3.注解  需要被打标者有更高的统一性，可以通过注解属性、反射统一处理。相比于接口自动化更高，约束也更多
  *           获取指定注解所有的 Bean
              Map<String,Object> objectMap = applicationContext.getBeansWithAnnotation(Service.class);通过spring完成快速定位类似于现成的工具类一样，快速使用。

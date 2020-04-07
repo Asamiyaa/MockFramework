@@ -1,4 +1,4 @@
-/*
+
 package com.thread;
 
 */
@@ -8,7 +8,7 @@ package com.thread;
  * @project BaseJava
  * @title: MainClass
  * @description:
- *//*
+ */
 
 
 import java.util.*;
@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicIntegerArray;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-*/
+
 /***
     deadlock
          死锁
@@ -411,7 +411,7 @@ public class MainClass {
         }
 
     }
-    
+
     private void testCountDownLatch() throws InterruptedException {
         int ii = 0 ;
         CountDownLatch countdl = new CountDownLatch(5);
@@ -1080,4 +1080,3 @@ public class MainClass {
      *//*
 
 }
-*/
