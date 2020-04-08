@@ -12,10 +12,11 @@ import java.util.concurrent.*;
  *            在方法上,增加了@Async注解,表示这是一个异步方法,如果注解使用到类上,表示类下所有方法,都是异步的.
  *            在类上,我们增加了注解@EnableAsync 表示开启异步@Async注解,不使用@EnableAsync注解,@Async是不会生效的.
  *          2.***多线程代码编写注意****
- *
- *
- *
- *
+ *              1.ThreadMain
+ *              2.线程池构建  ExecutorServiceHelper.java
+ *              3.线程各个知识点从notify\wait\aotomicInteger\lock...演进测试  MainClass.java
+            3.书籍
+                1.并发编程艺术 完成
  *
  *      2.回调
  *          1.回调函数（callback）是什么？https://www.zhihu.com/question/19801131 *** 回调就成了一个高层调用底层，底层再回过头来调用高层的过程 hook 钩子 使用框架实现某个接口...
@@ -37,15 +38,6 @@ import java.util.concurrent.*;
  *
  *        5.mq 产品
  *           1. 将事件模型从抽象到具体，并处理了系统间异构、通信、高可用等知识...
- *
- *
- *
- *
- *
- *
- *
- *
- *
  *
  */
 

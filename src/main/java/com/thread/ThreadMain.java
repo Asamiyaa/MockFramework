@@ -11,10 +11,14 @@ import java.util.concurrent.atomic.AtomicReference;
 
 /**
  *
- * * 0.问题
+ * *1.背景   修改 -公共(公共数据/数据库/成员) - 安全控制
  *      1.同步代码块之后可以有代码吗？
  *        将耗时的安全代码置于同步块外，同步后再写代码用到同步的数据，就会不安全。应该在同步块内return值返回至上层方法调用至局部变量
  *        尽量使用局部变量 - 成员变量 - 静态变量。成员变量就要考虑线程安全问题
+ *        public static String name = "Hello";   //静态变量，可能发生线程安全问题
+          int i;  //实例变量，可能发生线程安全问题
+          SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+          此时jvm中由线程形成栈，栈引用堆中成员变量，静态在类的公共区。方法、方法中局部变量都在各自线程对应的栈中所以安全
  *
  *      2.线程的中断、时间片和happen-before 硬件级别的规则
  *        happen-before强调多线程间的顺序性。
@@ -22,55 +26,42 @@ import java.util.concurrent.atomic.AtomicReference;
  *
  *      3.volitile作为底层的实现，如何通过volitale规则保证可见性代码的。---没有理解。这里时间片不是可以中断吗？
  *
+ *      4.客户访问web容器其中的多线程和应用中多线程关系，controller中如何控制多线程 https://www.javatt.com/p/28066
+ *              1.servlet--在服务器上都是单例的
+ *              2.所以servlet-controller本身就是不安全的
+ *              3.controler、service spring单例 都不写‘有状态’成员变量的。而是写无状态比如xxxservice...xxxservice...。并且不修改也是安全的
+ *                所以出问题的地方就是我们自己系统里面的业务对象，所以我们一定要注意这些业务对象里面千万不能要独立成员变量.业务对象通过new xx()
+ *                创建新个体完成
  *
+                 1.Servlet是线程安全的吗？ https://www.cnblogs.com/chanshuyi/p/5052426.html
+                 2.struts2 每次请求都来实例化一次action,会不会造成内存溢出   struts2 是类级别的，多例的  https://www.javatt.com/p/37967
+                 3.springMVC 谨慎使用成员变量 https://blog.csdn.net/panda_In5/article/details/78528762
+                 4.springmvc controller中注入service后为什么是线程安全的？ https://segmentfault.com/q/1010000014971659
+
+        5. Spring对一些（如RequestContextHolder、TransactionSynchronizationManager、LocaleContextHolder等）中
+ *         非线程安全状态的bean采用ThreadLocal进行处理，让它们也成为线程安全的状态，因此有状态的Bean就可以在多线程中共享了。
  *
- *      1.readme中查看系代码时，哪些地方需要注意多线程、哪些不需要。
- *      多个客户/线程访问中间件，中间件线程池通过mapping找到对应的servlet.当出现两个以上时就会有安全问题
- *   --servlet--在服务器上都是单例的
- public static String name = "Hello";   //静态变量，可能发生线程安全问题
- int i;  //实例变量，可能发生线程安全问题
- SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
- 此时jvm中由线程形成栈，栈引用堆中成员变量，静态在类的公共区。方法、方法中局部变量都在各自线程对应的栈中所以安全
- 所以servlet-controller本身就是不安全的。但service为什么就可以大方的写成员呢？
- 因为此时已经是一个栈里面了。调用从前面开始。
-
- 第二种线程是我们希望自己栈内创建线程来使得程序处理加速。这是需要思考多线程实现代码类中的成员
-
- ***为什么在spring项目的servcie/dao中可以不考虑并发问题呢？**** https://www.javatt.com/p/28066 ***
- 无状态的，即实现中无成员变量，即使有也是像servie/dao等spring管理的不可变 。
- 那些的在Dao中的xxxDao,或controller中的xxxService，这些对象都是单例那么就会出现线程同步的问题。
- 但是话又说回来了，这些对象虽然会被多个进程并发访问，可我们访问的是他们里面的方法，
- 这些类里面通常不会含有成员变量，那个Dao里面的ibatisDao是框架里面封装好的，已经被测试，不会出现线程同步问题了。
- ***所以出问题的地方就是我们自己系统里面的业务对象，所以我们一定要注意这些业务对象里面千万不能要独立成员变量，
- *          否则会出错。方法调用处理的数据来自依赖，方法的注入而不是成员，所以层层不会出问题。这些bean在jvm堆中只有方法
- *       ***查看bbsp的代码确实，原来没有注意****
- *
- *       Spring对一些（如RequestContextHolder、TransactionSynchronizationManager、LocaleContextHolder等）中
- *       非线程安全状态的bean采用ThreadLocal进行处理，让它们也成为线程安全的状态，因此有状态的Bean就可以在多线程中共享了。
- *
- *
-
- 多线程的应用场景(1.io/cpu耗时 2.异步(无需当时同步方法必须的 mq就是扩展  后台任务/自动作业) 3.有状态)
- https://blog.csdn.net/hll814/article/details/50816268
- 自己定义的多线程测试类，是否需要交由spring管理。即又在哪些场景下会写出包含成员变量的类呢？
-
-
- ***只有在并发环境中，共享资源不支持并发访问，或者说并发访问共享资源会导致系统错误的情况下，才需要使用锁。否则对于调试、死锁问题***
+ *      6.只有在并发环境中，共享资源不支持并发访问，或者说并发访问共享资源会导致系统错误的情况下，才需要使用锁。否则对于调试、死锁问题***
  *              出现死锁：1.未在finally中释放锁  2.尽量使用重入锁，因为不确定多层、底层调用后是否存在工农调用  3.多把锁 相互锁住  并且都无对应的死锁异常处理机制
  *              读写锁可以兼顾性能和安全性
  *
- *              使用 CAS 原语的方法，它的适用范围更加广泛一些。类似于这样的逻辑：先读取数据，做计算，然后更新数
- 据，无论这个计算是什么样的，都可以使用 CAS 原语来保护数据安全，但是 FAA(Fetch and Add) 原语，
- 这个计算的逻辑只能局限于简单的加减法。所以，我们上面讲的这种使用 CAS 原语的方法 并不是没有意义的。
+ *
+         7.cas
+             CAS自旋：缓解这个问题的一个方法是使用 Yield()， 大部分编程语言都支持 Yield() 这个系统调用，
+             Yield() 的作用是，告诉操作系统，让出当前线程占用的 CPU 给其他线程使用。每次循环结
+             束前调用一下 Yield() 方法，可以在一定程度上减少 CPU 的使用率，缓解这个问题。你也
+             可以在每次循环结束之后，Sleep() 一小段时间，但是这样做的代价是，性能会严重下降。
+             所以，这种方法它只适合于线程之间碰撞不太频繁，也就是说绝大部分情况下，执行 CAS
+             原语不需要重试这样的场景。
 
- CAS自旋：缓解这个问题的一个方法是使用 Yield()， 大部分编程语言都支持 Yield() 这个系统调用，
- Yield() 的作用是，告诉操作系统，让出当前线程占用的 CPU 给其他线程使用。每次循环结
- 束前调用一下 Yield() 方法，可以在一定程度上减少 CPU 的使用率，缓解这个问题。你也
- 可以在每次循环结束之后，Sleep() 一小段时间，但是这样做的代价是，性能会严重下降。
- 所以，这种方法它只适合于线程之间碰撞不太频繁，也就是说绝大部分情况下，执行 CAS
- 原语不需要重试这样的场景。
+             使用 CAS 原语的方法，它的适用范围更加广泛一些。类似于这样的逻辑：先读取数据，做计算，然后更新数
+             据，无论这个计算是什么样的，都可以使用 CAS 原语来保护数据安全，但是 FAA(Fetch and Add) 原语，
+             这个计算的逻辑只能局限于简单的加减法。所以，我们上面讲的这种使用 CAS 原语的方法 并不是没有意义的。
 
-         1.创建和调用
+
+    2.使用
+
+         1.创建和调用  ExecutorServiceHelper.java
                  1.创建方式  thread runnable Callable+Executor（可以和callable配合也可以和runnable配合）
          *              创建子类 / 内部类 / lambda
  *
@@ -88,7 +79,8 @@ import java.util.concurrent.atomic.AtomicReference;
          2.返回值处理及主线程阻塞
                      <T> Future<T> submit(Callable<T> task); Callable和Future
                      <T> Future<T> submit(Runnable task, T result);
-                     Future<?> submit(Runnable task);
+                     Future<?> submit(Runnable task);                       ---Hmain.java中的future.get..在其他线程处理过程中主线程可以完成其他事，直到需要赶回出调用get.阻塞，判断
+                                                                               后继续
                      1.callable 可接受返回值    可以抛出异常
                      2.Future api   get() / isDone() / isCancle() ..
                      3.get() 阻塞：该future线程的值返回
@@ -129,100 +121,25 @@ import java.util.concurrent.atomic.AtomicReference;
  *                  多线程下if与执行：guarded suspension / balking
  *                  分工：thread-per-message
  *
- *      3.协作和同步 ：MainClass.java
+ *      3.协作和同步 ：MainClass.java   无锁编程  局部变量话   threadLocal
                 - JUC（Autoxxx）< - cas  只有单个变量 、简单场景   atomicIntegerArray atomicRefrence<User>
                 - 并发属性修饰符 -ThreadLocal / ConcurrentHashMap CopyOnWriteArrayList concurrentLinkedList concurrentSkiplistMap
                 - 锁(synchronized / lock - condition) | wait notify
                 - volitale(底层的、容易出错的) / aqs
 
-                         - 锁(synchronized / lock - reentrantLock / ReadWriteLock) | wait notify condition
                          lock vs synchronized  二者都是可重入锁  对象head中monitor
-                         1.提供了灵活的lockInterruptibly() 中断  / newCondition() 条件 /tryLock(long time, TimeUnit unit) 超时
-                         synchrozed 无法实现
-                         2.lock提供了获取queue\count\fair\owner..
-                         3.synchronized与wait()和nitofy()/notifyAll()方法相结合可以实现等待/通知模型，ReentrantLock同样可以，但是需要借助Condition，且Condition有更好的灵活性，具体体现在：
-                         1、一个Lock里面可以创建多个Condition实例，实现多路通知
-                         2、notify()方法进行通知时，被通知的线程时Java虚拟机随机选择的，但是ReentrantLock结合Condition可以实现有选择性地通知，这是非常重要的
-                         而synchronized就相当于整个Lock对象中只有一个单一的Condition对象，所有的线程都注册在这个对象上。线程开始notifyAll时，需要通知所有的WAITING线程，没有选择权，会有相当大的效率问题。
-                         4.lock和condition配合 https://www.cnblogs.com/xiaoxi/p/7651360.html
-                         实现生产消费 / 顺序执行线程  TODO: lock的高级应用 ---> ?
-                         - volitale / aqs
+                            1.提供了灵活的lockInterruptibly() 中断  / newCondition() 条件 /tryLock(long time, TimeUnit unit) 超时
+                              synchrozed 无法实现
+                            2.lock提供了获取queue\count\fair\owner..
+                            3.synchronized与wait()和nitofy()/notifyAll()方法相结合可以实现等待/通知模型，ReentrantLock同样可以，但是需要借助Condition，
+                                且Condition有更好的灵活性，具体体现在：
+                                     1、一个Lock里面可以创建多个Condition实例，实现多路通知
+                                     2、notify()方法进行通知时，被通知的线程时Java虚拟机随机选择的，但是ReentrantLock结合Condition可以实现有选择性地通知，这是非常重要的
+                                     而synchronized就相当于整个Lock对象中只有一个单一的Condition对象，所有的线程都注册在这个对象上。线程开始notifyAll时，需要通知所有的WAITING线程，没有选择权，会有相当大的效率问题。
+                                     4.lock和condition配合 https://www.cnblogs.com/xiaoxi/p/7651360.html
+                                     实现生产消费 / 顺序执行线程
 
-
-web入口的多线程和代码中多线程对比  不同维度
-
-        5.多线程融合其他技术 - netty/tomcat框架
-
-公共修改才会造成不安全  -  公共数据/数据库/成员
-
- 1.多个客户访问服务器，对代码controller 成员 以及 其他代码中的公共  -- 每个用户一个独立线程吗？servlet是线程安全的吗 ？
- 2.宏观下 - 比如数据库、服务器、业务级判断 处理同一个数据 -->到底哪些代码是共享的？
- mvc-controller中
- @Autowired
- private UserService userService ; 因为该成员变量是不变化的，单例。就像工具类一样
- struts中的
- struts2 是类级别的，多例的。所以可以写 list xx / string intId ...
-
- 1.Servlet是线程安全的吗？ https://www.cnblogs.com/chanshuyi/p/5052426.html
- 2.struts2 每次请求都来实例化一次action,会不会造成内存溢出  https://www.javatt.com/p/37967
- 3.springMVC 谨慎使用成员变量 https://blog.csdn.net/panda_In5/article/details/78528762
- 4.springmvc controller中注入service后为什么是线程安全的？ https://segmentfault.com/q/1010000014971659
-
- 答：你没搞清楚线程安全是什么意思。userService本身并不是线程安全的，你在userController里修改userService吗？
- 只是调用userService里的方法吧？方法都是线程安全的，多线程调用一个实例的方法，会在内存中复制变量，
- 所以只要你不在userConstroller里修改userService这个实例就没问题。-- 我去new xxservice() /..init /.属性
-
- 手动初始化，不使用spring 就会造成线程安全问题吧
-
- 3.一个客户 代码中使用多线程 手动Thread  <--- 会发生线程安全(多个用户访问/new Thread)问题，什么场景下使用多线程，
- 解决方案:
- 无锁编程  局部变量话 / threadLocal
- 锁
-
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*compareAndSwapObject，compareAndSwapInt和compareAndSwapLong，再看AtomicBoolean源码，发现其是先把Boolean转换成整型，再使用compareAndSwapInt进行CAS，
 所以原子更新double也可以用类似的思路来实现。*/

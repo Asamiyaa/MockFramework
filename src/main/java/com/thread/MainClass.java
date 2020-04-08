@@ -1,7 +1,7 @@
 
 package com.thread;
 
-*/
+
 /**
  * @author YangWenjun
  * @date 2019/9/19 16:29
@@ -55,55 +55,56 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
          当一个线程获取了锁之后，是不会被interrupt()方法中断的。
 
- *//*
+ */
 
-public class MainClass {
+//public class MainClass {
 
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
-        ExecutorService executorService = Executors.newFixedThreadPool(5);
+//    public static void main(String[] args) throws ExecutionException, InterruptedException {
+//        ExecutorService executorService = Executors.newFixedThreadPool(5);
         //for(int i = 0 ; i<10 ;i++){
 
         // new TestThread1().start();
         //  new Runnable()
 
         //匿名内部类实现
-            */
-/*new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("TestThread2");
-                }
-            }).start();*//*
 
+//new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    System.out.println("TestThread2");
+//                }
+//            }).start();
 
         //lambda允许把函数(有参，无参)作为一个方法的参数（函数作为参数传递进方法中）。
         //不需要声明参数类型，编译器可以统一识别参数值。
-            */
-/*new Thread(()->{
-                System.out.println("TestThread3");
-            }).start();
 
-*//*
+//new Thread(()->{
+//                System.out.println("TestThread3");
+//            }).start();
+
+
 
         // ExecutorService executorService = Executors.newFixedThreadPool(5); --创建多个线程池
-            */
-/*executorService.submit(()->{
-                //Callable
 
-            });*//*
+//executorService.submit(()->{
+//                //Callable
+//
+//            });
 
-           */
-/* Future submit = executorService.submit(new a());
-            System.out.println(submit.get());*//*
+
+/*
+ Future submit = executorService.submit(new a());
+            System.out.println(submit.get());
+*/
 
 
         // }
 
         //wait notify
-        List good = new ArrayList();
-        Object lock = new Object();
+//        List good = new ArrayList();
+//        Object lock = new Object();
        // MainClass main = new MainClass();
-        */
+
 /*WaitCondition wc = new WaitCondition(good,lock);
         NotifyCondition nc = new NotifyCondition(good,lock);*//*
 
@@ -1074,9 +1075,3 @@ public class MainClass {
 
 
     */
-/***
-     * 设计模式
-     * https://zhuanlan.zhihu.com/p/27897587
-     *//*
-
-}

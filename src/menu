@@ -8,28 +8,45 @@
             https://www.cnblogs.com/lixinghua/p/9745870.html
         pjs仿真设计
 
-
 ***** 无论是哪个设计，架构、数据库、类..都是在对  ‘ 业务特别了解，对未来发展方向预测；并合理抽象   ’+ 混合编程、全栈编程*****
 ***** 最后发现，官方文档才是正规的。也是最可以扩展点。可以完全信赖’*****
-
+ 不断迭代才是真理，不要想着一次设计就是最终，那是不可能，高手也是迭代思考出来的，不要害怕丑陋，解决就好
 ----------工业化-----如何去学习新技术和阅读源码？  1.官方文档 quickstart   2.熟练使用，解决问题  3.指导性文件总体思路，带着问题、答案去阅读部分源码，不要试图一次搞清楚所有的架构和实现，容易迷失！
 
 
 ------NEED ---- 按照阿里归范编写代码，每次提交进行对应代码扫描 ------
 
 
--1:编码命名归范  naming.class
-
-0.1.架构设计  https://blog.csdn.net/hguisu/article/details/78258430
+  需求 - 仿真表设计2 从业务需求出发，设计表，保证字段  ---> 反模式+mysql..表架构  ---> 下面的具体实现 ---> 分库分表分布式环境下
+   ===> 其实无论是架构还是类，都是从业务-架构-实现往下走，粒度越来越细
 
         _____而那些看到别人代码有点瑕疵就一顿乱骂，或者花尽心思去构
              思一个完美设计的人，往往都是因为没有树立正确的代码质量观，没有持续重构意识。_____
         人生也是如此，没有说没有问题的。人生就是面对、解决。学习接受能力
-0.架构设计  https://blog.csdn.net/hguisu/article/details/78258430
-   ===> 3.0详设版本1.0 -> 2.0 业务需求文档从业务角度出发 --> 详设从系统，开发角度 泳道图 交互。这种转化也是 ‘代码开发’的依据而不是业务流程图
-   ===> 仿真文档自己版  -> 李老师版本  场景全面 - 可行性 - 从简单实例完成到迭代
 
-           不断迭代才是真理，不要想着一次设计就是最终，那是不可能，高手也是迭代思考出来的，不要害怕丑陋，解决就好
+
+   -1:编码命名归范  naming.class
+
+   0.架构设计  https://blog.csdn.net/hguisu/article/details/78258430
+       ===> 3.0详设版本1.0 -> 2.0 业务需求文档从业务角度出发 --> 详设从系统，开发角度 泳道图 交互。这种转化也是 ‘代码开发’的依据而不是业务流程图
+       ===> 仿真文档自己版  -> 李老师版本  场景全面 - 可行性 - 从简单实例完成到迭代
+       ===> processon 仿真演进过程
+
+
+   1.表设计
+           1>设计表结构：RuleDo.java + statusDo.class（状态机表 - 未考虑字段、继承、业务等 -- 需要重新结合看的书写）
+                如何编写高效sql: 函数..(好的表设计肯定是设计时就考虑了查询，所以可能有冗余)
+                利用数据库主键冲突做唯一控制 分布式下
+               C:\Users\73699\Desktop\think\极客时间\06-MySQL实战45讲
+               C:\Users\73699\Desktop\think\表设计思考\反模式
+               C:\Users\73699\Desktop\think\表设计思考\深入浅出MySQL数据库开发优化与管理维护
+
+            2>.sql(转化思路重写sql?)
+               RuleDoMapper.interface
+               C:\Users\73699\Desktop\think\极客时间\44-SQL必知必会
+
+
+      如何编写工具类：JaxbUtil.class
    2. 学习新模块的方式学习实践
       MybatisMain
       AnnotationValidateFrameWork-UserAspect(切面)-ControllerAdvice
@@ -41,8 +58,8 @@
       Java8Main
       ReflectMain
       UtilMain - hutool
-      ThreadMain
-      PatternMain
+      ThreadMain - MainClass - Hmain
+      PatternMain - 设计模式复合使用(本文档中)
 
       DubboMain
       WebContainerMain - springmvc - session / servlet
@@ -107,6 +124,111 @@
                                  --java 扩展 spi https://juejin.im/post/5af952fdf265da0b9e652de3
 
                         2.下面的“ 类 ”的东西规范-可扩展...{ 类结构 接口定义 - 设计模式 ....}
+                             1>-实现版 - 流程图 这个是和需求紧密的，也必须是无差别正确的。 RuleManager.class + jaxbTest.class( 未进行类设计 )
+                                     C:\Users\73699\Desktop\think\复杂业务架构思考\复杂性应对之道 - 领域建模
+                                     C:\Users\73699\Desktop\think\极客时间\98-设计模式之美****
+                                     C:\Users\73699\Desktop\think\极客时间\01-数据结构与算法之美
+
+                                每个模块出流程外，涉及一些公共组件，比如流水号生成器
+
+                                脑海中必须有 ‘ 流程图(业务从岗位 - 开发则从处理 、不一定时连续的，存在中断等待回调/信号) - 甬道图() - 时序图(当多个系统之间频繁交互 - 异步 mq..) ’
+
+                                当发现传递参数较多时，注意 ‘ 从不同角度抽象为bean - xxsearchBean - CacheInitBean - UserLogonBean  ’
+
+                                - 规范性（命名 naming.class - 使用第三方类库简化代码 apache-guava ApacheCommonTest.class --查看该项目已有-->自己定义工具类 String../ MathUtil / beanUtil / MethodUtils/FieldUtils/Ref..）
+                                        健壮性(前置校验-validate VolidateController、返回包装json-对象+responsebody、统一异常baseController/异常分支(流程图)return/break/try..catch-有时即使api没有抛出异常该调用又不是关键为了后面继续，或者说远程调用，都要进行catch转义
+                                        /throws、边界( 数据结构、算法 )、日志、事务、切面) 风险(安全、注入)
+                                                 事务：所谓的事务挂起其实就是一个移除当前线程、数据源活动事务对象的过程。
+                                                 事务的本质其实是对数据库自动提交的关闭与开启，传播特性是Spring提出、实现、控制的概念，而隔离级别是对数据库实现的封装。
+                                     C:\Users\73699\Desktop\think\高效实现思考
+
+                                    - 可扩展(基本实现-父类、抽象类接口- 反射(spring RelectionUitls/classUtils...)+泛型+注解 、重构(属性、方法定义合理性 - 属性bean通过依赖、关联、静态、默认、spring..初始化
+                                            构造、方法重载、this的使用)、设计模式 )
+                                    - 可扩展(反射+泛型+注解 、重构、设计模式(中间层比如代理、委托..接口上升) ) 原则(简洁、易用、可读、可维护、高内聚松耦合..) - 思想(6大..) - 模式(设计模式) - 归范 - 单元测试 - 重构
+                                            AnnotationUtils +  + XMLConvertUtil
+                                                设计模式： 总体 - SpringMain  ---结合 naming.class
+                                                        责任链 - ParamRuleCheckImpl
+                                                        外观/门面（Facade） - RuleManager 、RedisCacheManager(允许客户定义的接口信息，内部的接口无需客户知道暴露)
+                                                        模板方法 - AbstractCallBack  相对于父类，抽象类不具有暴露即没有默认..；比如这里定义了流程或者为了不用实现接口的所有提供部分默认。
+                                                                                     但父类可以单独提供完整功能 。
+                                                                                     模板方法、父类都是从所有‘子类明确实现中抽象的，而不是先开始就定义的了’
+                                                                    RedisTemplate
+                                                        适配器 -
+                                                        包装器  WrapperParameter  WrapperInputStream 类似于dto 、代替继承、核心、公共、不同维度、除了实现核心所有的this.xx.xx（）外，还提供该维度扩展方法
+                                                                比如图形 -形状 扩展颜色。
+                                                                实际思考过程：重新定义类copy - 继承父类会造成膨胀 - 引用作为属性(这种其他属性轻重和核心属性是由区别的)
+                                                                比如eod任务类 除了核心service还有自己的日志系统和监控系统
+                                                        委派模式：dispatcher - handler: if - 比起实现更庞大 / 策略
+                                                                https://muyinchen.github.io/2017/08/05/Spring5%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-Spring%E4%B8%AD%E7%9A%84%E5%A4%84%E7%90%86%E5%99%A8handlers/
+                                                                https://blog.csdn.net/JDream314/article/details/8433889
+                                              设计模式复合使用（https://www.runoob.com/design-pattern/design-pattern-intro.html  关联使用）
+                                                        0.层设计  Bmain.java -父类..
+                                                        0.初始化  Cmain.java
+                                                        0.定位    Emain.java   EMain2.java（通过接口vs注解定位）
+                                                        0.资源获取 Fmain.java  CacheRunner.java -- shcpe   SpringContextUtil工具类和spring柔和获取其中信息
+                                                        0.信息结构 Gmain.java  xml解析 json bean-模块baseBean
+                                                        1.门面-模板-策略-工厂  Amain.java
+                                                        2.监听-模板-多线程 Hmain.java  Gmain.java
+                                                                   监听：异步 详见2>性能 异步实现方式
+                                                                   模板方法：AbstractDraftBuilder.java /AbstractCallBack.java/AbstractDraftParse.java 参考定位+信息结构xml
+                                                                   ***这个实现模块是在0和1所有的基础上添加了2的东西***
+
+                                                                   mq监听到消息后是否开启线程处理，处理时如何控制关系。如何控制顺序，如何控制一个类多个线程访问问题
+
+                                        - 框架(利用已有框架api扩展 SpringMain 、 切面、自定义规则配置文件 studentRule -xsd )
+
+                                        - 平台（尽可能自动化(1.动态sql即通过if判断拼接条件,)，参数之间某种关系、事务补偿平台）
+
+                               当耗时操作比如插库，并且插库前有逻辑规则，可以先放到临时表，启新线程处理
+
+                            2>性能
+                                1.异步 -(解耦) 异步编程思考(为什么使用线程处理 https://juejin.im/post/5a8fc6345188257a804aa956) 某个节点上异步，内部还是同步 (event - callback -listner)
+                                      将接口拆成两个，异步返回、调用者再去查询结果
+                                      回调实例 ，借助监听机制
+                                   1> thread     SerialNumGenerator
+                                        D:\Data\mySrc\MockFramework\src\test\thread\MainClass
+                                        C:\Users\73699\Desktop\think\极客时间\极客 并发
+                                   2>事件
+                                        回调模式 -  监听器模式 - spring事件机制 - mq
+                                        比起在发布者线程中new 线程更解耦 。业务逻辑上是异步的，且允许消费者自己订阅的
+                                   3> mq
+                                        AmqMsgContainerFactory.java
+
+                                   4> netty NIO/AIO TODO:如何体现异步的 WHILE接收到 异步阻塞...
+                                        netty.java
+
+                                     ---数据传输基础：序列化 Serializable.java---
+                                     ---            传输协议
+                               2.缓存        redis实现
+                               3.批处理
+                               4.压缩        压缩耗时 + 传输压缩数据耗时 + 解压耗时。压缩它的本质是资源的置换，是一个时间换空间，或者说是 CPU 资源换存储资源的游戏。提高写入和数据传输
+                               5.业务流程优化
+                                        1.数据结构调整  比如kafka就将从pageCache - 用户内存 - socket内存转为 pageCache - socket
+                                        2.redis单线程处理模型设计
+                               6.分段、分片、分库表　分组　设权限
+
+
+
+
+                             3>单元测试 测试驱动开发  手术刀 准确定位  TestMain.class、VolidateControllerTest.class
+                                   明确修改点 - 局部测试 - 联合测试( debug修改参数值 )
+                                   bbsp 新需求变更导致商票流程不可使用 ==> 关联影响性饭一定要到位，修改之前一定要对涉及部分清晰。
+                                                                  ==> 流程至少跑一边(各个场景、开发角度过滤是否对分支有必要)
+                                                                  ==> 没有绑定nullPointException 本事还是对业务场景分析不够导致存在情况漏洞 见：processon
+
+                                     开发 + 单元测试（逻辑的缜密） + code-review
+
+
+                              4>代码提交 - 不仅仅是归范而且是对代码注意点的重构
+                                    1.idea自带的Analyze
+                                    2.alibaba归范 - 插件
+                                    3.pwd归范     - 插件
+                                    4....
+                                    5.github clean code
+                                    6.github effictive java
+                                    7.github toBetter
+                                    8.SubmitCheck
+                                    9.重构书籍思考
 
                       ************************
 
@@ -121,145 +243,16 @@
              这样才对接了真正的源码 ，开源项目整洁。合理。内聚
 
 
-   4. 学习新的文档api,根据其设计对应的代码 比如票交所的规范，如何根据规范设计对应的代码 --> 转化比如将逻辑、算法等转化为对应的代码实现
+    3. 学习新的文档api,根据其设计对应的代码 比如票交所的规范，如何根据规范设计对应的代码 --> 转化比如将逻辑、算法等转化为对应的代码实现
         xml组装
 
-
-
-
-
-1.如何编写工具类：JaxbUtil.class
-
-  需求 - 仿真表设计2 从业务需求出发，设计表，保证字段  ---> 反模式+mysql..表架构  ---> 下面的具体实现 ---> 分库分表分布式环境下
-   ===> 其实无论是架构还是类，都是从业务-架构-实现往下走，粒度越来越细
-
-2.  1>设计表结构：RuleDo.java + statusDo.class（状态机表 - 未考虑字段、继承、业务等 -- 需要重新结合看的书写）
-        如何编写高效sql: 函数..(好的表设计肯定是设计时就考虑了查询，所以可能有冗余)
-        利用数据库主键冲突做唯一控制 分布式下
-       C:\Users\73699\Desktop\think\极客时间\06-MySQL实战45讲
-       C:\Users\73699\Desktop\think\表设计思考\反模式
-       C:\Users\73699\Desktop\think\表设计思考\深入浅出MySQL数据库开发优化与管理维护
-
-    2>.sql(转化思路重写sql?)
-       RuleDoMapper.interface
-       C:\Users\73699\Desktop\think\极客时间\44-SQL必知必会
-
-
-
-3.类
-     1>-实现版 - 流程图 这个是和需求紧密的，也必须是无差别正确的。 RuleManager.class + jaxbTest.class( 未进行类设计 )
-             C:\Users\73699\Desktop\think\复杂业务架构思考\复杂性应对之道 - 领域建模
-             C:\Users\73699\Desktop\think\极客时间\98-设计模式之美****
-             C:\Users\73699\Desktop\think\极客时间\01-数据结构与算法之美
-
-        每个模块出流程外，涉及一些公共组件，比如流水号生成器
-
-        脑海中必须有 ‘ 流程图(业务从岗位 - 开发则从处理 、不一定时连续的，存在中断等待回调/信号) - 甬道图() - 时序图(当多个系统之间频繁交互 - 异步 mq..) ’
-
-        当发现传递参数较多时，注意 ‘ 从不同角度抽象为bean - xxsearchBean - CacheInitBean - UserLogonBean  ’
-
-        - 规范性（命名 naming.class - 使用第三方类库简化代码 apache-guava ApacheCommonTest.class --查看该项目已有-->自己定义工具类 String../ MathUtil / beanUtil / MethodUtils/FieldUtils/Ref..）
-                健壮性(前置校验-validate VolidateController、返回包装json-对象+responsebody、统一异常baseController/异常分支(流程图)return/break/try..catch-有时即使api没有抛出异常该调用又不是关键为了后面继续，或者说远程调用，都要进行catch转义
-                /throws、边界( 数据结构、算法 )、日志、事务、切面) 风险(安全、注入)
-                         事务：所谓的事务挂起其实就是一个移除当前线程、数据源活动事务对象的过程。
-                         事务的本质其实是对数据库自动提交的关闭与开启，传播特性是Spring提出、实现、控制的概念，而隔离级别是对数据库实现的封装。
-             C:\Users\73699\Desktop\think\高效实现思考
-
-            - 可扩展(基本实现-父类、抽象类接口- 反射(spring RelectionUitls/classUtils...)+泛型+注解 、重构(属性、方法定义合理性 - 属性bean通过依赖、关联、静态、默认、spring..初始化
-                    构造、方法重载、this的使用)、设计模式 )
-            - 可扩展(反射+泛型+注解 、重构、设计模式(中间层比如代理、委托..接口上升) ) 原则(简洁、易用、可读、可维护、高内聚松耦合..) - 思想(6大..) - 模式(设计模式) - 归范 - 单元测试 - 重构
-                    AnnotationUtils +  + XMLConvertUtil
-                        设计模式： 总体 - SpringMain  ---结合 naming.class
-                                责任链 - ParamRuleCheckImpl
-                                外观/门面（Facade） - RuleManager 、RedisCacheManager(允许客户定义的接口信息，内部的接口无需客户知道暴露)
-                                模板方法 - AbstractCallBack  相对于父类，抽象类不具有暴露即没有默认..；比如这里定义了流程或者为了不用实现接口的所有提供部分默认。
-                                                             但父类可以单独提供完整功能 。
-                                                             模板方法、父类都是从所有‘子类明确实现中抽象的，而不是先开始就定义的了’
-                                            RedisTemplate
-                                适配器 -
-                                包装器  WrapperParameter  WrapperInputStream 类似于dto 、代替继承、核心、公共、不同维度、除了实现核心所有的this.xx.xx（）外，还提供该维度扩展方法
-                                        比如图形 -形状 扩展颜色。
-                                        实际思考过程：重新定义类copy - 继承父类会造成膨胀 - 引用作为属性(这种其他属性轻重和核心属性是由区别的)
-                                        比如eod任务类 除了核心service还有自己的日志系统和监控系统
-                                委派模式：dispatcher - handler: if - 比起实现更庞大 / 策略
-                                        https://muyinchen.github.io/2017/08/05/Spring5%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-Spring%E4%B8%AD%E7%9A%84%E5%A4%84%E7%90%86%E5%99%A8handlers/
-                                        https://blog.csdn.net/JDream314/article/details/8433889
-                      设计模式复合使用（https://www.runoob.com/design-pattern/design-pattern-intro.html  关联使用）
-                                0.层设计  Bmain.java -父类..
-                                0.初始化  Cmain.java
-                                0.定位    Emain.java   EMain2.java（通过接口vs注解定位）
-                                0.资源获取 Fmain.java  CacheRunner.java -- shcpe   SpringContextUtil工具类和spring柔和获取其中信息
-                                0.信息结构 Gmain.java  xml解析 json bean-模块baseBean
-                                1.门面-模板-策略-工厂  Amain.java
-                                2.监听-模板-多线程 Hmain.java
-                                           监听：异步 详见2>性能 异步实现方式
-                                           模板方法：AbstractDraftBuilder.java /AbstractCallBack.java/AbstractDraftParse.java 参考定位+信息结构xml
-                                           ***这个实现模块是在0和1所有的基础上添加了2的东西***
-
-                                           mq监听到消息后是否开启线程处理，处理时如何控制关系。如何控制顺序，如何控制一个类多个线程访问问题
-
-
-
-                  - 框架(利用已有框架api扩展 SpringMain 、 切面、自定义规则配置文件 studentRule -xsd )
-
-                        - 平台（尽可能自动化(1.动态sql即通过if判断拼接条件,)，参数之间某种关系、事务补偿平台）
-
-       当耗时操作比如插库，并且插库前有逻辑规则，可以先放到临时表，启新线程处理
-
-    2>性能
-        1.异步 -(解耦) 异步编程思考(为什么使用线程处理 https://juejin.im/post/5a8fc6345188257a804aa956) 某个节点上异步，内部还是同步 (event - callback -listner)
-              将接口拆成两个，异步返回、调用者再去查询结果
-              回调实例 ，借助监听机制
-           1> thread     SerialNumGenerator
-                D:\Data\mySrc\MockFramework\src\test\thread\MainClass
-                C:\Users\73699\Desktop\think\极客时间\极客 并发
-           2>事件
-                回调模式 -  监听器模式 - spring事件机制 - mq
-                比起在发布者线程中new 线程更解耦 。业务逻辑上是异步的，且允许消费者自己订阅的
-           3> mq
-                AmqMsgContainerFactory.java
-
-           4> netty NIO/AIO TODO:如何体现异步的 WHILE接收到 异步阻塞...
-                netty.java
-
-             ---数据传输基础：序列化 Serializable.java---
-             ---            传输协议
-       2.缓存        redis实现
-       3.批处理
-       4.压缩        压缩耗时 + 传输压缩数据耗时 + 解压耗时。压缩它的本质是资源的置换，是一个时间换空间，或者说是 CPU 资源换存储资源的游戏。提高写入和数据传输
-       5.业务流程优化
-                1.数据结构调整  比如kafka就将从pageCache - 用户内存 - socket内存转为 pageCache - socket
-                2.redis单线程处理模型设计
-       6.分段、分片、分库表　分组　设权限
-
-
-
-
-     3>单元测试 测试驱动开发  手术刀 准确定位  TestMain.class、VolidateControllerTest.class
-           明确修改点 - 局部测试 - 联合测试( debug修改参数值 )
-           bbsp 新需求变更导致商票流程不可使用 ==> 关联影响性饭一定要到位，修改之前一定要对涉及部分清晰。
-                                          ==> 流程至少跑一边(各个场景、开发角度过滤是否对分支有必要)
-                                          ==> 没有绑定nullPointException 本事还是对业务场景分析不够导致存在情况漏洞 见：processon
-
-             开发 + 单元测试（逻辑的缜密） + code-review
-
-
-      4>代码提交 - 不仅仅是归范而且是对代码注意点的重构
-            1.idea自带的Analyze
-            2.alibaba归范 - 插件
-            3.pwd归范     - 插件
-            4....
-            5.github clean code
-            6.github effictive java
-            7.github toBetter
-            8.SubmitCheck
 
 
      4>微服务
            拆分：https://www.cnblogs.com/aibabel/p/11214026.html
            治理：
 
-     5>源码
+3.源码
           阅读源码难原因 1.基础不够实践不够  2.不知道使用场景和问题(见得多了不同之间汇通) 3.实现-模式优雅
            体会其中的取舍，解决思路，技术的综合使用，反射使用
            spring：C:\Users\73699\Desktop\think\框架学习认识使用思考\spring  +  沽咆笔记
@@ -268,8 +261,6 @@
            消息中间件 mq思考
            引擎：工作流/规则..
 
-     6>spring-boot-devtools - 热部署 - 构建-发布- 部署  gradle(ant+maven)-> devops
-           1.打包 - linux环境搭建  package.java
 4.问题定位  性能优化  Perform 项目
     扩展idea远程调试同样可以连接远程服务器和这里监控一个道理。判断是数据问题还是程序问题，判断当前运行环境而无需dump后才看
     工具的使用任然要积极借助官方api
@@ -280,15 +271,5 @@
     4.table lock
     5.mq block
     6.network 抖动
-
-
-
-
     C:\Users\73699\Desktop\think\性能+生产问题思考
-1.记录 url..启动 驱动问题
-    https://blog.csdn.net/qing_mei_xiu/article/details/89284278  -- 删除target.重新生成
-    jianshu.com/p/6f110c4163ae
-    https://blog.csdn.net/fanrenxiang/article/details/80533950
-    方向 思维定势导致  springboot 默认配置点以及哪些可以修改哪些
 
-    2.主键生成 https://blog.csdn.net/beyondchx/article/details/8734915

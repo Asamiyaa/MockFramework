@@ -234,6 +234,21 @@ JavaWeb分页显示内容之分页查询的三种思路(数据库分页查询)�
 
 -----------------------------------
 
+1.redis实战
+2.mq实站    二者都是在代码中具体控制解决高可用、安全性、幂等、...等问题以及面试常见问题
+
+1.记录 url..启动 驱动问题
+    https://blog.csdn.net/qing_mei_xiu/article/details/89284278  -- 删除target.重新生成
+    jianshu.com/p/6f110c4163ae
+    https://blog.csdn.net/fanrenxiang/article/details/80533950
+    方向 思维定势导致  springboot 默认配置点以及哪些可以修改哪些
+
+    2.主键生成 https://blog.csdn.net/beyondchx/article/details/8734915
+
+
+     6>spring-boot-devtools - 热部署 - 构建-发布- 部署  gradle(ant+maven)-> devops
+           1.打包 - linux环境搭建  package.java
+
 
 
 
