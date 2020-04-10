@@ -162,11 +162,11 @@
                                                                 https://muyinchen.github.io/2017/08/05/Spring5%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-Spring%E4%B8%AD%E7%9A%84%E5%A4%84%E7%90%86%E5%99%A8handlers/
                                                                 https://blog.csdn.net/JDream314/article/details/8433889
                                               设计模式复合使用（https://www.runoob.com/design-pattern/design-pattern-intro.html  关联使用）
-                                                        0.层设计  Bmain.java -父类..
-                                                        0.初始化  Cmain.java
-                                                        0.定位    Emain.java   EMain2.java（通过接口vs注解定位）
-                                                        0.资源获取 Fmain.java  CacheRunner.java -- shcpe   SpringContextUtil工具类和spring柔和获取其中信息
-                                                        0.信息结构 Gmain.java  xml解析 json bean-模块baseBean
+                                                        0.层设计    Bmain.java -父类..
+                                                        0.初始化    Cmain.java   SpringbootAndSpringInit.java
+                                                        0.定位      Emain.java   EMain2.java（通过接口vs注解定位）
+                                                        0.资源获取   Fmain.java  CacheRunner.java -- shcpe   SpringContextUtil工具类和spring柔和获取其中信息
+                                                        0.信息结构   Gmain.java  xml解析 json bean-模块baseBean
                                                         1.门面-模板-策略-工厂  Amain.java
                                                         2.监听-模板-多线程 Hmain.java  Gmain.java
                                                                    监听：异步 详见2>性能 异步实现方式
@@ -174,8 +174,12 @@
                                                                    ***这个实现模块是在0和1所有的基础上添加了2的东西***
 
                                                                    mq监听到消息后是否开启线程处理，处理时如何控制关系。如何控制顺序，如何控制一个类多个线程访问问题
+                                                        3.状态机(状态模式/jbpm)-命令模式 [登记中心]  Imain.java
+                                                        4.委派-责任链(防重)-io(tomcat/netty)       Jmain.java
 
                                         - 框架(利用已有框架api扩展 SpringMain 、 切面、自定义规则配置文件 studentRule -xsd )
+                                                        1.事务补偿
+                                                        2.事务切面  事务从db事务抽象而来
 
                                         - 平台（尽可能自动化(1.动态sql即通过if判断拼接条件,)，参数之间某种关系、事务补偿平台）
 

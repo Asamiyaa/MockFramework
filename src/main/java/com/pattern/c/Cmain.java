@@ -1,10 +1,7 @@
 package com.pattern.c;
 
-import com.sun.btrace.BTraceUtils;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-
-import java.util.Map;
 
 /**
  *
