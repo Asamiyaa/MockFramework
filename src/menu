@@ -166,16 +166,19 @@
                                                         0.初始化    Cmain.java   SpringbootAndSpringInit.java
                                                         0.定位      Emain.java   EMain2.java（通过接口vs注解定位）
                                                         0.资源获取   Fmain.java  CacheRunner.java -- shcpe   SpringContextUtil工具类和spring柔和获取其中信息
-                                                        0.信息结构   Gmain.java  xml解析 json bean-模块baseBean
+                                                        0.信息结构   Gmain.java  xml解析 json  oxm ojm  / BeanDesign /DataStructure/TableDesign/Context
+                                                        0.安全性      加密(秘钥)-签名验签 Gmain.java 、sql、服务器端校验、前置校、 合法性...
                                                         1.门面-模板-策略-工厂  Amain.java
-                                                        2.监听-模板-多线程 Hmain.java  Gmain.java
+                                                        2.监听-模板-多线程-oxm  Hmain.java  Gmain.java
                                                                    监听：异步 详见2>性能 异步实现方式
                                                                    模板方法：AbstractDraftBuilder.java /AbstractCallBack.java/AbstractDraftParse.java 参考定位+信息结构xml
                                                                    ***这个实现模块是在0和1所有的基础上添加了2的东西***
 
                                                                    mq监听到消息后是否开启线程处理，处理时如何控制关系。如何控制顺序，如何控制一个类多个线程访问问题
-                                                        3.状态机(状态模式/jbpm)-命令模式 [登记中心]  Imain.java
-                                                        4.委派-责任链(防重)-io(tomcat/netty)       Jmain.java
+                                                        3.委派(dispatcher)-责任链(防重)-io(tomcat/netty)   Jmain.java
+                                                        4.状态机(状态模式/jbpm)-命令模式 [登记中心]  Imain.java
+                                                        5.适配器 装饰 代理  拦截器过滤器和责任链对比
+                                                        6.享元 - 池化
 
                                         - 框架(利用已有框架api扩展 SpringMain 、 切面、自定义规则配置文件 studentRule -xsd )
                                                         1.事务补偿
@@ -269,6 +272,20 @@
     扩展idea远程调试同样可以连接远程服务器和这里监控一个道理。判断是数据问题还是程序问题，判断当前运行环境而无需dump后才看
     工具的使用任然要积极借助官方api
     启动应用后可以顺带查看日志信息是否启动成功，是否有报错信息 tail
+
+    -1.心态
+        不要一上来就乱了阵脚。瞎查
+        要有自己的解决思路，判断别人提供的信息，而不是完全相信
+        前提是你知道客户的操作在哪个页面，大概的流程
+        不要因为你对整个系统不是那么明确，清晰就对这种解决思路。这种思路是放之四海都是可行的。一步一步。不要慌
+    0.代码
+        问题排查
+        1.错误信息是啥
+        2.错误日志是啥
+        3.类中代码是哪一行。
+        4.对应sql在数据库中查。测试环境hibernate console中sql语句。即条件不满足所以报该错。
+        5.考虑日终-切面等边缘性东西。配合解决
+
     1.outOfMemory
     2.空间不足 app / db 表空间
     3.thread deadlock
