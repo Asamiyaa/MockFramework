@@ -301,10 +301,12 @@
       </dependency>-->
 
       <!--spring quartz-->
-      <!--<dependency>
+      <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-quartz</artifactId>
-      </dependency>-->
+      </dependency>
+
+
 
       <!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-all -->
       <dependency>
@@ -377,7 +379,7 @@
       </dependency>-->
 
         <!--btrace-->
-        <dependency>
+        <!--<dependency>
 
             <groupId>com.sun.tools.btrace</groupId>
 
@@ -390,7 +392,7 @@
             <systemPath>C:/btrace/build/btrace-agent.jar</systemPath>
 
         </dependency>
-      <!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+      <!-https://mvnrepository.com/artifact/org.quartz-scheduler/quartz-->
       <dependency>
         <groupId>org.quartz-scheduler</groupId>
         <artifactId>quartz</artifactId>
@@ -399,7 +401,7 @@
 
 
 
-        <dependency>
+       <!-- <dependency>
 
             <groupId>com.sun.tools.btrace</groupId>
 
@@ -425,7 +427,7 @@
 
             <systemPath>C:/btrace/build/btrace-client.jar</systemPath>
 
-        </dependency>
+        </dependency>&ndash;&gt;-->
         <!--hibernate volidate-->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
@@ -489,11 +491,19 @@
             <artifactId>dubbo</artifactId>
             <version>2.7.0</version>
         </dependency>
-      <!--  <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-monitor-default</artifactId>
-            <version>2.7.0</version>
-        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+
+        <!--  <dependency>
+              <groupId>org.apache.dubbo</groupId>
+              <artifactId>dubbo-monitor-default</artifactId>
+              <version>2.7.0</version>
+          </dependency>-->
 
     </dependencies>
 
