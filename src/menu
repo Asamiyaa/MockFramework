@@ -147,27 +147,20 @@
                                     - 可扩展(反射+泛型+注解 、重构、设计模式(中间层比如代理、委托..接口上升) ) 原则(简洁、易用、可读、可维护、高内聚松耦合..) - 思想(6大..) - 模式(设计模式) - 归范 - 单元测试 - 重构
                                             AnnotationUtils +  + XMLConvertUtil
                                                 设计模式： 总体 - SpringMain  ---结合 naming.class
-                                                        责任链 - ParamRuleCheckImpl
-                                                        外观/门面（Facade） - RuleManager 、RedisCacheManager(允许客户定义的接口信息，内部的接口无需客户知道暴露)
-                                                        模板方法 - AbstractCallBack  相对于父类，抽象类不具有暴露即没有默认..；比如这里定义了流程或者为了不用实现接口的所有提供部分默认。
-                                                                                     但父类可以单独提供完整功能 。
-                                                                                     模板方法、父类都是从所有‘子类明确实现中抽象的，而不是先开始就定义的了’
-                                                                    RedisTemplate
+
                                                         适配器 -
                                                         包装器  WrapperParameter  WrapperInputStream 类似于dto 、代替继承、核心、公共、不同维度、除了实现核心所有的this.xx.xx（）外，还提供该维度扩展方法
                                                                 比如图形 -形状 扩展颜色。
                                                                 实际思考过程：重新定义类copy - 继承父类会造成膨胀 - 引用作为属性(这种其他属性轻重和核心属性是由区别的)
                                                                 比如eod任务类 除了核心service还有自己的日志系统和监控系统
-                                                        委派模式：dispatcher - handler: if - 比起实现更庞大 / 策略
-                                                                https://muyinchen.github.io/2017/08/05/Spring5%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-Spring%E4%B8%AD%E7%9A%84%E5%A4%84%E7%90%86%E5%99%A8handlers/
-                                                                https://blog.csdn.net/JDream314/article/details/8433889
+
                                               设计模式复合使用（https://www.runoob.com/design-pattern/design-pattern-intro.html  关联使用）
-                                                        0.层设计    Bmain.java -父类..
-                                                        0.初始化    Cmain.java   SpringbootAndSpringInit.java
+                                                        0.层设计     Bmain.java -父类..
+                                                        0.初始化     Cmain.java   SpringbootAndSpringInit.java
                                                         0.定位      Emain.java   EMain2.java（通过接口vs注解定位）
                                                         0.资源获取   Fmain.java  CacheRunner.java -- shcpe   SpringContextUtil工具类和spring柔和获取其中信息
                                                         0.信息结构   Gmain.java  xml解析 json  oxm ojm  / BeanDesign /DataStructure/TableDesign/Context
-                                                        0.安全性      加密(秘钥)-签名验签 Gmain.java 、sql、服务器端校验、前置校、 合法性...
+                                                        0.安全性     Kamin.java  防重 -  加密(秘钥)-签名验签 Gmain.java 、sql、服务器端校验、前置校、 合法性...
                                                         1.门面-模板-策略-工厂  Amain.java
                                                         2.监听-模板-多线程-oxm  Hmain.java  Gmain.java
                                                                    监听：异步 详见2>性能 异步实现方式
@@ -175,9 +168,9 @@
                                                                    ***这个实现模块是在0和1所有的基础上添加了2的东西***
 
                                                                    mq监听到消息后是否开启线程处理，处理时如何控制关系。如何控制顺序，如何控制一个类多个线程访问问题
-                                                        3.委派(dispatcher)-责任链(防重)-io(tomcat/netty)   Jmain.java
+                                                        3.委派(中介者)-责任链(拦截器过滤器)-io(tomcat/netty)   Jmain.java
                                                         4.状态机(状态模式/jbpm)-命令模式 [登记中心]  Imain.java
-                                                        5.适配器 装饰 代理  拦截器过滤器和责任链对比
+                                                        5.适配器 装饰 代理
                                                         6.享元 - 池化
 
                                         - 框架(利用已有框架api扩展 SpringMain 、 切面、自定义规则配置文件 studentRule -xsd )
@@ -201,7 +194,7 @@
                                    3> mq
                                         AmqMsgContainerFactory.java
 
-                                   4> netty NIO/AIO TODO:如何体现异步的 WHILE接收到 异步阻塞...
+                                   4> netty NIO/AIO TODO:如何体现异步的 WHILE接收到 异步阻塞... 接口设计 - 异步转同步
                                         netty.java
 
                                      ---数据传输基础：序列化 Serializable.java---
@@ -278,6 +271,7 @@
         要有自己的解决思路，判断别人提供的信息，而不是完全相信
         前提是你知道客户的操作在哪个页面，大概的流程
         不要因为你对整个系统不是那么明确，清晰就对这种解决思路。这种思路是放之四海都是可行的。一步一步。不要慌
+
     0.代码
         问题排查
         1.错误信息是啥
@@ -285,6 +279,12 @@
         3.类中代码是哪一行。
         4.对应sql在数据库中查。测试环境hibernate console中sql语句。即条件不满足所以报该错。
         5.考虑日终-切面等边缘性东西。配合解决
+
+    通过soapui进行测试
+    通过创建单元测试类，debug修改进行测试从而屏蔽前台，并且可以灵活对数据修改
+    通过get查看调用  call / 通过set 查看塞入..逆向思维
+    调用哪些系统，提供了哪些调用。主要业务流程中
+    6H2w
 
     1.outOfMemory
     2.空间不足 app / db 表空间

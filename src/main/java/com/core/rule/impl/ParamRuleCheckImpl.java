@@ -104,6 +104,8 @@ public class ParamRuleCheckImpl implements IParamRuleCheck {
     }
 
     private <T> CheckResult validateOfOneProperty(T t, RuleDo ruleDo){
+
+        //todo:存在问题的，这里只是拼接组装了链，而没有调用 基本思路是这样的
         return new IsEmptyValidator().setNextValidator(
                 new TypeValidator().setNextValidator(
                         new LengthValidator().setNextValidator(

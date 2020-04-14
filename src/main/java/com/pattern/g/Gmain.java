@@ -60,7 +60,7 @@ import java.time.LocalDate;
  *      JAXB与Apache XMLBeans：JAXB与Apache XMLBeans ：https://stackoverflow.com/questions/1362030/jaxb-vs-apache-xmlbeans  -- bbsp中注意每一步，拼接模块的复杂不仅仅是oxm还是业务逻辑交互
  *      交互又是另一个问题，所以解决完一个算一个
  *
- *              JSON官方  --> 注解
+ *              JSON官方  --> 注解0.
                 GSON
                 FastJSON
                 jackson:  当前类 https://blog.csdn.net/m0_37076574/article/details/81317403
