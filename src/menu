@@ -54,6 +54,7 @@
       AmqMsgContainerFactory(activemq) - RPCManager - DefaultProducer(rocketmq)
       RedisUse -RedisCacheConfiguer CacheManager
       LogMain
+      springboot  SpringbootMain SpringBeanMain
    --结合下面的章节3.类
       Java8Main
       ReflectMain
@@ -170,7 +171,7 @@
                                                                    mq监听到消息后是否开启线程处理，处理时如何控制关系。如何控制顺序，如何控制一个类多个线程访问问题
                                                         3.委派(中介者)-责任链(拦截器过滤器)-io(tomcat/netty)   Jmain.java
                                                         4.状态机(状态模式/jbpm)-命令模式 [登记中心]  Imain.java
-                                                        5.适配器 装饰 代理
+                                                        5.适配器 装饰 代理  查看Jmain.java中对比 代理我们做的事和核心事是一个等级，装饰则是添加颜色...
                                                         6.享元 - 池化
 
                                         - 框架(利用已有框架api扩展 SpringMain 、 切面、自定义规则配置文件 studentRule -xsd )
