@@ -97,10 +97,10 @@
 
 
   <insert id="insert" parameterType="com.core.rule.bean.dataObj.DraftDo" useGeneratedKeys = "true" keyProperty="id">
-    insert into draft (id, draftNo, draftDescribe,
+    insert into draft (draftNo, draftDescribe,
       draftTemplate)
     values
-    (#{id,jdbcType=BIGINT}, #{draftno,jdbcType=VARCHAR}, #{draftdescribe,jdbcType=VARCHAR},
+    ( #{draftno,jdbcType=VARCHAR}, #{draftdescribe,jdbcType=VARCHAR},
 <!--
 /*(#{id,jdbcType=BIGINT}, #{draftno}, #{draftdescribe,jdbcType=VARCHAR},*/
  /*为了测试参数为null必须有jdbcType

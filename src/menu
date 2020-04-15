@@ -34,7 +34,7 @@
 
 
    1.表设计
-           1>设计表结构：RuleDo.java + statusDo.class（状态机表 - 未考虑字段、继承、业务等 -- 需要重新结合看的书写）
+           1>设计表结构：RuleDo.java + statusDo.class（状态机表 - 未考虑字段、继承、业务等 -- 需要重新结合看的书写）  数据库常用函数
                 如何编写高效sql: 函数..(好的表设计肯定是设计时就考虑了查询，所以可能有冗余)
                 利用数据库主键冲突做唯一控制 分布式下
                C:\Users\73699\Desktop\think\极客时间\06-MySQL实战45讲
@@ -160,7 +160,7 @@
                                                         0.定位      Emain.java   EMain2.java（通过接口vs注解定位）
                                                         0.资源获取   Fmain.java  CacheRunner.java -- shcpe   SpringContextUtil工具类和spring柔和获取其中信息
                                                         0.信息结构   Gmain.java  xml解析 json  oxm ojm  / BeanDesign /DataStructure/TableDesign/Context
-                                                        0.安全性     Kamin.java  防重 -  加密(秘钥)-签名验签 Gmain.java 、sql、服务器端校验、前置校、 合法性...
+                                                        0.安全性 、一致性、顺序性、幂等    Kmain.java  事务 -防重 -  加密(秘钥)-签名验签 Gmain.java
                                                         1.门面-模板-策略-工厂  Amain.java
                                                         2.监听-模板-多线程-oxm  Hmain.java  Gmain.java
                                                                    监听：异步 详见2>性能 异步实现方式
