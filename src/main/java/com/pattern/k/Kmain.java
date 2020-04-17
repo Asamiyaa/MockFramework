@@ -63,7 +63,7 @@ package com.pattern.k;
                         业务主动方本地事务提交失败，业务被动方不会收到消息的投递。
                         只要业务主动方本地事务执行成功，那么消息服务一定会投递消息给下游的业务被动方，并最终保证业务被动方一定能成功消费该消息（消费成功或失败，即最终一定会有一个最终态）。
             4.事务选择
-                1.
+                1.Transactions.java
                 2.
 
  *4.事务补偿 - 超时重试、异常重试 、延时调度 db保存现场  - 架构：同目录下补偿平台.png
@@ -84,9 +84,11 @@ package com.pattern.k;
                  这个简单，一些不重要的场景，比如给谁发短信啥的，我就把这个id+场景唯一标识作为Redis的key，放到缓存里面失效时间看你场景，一定时间内的这个消息就去Redis判断。
 
  *6.加密 - 签名验签
- *          1.base64/md5/sha356....
- *          2.原理：
- *5.sql
+ *          1.base64/md5/sha356....  EncodeUtil.java  ApacheCommonTest
+ *          2.原理：两码-证书-签名验签服务器-加签验签操作
+ *               签名，其实就是给报文做个摘要（哈希）。而且相同的签名算法得到的摘要是相同的，比如MD5，SH1，SH256等。
+ *               https://blog.csdn.net/thekenofDIS/article/details/82344585
+ *               https://blog.csdn.net/duweiqian/article/details/54090773
  *
  */
 public class Kmain {

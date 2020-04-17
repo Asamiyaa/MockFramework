@@ -58,6 +58,8 @@ import java.util.concurrent.atomic.AtomicReference;
              据，无论这个计算是什么样的，都可以使用 CAS 原语来保护数据安全，但是 FAA(Fetch and Add) 原语，
              这个计算的逻辑只能局限于简单的加减法。所以，我们上面讲的这种使用 CAS 原语的方法 并不是没有意义的。
 
+        8.tomcat下某一应用的功能使用多线程，而tomcat接收多个请求也是多线程的，两者有什么联系和区别？
+            https://www.zhihu.com/tardis/sogou/qus/267138066
 
     2.使用
 
@@ -95,9 +97,11 @@ import java.util.concurrent.atomic.AtomicReference;
          *                      IllegalMonitorStateException:
          *              2.先后考虑 ：1.信号量 / 栅栏 / 门闩 / 队列
          *                           2.小粒度  成员变量修饰符  AtomicInteger.. 并发容器vector -->concurrentHashamap /阻塞队列 linkedBlockQueue 协作  threadLocal  volatile  reetrentLock 读写锁  死锁  超时
-         *           3.fork-join框架  TODO http://ifeve.com/fork-join-2/
+         *           3.fork-join框架  TODO http://ifeve.com/fork-join-2/   vs executors 和 callable...
          *              Fork/Join并行方式是获取良好的并行计算性能的一种最简单同时也是最有效的设计技术。Fork/Join并行算法是我们所熟悉的分治算法的并行版本
          *              Fork/Join算法，如同其他分治算法一样，总是会递归的、反复的划分子任务，直到这些子任务可以用足够简单的、短小的顺序方法来执行。
+ *                      该框架有自己的线程池和task必须按照规则编写
+ *                      介绍 ForkJoinPool 的适用场景，实现原理：https://blog.csdn.net/m0_37542889/article/details/92640903
 
 
       2.设计模式 (相对于类设计，这里多线程已经定了。直接先套用)
