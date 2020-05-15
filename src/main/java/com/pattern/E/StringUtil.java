@@ -1,6 +1,9 @@
 package com.pattern.E;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.net.URL;
+import java.util.Map;
 
 public class StringUtil {
     private StringUtil() {
@@ -54,4 +57,14 @@ public class StringUtil {
 
         return trimmed.substring(splashIndex);
     }
+
+    /**
+     * String  join 方案
+     * @return
+     */
+    public static String getInfo(){
+        return StringUtils.join(new String[]{"1","2"},"-");
+    }
+
+
 }

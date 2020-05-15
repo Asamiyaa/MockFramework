@@ -42,6 +42,8 @@ public class BaseController {
                 responseData.put("errorCode",EmBusiError.PARAMETER_VALIDATE_ERROR);
                 responseData.put("errorMsg", fieldError.getDefaultMessage());
             }
+
+            //log...
         }
         else {
             responseData.put("errorCode", EmBusiError.UNKNOWN.getErrorCode());

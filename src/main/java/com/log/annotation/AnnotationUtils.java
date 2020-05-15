@@ -15,18 +15,41 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *      0.反射整体https://www.processon.com/diagraming/5dc3eac4e4b0335f1e52d611
- *      1.反射基本 Class - Filed - Method - con..
+/**1
+   1.Class对应的Annotation
+         * AnnotatedType[] getAnnotatedInterfaces()
+             返回一个 AnnotatedType对象的数组， AnnotatedType使用类型指定由此 AnnotatedType对象表示的实体的超级 类 。
+           AnnotatedType getAnnotatedSuperclass()
+             返回一个 AnnotatedType对象，该对象表示使用类型来指定由此 类对象表示的实体的 类类。
+         <A extends Annotation>
+         A getAnnotation(类<A> annotationClass)
+             返回该元素的，如果这样的注释 ，否则返回null指定类型的注释。
+         Annotation[] getAnnotations()
+             返回此元素上 存在的注释。
+
+         <A extends Annotation>
+         A[] getAnnotationsByType(类<A> annotationClass)
+         返回与此元素相关 联的注释 。
+
+         <A extends Annotation>
+         A getDeclaredAnnotation(类<A> annotationClass)
+         如果这样的注释 直接存在 ，则返回指定类型的元素注释，否则返回null。
+         Annotation[] getDeclaredAnnotations()
+         返回 直接存在于此元素上的注释。
+         boolean isAnnotation()
+         如果此 类对象表示注释类型，则返回true。
+         boolean isAnnotationPresent(类<? extends Annotation> annotationClass)
+         如果此元素上 存在指定类型的注释，则返回true，否则返回false。
+
+
+          ----从Filed获取到注解  从Method获取Exception\参数类型、参数泛型...invoke            .....
+
+    2.Annotaion
+         类<? extends Annotation> annotationType()
+         返回此注释的注释类型。
  *
- *      2.反射 + 泛型   Type
- *           1.Java reflect Type类及其子类用法分析  : https://blog.csdn.net/fang_qiming/article/details/78155271
- *
- *      3.反射 + 注解  Annotation
- *           1.
- *
- *
- *
+ *  3.得到对应注解
+ *      .对应方法获取值 标准值-规则。 vs Field获取 Class获取当前值
  *
  *
  *

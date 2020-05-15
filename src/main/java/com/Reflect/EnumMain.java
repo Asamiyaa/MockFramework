@@ -65,6 +65,9 @@ package com.Reflect;
 					      
 					      System.out.println(Food.Coffee.BLACK_COFFEE);
 				}
+
+//	getEnumConstants()
+//	返回此枚举类的元素，如果此Class对象不表示枚举类型，则返回null。
 }
 	
      enum  EnumTest{ 

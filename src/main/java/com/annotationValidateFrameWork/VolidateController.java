@@ -53,7 +53,7 @@ public class VolidateController extends BaseController{ //为了验证切面抛�
 
     //使用path校验 1.添加user对应注解  2.修改下面方法校验方式  TODO:这里的javax.validate的实现在哪里？默认调用了
     @RequestMapping({"/volidatePath"})
-    public String volidate3(@Valid User user , BindingResult result){
+    public String volidate3(@RequestBody @Valid User user , BindingResult result){
         if (result.hasErrors()) {
             for (ObjectError error : result.getAllErrors()) {
                // return error.getDefaultMessage(); 添加报错属性
@@ -79,7 +79,7 @@ public class VolidateController extends BaseController{ //为了验证切面抛�
 
     //创建切面  是否需要valida 不能，否则不走切面  -- 需要  --> @RequestBody
     @RequestMapping({"/volidateAspect"})
-    public Result volidate5(@Valid User user/* , BindingResult result*/){//使用baseController中的@restControllerAdvice进行处理
+    public Result volidate5(@RequestBody @Valid User user/* , BindingResult result*/){//使用baseController中的@restControllerAdvice进行处理
         /*if (result.hasErrors()) {
             for (ObjectError error : result.getAllErrors()) {
                 // return error.getDefaultMessage(); 添加报错属性

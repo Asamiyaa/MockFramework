@@ -40,7 +40,7 @@ public class EnumHelper {
         /*T t = enumClass.newInstance();
         t.getCode();  -- 因为这里限制了接口 所以具有特性  */
         //枚举是特殊的，因为枚举中有对象
-        T[] enumConst = enumClass.getEnumConstants();
+        T[] enumConst = enumClass.getEnumConstants();  //反射中的  boolean isEnum()当且仅当该类在源代码中被声明为枚举时才返回true。
         for (T t : enumConst) {
             if(t.getCode() ==  code){
                 return t.getMsg();
