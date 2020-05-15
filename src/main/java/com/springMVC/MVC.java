@@ -14,11 +14,9 @@ import javax.validation.Valid;
  * 2.@ModelAttribute注解的使用总结  https://blog.csdn.net/leo3070/article/details/81046383
  * 3.@RequestParam和@PathVariable的用法与区别  https://blog.csdn.net/a15028596338/article/details/84976223
  *
- * 1.@RequestBody   传入的json格式对象转化为java对象
- * 2.@Valid         触发字段上的User注解校验
- * 3.AbstractValidator vs hibernate validate - HibernateValidate.java
- * 4.
+ *req对象和reponse对象:https://blog.csdn.net/huangyuhuangyu/article/details/52910772
  *
+ *深入了解SpringMVC执行流程:https://www.zhihu.com/tardis/sogou/art/42602265
  *
  *
  */

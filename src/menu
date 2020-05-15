@@ -34,7 +34,7 @@
 
 
    1.表设计
-           1>设计表结构：RuleDo.java + statusDo.class（状态机表 - 未考虑字段、继承、业务等 -- 需要重新结合看的书写）
+           1>设计表结构：RuleDo.java + statusDo.class（状态机表 - 未考虑字段、继承、业务等 -- 需要重新结合看的书写）  数据库常用函数
                 如何编写高效sql: 函数..(好的表设计肯定是设计时就考虑了查询，所以可能有冗余)
                 利用数据库主键冲突做唯一控制 分布式下
                C:\Users\73699\Desktop\think\极客时间\06-MySQL实战45讲
@@ -54,6 +54,8 @@
       QurarzMain(timing.quartz目录都是)
       AmqMsgContainerFactory(activemq) - RPCManager - DefaultProducer(rocketmq)
       RedisUse -RedisCacheConfiguer CacheManager
+      LogMain
+      springboot  SpringbootMain SpringBeanMain
       LogMain - 切面
    --结合下面的章节3.类
       Java8Main
@@ -167,13 +169,12 @@
                                                         0.定位      Emain.java   EMain2.java（通过接口vs注解定位）
                                                         0.资源获取   Fmain.java  CacheRunner.java -- shcpe   SpringContextUtil工具类和spring柔和获取其中信息
                                                         0.信息结构   Gmain.java  xml解析 json  oxm ojm  / BeanDesign /DataStructure/TableDesign/Context
-                                                        0.安全性     Kamin.java  防重 -  加密(秘钥)-签名验签 Gmain.java 、sql、服务器端校验、前置校、 合法性...
+                                                        0.安全性 、一致性、顺序性、幂等    Kmain.java  事务 -防重 -  加密 -签名验签
                                                         1.门面-模板-策略-工厂  Amain.java
                                                         2.监听-模板-多线程-oxm  Hmain.java  Gmain.java
                                                                    监听：异步 详见2>性能 异步实现方式
                                                                    模板方法：AbstractDraftBuilder.java /AbstractCallBack.java/AbstractDraftParse.java 参考定位+信息结构xml
                                                                    ***这个实现模块是在0和1所有的基础上添加了2的东西***
-
                                                                    mq监听到消息后是否开启线程处理，处理时如何控制关系。如何控制顺序，如何控制一个类多个线程访问问题
                                                         3.委派(中介者)-责任链(拦截器过滤器)-io(tomcat/netty)   Jmain.java
                                                         4.状态机(状态模式/jbpm)-命令模式 [登记中心]  Imain.java
@@ -201,8 +202,10 @@
                                    3> mq
                                         AmqMsgContainerFactory.java
 
-                                   4> netty NIO/AIO TODO:如何体现异步的 WHILE接收到 异步阻塞... 接口设计 - 异步转同步
+                                   4> netty NIO/AIO
                                         netty.java
+                                        线程和IO模型的极简知识:https://blog.csdn.net/Innost/article/details/90633199
+                                        高性能IO模型与线程模型:https://www.jianshu.com/p/30fac4e11513
 
                                      ---数据传输基础：序列化 Serializable.java---
                                      ---            传输协议
@@ -314,3 +317,5 @@
 1.父类 baseService..baseDao到底有没有必要。vs AbstractDraftBuilder ..proceesor 模板方法
   和 DraftData--包含-->requestInfo(公共报文属性 比如请求方、应答方、票面信息....)---子类-->特定报文属性
 2.
+5.代码技巧
+    1.变量从局部向外扩展。尽量减少风险。局部 - threadLocal - 成员 - 静态(注意增量上包静态常量引用问题，将引用文件重新编译上传)

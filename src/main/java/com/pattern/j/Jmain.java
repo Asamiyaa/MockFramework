@@ -28,7 +28,8 @@ package com.pattern.j;
  *  tomcat 中使用
  *
  *
- * 5.
+ * 5.IO
+ *      Serializable -- Netty
  *
  */
 public class Jmain {

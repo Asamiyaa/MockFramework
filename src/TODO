@@ -250,6 +250,15 @@ JavaWeb分页显示内容之分页查询的三种思路(数据库分页查询)�
            1.打包 - linux环境搭建  package.java
 
 
+ IOUtils.readFully()工具类使用
+
+
+ 缓存一致性。读写。缓存对象。解决方案。过期时间等。。
+    redis其他应用 其他类型
+      token... 重复提交  aop 跨域  https://blog.csdn.net/qq_37939251/article/details/83511451
+      mq
+
+ 热加载 vs  热部署
 
 
 

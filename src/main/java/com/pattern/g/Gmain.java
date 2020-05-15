@@ -73,10 +73,7 @@ import java.time.LocalDate;
  *
  *      3.运用api灵活解析(和pjs-xml 前后端分离：json)
  *
- *          1.加签验签 - 两码-证书-签名验签服务器-加签验签操作
- *               签名，其实就是给报文做个摘要（哈希）。而且相同的签名算法得到的摘要是相同的，比如MD5，SH1，SH256等。
- *               https://blog.csdn.net/thekenofDIS/article/details/82344585
- *               https://blog.csdn.net/duweiqian/article/details/54090773
+ *          1.加签验签 - Kmain.java
  *
  *          2.xml映射中除了body还是head组装 对比api文档中对每个字节描述，如何组装解析
  *          3.
