@@ -3,7 +3,7 @@ package com.annotationValidateFrameWork;
 
 import javax.validation.constraints.NotNull;
 
-public class User {
+public class  User {
 
     @NotNull(message = "id is not null")
     private String id;

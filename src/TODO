@@ -258,6 +258,12 @@ JavaWeb分页显示内容之分页查询的三种思路(数据库分页查询)�
       token... 重复提交  aop 跨域  https://blog.csdn.net/qq_37939251/article/details/83511451
       mq
 
+
+
+
+advance rest使用
+https://www.hangge.com/blog/cache/detail_2485.html
+
  热加载 vs  热部署
 
 
@@ -266,13 +272,102 @@ JavaWeb分页显示内容之分页查询的三种思路(数据库分页查询)�
 
 
 
+1.一些好的文章和视屏
+        下面是作者分享的一些提升其对于编程理解的演讲：
+
+        Mike Acton: Data-orientated Design
+        Jonathan Blow: How to program independent games
+
+        Eskil Steenberg: How I program in C
+
+        Rich Hickey: Hammock Driven Development
+
+        Rich Hickey: Simple Made Easy
+
+        Brian Will: Why OOP is Bad
+
+        Abner Coimbre: What Programming is Never About
+
+        Jeff and Casey Show: The Evils of Non-native Programming
+
+        Jeff and Casey’s Guide to Becoming a Bigger Programmer
+
+        Hadi Hariri: The Silver Bullet Syndrome
+
+
+       On the criteria to be used in decomposing systems into modules – David Parnas
+       A Note On Distributed Computing – Jim Waldo, Geoff Wyant,Ann Wollrath, Sam Kendall
+       The Next 700 Programming Languages – P. J. Landin
+       Can Programming Be Liberated from the von Neumann Style? – John Backus
+       Reflections on Trusting Trust – Ken Thompson
+       Lisp: Good News, Bad News, How to Win Big – Richard Gabriel
+       An experimental evaluation of the assumption of independence in multiversion programming – John Knight and Nancy Leveson
+       Arguments and Results – James Noble
+       A Laboratory For Teaching Object-Oriented Thinking – Kent Beck, Ward Cunningham
+       Programming as an Experience: the inspiration for Self – David Ungar, Randall B. Smith
+
+       国人写的模板引擎，代码质量很高：subchen/jetbrick-template-2x数据结构和算法类的，
+       同时有测试代码：buptdavid/datastructure | kdn251/interviewsJava写的高性能数据库：
+       jankotek/mapdbNetty实现的高性能RPC，有写博文分析：tang-jie/NettyRPCJava编写的原子组件库，内功非常深厚：
+       mindwind/craft-atom前点评网的一位大牛黄艺华写的爬虫框架：code4craft/webmagic针对Java8的一系列代码示例，纯干货无废话：
+       winterbe/java8-tutorialJava设计模式的总结以及代码和文章：iluwatar/java-design-patterns最优雅的网络请求库，一个Java文件：
+       kevinsawicki/http-request 以上是我看过质量都还不错的代码库，难度相对不是特别高，但对于编程思想的提升还是有很大帮助，
+       互联网资源如此丰富的时候我们更需要的是静下心来安静学习和思考而不是一味的追求信息大爆炸，所以我只挑选了对于代码能力有提升的难度不是特别高的分享给各位。
 
 
 
+        面试CS基础——操作系统笔记：https://www.nowcoder.com/discuss/22395
 
 
+        JAVA访问数据库，从数据库连接池开始到数据库返回结果，都发生了哪些事情？
+        牵涉到：
+
+        1.数据库链接用到的应用层协议
+
+        2.Java阻塞IO的TCP链接建立
+
+        3.逻辑事务的保证
+
+        4.数据库链接的重用
+
+        5.任务队列的先进先出处理
+
+        6.线程池的创建，管理
+
+        7.POJO和ORM相关的概念
+
+        8.Service Provider的驱动加载机制，工厂方法等等
 
 
+        我的编码习惯 - 工具类规范：https://zhuanlan.zhihu.com/p/29199049
+            接口定义规范 点击阅读
+            controller规范 点击阅读
+            日志规范 点击阅读
+            异常处理规范 点击阅读
+            国际化j和参数校验规范 点击阅读
+            工具类规范
+            函数编写建议 点击阅读
+            配置建议 点击阅读
+
+
+开发维护大型项目的Java的建议：   我应该面对问题解决问题而不是惧怕逃避
+        https://zhuanlan.zhihu.com/p/28494597
+锁优化的简单思路
+        https://zhuanlan.zhihu.com/p/86935799
+用事务模型和概念来解答：无锁编程，你失去了什么？怎么去衡量？常见的实现方法？
+        https://zhuanlan.zhihu.com/p/48493041
+ BATJ最新java面试80题：数据结构+并发编程+开源框架+数据库+微服务！
+        https://zhuanlan.zhihu.com/p/57034459
+ 你的编程能力从什么时候开始突飞猛进？
+        https://www.zhihu.com/question/356351510/answer/913928066
+ 面试解惑：没有技术深度的苦恼
+        https://zhuanlan.zhihu.com/p/27313196
+  GitHub上最牛逼的10个Java项目，号称"Star收割机"，Dubbo只能排 12
+        https://zhuanlan.zhihu.com/p/120913117
+ 设计模式
+        https://refactoring.guru/
+Java项目构建基础：统一结果，统一异常，统一日志
+    https://zhuanlan.zhihu.com/p/127134464
 
 
 
