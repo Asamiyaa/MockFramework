@@ -1,0 +1,55 @@
+
+---------------------------------------宗旨---------------------------------------
+
+    这些都是提供的条件，写自己的工具类时必须思路清晰，需要什么，返回什么 --  自己第一次写工具类思考过程JaxbUtil.java
+
+        1.当你在写逻辑时，发现涉及到下面的操作，并且这些操作是通用的，那么你需要思考是否将他们抽为独立的工具类
+        2.注意入参，注意流程图，分情况处理，避免写出来的工具类不稳定      可以查看StringUtils处理逻辑紧密性
+        3.final class 、static final String 常量  、 构造私有化、提供静态方法
+        4.思考是否可以在工具类中引用service，不建议，如果使用到可以通过ApplicationContextHoder关联spring容器和service 并且是static的。更不要考虑通过spring容器去加载管理
+        5.思考是抛出异常还是return null 返回null前台需要判断才往下继续？
+        6.写工具类时，一定明确重载过程中层序，比如string>date>calendar 重载(衍生函数组)，内部调用,而判断空等是否可以放到最核心部分,最核心的也只有一份
+          参数的优化，考虑各种类型的入参，这样你也能编写出专业灵活的工具类！
+        7.使用父类、接口、泛型等通用ArrayList - list - collection / string - charsequence   借鉴CollectionUtils
+        8.涉及到string就会有parse/format思路清晰，简洁，高效
+        9.定义自己的工具类，封装实现。尽量不要在业务代码里面直接调用第三方的工具类    为了后续逻辑修改
+            public static boolean isEmpty(String str) {
+              return org.apache.commons.lang3.StringUtils.isEmpty(str);
+            }
+        10.从StringUtils源码中得到结论：
+        11.是否考虑线程安全
+               静态方法无需吧，后面的xxfactory单例形式是否需要考虑呢？
+
+--------------------------------------- 基础---------------------------------------
+
+               1.基础API整理 jdk文档 + github  https://github.com/Asamiyaa/blog/tree/master/TechPoint/3_Effictive%20Java +  https://github.com/Asamiyaa/blog/tree/master/TechPoint/1_Core%20Java
+               2.ApacheCommon.java   + http://commons.apache.org/  + https://juejin.im/post/5b8823c4e51d4538b7766bfa + https://guava.dev/releases/18.0/api/docs/
+               3.自己写的 图片   TODO:贴图
+               4.hutool     https://github.com/looly/hutool
+               5.现在网上的   不用照抄网上的，一定要结合上面的宗旨和当前项目的所用，实现自己的
+
+
+--------------------------------------- 实现---------------------------------------
+
+
+1.基础工具类
+        1.String      Stringutil.java - GenericUtils
+        2.Collections
+        3.Date
+        4.Math
+        5.IO
+
+2.高级工具类
+        1.Class
+        2.Generic
+        3.Enum
+        4.Annotation
+
+3.其他工具类
+        1.ftp
+        2.加解密
+        3.json
+
+3.框架工具类
+        1.ApplicationContextHolder
+        2.
