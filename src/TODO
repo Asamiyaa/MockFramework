@@ -369,9 +369,9 @@ https://www.hangge.com/blog/cache/detail_2485.html
 Java项目构建基础：统一结果，统一异常，统一日志
     https://zhuanlan.zhihu.com/p/127134464
 
-
-
-
+-------------
+1.redis - cachemanager中使用到的东西整合到当前项目 在citrix里面
+2.源码中子类那么多，我如何查找对应的子类呢？
 
 
 
