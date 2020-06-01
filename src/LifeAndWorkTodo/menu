@@ -1,0 +1,38 @@
+总控
+    0.todo                                             todo
+    1.人性和工作                                             LifeWork
+    2.业务基础和现实解决                                     businessHandle
+    3.流程设计                                               proccess   //TODO:贴对应的图  bbsp对应多个系统图  ecds
+    4.领域模型                                               model      //TODo:极客时间
+    5.表设计                                                 TableDesign
+    6.技术架构选型                                           frame
+    7.整合-新技术及代码实现                                  codeImpl
+                设计模式整合
+                模块设计-(类设计)(简洁性 - 健壮性 - 可扩展)
+                (初始化，定位，信息结构、资源获取...)
+                (springboot、mq、redis、quartz、validte....)
+    8.注意点及解决                                            EnterprisePoint
+    9.单元测试                                                junitTest
+    10.性能                                                   fast
+    11.提交代码                                               checklist
+             - 规范性、安全性、健壮性...
+    12.问题定位解决                                           problemSolve
+    13.源码阅读提升                                           Source
+    14.微服务设计                                             microService
+    15.构建与部署                                             DevOps项目
+    16.内功 -数据结构算法、jvm                                structjvm
+
+    命名    naming.java
+    工具类  utils.txt
+    快捷键：shell
+
+
+参考：
+        github
+        processon
+        本地图片、书籍目录：C:\LifeAndWorkTodo
+        awesome-list:https://github.com/ityouknow/awesome-list
+
+
+
+

@@ -1,4 +1,6 @@
-常用命名
+常用命名  - 也可参数pjs下发的规范文档 命名方式
+
+
 	proxy listner factory  handler adapter wrapper .Context.. 设计模式对应类  call/excute  ..asString Template    holder ParameterParser xxdefinition Defaultxx  xxprovider xxhelper xxor
 	RedisAccessor  ExceptionTranslationStrategy  xxConverter  dispacher
 	xxManager（RedisCacheConfiguer）

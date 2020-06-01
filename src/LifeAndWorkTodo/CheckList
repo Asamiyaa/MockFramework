@@ -1,0 +1,14 @@
+
+
+代码提交 - 不仅仅是归范而且是对代码注意点的重构
+    1.idea自带的Analyze
+    2.《Java编码指南 编写安全可靠程序的75条建议》  https://www.neat-reader.cn/webapp#/ 打开epub
+    3.alibaba归范 - 插件   - 《阿里巴巴开发手册》
+    4.pwd归范     - 插件
+    5.《clean code》
+    6.《effictive java》
+    7.《编写高质量代码  改善Java程序的151个建议》
+    8.Java程序员编程性能优化必备的34个小技巧      https://github.com/Asamiyaa/blog/blob/master/TechPoint/3_toBetter/2.Java%E7%A8%8B%E5%BA%8F%E5%91%98%E7%BC%96%E7%A8%8B%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%BF%85%E5%A4%87%E7%9A%8434%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7
+    9.《重构》
+    10.sonar
+    11.SubmitCheck  提交时勾选右侧校验工具自动
