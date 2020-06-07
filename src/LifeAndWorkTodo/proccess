@@ -3,12 +3,17 @@
 
 2.产品经理app
 
-3.产出物 - 文档结构
+3.产出物 - 文档模板
         1.影响性分析
         2.概设
         3.详设
         4....
 
+    a)ECDS流程图，体会其中异步，多系统协作，流程不连续，生命周期长，业务场景多，业务嵌套
+    b)票交所时序图  从报文交互角度，展示业务场景
+    c)仿真建设
+            模块设计：https://www.processon.com/apps/5dad0672e4b0e43392ee5d41
+            核心流程：https://www.processon.com/diagraming/5db26af9e4b04913a27be47b
 
 
 0.架构设计  https://blog.csdn.net/hguisu/article/details/78258430
