@@ -261,7 +261,7 @@ public class MybatisMain {
     public void test1() {
         DraftDo draftDo = new DraftDo();
         //draftDo.setId(1l);
-        draftDo.setDraftno("2");
+        draftDo.setDraftno("7");
         draftDo.setDrafttemplate("2".getBytes());
         draftDo.setDraftdescribe("2");
         //1.测试主键生成 - 未配置useGeneratedKeys仍然生成
