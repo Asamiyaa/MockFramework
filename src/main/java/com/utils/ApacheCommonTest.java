@@ -49,7 +49,7 @@ package com.utils;
                     FileUtils.readFileToString
 
 
-Collections	java集合框架操作. 集合 -jdk Arrays/collections - >
+Collections	java集合框架操作. 集合 -jdk Arrays/collections/CollectionUtils - >
 
              BeanUtils	提供了对于JavaBean进行各种操作，克隆对象,属性等等.
                     copyProperties(Object dest, Object orig)  the same. name

@@ -4,7 +4,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 
 /**
- *
+ *  TODO:对比两种方式区别
  *1.初始化资源 方式 对比
  *               https://www.toutiao.com/i6809077726981390861/?tt_from=weixin&utm_campaign=client_share&wxshare_count=1&timestamp=1585649038&app=news_article&utm_source=weixin&utm_medium=toutiao_android&req_id=202003311803580101300371363C04C8C0&group_id=6809077726981390861
  *               https://www.cnblogs.com/dennyzhangdd/p/8028950.html
@@ -14,8 +14,9 @@ import org.springframework.boot.ApplicationRunner;
                  @PostConstruct
                  InitializingBean
                  ApplicationListener
+    @autowired
 
-    静态成员、块
+  2.静态成员、块、静态方法 - new ----非spring容器(有些使用template..等底层初始化也是通过new方式)
     map       new HashMap()直接通过初始化而不是在调用时，通常一些固定数据这么弄
 
  在平时的业务模块开发过程中，难免会需要做一些全局的任务、缓存、线程等等的初始化工作，那么如何解决这个问题呢？方法有多种，但具体又要怎么选择呢？
