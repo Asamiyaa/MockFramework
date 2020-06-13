@@ -1,0 +1,7 @@
+<myMybatis>
+    <namespace name="myFramework.myMybatis.com.asamiya.userInfo.ImyMapper"></namespace>
+    <myBaseResult id = "baseResult" class = "myFramework.myMybatis.com.asamiya.userInfo.User"></myBaseResult>
+    <select id = "selectAll" result="baseResult">
+        select * from user;
+    </select>
+</myMybatis>
