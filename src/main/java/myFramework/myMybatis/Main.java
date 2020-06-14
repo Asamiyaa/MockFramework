@@ -5,7 +5,7 @@ package myFramework.myMybatis;
  * @date 2020/6/8 8:55
  * @project MockFramework
  * @title: Main
- * @description:
+ * @description:   源码入口：MybatisMain.java
  *          0.基础实现
  *                  - jdbc 6步走  - 方法重构 - 工具类重构 - 类重构 - 框架 - 哪些拆解为属性，哪些拆解为类，哪些方法放到哪些类中，是依赖还是组合 是否过度设计？结构如何划分合理/
  *                  - 基本功能实现

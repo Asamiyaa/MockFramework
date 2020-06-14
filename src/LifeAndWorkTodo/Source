@@ -1,6 +1,6 @@
 源码学习三阶段
     1.框架使用，高级使用，项目中落地 参考codeImpl
-    2.查看设计架构，F6（自动断点）查看核心流程，设计模式
+    2.查看设计架构，F6（自动断点）查看核心流程，设计模式   --- mybatis:MybatisMain.java / springmvc:VolidateController+boot.SpringBootApplication.java+postman /
      1.业务场景考虑不全面、领域知识(timeout、cache....)
      *          2.代码安全性、前置校验....质量低
      *          3.对代码四大特性、六大原则、23种设计模式场景运用不灵活
