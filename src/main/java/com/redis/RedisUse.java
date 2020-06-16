@@ -38,7 +38,8 @@ package com.redis;
                         -- https://redis.io/commands
             1.keys * /keys apple*  查看所有key  flushall   keyspace
             2.get databases 这里database是在select xx （默认0-15）后的，比如spring中的value="xx"这个就是选择的库  分组
-            3.
+            3.*************redis********几种数据结构使用场景：
+                    https://blog.csdn.net/xiaoliuliu2050/article/details/73250708
 
 
             - 2
