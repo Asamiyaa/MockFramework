@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.RestController;
 
 //@EnableAutoConfiguration
-//@SpringBootApplication(scanBasePackages = {"com"},exclude = SecurityAutoConfiguration.class)
+//@SpringBootApplication(scanBasePackages = {"seckill"},exclude = SecurityAutoConfiguration.class)
 //@RestController
 //@MapperScan("com.secKill.dao")
 //@EnableScheduling

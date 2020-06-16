@@ -5,6 +5,8 @@ import com.core.rule.IParamRule;
 import com.core.rule.RuleManager;
 import com.core.rule.bean.CombinedRuler;
 import com.core.rule.bean.dataObj.DraftDo;
+import com.core.rule.impl.ParamRuleImpl;
+import com.pattern.k.execute.AsyncTask;
 import com.register.dao.PropertyDoMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +29,7 @@ import java.util.HashMap;
 @SpringBootTest(classes = SpringBootApplication.class)
 public class RuleDaoMapperTest {
 
-    @Autowired
+    /*@Autowired
     DraftDoMapper draftDoMapper ;
     @Test
     public void testDaoMapper() throws IOException {
@@ -35,14 +37,14 @@ public class RuleDaoMapperTest {
         draftDoMapper.insert(draftDo);
     }
 
-    /**
+    *//**
      * 进行复合操作
        错误： 只能在junit这里注入才生效，所以下面的‘希望通过junit入口将已有代码中的autowired生效，是不行的’
 
      so  我手动注入 可以吗？   -- 注入是不生效的。
 
      TODO:是否需要test 套件？
-     */
+     *//*
     //@Autowired
     //IParamRule paramRule ;
 
@@ -60,9 +62,9 @@ public class RuleDaoMapperTest {
         ruleManager.parseAndPersist(new File("src/main/resources/studentRule"));
     }
 
-    /**
+    *//**
      * 直接注入servcie，servcie中的dao也会注入
-     */
+     *//*
     @Autowired
     IParamRule paramRule ;
     @Test
@@ -70,6 +72,17 @@ public class RuleDaoMapperTest {
         paramRule.updateParamRule(new CombinedRuler("test","test",new HashMap<>()));
     }
 
+*/
 
-
+    /***
+     * ------------测试事务-----------
+     */
+    @Autowired
+    private ParamRuleImpl iParamRule;
+    @Test
+    public void testPersist2() throws IOException {
+        System.out.println("----");
+        iParamRule.doTransational();
+        System.out.println("----");
+    }
 }
