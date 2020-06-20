@@ -1,4 +1,4 @@
-package com.pattern.f;
+ package com.pattern.f;
 
 import com.cache.ICache;
 import org.junit.Test;
@@ -22,7 +22,21 @@ import java.util.Map;
  *      2.  1.几种上下文以及获取Spring的ApplicationContext的几种方法 https://blog.csdn.net/u013147600/article/details/49616427  + 直接注入
  *          2.获取容器中的Bean  https://www.jianshu.com/p/5e97109b479f
  *
+ *      ----参考自：*** 为什么那么多框架都设计有Context?(https://www.zhihu.com/question/269905592?utm_source=wechat_session&utm_medium=social&utm_oi=820973752312545280) *******
+ *          1.现场保存  cpu切换
+ *          2.多模块间数据传递，交互( 模块解耦权衡，因为相互之间肯定有联系，如何联系呢？问题：倘若分布式部署，都不是一个spring容器如何处理呢？集群部署呢？ )
+ *                  所以如何合理的选择局部变量、成员、静态、threadLocal..以及context...是对整个的考虑(尽量减少范围、尽量不适用多线程)，不建议用户代码对context处理，由框架完成
+ *                  生命周期 lifestyle
+ *                  哪些信息放到spring容器中呢?哪些又不放呢？
+ *          3.上下文是依赖注入的使用  上帝模式
  *
+ *     ----常见结构
+ *          1.http head/body
+ *                  https://blog.csdn.net/u010256388/article/details/68491509
+ *          2.pjs xml
+ *                  1-191 head / body head中第几个字节是代码什么...进行对应解析，body schema....映射 ‘ 对应对象 ’，因为head肯定是公用的，所以抽取出来
+ *          3.统一返回
+ *                  1.head - 成功标识、失败码、流水号、..../body
  *
  *
  *
