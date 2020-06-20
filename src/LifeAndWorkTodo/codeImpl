@@ -102,15 +102,23 @@
                                 当发现传递参数较多时，注意 ‘ 从不同角度抽象为bean - xxsearchBean - CacheInitBean - UserLogonBean  ’
 
                                 - 规范性（命名 naming.class - utils）
-                                        健壮性(前置校验-validate VolidateController(责任链、hibernateValidate)、返回包装json-对象+responsebody、统一异常baseController/异常分支(流程图)return/break/try..catch-有时即使api没有抛出异常该调用又不是关键为了后面继续，或者说远程调用，都要进行catch转义
-                                        /throws、边界( 数据结构、算法 )、日志、事务(RuleDaoMapperTest.testPersist2)、切面(LogMain)) 风险(安全、注入)
-                                                 事务：所谓的事务挂起其实就是一个移除当前线程、数据源活动事务对象的过程。
-                                                 事务的本质其实是对数据库自动提交的关闭与开启，传播特性是Spring提出、实现、控制的概念，而隔离级别是对数据库实现的封装。
-                                     C:\Users\73699\Desktop\think\高效实现思考
-
-                                    - 可扩展(基本实现-父类、抽象类接口- 反射(spring RelectionUitls/classUtils...)+泛型+注解 、重构(属性、方法定义合理性 - 属性bean通过依赖、关联、静态、默认、spring..初始化
+                                        健壮性(前置校验-validate VolidateController(责任链-shcpe中baesValidator、hibernateValidate)、
+                                        返回包装json-对象+responsebody、
+                                        异常分支(流程图)return/break/try..catch-有时即使api没有抛出异常该调用又不是关键为了后面继续，或者说远程调用，都要进行catch转义/throws、
+                                            重试、 补偿-保存现场 、 冲正 - 分布式下最终一致性
+                                        边界( 数据结构、算法 )、
+                                        日志、
+                                        ------------关于统一异常、日志、事务 vs aop关系以及模式思考 -------
+                                        统一异常baseController
+                                        事务(RuleDaoMapperTest.testPersist2 Transactions)、
+                                        切面(LogMain、UserAspect、ControllerAdvice))
+                                        --------
+                                        风险(安全、注入)
+                                        C:\Users\73699\Desktop\think\高效实现思考
+                                        幂等  Kmain.java
+                                 - 可扩展(基本实现-父类、抽象类接口- 反射(spring RelectionUitls/classUtils...)+泛型+注解 、重构(属性、方法定义合理性 - 属性bean通过依赖、关联、静态、默认、spring..初始化
                                             构造、方法重载、this的使用)、设计模式 )
-                                    - 可扩展(反射+泛型+注解 、重构、设计模式(中间层比如代理、委托..接口上升) ) 原则(简洁、易用、可读、可维护、高内聚松耦合..) - 思想(6大..) - 模式(设计模式) - 归范 - 单元测试 - 重构
+                                  - 可扩展(反射+泛型+注解 、重构、设计模式(中间层比如代理、委托..接口上升) ) 原则(简洁、易用、可读、可维护、高内聚松耦合..) - 思想(6大..) - 模式(设计模式) - 归范 - 单元测试 - 重构
                                             AnnotationUtils +  + XMLConvertUtil
                                                 设计模式： 总体 - SpringMain  ---结合 naming.class
 
@@ -120,13 +128,20 @@
                                                                 实际思考过程：重新定义类copy - 继承父类会造成膨胀 - 引用作为属性(这种其他属性轻重和核心属性是由区别的)
                                                                 比如eod任务类 除了核心service还有自己的日志系统和监控系统
 
+                                  为什么我写不出框架级别的代码
+                                       1.模式是对大型的组织，而大型需要业务理解+模型注意事项全面要素+大型复杂对象构建(抽象层次、维度 、粒度 六大原则 )+可扩展(设计模式)
+                                       2.设计模式就是将方法抽成类。比如前置判断、返回保证，hashmap....
+                                       3.其实你写的类中已经实现了这些，只是没有抽成类。因为简单
+                                       4.spring将大的架子打起来，比如切面...listener。。。学习分类。商业化
+                                       5.设计模式重要，但是解决问题更是关键。比如加密正确再去找合适位置去放，比如aop\抽象成类
+
                                               设计模式复合使用（https://www.runoob.com/design-pattern/design-pattern-intro.html  关联使用）
                                                         0.层设计     Bmain.java -父类..
                                                         0.初始化     Cmain.java   SpringbootAndSpringInit.java
                                                         0.定位      Emain.java   EMain2.java（通过接口vs注解定位）
-                                                        0.资源获取   Fmain.java  CacheRunner.java -- shcpe   SpringContextUtil工具类和spring柔和获取其中信息
+                                                        0.资源获取   Fmain.java  全局context CacheRunner.java -- shcpe  ***SpringContextUtil工具类和spring柔和获取其中信息***注解、父类...
                                                         0.信息结构   Gmain.java  xml解析 json  oxm ojm  / BeanDesign /DataStructure/TableDesign/Context
-                                                        0.安全性 、一致性、顺序性、幂等    Kmain.java  事务 -防重 -  加密 -签名验签
+                                                        0.安全性 、一致性、顺序性、幂等  .幂等vs事务vs线程 -----vs一致性  Kmain.java  事务 -防重 -  加密 -签名验签
                                                         1.门面-模板-策略-工厂  Amain.java
                                                         2.监听-模板-多线程-oxm  Hmain.java  Gmain.java
                                                                    监听：异步 详见2>性能 异步实现方式

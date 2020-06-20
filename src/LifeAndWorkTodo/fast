@@ -3,8 +3,8 @@
         1.异步 -(解耦) 异步编程思考(为什么使用线程处理 https://juejin.im/post/5a8fc6345188257a804aa956) 某个节点上异步，内部还是同步 (event - callback -listner)
               将接口拆成两个，异步返回、调用者再去查询结果
               回调实例 ，借助监听机制
-           1> thread     SerialNumGenerator
-                D:\Data\mySrc\MockFramework\src\test\thread\MainClass
+           1> thread     SerialNumGenerator  ExecutorServiceHelper线程池
+                D:\Data\mySrc\MockFramework\src\test\thread\MainClass + ThreadMain
                 C:\Users\73699\Desktop\think\极客时间\极客 并发
            2>事件
                 回调模式 -  监听器模式 - spring事件机制 - mq

@@ -13,6 +13,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import java.io.IOException;
 import java.lang.reflect.Type;
 
+/**
+ * spring指定好了架子，自己去填写，不知道写啥是因为对项目不深入，以及领域东西不全
+ */
+
 @RestControllerAdvice
 public class ControllerAdvice implements RequestBodyAdvice , ResponseBodyAdvice{
     @Override

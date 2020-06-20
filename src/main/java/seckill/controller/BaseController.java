@@ -1,23 +1,23 @@
 package seckill.controller;
 
-import org.apache.ibatis.binding.BindingException;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
-import org.springframework.validation.BindingErrorProcessor;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import seckill.error.BusiException;
 import seckill.error.EmBusiError;
 import seckill.response.CommonReturnType;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
+
+/**
+ * 这里其实可以不作为base.统一将异常处理放到@RestControllerAdvice里面去。。。
+ */
 
 @RestControllerAdvice
 public class BaseController {

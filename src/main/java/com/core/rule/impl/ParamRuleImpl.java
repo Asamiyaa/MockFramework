@@ -98,31 +98,11 @@ public class ParamRuleImpl implements IParamRule {
                      5、spring是否扫描到你这个包，如下是扫描到org.test下面的包
                      6、检查是不是同一个类中的方法调用（如a方法调用同一个类中的b方法）  --- 原理是：动态代理 类级别的
                      7、异常是不是被你catch住了
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
+
+     *事务：所谓的事务挂起其实就是一个移除当前线程、数据源活动事务对象的过程。
      *
      *
      */
-
-
-
-
-
-
-
-
 
     @Transactional  //不提交，将统一的commit放到最后，所有的
     public void doTransational(){
