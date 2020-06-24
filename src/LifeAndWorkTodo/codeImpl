@@ -107,7 +107,7 @@
                                         异常分支(流程图)return/break/try..catch-有时即使api没有抛出异常该调用又不是关键为了后面继续，或者说远程调用，都要进行catch转义/throws、
                                             重试、 补偿-保存现场 、 冲正 - 分布式下最终一致性
                                         边界( 数据结构、算法 )、
-                                        日志、
+                                        日志(LogTraceIdFilter.java)、
                                         ------------关于统一异常、日志、事务 vs aop关系以及模式思考 -------
                                         统一异常baseController
                                         事务(RuleDaoMapperTest.testPersist2 Transactions)、

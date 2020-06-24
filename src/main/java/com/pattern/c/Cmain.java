@@ -19,6 +19,8 @@ import org.springframework.boot.ApplicationRunner;
   2.静态成员、块、静态方法 - new ----非spring容器(有些使用template..等底层初始化也是通过new方式)
     map       new HashMap()直接通过初始化而不是在调用时，通常一些固定数据这么弄
 
+  3.通过tomcat容器等实现
+
  在平时的业务模块开发过程中，难免会需要做一些全局的任务、缓存、线程等等的初始化工作，那么如何解决这个问题呢？方法有多种，但具体又要怎么选择呢？
  *
  * TODO:从spring的初始化过程中找到扩展点 比如lister\runner\....
