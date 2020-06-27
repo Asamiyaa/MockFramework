@@ -102,6 +102,10 @@
                                 当发现传递参数较多时，注意 ‘ 从不同角度抽象为bean - xxsearchBean - CacheInitBean - UserLogonBean  ’
 
                                 - 规范性（命名 naming.class - utils）
+                                        接口定义 interfacePoint.java
+                                        异常处理 exceptionPoint.java
+                                                 controller.java
+                                        方法编写 methodPoint.java
                                         健壮性(前置校验-validate VolidateController(责任链-shcpe中baesValidator、hibernateValidate)、
                                         返回包装json-对象+responsebody、
                                         异常分支(流程图)return/break/try..catch-有时即使api没有抛出异常该调用又不是关键为了后面继续，或者说远程调用，都要进行catch转义/throws、
@@ -134,6 +138,10 @@
                                        3.其实你写的类中已经实现了这些，只是没有抽成类。因为简单
                                        4.spring将大的架子打起来，比如切面...listener。。。学习分类。商业化
                                        5.设计模式重要，但是解决问题更是关键。比如加密正确再去找合适位置去放，比如aop\抽象成类
+                                       6.aop切面将日志抽出来统一记录。首先你必须知道要去做什么，在去考虑实现方式。切面完全不去做，直接写在
+                                         耦合在代码中，所以一地步先要知道去做什么 ，第二步：正确实现  第三步：抽出来 切面统一。
+                                         切面的本质代理。代理分为两类。1.设计模式中代理模式。就是封装重要的大型的屏蔽后台比如webservice.
+                                           常写作：xxxProxy ....没有主次之分  2.aop 同样是代理。通过aspectj静态代理植入 有主次之分。切
 
                                               设计模式复合使用（https://www.runoob.com/design-pattern/design-pattern-intro.html  关联使用）
                                                         0.层设计     Bmain.java -父类..

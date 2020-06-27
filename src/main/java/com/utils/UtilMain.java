@@ -20,4 +20,20 @@ package com.utils;
  *
  */
 public class UtilMain {
+
+    public static void main(String[] args) {
+        String a = "1";
+        a();
+        System.out.println("a");
+
+    }
+
+    private static void a() {
+        String b = "2";
+        String c = "3";
+    }
+
+
 }
+
+
