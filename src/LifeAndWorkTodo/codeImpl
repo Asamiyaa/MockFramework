@@ -102,10 +102,10 @@
                                 当发现传递参数较多时，注意 ‘ 从不同角度抽象为bean - xxsearchBean - CacheInitBean - UserLogonBean  ’
 
                                 - 规范性（命名 naming.class - utils）
-                                        接口定义 interfacePoint.java
+                                        接口定义 interfacePoint.java + 方法编写 methodPoint.java
                                         异常处理 exceptionPoint.java
                                                  controller.java
-                                        方法编写 methodPoint.java
+
                                         健壮性(前置校验-validate VolidateController(责任链-shcpe中baesValidator、hibernateValidate)、
                                         返回包装json-对象+responsebody、
                                         异常分支(流程图)return/break/try..catch-有时即使api没有抛出异常该调用又不是关键为了后面继续，或者说远程调用，都要进行catch转义/throws、
