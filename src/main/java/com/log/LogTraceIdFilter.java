@@ -19,10 +19,14 @@ package com.log;
  *              https://www.jianshu.com/p/e0774f965aa3
  *              ThreadLocal变量为什么用static修饰  https://www.jianshu.com/p/ee9e1d0247a6  => threadLocal作为抽取公共传递成员(上下文)的一个实现手段 无锁
  *              java中，创建子类对象时，父类对象会也被一起创建么？https://www.zhihu.com/question/51920553
-            5.实战代码
+ *          5.为了传递traceId。判断是由方法调用baseService.log方法还是requestMapping中创建。创建了Global全局
+ *            为了区分，添加了渠道。.。所以整个传递从threadLocal - global - rpcContext（dubbo处理）
+ *          6.修改删除逻辑，remove .不知道哪里log remove.那么就在初始化先将上一次数据清空。在赋值
+ *            --业务流程逻辑修改--
+ *          7.实战代码
                 1.C:\YangWenjunData\mySrc\MockFramework11\src\LifeAndWorkTodo\photo\log1.png
  *                C:\YangWenjunData\mySrc\MockFramework11\src\LifeAndWorkTodo\photo\log切面...png
- *  https://www.cnblogs.com/penghq/p/11226822.html
+ *                https://www.cnblogs.com/penghq/p/11226822.html
  */
 public class LogTraceIdFilter {
 
