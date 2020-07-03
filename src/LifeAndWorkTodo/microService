@@ -1,4 +1,9 @@
 《微服务：从设计到部署》:https://github.com/DocsHome/microservices    票交所仿真开发过程中拆分问题及解决
+
+     pjs仿真思考:
+            1.多个module如何拆分，部署，编译，依赖解决...
+            2.
+
      4>微服务
            拆分：https://www.cnblogs.com/aibabel/p/11214026.html
            治理：

@@ -27,7 +27,7 @@
 
        1.基础API整理 jdk文档 + github  https://github.com/Asamiyaa/blog/tree/master/TechPoint/3_Effictive%20Java +  https://github.com/Asamiyaa/blog/tree/master/TechPoint/1_Core%20Java
        2.ApacheCommon.java   + http://commons.apache.org/  + https://juejin.im/post/5b8823c4e51d4538b7766bfa + https://guava.dev/releases/18.0/api/docs/
-       3.自己写的 图片   TODO:贴图
+       3.自己写的 图片   ./photo/utils1..2..3
        4.hutool     https://github.com/looly/hutool
        5.现在网上的   不用照抄网上的，一定要结合上面的宗旨和当前项目的所用，实现自己的
 

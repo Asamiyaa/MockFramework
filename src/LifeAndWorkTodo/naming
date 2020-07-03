@@ -30,8 +30,9 @@
     deleteWhen
     ConsumeFromWhere
     isWaitStoreMsgOK
-    onMessage - onXXX
+    onMessage - onXXX / onApplicationEvent
+    IdGenerator - 规则
+    bindxx
+    build...
 
 
-缩写：https://www.iteye.com/blog/lihaiming-2317036
-    Java各种对象（PO,BO,VO,DTO,POJO,DAO,Entity,JavaBean,JavaBeans）的区分：https://www.cnblogs.com/lyjin/p/6389349.html
