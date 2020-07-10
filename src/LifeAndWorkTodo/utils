@@ -39,8 +39,8 @@
 1.基础工具类
         1.String      Stringutil.java - GenericUtils
         2.Collections
-        3.Date
-        4.Math
+        3.Date  -- Calendar进行对时分秒精简
+        4.Math  -- 使用bigDecimal 精度 四舍五入 规则公式
         5.IO
 
 2.高级工具类
