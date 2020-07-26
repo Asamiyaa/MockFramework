@@ -14,6 +14,17 @@
         5.登记中心模型    path:src/LifeAndWorkTodo/photo/常用数据模型.png  src/LifeAndWorkTodo/photo/业务到状态机过程中前转状态引出业务嵌套深度.png
         6.权限模型
 
+  缩写：https://www.iteye.com/blog/lihaiming-2317036
+      Java各种对象（PO,BO,VO,DTO,POJO,DAO,Entity,JavaBean,JavaBeans）的区分：https://www.cnblogs.com/lyjin/p/6389349.html
+      api模块中虽然vo和bean是一样的，beanUtils.copy进行复制，并且对多的属性进行处理塞入，对属性不同的
+      转化，service层进行处理。。暴露层 翻译层
+
+      透传 - 下游 - 接数
+      客户号- 账号 维度....
+
+
+
+
 2.  《数据模型资源手册卷1》
     《数据模型资源手册卷2》
     《数据模型资源手册卷3》未下载

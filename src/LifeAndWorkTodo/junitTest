@@ -2,6 +2,9 @@
 
 单元测试 测试驱动开发  手术刀 准确定位  TestMain.class、VolidateControllerTest.class
 
+   mainTest + springTest(包含整个spring上下文进行测试 又是可从后台+debug调用，跳过前台或着其他系统等) ==>可以使用全局一个无需每个都创建对应test
+                ...dao...层测试...
+
    明确修改点 - 局部测试 - 联合测试( debug修改参数值 )
 
    bbsp 新需求变更导致商票流程不可使用 ==> 关联影响性饭一定要到位，修改之前一定要对涉及部分清晰。

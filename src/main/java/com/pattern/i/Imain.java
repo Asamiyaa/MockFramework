@@ -15,6 +15,9 @@ package com.pattern.i;
  *              (jBPM Best Practices):https://blog.csdn.net/weixin_33725272/article/details/89866848
  *      5.注册中心对比 https://blog.csdn.net/kuaipao19950507/article/details/103449705
  * 1.状态模式 - spring状态机 - bbsp状态机 - 登记中心
+ *
+ * 2.命令模式
+ *      1.Page.jpg  场景: 1.gui 2.传递命令处理较复杂，相对于查询列表、...这些无需想page判断内部逻辑。。所以没有使用命令
  */
 public class Imain {
 

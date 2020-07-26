@@ -9,6 +9,8 @@
            2>事件
                 回调模式 -  监听器模式 - spring事件机制 - mq
                 比起在发布者线程中new 线程更解耦 。业务逻辑上是异步的，且允许消费者自己订阅的
+                Event
+
            3> mq
                 AmqMsgContainerFactory.java
 
