@@ -48,6 +48,16 @@
 
 
 
+1.spring源码
+        1.Spring|容器初始化流程及源码分析 - refresh() - https://www.jianshu.com/p/32dacf644062
+        2.spring扩展点、event 、listner
+        3.实例化 + 初始化  截图
+        4.Spring IoC源码学习：finishBeanFactoryInitialization 详解  各个方法详解：https://blog.csdn.net/v123411739/article/details/87907784
+        5.spring aop  思考：动态代理  aspectj  代理模式  pjs仿真 事务 - 数据库  https://blog.csdn.net/v123411739/article/details/106065748
+        6.springmvc dispatcher / delegate 
+
+
+
 
 -------------
 1.源码中接口和抽象类、类多重继承结构
