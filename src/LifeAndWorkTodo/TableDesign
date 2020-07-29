@@ -10,9 +10,75 @@
 
 ----------------------实现-----------------------
     1>设计表结构：RuleDo.java + statusDo.class + 表创建过程中表空间，索引，主键等设计
+        数仓中的全量表，增量表，拉链表，流水表，快照表：https://www.cnblogs.com/wqbin/p/10223988.html
+        什么是拉链表:https://blog.csdn.net/saqin6255/article/details/80362248
 
     2>.sql(转化思路重写sql?)
        RuleDoMapper.interface
+
+
+       如何编写复杂sql：https://cloud.tencent.com/developer/article/1033405
+                      https://www.cnblogs.com/powertoolsteam/p/write-better-sql-queries-definitive-guide-part-3.html
+       sql编写 - ***《effectiveSQL》***
+            1.需求模型 - 需要哪些数据
+            2.关系代数模型 -表(数据来自哪些源) - 交并差
+            3.实现模型
+                1.
+                2.脏数据过滤
+                       1.录入规则、改数
+                       2.因为表关联产生不合理数据
+                            1.连接之前过滤
+
+
+
+       1.执行顺序 - 每一步执行结果都是下一步的输入
+            SQL Select语句完整的执行顺序：
+
+            1、from子句组装来自不同数据源的数据；   join..on 左右连接 过滤条件
+
+            2、where子句基于指定的条件对记录行进行筛选；
+
+            3、group by子句将数据划分为多个分组；
+
+            4、使用聚集函数进行计算；
+
+            5、使用having子句筛选分组；
+
+            6、计算所有的表达式；
+
+            7、select 的字段；distinct:https://blog.csdn.net/ljl890705/article/details/70602442
+                            sql distinct是去重的 可是当我查询多个字段 但只想去重其中某一个字段 怎么办：https://ask.csdn.net/questions/665152
+
+            8、使用order by对结果集进行排序。
+
+
+
+            Union：对两个结果集进行并集操作，不包括重复行，同时进行默认规则的排序；
+
+            Union All：对两个结果集进行并集操作，包括重复行，不进行排序；
+
+            Intersect：对两个结果集进行交集操作，不包括重复行，同时进行默认规则的排序；
+
+            Minus：对两个结果集进行差操作，不包括重复行，同时进行默认规则的排序。-- A差集B = A-A和B公共的 特殊包含场景
+            补集：取反合并。。https://vladimiroracle.wordpress.com/sql/set-operators-union-union-all-minus-intersect/
+                   等价于：out join + isNull 差集
+
+            db2:分页
+                select * from (
+                select row_number() over(ORDER BY date DESC) as r,e.*
+                from emp e
+                where e.name=’A’ AND r<=5)
+                where r>0
+
+            select a.* from table a where id =370 fetch first n rows only
+            todo:over()
+
+        sql distinct是去重的 可是当我查询多个字段 但只想去重其中某一个字段
+            怎么办：这中情况不能用distinct ，group by 应该也不行。可以考虑 row_number... over (对想要的字段分组) ,然后取第一条数据，你这个查询只能去除数据，要不然没办法实现这种查询
+        行列转化：
+            https://blog.csdn.net/jackfrued/article/details/45021897
+        SQL语句实现关系代数中的“除法”
+            https://blog.csdn.net/u011446177/article/details/53456280
 
     3>.orm
         从shcpe得到快速hibernate \mybatis ---> mybatisPlus .简单系统要选择快速开发完成
