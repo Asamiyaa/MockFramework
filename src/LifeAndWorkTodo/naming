@@ -35,4 +35,5 @@
     bindxx
     build...
 
-
+    asQueryString
+    afterPropertiesSet

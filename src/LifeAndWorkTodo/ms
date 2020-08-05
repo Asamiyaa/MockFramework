@@ -19,6 +19,7 @@
     1.集合中删除元素
 
 5.算法
+    1.各个数据结构选择  https://juejin.im/post/6844903633914445837#heading-2
     1.字符串反转 https://www.cnblogs.com/JohnTsai/p/5606719.html
     2.java 中 怎样才能打印出数组中的重复元素
 
@@ -68,9 +69,18 @@
 
 16.spring
     1.refresh()  1.beanFactory  2.bean- 创建图(判断缓存...)
-    2.循环依赖
-    3.三级缓存
-    4.aop注入  扩展接口 属性....都是在实例化的时候完成的
+    2.循环依赖 通过三级缓存解决  ：https://cloud.tencent.com/developer/article/1497692
+    3.aop注入  扩展接口 属性....都是在实例化的时候完成的  https://www.jianshu.com/p/a854e23d88dd
+    4.spring整合其他框架    图片 将代理bean 通过factoryBean接口注入
+        1.注册其他构造入参作为springbean ,即spring初始化之一(传统的Spring容器加载一个Bean的整个过程，都是由Spring控制的，换句话说，开发者除了设置Bean相关属性之外，是没有太多的自主权的。FactoryBean改变了这一点，开发者可以个性化地定制自己想要实例化出来的Bean，方法就是实现FactoryBean接口。)
+          正常时通过解析为beanDefinition...现在是直接有我们来创建，通过此注册到spring
+        2.factoryBean：解析过程：https://blog.csdn.net/zknxx/article/details/79572387
+        3.查看改接口的子类有多个，比如Activemq.... 区分@Bean 只是可以定义入参，创建对象还是由spring完成
+
+        1.afterPropertiesSet  ActiveMqConnectionFa...
+
+17.mybatis
+    1.源码 :https://blog.csdn.net/qq_31156563/article/details/107448279
 
 
 
