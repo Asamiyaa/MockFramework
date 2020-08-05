@@ -8,7 +8,26 @@ import java.util.List;
  *  @author  YangWenjun
  *  @date   2018年10月4日  基础学习
  *  @description          泛型的使用通常会结合反射 ，作为项目中工具类，或者更高层次的基类。 所以对泛型的理解是建立在对工具类理解之上的再抽象。
- *                                 1.是什么
+ *
+ *
+ *      		1.参数什么情况下使用Class<?> vs String vs obj vs T.class 知道obj就可以知道Class? 如何选择
+					从obj或者string+instance根据参数新构建 操作 过来
+					答：cls.cast(obj) 此时传入的obj对象 - 是否可以使用T呢？
+					cls得到的Class的高一层，没有具体的东西，想要使用需要比如method.get（obj...）/field.get....。到这里是不是说只要有obj就可以不要Class, --但是需要obj是具体类型 而不是obj --是否使用T呢？
+
+				2.Type和Class关系
+					https://blog.csdn.net/a327369238/article/details/52621043
+					泛型出现之后，也就扩充了数据类型。从只有原始类型扩充了参数化类型、类型变量类型、泛型数组类型，也就是Type的子接口。
+					　　那为什么没有统一到Class下，而是增加一个Type呢？（Class也是种类的意思，Type是类型的意思）
+					　　是为了程序的扩展性，最终引入了Type接口作为Class，ParameterizedType，GenericArrayType，TypeVariable和WildcardType这几种类型的总的父接口。这样实现了Type类型参数接受以上五种子类的实参或者返回值类型就是Type类型的参数。
+					Class（类）是Java对现实对象的抽象，而Type是对Java语言对象的抽象。
+
+ *
+ *
+ *
+ *
+ *
+ *                     1.是什么
  *                                                 JDK1.5      参数化类型，形参参数化 （类比与形参）   也就是说所操作的数据类型被指定为一个参数   
  *                                                扩展： 
  *                                                      1.Java中类型：Type   Class（类）是Java对现实对象的抽象，而Type是对Java语言对象的抽象。

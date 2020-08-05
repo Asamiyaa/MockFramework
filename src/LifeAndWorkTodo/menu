@@ -15,6 +15,10 @@
                 模块设计-(类设计)(简洁性 - 健壮性 - 可扩展)
                 (初始化，定位，信息结构、资源获取...)
                 (springboot、mq、redis、quartz、validte....)
+
+        代码片段：                                           fragment
+        数据结构和算法                                        DsA (Data structure and algorithm)
+
     8.注意点及解决                                            EnterprisePoint
     9.单元测试                                                junitTest
     10.性能                                                   fast
@@ -25,11 +29,16 @@
     14.微服务设计                                             microService
     15.构建与部署                                             DevOps项目
     16.内功 -数据结构算法、jvm                                structjvm
+    17.面试                                                   ms
 
     命名    naming.java
     工具类  utils.txt
     快捷键：shell
 
+
+前置处理
+处理
+后置处理
 
 参考：
         github

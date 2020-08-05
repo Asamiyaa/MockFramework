@@ -148,6 +148,8 @@ JavaWeb分页显示内容之分页查询的三种思路(数据库分页查询)�
 9.如何应对电商双十一抢购，看这一篇就够啦 [复制链接] http://www.itpub.net/thread-2106484-1-1.html
 10.[SQL] 如何获取insert的数据某个字段的最大值 [复制链接]http://www.itpub.net/thread-2121279-1-1.html  -- 问题场景，解决方案 --- 执行计划
 
+浅谈@RequestMapping @ResponseBody 和 @RequestBody 注解的用法与区别：https://blog.csdn.net/ff906317011/article/details/78552426
+																																		https://blog.csdn.net/weixin_38004638/article/details/99655322
 
 
 

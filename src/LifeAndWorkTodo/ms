@@ -1,0 +1,77 @@
+1.IO
+    1.IO NIO 阻塞 同步 https://www.cnblogs.com/dolphin0520/p/3916526.html
+    2.Netty  https://juejin.im/post/6844903703183360008
+    3.tcp udp :https://blog.51cto.com/feinibuke/340272
+    4.三次握手四次挥手
+        http 的问题，为什么是无状态的，状态码，session，cookie，cookie 大小限制是多少
+
+2.异步
+    1.同步转异步 https://blog.csdn.net/qq_32447301/article/details/90322555
+    2.concurrentHashMap使用场景及错误使用 https://blog.csdn.net/zero__007/article/details/49833819
+        问题1：不清楚一个流程执行中哪些是原子的，哪些不是
+           2：多个线程这种干扰到底存在几种，很乱，很多。
+    3.SimpleDateFormat线程不安全：https://blog.csdn.net/csdn_ds/article/details/72984646
+
+3.jdk
+    1.hashMap和concurrentHashMap
+
+4.collections
+    1.集合中删除元素
+
+5.算法
+    1.字符串反转 https://www.cnblogs.com/JohnTsai/p/5606719.html
+    2.java 中 怎样才能打印出数组中的重复元素
+
+6.设计模时
+    1.adapter 充电器 为什么不直接引用接口而是需要适配，引用同样可以实现内部调用实现呀
+    2.给我一个符合开闭原则的设计模式的例子
+            策略模式，如果你需要一个新的策略，只需要实现接口，增加配置，不需要改变核心逻辑。一个正在工作的例子是
+            Collections.sort() 方法，这就是基于策略模式，遵循开闭原则的，你不需为新的对象修改 sort() 方法，你需要做的仅仅是实现你自己的 Comparator 接口。
+
+7.数据库
+    1.索引 - hash B B+
+    2.主从备份
+    3.一条sql执行过程
+    4.执行计划
+
+8.流程
+    1.浏览器输入一个域名开始，到显示页面，中间发生了什么
+
+9.业务难点
+
+
+10.redis
+
+11.rocketmq
+
+12.zookeeper 协调框架
+    1.原理
+    2.分布式锁
+
+
+12.源码
+
+13.dubbo、SpringCloud这块
+    1.架构图
+    2.时序图   https://blog.csdn.net/xinfei0803/article/details/80079613
+    3.
+
+14.maven
+    1.打包
+    2.依赖冲突
+
+15.springboot
+    1.启动加载
+    2.starter
+    3.时序图   --- spring
+
+
+16.spring
+    1.refresh()  1.beanFactory  2.bean- 创建图(判断缓存...)
+    2.循环依赖
+    3.三级缓存
+    4.aop注入  扩展接口 属性....都是在实例化的时候完成的
+
+
+
+

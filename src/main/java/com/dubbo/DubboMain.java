@@ -1,6 +1,25 @@
 package com.dubbo;
 
 /**
+ *
+ *   1.基本配置 @enableDubbo @service @refrence regist  protocal  20880 / 7001   API模块
+     2.配置-覆盖顺序
+         1.启动时检查
+         2.超时
+         3.重试
+                幂等-查询、删除、更新
+                轮询策略
+         4.多版本 灰度发布
+         5.本地存更 userServiceStub  参数校验后采去调用
+         6.服务降级
+         7.熔断；
+
+      todo:手机chrome dubbo面试题
+
+
+
+ *
+ *
  *入门
  背景
  需求

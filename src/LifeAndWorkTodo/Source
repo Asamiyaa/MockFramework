@@ -57,7 +57,25 @@
         6.springmvc dispatcher / delegate 
 
 
+2.validator源码
+        1.group、正则 、自定义注解
+        2.源码套路类似 定义高级接口 - 工厂(集合了配置文件confire..)-xxor - .方法 或者on 、 do ..
+            Validation.buildDefaultValidatorFactory()
+                    .getValidator()
+                    .validate(user, new Class[0]);
+            方法中调用xxmanager 该manager来自hibernate  createValidator
 
+          	 ValidatorFactoryImpl - 212行 - 查看每个
+          	 ValidatorImpl  public ValidatorImpl(ConstraintValidatorFactory constraintValidatorFactory, BeanMetaDataManager beanMetaDataManager, ValueExtractorManager valueExtractorManager, ConstraintValidatorManager constraintValidatorManager, ValidationOrderGenerator validationOrderGenerator, ValidatorFactoryScopedContext validatorFactoryScopedContext) {
+          								.validate()
+
+          	当想下无法找到时，猜测、或者从已知的实现中反推 - 可能因为设计模式导致不是简单的x.xx()所以找不到、或者debug。。抓住核心方法 validate 思考流程图不是树形
+          	validationSuccessful 命名 只意 。 先从主线开始
+          	this.validateConstraints(executionContext, valueContext, constraintViolations);
+
+          	ConstraintTree.validateConstraints 一定不要小看一行，因为源码中可能错过了一个入口 ConstraintTree.validateConstraints()
+
+          	自定义validate注解：Spring Boot之Validation自定义实现总结  https://blog.csdn.net/blueheart20/article/details/88817334
 
 -------------
 1.源码中接口和抽象类、类多重继承结构
@@ -86,6 +104,9 @@
        https://www.runoob.com/design-pattern/mvc-pattern.html
    今日头条：对外接口封装层....没有什么是加一层解决不了的
 	 前后端分离 - 职责
+
+
+
 
 
 1.

@@ -6,7 +6,7 @@
 
 
    2. 学习新模块的方式学习实践
-      MybatisMain
+      MybatisMain - D:\Data\mySrc\MockFramework\src\LifeAndWorkTodo\photo\mybatis.jpg
       AnnotationValidateFrameWork-UserAspect(切面)-ControllerAdvice
       QurarzMain(timing.quartz目录都是)
       AmqMsgContainerFactory(activemq) - RPCManager - DefaultProducer(rocketmq)
@@ -146,7 +146,7 @@
                                               设计模式复合使用（https://www.runoob.com/design-pattern/design-pattern-intro.html  关联使用）
                                                         0.层设计     Bmain.java -父类..
                                                         0.初始化     Cmain.java   SpringbootAndSpringInit.java
-                                                        0.定位      Emain.java   EMain2.java（通过接口vs注解定位）
+                                                        0.定位      Emain.java(包括xml解析)  EMain2.java（通过接口vs注解定位）
                                                         0.资源获取   Fmain.java  全局context CacheRunner.java -- shcpe  ***SpringContextUtil工具类和spring柔和获取其中信息***注解、父类...
                                                         0.信息结构   Gmain.java  xml解析 json  oxm ojm  / BeanDesign /DataStructure/TableDesign/Context
                                                         0.安全性 、一致性、顺序性、幂等  .幂等vs事务vs线程 -----vs一致性  Kmain.java  事务 -防重 -  加密 -签名验签
