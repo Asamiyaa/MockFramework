@@ -44,6 +44,11 @@
 10.redis
 
 11.rocketmq
+    1.codeImpl中对mq问题思考
+    1.十分钟入门RocketMQ：http://jm.taobao.org/2017/01/12/rocketmq-quick-start-in-10-minutes/
+    2.官方文档对mq源码重点
+    https://www.jianshu.com/p/2838890f3284
+    RocketMQ的坑:https://blog.csdn.net/u013404093/article/details/78114453 + 队列堵了
 
 12.zookeeper 协调框架
     1.原理
@@ -82,6 +87,8 @@
 17.mybatis
     1.源码 :https://blog.csdn.net/qq_31156563/article/details/107448279
 
+17.mybatis
+    1.聊聊MyBatis缓存机制 :https://tech.meituan.com/2018/01/19/mybatis-cache.html
 
 
 

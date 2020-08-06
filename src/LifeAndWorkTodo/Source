@@ -54,7 +54,8 @@
         3.实例化 + 初始化  截图
         4.Spring IoC源码学习：finishBeanFactoryInitialization 详解  各个方法详解：https://blog.csdn.net/v123411739/article/details/87907784
         5.spring aop  思考：动态代理  aspectj  代理模式  pjs仿真 事务 - 数据库  https://blog.csdn.net/v123411739/article/details/106065748
-        6.springmvc dispatcher / delegate 
+        6.springmvc dispatcher / delegate  handler 真正解决当前问题 doxxx resolver解析，装饰 https://blog.csdn.net/win7system/article/details/90674757
+        7.spring+springmvc中设计模式
 
 
 2.validator源码
