@@ -23,7 +23,7 @@
     1.字符串反转 https://www.cnblogs.com/JohnTsai/p/5606719.html
     2.java 中 怎样才能打印出数组中的重复元素
 
-6.设计模时
+6.设计模式
     1.adapter 充电器 为什么不直接引用接口而是需要适配，引用同样可以实现内部调用实现呀
     2.给我一个符合开闭原则的设计模式的例子
             策略模式，如果你需要一个新的策略，只需要实现接口，增加配置，不需要改变核心逻辑。一个正在工作的例子是
@@ -34,6 +34,7 @@
     2.主从备份
     3.一条sql执行过程
     4.执行计划
+    5.优化
 
 8.流程
     1.浏览器输入一个域名开始，到显示页面，中间发生了什么
@@ -49,6 +50,13 @@
     2.官方文档对mq源码重点
     https://www.jianshu.com/p/2838890f3284
     RocketMQ的坑:https://blog.csdn.net/u013404093/article/details/78114453 + 队列堵了
+
+
+    1.
+    2.
+
+
+
 
 12.zookeeper 协调框架
     1.原理
@@ -133,12 +141,15 @@
         1.SqlSessionManager 1.jdk动态代理 没有想的那么复杂，就是将调用逻辑进行（增强-aop-事务)，这里对sqlSession 判断有无 - 动态代理：https://my.oschina.net/zudajun/blog/666223
            xxxTemplate -xxmanager - defaltsql...  只有defaultxxx进行真正mappedStatement真正对配置文件
            解析就像spring中的beanDefinition一样 。赋值给executor执行
-        2.threadLocal
+        2.threadLocal ?? 如何保证线程安全的
         3.executor
-
-        https://my.oschina.net/zudajun/blog/668738 往下按----
+        4.方法不支持重载，不同的namespace下id不同get有问题，因为mybatis同一key存放了两份其中一个是全类名 使用绑定Mapper接口调用方法，因为它总是转换为full name调用。（Mybatis最佳实践，推荐）
+        5.incomplete对于元素在当前元素下面时，状态，返回来设置。类似于spring的三级缓存  -parsePendingElement
+        6.TypeHandler - converter...
 
     2.聊聊MyBatis缓存机制 :https://tech.meituan.com/2018/01/19/mybatis-cache.html
+    3.面试题：https://my.oschina.net/zudajun/blog/747682
+    4.设计模式
 
 
 18.springmvc
