@@ -37,3 +37,6 @@
 
     asQueryString
     afterPropertiesSet
+    bingConnection -unbind
+    load.Environment
+    defalutSqlSession wrapCollection  strictMap定义自己的map

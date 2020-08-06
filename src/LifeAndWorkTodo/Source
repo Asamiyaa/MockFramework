@@ -91,6 +91,8 @@
 
 模板方法 abstract...定义默认固定实现
 
+复杂：时序图 多个对象间调用
+
 1.策略 缓存名称-枚举。启动加载时指定缓存方式 redis....
   通过传入的context(strage xx)完成  https://www.runoob.com/design-pattern/strategy-pattern.html
   spring启动从配置文件读取

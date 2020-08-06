@@ -19,7 +19,7 @@
 
        如何编写复杂sql：https://cloud.tencent.com/developer/article/1033405
                       https://www.cnblogs.com/powertoolsteam/p/write-better-sql-queries-definitive-guide-part-3.html
-       sql编写 - ***《effectiveSQL》***
+       sql编写 - ***《effectiveSQL》***D:\Data\mySrc\MockFramework\src\LifeAndWorkTodo\photo\写sql也要按照逻辑每一步走完成再过滤空nul脏数据l再考虑性能.jpg
             1.需求模型 - 需要哪些数据
             2.关系代数模型 -表(数据来自哪些源) - 交并差
             3.实现模型

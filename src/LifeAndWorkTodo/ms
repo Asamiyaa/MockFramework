@@ -70,25 +70,76 @@
     1.启动加载
     2.starter
     3.时序图   --- spring
+    4.整合
+        1.mybatis:https://blog.csdn.net/qq_31156563/article/details/107448279
 
 
-16.spring
+16.spring --专注于对象管理
     1.refresh()  1.beanFactory  2.bean- 创建图(判断缓存...)
-    2.循环依赖 通过三级缓存解决  ：https://cloud.tencent.com/developer/article/1497692
-    3.aop注入  扩展接口 属性....都是在实例化的时候完成的  https://www.jianshu.com/p/a854e23d88dd
-    4.spring整合其他框架    图片 将代理bean 通过factoryBean接口注入
-        1.注册其他构造入参作为springbean ,即spring初始化之一(传统的Spring容器加载一个Bean的整个过程，都是由Spring控制的，换句话说，开发者除了设置Bean相关属性之外，是没有太多的自主权的。FactoryBean改变了这一点，开发者可以个性化地定制自己想要实例化出来的Bean，方法就是实现FactoryBean接口。)
-          正常时通过解析为beanDefinition...现在是直接有我们来创建，通过此注册到spring
-        2.factoryBean：解析过程：https://blog.csdn.net/zknxx/article/details/79572387
-        3.查看改接口的子类有多个，比如Activemq.... 区分@Bean 只是可以定义入参，创建对象还是由spring完成
+            url:https://www.jianshu.com/p/32dacf644062
+            D:\Data\mySrc\MockFramework\src\LifeAndWorkTodo\photo\spring初始化.png
 
-        1.afterPropertiesSet  ActiveMqConnectionFa...
+        0.spring整合其他框架 -通过factoryBean接口注入   图片 将代理bean
+            1.注册其他构造入参作为springbean ,即spring初始化之一(传统的Spring容器加载一个Bean的整个过程，都是由Spring控制的，换句话说，开发者除了设置Bean相关属性之外，是没有太多的自主权的。FactoryBean改变了这一点，开发者可以个性化地定制自己想要实例化出来的Bean，方法就是实现FactoryBean接口。)
+                正常时通过解析为beanDefinition...现在是直接有我们来创建，通过此注册到spring
+            2.factoryBean：解析过程：https://blog.csdn.net/zknxx/article/details/79572387
+            3.查看改接口的子类有多个，比如Activemq.... 区分@Bean 只是可以定义入参，创建对象还是由spring完成
 
-17.mybatis
-    1.源码 :https://blog.csdn.net/qq_31156563/article/details/107448279
-
-17.mybatis
-    1.聊聊MyBatis缓存机制 :https://tech.meituan.com/2018/01/19/mybatis-cache.html
+        1.jdbc统一管理
 
 
 
+    2.扩展接口 属性....都是在实例化的时候完成的  ***其中的图：https://www.jianshu.com/p/a854e23d88dd
+        0.实例化 调用无参构造器，成员属性... 这里无参中只能做自己对象简单事，利用spring下面接口可以获取整个容器信息
+        1.aware 对象初始化时需要依赖‘感知’  -- beanName、BeanFacotry、ApplicationContextAware
+        2.beanPostProcessor 是全局配置，每个bean初始化时都查看改列表。作为aop...等全局配置。。前后置(初始化下面)处理 postProcessorBeforeInitialization()....
+           aop场景：https://blog.csdn.net/baidu_20876831/article/details/78956220
+        3.InitializingBean和init-method 属性设置完成后做的事情，比如方法调用，cache初始化 --springboot的ApplicationRunner
+          afterPropertiesSet-ActiveMqConnectionFa...
+          destroy...释放信息...
+        4.3之后执行2的后置处理
+
+    3.循环依赖 初始化过程中有一步设置对象属性：通过三级缓存解决  ：https://cloud.tencent.com/developer/article/1497692
+
+    4.spring事务：为了解决业务层方法之间互相调用的事务问题 - 除bean之外另一层面 - a()-->b()各自情况笛卡尔积 [aop+db]
+           https://juejin.im/post/6844903608224333838
+           PROPAGATION_REQUIRED ：统一一个事务
+           PROPAGATION_REQUIRES_NEW:新开启一个事务 即当前方法的执行不影响主流程，比如保存日志(多个表才有事务意义)....
+           PROPAGATION_NESTED：嵌套事务 其实嵌套的子事务就是保存点的一个应用，一个事务中可以包括多个保存点，每一个嵌套子事务。另外，外部事务的回滚也会导致嵌套子事务的回滚。
+                               部分回滚
+
+           回滚规则：事务只有遇到运行期异常时才会回滚，你还可以声明事务遇到特定的异常不回滚，即使这些异常是运行期异常。(场景)
+
+           源码：DatasourceTransactionManager
+                1.整合connection -> db.. 2.实现initialzingBean 校验设置  3.写的整洁，高内聚低耦合  4.xxxholder
+
+           事务失效场景：
+
+           分布式事务：
+
+    5.spring设计模式
+        1.
+
+    6.池化 https://blog.csdn.net/zjpopo/article/details/101099298 只有真正涉及到网络-连接池、线程资源-线程池  vs 单例
+        1.本质就是创建一个list..将new Connection(xx,xx,....) 对象创建了放进去 -- GenericObjectPool common-pool
+
+
+17.mybatis - menu.TableDesign - 《effectiveSQL》-
+    1.${}/#{} https://www.cnblogs.com/shar-wang/p/11614722.html
+     - 动态sql :if、choose、when、otherwise、trim、where、set以及foreach  https://blog.csdn.net/u012702547/article/details/55105400
+            - 本质就是将代码中对sql条件的判断下沉到sql编写上。最主要的if和foreah-批处理 batch
+
+    1.源码 :https://my.oschina.net/zudajun?tab=newest&catalogId=3532897
+        1.SqlSessionManager 1.jdk动态代理 没有想的那么复杂，就是将调用逻辑进行（增强-aop-事务)，这里对sqlSession 判断有无 - 动态代理：https://my.oschina.net/zudajun/blog/666223
+           xxxTemplate -xxmanager - defaltsql...  只有defaultxxx进行真正mappedStatement真正对配置文件
+           解析就像spring中的beanDefinition一样 。赋值给executor执行
+        2.threadLocal
+        3.executor
+
+        https://my.oschina.net/zudajun/blog/668738 往下按----
+
+    2.聊聊MyBatis缓存机制 :https://tech.meituan.com/2018/01/19/mybatis-cache.html
+
+
+18.springmvc
+    1.
