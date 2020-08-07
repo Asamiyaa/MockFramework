@@ -35,6 +35,7 @@
     3.一条sql执行过程
     4.执行计划
     5.优化
+    6.乐观锁 悲观锁
 
 8.流程
     1.浏览器输入一个域名开始，到显示页面，中间发生了什么
@@ -43,19 +44,63 @@
 
 
 10.redis
-
-11.rocketmq
-    1.codeImpl中对mq问题思考
-    1.十分钟入门RocketMQ：http://jm.taobao.org/2017/01/12/rocketmq-quick-start-in-10-minutes/
-    2.官方文档对mq源码重点
-    https://www.jianshu.com/p/2838890f3284
-    RocketMQ的坑:https://blog.csdn.net/u013404093/article/details/78114453 + 队列堵了
-
-
     1.
     2.
 
 
+
+************************************
+分布式下问题(mq/dubbo不同解决方案)：
+    1.分布式一致性等：Kmain AmqMsgContainerFactory(activemq) - DefaultProducercodeImpl
+        D:\Data\mySrc\MockFramework\src\LifeAndWorkTodo\photo\rocketmq分布式事务半消息实现.png
+
+    2.MQ消息最终一致性解决方案  https://juejin.im/post/6844903951448408071
+        1.链路长，并且增加了网络，mq等其他组件导致一致性复杂(注意可能出问题节点)，所以增加操作状态 ：预发送、定时回查...
+        2.代码需要如何保证ack判断 发送和消费都是如何在自己处理后发送呢？？？？
+            https://www.cnblogs.com/wuzhenzhao/p/11504941.html  代码实现 先保存本地保证，返回消费成功给mq
+            https://blog.csdn.net/qq_35362055/article/details/81560388
+        3.整个流程 发送方保证+mq保证+consumer保证 = 一致性
+        4.只保证通讯级别不保证业务级别，消费者抛出npe,那么事务是不一致的
+
+
+11.rocketmq + 消息的组拼解析(xml/bj银行 head头每个字节代表什么..解析) + 接口归范的理解和编码
+    1.《浅入浅出》-RocketMQ -扫盲 : https://juejin.im/post/6844904008629354504#heading-10
+       mq场景 配置 使用：https://www.cnblogs.com/joylee/p/8916460.html
+                       https://juejin.im/post/6844903696577331208
+
+    十分钟入门RocketMQ：http://jm.taobao.org/2017/01/12/rocketmq-quick-start-in-10-minutes/
+                      https://chestnutheng.cn/2019/09/04/rocketmq/
+
+    2.默认配置
+        1.rocketmq的重试队列和死信队列  https://www.jianshu.com/p/1281f7fee69c
+        2.发送/消费 防丢失、顺序性、重复性是mq控制还是系统还是配合
+          mq:可以保证顺序性和至少消费一次：RocketMQ  一个topic下有多个队列，为了保证发送有序，RocketMQ提供了MessageQueueSelector队列选择机制Hash取模法，
+          MetaQ主要使用了拉模型，解决了顺序消息和海量堆积问题；Notify主要使用了推模型，解决了事务消息；
+
+    3.源码 - 解决mq内部处理逻辑
+        1.从RocketMQ源码了解其系统设计:https://juejin.im/post/6856205024717897742
+        2.https://developer.aliyun.com/article/759659
+          https://juejin.im/post/6856205024717897742
+        3.RocketMQ源码解析：https://juejin.im/post/6844904166247104519
+
+    4.设计模式
+        1.通信层设计模式：https://zhuanlan.zhihu.com/p/103915220
+        2.
+
+    5.问题和调优
+        队列堵了:  https://juejin.im/post/6844904199667318798
+        消费消息是push还是pull？RocketMQ没有真正意义的push，都是pull，虽然有push类，但实际底层实现采用的是长轮询机制，即拉取方式
+        为什么要主动拉取消息而不使用事件监听方式？
+            事件驱动方式是建立好长连接，由事件（发送数据）的方式来实时推送。
+            如果broker主动推送消息的话有可能push速度快，消费速度慢的情况，那么就会造成消息在consumer端堆积过多，同时又不能被其他consumer消费的情况。而pull的方式可以根据当前自身情况来pull，不会造成过多的压力而造成瓶颈。所以采取了pull的方式。
+
+        堆积时间过长消息超时了？
+        RocketMQ中的消息只会在commitLog被删除的时候才会消失，不会超时。也就是说未被消费的消息不会存在超时删除这情况。
+
+        追问：堆积的消息会不会进死信队列？
+        不会，消息在消费失败后会进入重试队列（%RETRY%+ConsumerGroup），18次（默认18次，网上所有文章都说是16次，无一例外。但是我没搞懂为啥是16次，这不是18个时间吗 ？）才会进入死信队列（%DLQ%+ConsumerGroup）。
+
+        面试题:https://www.cnblogs.com/javazhiyin/p/13327925.html
 
 
 12.zookeeper 协调框架
