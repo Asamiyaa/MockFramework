@@ -44,8 +44,10 @@
 
 
 10.redis
-    1.
-    2.
+    1.缓存 CacheManager.java -
+    2.系统学习 Redis:https://juejin.im/post/6844904111205253134 + 命令+代码调用
+    3.分布式锁 ：https://juejin.im/entry/6844903545339133959
+    4.lua脚本  提高i灵活性将判断逻辑放到redis server端 而无需client
 
 
 
