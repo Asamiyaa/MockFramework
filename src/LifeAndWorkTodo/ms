@@ -1,3 +1,5 @@
+高级常见面试题：https://blog.csdn.net/Butterfly_resting/article/details/89637697
+
 1.IO
     1.IO NIO 阻塞 同步 https://www.cnblogs.com/dolphin0520/p/3916526.html
     2.Netty  https://juejin.im/post/6844903703183360008
@@ -48,7 +50,7 @@
     2.系统学习 Redis:https://juejin.im/post/6844904111205253134 + 命令+代码调用
     3.分布式锁 ：https://juejin.im/entry/6844903545339133959
     4.lua脚本  提高i灵活性将判断逻辑放到redis server端 而无需client
-
+    5.Redis集群下的RedLock算法(真分布式锁) 实践  https://cloud.tencent.com/developer/article/1523004
 
 
 ************************************
@@ -113,9 +115,21 @@
 12.源码
 
 13.dubbo、SpringCloud这块
-    1.架构图
-    2.时序图   https://blog.csdn.net/xinfei0803/article/details/80079613
-    3.
+    0.bilibili dubbo使用教程
+    1.架构图(不同颜色的线代表调用暴露流程以及所属)
+    2.时序图   https://blog.csdn.net/xinfei0803/article/details/80079613(源码时序图就像多个系统协作完成，我们的是不同的系统给比如额度信贷这里对象就是对这些的抽象 职责)
+    3.源码：https://juejin.im/post/6844903799832707079
+    4.spi
+        1.为什么其他框架没有呢：dubbo除了提供多种配置选择外还自定义-替换，实现指定接口由如何让dubbo识别且这些替换是替换了
+                            dubbo核心处理逻辑 --其他框架mybatis..等似乎没有替换核心
+    5.面试题：
+        1.简述服务暴露和引用过程
+        2.集群容错几种 以及场景：https://juejin.im/post/6844903806841405454
+          负载均衡：https://juejin.im/post/6844903806841405448
+        3.如何异步转同步：https://juejin.im/post/6844903806845583374
+
+    6.设计模式
+
 
 14.maven
     1.打包
@@ -201,3 +215,7 @@
 
 18.springmvc
     1.
+
+19.多线程
+    1.代码行之间、api操作期间如何判断是否是原子操作，不是的话不是都可以笛卡尔积吗？那样混乱如何写出正确的代码呢？
+    2.
