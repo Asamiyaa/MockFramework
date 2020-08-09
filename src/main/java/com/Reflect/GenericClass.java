@@ -9,6 +9,7 @@ import java.util.List;
  *  @date   2018年10月4日  基础学习
  *  @description          泛型的使用通常会结合反射 ，作为项目中工具类，或者更高层次的基类。 所以对泛型的理解是建立在对工具类理解之上的再抽象。
  *
+ *				Java中的Type类型详解:https://juejin.im/post/6844903597977632776
  *
  *      		1.参数什么情况下使用Class<?> vs String vs obj vs T.class 知道obj就可以知道Class? 如何选择
 					从obj或者string+instance根据参数新构建 操作 过来

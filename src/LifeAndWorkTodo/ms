@@ -31,13 +31,16 @@
             策略模式，如果你需要一个新的策略，只需要实现接口，增加配置，不需要改变核心逻辑。一个正在工作的例子是
             Collections.sort() 方法，这就是基于策略模式，遵循开闭原则的，你不需为新的对象修改 sort() 方法，你需要做的仅仅是实现你自己的 Comparator 接口。
 
-7.数据库
+7.数据库 - sql
     1.索引 - hash B B+
     2.主从备份
     3.一条sql执行过程
     4.执行计划
     5.优化
     6.乐观锁 悲观锁
+    7.分库分表实践 https://tech.meituan.com/2016/11/18/dianping-order-db-sharding.html
+    8.行列互换 https://blog.csdn.net/jackfrued/article/details/45021897
+    9.sql建议：https://database.51cto.com/art/202003/613133.htm
 
 8.流程
     1.浏览器输入一个域名开始，到显示页面，中间发生了什么
@@ -127,12 +130,13 @@
         2.集群容错几种 以及场景：https://juejin.im/post/6844903806841405454
           负载均衡：https://juejin.im/post/6844903806841405448
         3.如何异步转同步：https://juejin.im/post/6844903806845583374
+          同步转异步与请求降协议：https://blog.csdn.net/qq_32447301/article/details/90322555
 
     6.设计模式
 
 
 14.maven
-    1.打包
+    1.打包 - 部署
     2.依赖冲突
 
 15.springboot
@@ -214,8 +218,38 @@
 
 
 18.springmvc
-    1.
+    1.委派模式
+    2.转发和重定向区别
 
 19.多线程
     1.代码行之间、api操作期间如何判断是否是原子操作，不是的话不是都可以笛卡尔积吗？那样混乱如何写出正确的代码呢？
-    2.
+    2.simpleDateFormat https://blog.csdn.net/csdn_ds/article/details/72984646
+    3.实战使用   百度网盘 多面手
+    4.使用场景：https://www.zhihu.com/question/65200684
+
+20.性能优化 -- 实战
+    0.发现瓶颈：https://blog.csdn.net/shan9liang/article/details/24035001
+    1.一般项目常用性能调优方法
+        1.https://blog.csdn.net/shan9liang/article/details/50152393
+        2.https://blog.csdn.net/shan9liang/article/details/50241449
+        3.https://blog.csdn.net/shan9liang/article/details/50726455
+    2.tomcat
+        1.https://blog.csdn.net/shan9liang/article/details/43992717
+        2.https://blog.csdn.net/shan9liang/article/details/42180953
+    3.数据库
+        1.https://blog.csdn.net/shan9liang/article/details/39379391
+        2.https://blog.csdn.net/shan9liang/article/details/7526049
+    4.缓存
+        1.https://blog.csdn.net/shan9liang/article/details/28869375
+21.问题定位
+    1.记一次PermGen持续增长的解决过程 https://blog.csdn.net/shan9liang/article/details/45403091
+    2.记一次MessageQueue的优化  https://www.cnblogs.com/EminemJK/p/9921800.html
+22.uml:https://blog.csdn.net/shan9liang/article/details/6705728
+        https://blog.csdn.net/shan9liang/article/list/8
+
+
+ 23.需求分析 - 设计 - 开发 -维护  https://blog.csdn.net/shan9liang/article/list/8
+ https://blog.csdn.net/shan9liang/article/details/6662154
+    顶级程序员工具集:https://www.cnblogs.com/aobing/p/11930859.html
+
+24.jdk8
