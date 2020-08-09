@@ -9,7 +9,7 @@
       MybatisMain - D:\Data\mySrc\MockFramework\src\LifeAndWorkTodo\photo\mybatis.jpg
       AnnotationValidateFrameWork-UserAspect(切面)-ControllerAdvice
       QurarzMain(timing.quartz目录都是)
-      AmqMsgContainerFactory(activemq) - RPCManager - DefaultProducer(rocketmq)
+      AmqMsgContainerFactory(activemq) - RPCManager - DefaultProducer(rocketmq) -Kmain
       RedisUse -RedisCacheConfiguer CacheManager
       LogMain
       springboot  SpringbootMain SpringBeanMain

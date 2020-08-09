@@ -20,6 +20,9 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
+ * 领域：
+ * 内存设置、broker策略配置、流控、协议、认证授权  https://blog.csdn.net/fenglongmiao/article/details/79175062
+ * 异步、讯息策略、重发策略、持久化、死信队列、消息积压  https://www.cnblogs.com/jinloooong/p/9609420.html
  *
  * 过程
  *      1.如果maven爆红，将对应包去掉，刷新，在添加
