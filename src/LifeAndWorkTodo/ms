@@ -6,6 +6,7 @@
     3.tcp udp :https://blog.51cto.com/feinibuke/340272
     4.三次握手四次挥手
         http 的问题，为什么是无状态的，状态码，session，cookie，cookie 大小限制是多少
+    5.tcp\http
 
 2.异步
     1.同步转异步 https://blog.csdn.net/qq_32447301/article/details/90322555
@@ -141,6 +142,10 @@
 
 15.springboot
     1.启动加载
+        1.http://tengj.top/2017/03/09/springboot3/
+        https://blog.csdn.net/Liuqz2009/article/details/104858353
+        https://blog.csdn.net/weishuai528/category_8996076.html
+
     2.starter
     3.时序图   --- spring
     4.整合
