@@ -215,6 +215,11 @@
     6.池化 https://blog.csdn.net/zjpopo/article/details/101099298 只有真正涉及到网络-连接池、线程资源-线程池  vs 单例
         1.本质就是创建一个list..将new Connection(xx,xx,....) 对象创建了放进去 -- GenericObjectPool common-pool
 
+    7.解决企业级应用开发的业务逻辑层和其他各层的耦合 解决企业级应用开发的复杂性
+      IoC让相互协作的组件保持松散的耦合，而AOP编程允许你把遍布于应用各层的功能分离出来形成可重用的功能组件。
+
+    8.springmvc
+        1.
 
 17.mybatis - menu.TableDesign - 《effectiveSQL》-
     1.${}/#{} https://www.cnblogs.com/shar-wang/p/11614722.html
