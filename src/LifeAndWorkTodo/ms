@@ -1,4 +1,6 @@
 高级常见面试题：https://blog.csdn.net/Butterfly_resting/article/details/89637697
+                https://blog.csdn.net/ThinkWon/article/details/104397299
+
 
 1.IO
     1.IO NIO 阻塞 同步 https://www.cnblogs.com/dolphin0520/p/3916526.html
@@ -146,11 +148,23 @@
         https://blog.csdn.net/Liuqz2009/article/details/104858353
         https://blog.csdn.net/weishuai528/category_8996076.html
 
+            1.配置文件解析 http://tengj.top/2017/02/28/springboot2/
+            2.启动原理解析:http://tengj.top/2017/03/09/springboot3/   --META-INF/spring.factory
+            3.@Configure @Bean @Service...@Autowire 注解初始化方式和xml区别？  https://www.cnblogs.com/ashleyboy/p/9667485.html  和xml不同，注解是通过后置处理器完成...位置不同
     2.starter
-    3.时序图   --- spring
-    4.整合
-        1.mybatis:https://blog.csdn.net/qq_31156563/article/details/107448279
+            1.原理：https://blog.csdn.net/weixin_39992480/article/details/97938439  (依赖+配置) 1.配置文件+xml   2.配置文件+starter(默认或者使用配置)  3.配置文件+@Bean 需要逻辑处理不是简单配置
+            2.自定义：https://www.xncoding.com/2017/07/22/spring/sb-starter.html
 
+    3.整合  factoryBean的使用...
+        1.mybatis:https://blog.csdn.net/qq_31156563/article/details/107448279
+    4.springboot
+        1.Spring Profiles https://blog.csdn.net/liujun03/article/details/82592929
+        2.spring secrity + jwt: https://www.jianshu.com/p/d5ce890c67f7
+        3.跨域问题  CSRF 攻击
+        4.微服务中如何实现 session 共享  Spring Session + Redis 来实现 session 共享  https://blog.csdn.net/qq_39669058/article/details/90235990
+
+    5.参考
+        1.https://blog.csdn.net/ThinkWon/article/details/104397299
 
 16.spring --专注于对象管理
     1.refresh()  1.beanFactory  2.bean- 创建图(判断缓存...)
