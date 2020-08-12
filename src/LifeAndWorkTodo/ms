@@ -44,6 +44,7 @@
     7.分库分表实践 https://tech.meituan.com/2016/11/18/dianping-order-db-sharding.html
     8.行列互换 https://blog.csdn.net/jackfrued/article/details/45021897
     9.sql建议：https://database.51cto.com/art/202003/613133.htm
+    10.mysql binlog ..
 
 8.流程
     1.浏览器输入一个域名开始，到显示页面，中间发生了什么
