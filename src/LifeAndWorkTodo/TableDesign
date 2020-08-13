@@ -3,7 +3,7 @@
      表之间的外键就是对象的引用。。。有些逻辑表级不体现，直接从service对这些进行控制处理
      表的根本来自 ‘业务理解’+ 表设计技巧
 
-     业务字段 - 表设计宗旨 - 未来预测(就像架构一样) - 性能难度 - 模型 .... --> 表
+     业务字段 - 表设计宗旨(通用字段 time/version/status/... + 通用模型) - 未来预测(就像架构一样) - 性能难度 - 模型 .... --> 表( 完整性是最关键的，比如外键的使用 )
 
      数据库常用函数总结和业务结合 比如replace / distinct ...
      状态机表 - 未考虑字段、继承、业务等 -- 需要重新结合看的书写 - 有些表是其实是同等于架构的设计级别，一定要明确业务和技巧
@@ -17,18 +17,20 @@
        RuleDoMapper.interface
 
 
-       如何编写复杂sql：https://cloud.tencent.com/developer/article/1033405
+       如何编写复杂sql：( 千万不要头脑风暴，要注意使用就像写模块一样要有流程，写取那个，再取那个....最后再优化)
+                      https://cloud.tencent.com/developer/article/1033405
                       https://www.cnblogs.com/powertoolsteam/p/write-better-sql-queries-definitive-guide-part-3.html
-       sql编写 - ***《effectiveSQL》***D:\Data\mySrc\MockFramework\src\LifeAndWorkTodo\photo\写sql也要按照逻辑每一步走完成再过滤空nul脏数据l再考虑性能.jpg
+
+       sql编写 - ***《effectiveSQL》***    ***D:\Data\mySrc\MockFramework\src\LifeAndWorkTodo\photo\写sql也要按照逻辑每一步走完成再过滤空nul脏数据l再考虑性能.jpg
             1.需求模型 - 需要哪些数据
-            2.关系代数模型 -表(数据来自哪些源) - 交并差
+            2.关系代数模型 -表(数据来自哪些源) - 交并差   （ 同样用于代码集合中处理 ）
             3.实现模型
-                1.
+                1.sql语句正确性
                 2.脏数据过滤
                        1.录入规则、改数
                        2.因为表关联产生不合理数据
                             1.连接之前过滤
-
+                3.性能
 
 
        1.执行顺序 - 每一步执行结果都是下一步的输入

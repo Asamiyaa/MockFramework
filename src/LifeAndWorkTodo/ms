@@ -34,17 +34,57 @@
             策略模式，如果你需要一个新的策略，只需要实现接口，增加配置，不需要改变核心逻辑。一个正在工作的例子是
             Collections.sort() 方法，这就是基于策略模式，遵循开闭原则的，你不需为新的对象修改 sort() 方法，你需要做的仅仅是实现你自己的 Comparator 接口。
 
-7.数据库 - sql
-    1.索引 - hash B B+
-    2.主从备份
-    3.一条sql执行过程
-    4.执行计划
-    5.优化
-    6.乐观锁 悲观锁
-    7.分库分表实践 https://tech.meituan.com/2016/11/18/dianping-order-db-sharding.html
-    8.行列互换 https://blog.csdn.net/jackfrued/article/details/45021897
-    9.sql建议：https://database.51cto.com/art/202003/613133.htm
-    10.mysql binlog ..
+
+7.数据库 - sql  https://thinkwon.blog.csdn.net/article/details/104778621   + TableDesign
+    1.表的建立
+        0.模型 1.三大范式 2.什么时候使用联合主键
+                第一范式：1NF是对属性的原子性约束，要求属性具有原子性，不可再分解；
+                第二范式：2NF是对记录的惟一性约束，要求记录有惟一标识，即实体的惟一性； 部分依赖
+                第三范式：3NF是对字段冗余性的约束，即任何字段不能由其他字段派生出来，它要求字段没有冗余。 传递依赖
+
+        1.主键
+                1.自增   2.业务  3.uuid  4.分布式主键
+        2.表空间
+        3.约束  唯一性  索引、非空、
+        4.类型  一定要保持一致，不要在多个实体之间转换
+        5.长度
+
+    2.sql编写  ( 千万不要头脑风暴，要注意使用就像写模块一样要有流程，写取那个，再取那个....最后再优化)
+        1.正确性（函数-展示字段if判断逻辑）
+         - 完整性（union 不同维度数据(查看录入不同形式)..）、
+          非脏性(distinct\ is not null..) -
+          性能(join in exist 子查询 索引 返回值 过滤顺序 查询逻辑)
+        2.<effective sql>
+
+    3.锁 - 事务
+
+
+
+    5.定位
+        1.执行计划  sql执行过程
+        2.优化
+            1.sql优化
+                1.sql语句
+                2.索引
+                3.
+            2.数据库优化
+
+    4.分库分表
+
+
+    6.面试
+        1.引擎：MyISAM引擎使用B+Tree作为索引结构，叶节点的data域存放的是数据记录的地址(非聚集索引)  叶节点data域保存了完整的数据记录(聚集索引)
+        1.索引 - hash B B+
+        2.主从备份
+        3.一条sql执行过程
+        4.执行计划
+        5.优化
+        6.乐观锁 悲观锁
+        7.分库分表实践 https://tech.meituan.com/2016/11/18/dianping-order-db-sharding.html 后遇到的问题事务支持、跨库join 跨节点的count,order by,group by以及聚合函数问题  id
+                查看https://thinkwon.blog.csdn.net/article/details/104778621最后几行
+        8.行列互换 https://blog.csdn.net/jackfrued/article/details/45021897
+        9.sql建议：https://database.51cto.com/art/202003/613133.htm
+        10.mysql binlog ..
 
 8.流程
     1.浏览器输入一个域名开始，到显示页面，中间发生了什么
@@ -59,6 +99,7 @@
     4.lua脚本  提高i灵活性将判断逻辑放到redis server端 而无需client
     5.Redis集群下的RedLock算法(真分布式锁) 实践  https://cloud.tencent.com/developer/article/1523004
 
+    1.code -字典、营业日、日历、时序... 2.session 3.到期记录 常查询  4.分布式锁  不允许写入  日终跑批
 
 ************************************
 分布式下问题(mq/dubbo不同解决方案)：
@@ -168,7 +209,7 @@
         1.https://blog.csdn.net/ThinkWon/article/details/104397299
 
 16.spring --专注于对象管理
-    1.refresh()  1.beanFactory  2.bean- 创建图(判断缓存...)
+    1.refresh()  -1.beanFactory  2.bean- 创建图(判断缓存...)
             url:https://www.jianshu.com/p/32dacf644062
             D:\Data\mySrc\MockFramework\src\LifeAndWorkTodo\photo\spring初始化.png
 

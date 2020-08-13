@@ -7,18 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * TODO
-     1.理解索引的存储结构(两层+有序->范围查询)，
-     2.理解回表，是否全表扫描，复合索引、索引字节数、缓存命中
-     3.锁、竞争 、行锁 、表锁
-     4.同步 、 可靠性
-     5.慢日志监控查询
-     6.大数据量的插入和读取  order by 是将所有数据一起吗？
-     7.大文件保存  blob 、视频
-     8.根据业务场景合理优化业务逻辑，写出sql 对join 、exsist 、distinct 、group by 等组合嵌套思考
      性能优化之查询转换 - 子查询类：http://www.10tiao.com/html/188/201612/2650272664/1.html
-
-
 
  1.循环赋值修改  https://blog.51cto.com/alun51cto/2050064
    DB2 游标  https://blog.csdn.net/feier7501/article/details/25922303
@@ -133,7 +122,8 @@ import java.util.List;
          create index index_a on draft(draftNo)
          唯一索引 vs 普通索引
 
-     3.函数 + 操作符  -- 哪些逻辑放到数据库哪些放到程序，放到数据库 sql中的算吗？还是只算存储过程...
+     3.函数 + 操作符  -- 哪些逻辑放到数据库哪些放到程序，放到数据库 sql中的算吗？还是只算存储过程... === 相当于代码中的  工具类 。。。当需要减少数据量或者直接从数据库
+        导出报表时是重要的。
          https://www.jianshu.com/p/32bc449a1bf6
          数学函数
          字符串函数 //mysql中处理字符串时，默认第一个字符下标为1，即参数position必须大于等于1
@@ -142,7 +132,7 @@ import java.util.List;
          系统信息函数
          加密函数
          格式化函数
-
+        字段拼接  a||b||c ....
          select abs(t.draftDescribe)+100 as absvalue from draft t where t.id = 4;
 
          select FLOOR(RAND()*100)
