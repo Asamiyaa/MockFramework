@@ -5,6 +5,7 @@
 1.IO
     1.IO NIO 阻塞 同步 https://www.cnblogs.com/dolphin0520/p/3916526.html
     2.Netty  https://juejin.im/post/6844903703183360008
+            1.netty实现简单http服务器   https://blog.csdn.net/huangshanchun/article/details/78302602
     3.tcp udp :https://blog.51cto.com/feinibuke/340272
     4.三次握手四次挥手
         http 的问题，为什么是无状态的，状态码，session，cookie，cookie 大小限制是多少
@@ -261,7 +262,7 @@
       IoC让相互协作的组件保持松散的耦合，而AOP编程允许你把遍布于应用各层的功能分离出来形成可重用的功能组件。
 
     8.springmvc
-        1.
+        1.一个url执行流程
 
 17.mybatis - menu.TableDesign - 《effectiveSQL》-
     1.${}/#{} https://www.cnblogs.com/shar-wang/p/11614722.html
@@ -285,7 +286,7 @@
 
 18.springmvc
     1.委派模式
-    2.转发和重定向区别
+    2.转发和重定向区别  https://blog.csdn.net/u013041642/article/details/72190223
 
 19.多线程
     1.代码行之间、api操作期间如何判断是否是原子操作，不是的话不是都可以笛卡尔积吗？那样混乱如何写出正确的代码呢？
@@ -300,6 +301,9 @@
         2.https://blog.csdn.net/shan9liang/article/details/50241449
         3.https://blog.csdn.net/shan9liang/article/details/50726455
     2.tomcat
+        1.从 0 开始手写一个Tomcat，7 步搞定！https://cloud.tencent.com/developer/article/1378719
+        2.tomcat和web关系：https://blog.csdn.net/tjiyu/article/details/54590258
+
         1.https://blog.csdn.net/shan9liang/article/details/43992717
         2.https://blog.csdn.net/shan9liang/article/details/42180953
     3.数据库
@@ -310,8 +314,13 @@
 21.问题定位
     1.记一次PermGen持续增长的解决过程 https://blog.csdn.net/shan9liang/article/details/45403091
     2.记一次MessageQueue的优化  https://www.cnblogs.com/EminemJK/p/9921800.html
-22.uml:https://blog.csdn.net/shan9liang/article/details/6705728
-        https://blog.csdn.net/shan9liang/article/list/8
+
+22.需求分析
+        1.process +
+        2.uml:https://blog.csdn.net/shan9liang/article/details/6705728
+              https://blog.csdn.net/shan9liang/article/list/8
+          visio
+        3.
 
 
  23.需求分析 - 设计 - 开发 -维护  https://blog.csdn.net/shan9liang/article/list/8
