@@ -1,6 +1,18 @@
 高级常见面试题：https://blog.csdn.net/Butterfly_resting/article/details/89637697
                 https://blog.csdn.net/ThinkWon/article/details/104397299
 
+final 回顾
+    springboot - spring -springmvc - jvm ( 都是对对象的管理 )
+    mybatis 一条sql从应用到数据库orm、以及数据库sql 执行流程     src/LifeAndWorkTodo/photo/mybatissql执行流程.png
+    sql
+    rocketmq 分布式事务
+    redis
+    dubbo
+    jdk  hash / 算法
+    设计模式
+    生产问题解决
+
+
 
 1.IO
     1.IO NIO 阻塞 同步 https://www.cnblogs.com/dolphin0520/p/3916526.html
@@ -20,6 +32,7 @@
 
 3.jdk
     1.hashMap和concurrentHashMap
+    2.值传递 vs 引用传递
 
 4.collections
     1.集合中删除元素
@@ -100,7 +113,7 @@
     4.lua脚本  提高i灵活性将判断逻辑放到redis server端 而无需client
     5.Redis集群下的RedLock算法(真分布式锁) 实践  https://cloud.tencent.com/developer/article/1523004
 
-    1.code -字典、营业日、日历、时序... 2.session 3.到期记录 常查询  4.分布式锁  不允许写入  日终跑批
+    1.code -字典、营业日、日历、时序... 2.session 3.到期记录 常查询  4.分布式锁-防重  不允许写入  日终跑批
 
 ************************************
 分布式下问题(mq/dubbo不同解决方案)：
@@ -165,7 +178,7 @@
 
 13.dubbo、SpringCloud这块
     0.bilibili dubbo使用教程
-    1.架构图(不同颜色的线代表调用暴露流程以及所属)
+    1.架构图(不同颜色的线代表调用暴露流程以及所属)  src/LifeAndWorkTodo/photo/dubbo-framework.jpg
     2.时序图   https://blog.csdn.net/xinfei0803/article/details/80079613(源码时序图就像多个系统协作完成，我们的是不同的系统给比如额度信贷这里对象就是对这些的抽象 职责)
     3.源码：https://juejin.im/post/6844903799832707079
     4.spi
@@ -203,7 +216,7 @@
     4.springboot
         1.Spring Profiles https://blog.csdn.net/liujun03/article/details/82592929
         2.spring secrity + jwt: https://www.jianshu.com/p/d5ce890c67f7
-        3.跨域问题  CSRF 攻击
+        3.跨域问题  CSRF 攻击  https://blog.csdn.net/u012373815/article/details/71436415
         4.微服务中如何实现 session 共享  Spring Session + Redis 来实现 session 共享  https://blog.csdn.net/qq_39669058/article/details/90235990
 
     5.参考
@@ -263,6 +276,8 @@
 
     8.springmvc
         1.一个url执行流程
+
+    9.arthas同样集成了spring的instrument模块完成对spring的监控和植入处理
 
 17.mybatis - menu.TableDesign - 《effectiveSQL》-
     1.${}/#{} https://www.cnblogs.com/shar-wang/p/11614722.html
