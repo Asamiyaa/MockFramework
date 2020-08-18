@@ -23,7 +23,7 @@ final 回顾
     2.Netty  https://juejin.im/post/6844903703183360008
             1.netty实现简单http服务器   https://blog.csdn.net/huangshanchun/article/details/78302602
     3.tcp udp :https://blog.51cto.com/feinibuke/340272
-    4.三次握手四次挥手
+    4.三次握手四次挥手  https://blog.csdn.net/guanghuichenshao/article/details/81916277
         http 的问题，为什么是无状态的，状态码，session，cookie，cookie 大小限制是多少
     5.tcp\http
 
