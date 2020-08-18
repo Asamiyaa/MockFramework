@@ -41,6 +41,10 @@
     load.Environment
     defalutSqlSession wrapCollection  strictMap定义自己的map
     ResourceEnvRef
+    xxitem
+    xxstep
+    checkRepeat
+    offset
     parsePendingElement
 
     resolverxx(入参问题对象)  handlerxx(处理者加工)  builder通常构建比较大的对象

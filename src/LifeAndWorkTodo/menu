@@ -5,6 +5,16 @@
       如何快速熟悉一个系统：https://mp.weixin.qq.com/s?__biz=MzI5ODQ2MzI3NQ==&mid=2247488864&idx=1&sn=f49ef8485824e31c3aa004b1ce38b517&chksm=eca42c24dbd3a532faf8a62b40f38065f7902c51aeaa0cef9329c22fdba0f492cab6313b31c2&mpshare=1&scene=1&srcid=&sharer_sharetime=1580896363562&sharer_shareid=a85f43e6bdca32f055debf17d8961580&key=39337f4ec293dafdfc0161472260bdb7998249732f5cd844da089a4b7ea528c652e772d5354e9fa4ad529b223d153a97361d8ef32fa74009374e4d2c2bf9a10c1582256c828e18b8c04ad0817b9d9f71&ascene=1&uin=MTQ4Mjg5ODY2MQ==&devicetype=Windows+7&version=62070158&lang=zh_CN&exportkey=AekBIxKXBoKH/Q+WBLwN0fg=&pass_ticket=aahg3lYoj4ihB4Rk4ZixqZTXQpuZ/CagHeKxwZTyCgHDHg3ao789F/+EwE51J72C
       如何维护老系统
 
+      src/LifeAndWorkTodo/photo/写代码力不从心原因.png
+      做过程分解的时候，我建议工程师不要把太多精力放在工具上，放在设计模式带来的灵活性上。
+      而是应该多花时间在对问题分析，结构化分解，最后通过合理的抽象，形成合适的阶段（Phase）和步骤（Step）上。
+
+      1.代码失控和状态机：https://segmentfault.com/a/1190000015912645    https://segmentfault.com/a/1190000016268007
+      2.一文教会你如何写复杂业务代码:https://www.toutiao.com/i6721542103307911683/
+      3.记一次代码重构  https://developer.aliyun.com/article/623420
+            我的代码重构导致乱，没有在总体上划分清晰就瞎拆分方法。
+
+
     0.todo                                             todo
     1.人性和工作                                             LifeWork
     2.业务基础和现实解决                                     businessHandle
@@ -17,9 +27,11 @@
                 模块设计-(类设计)(简洁性 - 健壮性 - 可扩展)
                 (初始化，定位，信息结构、资源获取...)
                 (springboot、mq、redis、quartz、validte....)
+                precheck(通用+业务) -> 入参准备  -> 调用 -> 回填、状态
 
         代码片段：                                           fragment
         数据结构和算法                                        DsA (Data structure and algorithm)
+        复杂场景代码解决方案                                   fuza
 
     8.注意点及解决                                            EnterprisePoint
     9.单元测试                                                junitTest

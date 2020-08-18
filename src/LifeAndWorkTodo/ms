@@ -1,6 +1,7 @@
 高级常见面试题：https://blog.csdn.net/Butterfly_resting/article/details/89637697
                 https://blog.csdn.net/ThinkWon/article/details/104397299
 
+
 final 回顾
     springboot - spring -springmvc - jvm ( 都是对对象的管理 )
     mybatis 一条sql从应用到数据库orm、以及数据库sql 执行流程     src/LifeAndWorkTodo/photo/mybatissql执行流程.png
@@ -8,10 +9,11 @@ final 回顾
     rocketmq 分布式事务
     redis
     dubbo
-    jdk  hash / 算法
+    jdk  hash / 算法  https://juejin.im/post/6844903633914445837#heading-22 /多线程 ThreadMain.java
     设计模式
     生产问题解决
 
+    状态机:1.状态流转  2.时序校验  3.业务可达性   4.历史(业务嵌套) 5.解析器
 
 
 1.IO
