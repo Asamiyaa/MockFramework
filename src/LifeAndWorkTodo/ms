@@ -1,5 +1,5 @@
 高级常见面试题：https://blog.csdn.net/Butterfly_resting/article/details/89637697
-                https://blog.csdn.net/ThinkWon/article/details/104397299
+             https://blog.csdn.net/ThinkWon/article/details/104397299
 
 
 final 回顾
@@ -14,7 +14,9 @@ final 回顾
     生产问题解决
 
     状态机:1.状态流转  2.时序校验  3.业务可达性   4.历史(业务嵌套) 5.解析器
-
+    排序算法：
+    单例：
+    线程场景实现：
 
 1.IO
     1.IO NIO 阻塞 同步 https://www.cnblogs.com/dolphin0520/p/3916526.html
