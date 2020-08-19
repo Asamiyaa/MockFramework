@@ -2,7 +2,7 @@
              https://blog.csdn.net/ThinkWon/article/details/104397299
 
 
-final 回顾
+final 回顾 - 面试模拟
     springboot - spring -springmvc - jvm ( 都是对对象的管理 )
     mybatis 一条sql从应用到数据库orm、以及数据库sql 执行流程     src/LifeAndWorkTodo/photo/mybatissql执行流程.png
     sql
@@ -252,6 +252,8 @@ final 回顾
         4.3之后执行2的后置处理
 
     3.循环依赖 初始化过程中有一步设置对象属性：通过三级缓存解决  ：https://cloud.tencent.com/developer/article/1497692
+                    原型模式出现循环依赖：不能解决报错  https://www.cnblogs.com/jajian/p/10241932.html
+                    构造器依赖  当前正在创建池  https://www.cnblogs.com/jajian/p/10241932.html
 
     4.spring事务：为了解决业务层方法之间互相调用的事务问题 - 除bean之外另一层面 - a()-->b()各自情况笛卡尔积 [aop+db]
            https://juejin.im/post/6844903608224333838
