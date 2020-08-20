@@ -8,7 +8,7 @@ final 回顾 - 面试模拟
     sql
     rocketmq 分布式事务
     redis
-    dubbo
+    dubbo  spi  \ dubbo如何和spring结合的？？？
     jdk  hash / 算法 /多线程-代码实现 原理
     jdk  hash / 算法  https://juejin.im/post/6844903633914445837#heading-22 /多线程 ThreadMain.java
     设计模式
@@ -119,6 +119,7 @@ final 回顾 - 面试模拟
     5.Redis集群下的RedLock算法(真分布式锁) 实践  https://cloud.tencent.com/developer/article/1523004
 
     1.code -字典、营业日、日历、时序... 2.session 3.到期记录 常查询  4.分布式锁-防重  不允许写入  日终跑批
+    2.scan:https://cloud.tencent.com/developer/article/1513868
 
 ************************************
 分布式下问题(mq/dubbo不同解决方案)：
@@ -173,6 +174,8 @@ final 回顾 - 面试模拟
 
         面试题:https://www.cnblogs.com/javazhiyin/p/13327925.html
 
+     6.部署和使用
+        https://www.cnblogs.com/tudachui/p/10998984.html
 
 12.zookeeper 协调框架
     1.原理
