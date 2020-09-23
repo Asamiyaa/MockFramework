@@ -105,6 +105,7 @@
                                         接口定义 interfacePoint.java + 方法编写 methodPoint.java   
                                                 泛型和Class区别：Class时用来描述对象的，class是用来描述类的。所以当任意类、或者操作内容都是Class相关级别的，那么接口可以
                                                                         定义class,但是需要限定范围，比如collection的子集，... 则需要泛型，或者说集合容器内容。
+                                                                例如：A<CONDITION,RESPONSE> 各个子类具体实现定义实现对应。比起参数是object来说更加合理。
                                         异常处理 exceptionPoint.java
                                                  controller.java
 
