@@ -102,7 +102,9 @@
                                 当发现传递参数较多时，注意 ‘ 从不同角度抽象为bean - xxsearchBean - CacheInitBean - UserLogonBean  ’
 
                                 - 规范性（命名 naming.class - utils）
-                                        接口定义 interfacePoint.java + 方法编写 methodPoint.java
+                                        接口定义 interfacePoint.java + 方法编写 methodPoint.java   
+                                                泛型和Class区别：Class时用来描述对象的，class是用来描述类的。所以当任意类、或者操作内容都是Class相关级别的，那么接口可以
+                                                                        定义class,但是需要限定范围，比如collection的子集，... 则需要泛型，或者说集合容器内容。
                                         异常处理 exceptionPoint.java
                                                  controller.java
 
@@ -144,6 +146,7 @@
                                            常写作：xxxProxy ....没有主次之分  2.aop 同样是代理。通过aspectj静态代理植入 有主次之分。切
 
                                               设计模式复合使用（https://www.runoob.com/design-pattern/design-pattern-intro.html  关联使用）
+                                                        
                                                         0.层设计     Bmain.java -父类..
                                                         0.初始化     Cmain.java   SpringbootAndSpringInit.java
                                                         0.定位      Emain.java(包括xml解析)  EMain2.java（通过接口vs注解定位）
