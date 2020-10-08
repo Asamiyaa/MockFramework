@@ -130,6 +130,78 @@ alt+insert  get/seter..
 
 
 
+idea快捷键
+	0.帮助 - 搜索命令
+   ctrl+shift+a 
+   alt+工具栏上有下划线的字母 跳转到该工具  注意进去之后可以按照这种方式进行点击定位到具体的操作
+   alt+enter 提示 修复 相当于eclipse中ctrl+1
+         自动创建函数
+         在字符串首位置调用format/build
+         接口实现
+         单词拼写  当单词有错误时，会有波浪线 提示修改
+         导包 
+         比如重构，不知道怎么写时点击......
+
+1.界面介绍 
+    alt+数字键 唤出隐藏部分 如左侧 下侧  右侧 
+
+2.项目切换 
+    ctrl+alt+]  / ctrl+alt+[
+  文件切换
+    ctrl+e  最近浏览文件
+    ctrl+shift+e 修改代码范围查找
+    ctrl+shift+backspace 上一个编辑地方
+    ctrl+alt+<-     上一个浏览地方
+    f11 该行建立书签  ctrl+f11 该行建立书签-提供1-0 a-z选择  通过ctrl+对应标记跳转   <---源码阅读
+    shift+alt+f 收藏对应的类和函数（光标到函数处）
+    ctrl+alt+b   进入函数
+    emacs 插件 快速跳转 类似于vim中单词定位  注意提前定义快捷键 这里是ctrl+j
+    alt+1 /.... 从编辑区到文件区  esc退回去 
+
+3.精确搜索
+    ctrl+n 搜索类  ctrl+n 按两次 搜索jar中的类
+    ctrl+shift+n 搜索文件 ....
+    ctrl+shift+alt+n 搜索方法  ....可以搜索非当前文件
+    ctrl+shiftf 所有 并且多种定义方法
+    两次shift 查找
+
+4.列操作
+   选择字符串 + ctrl+shift+alt+j 进行所有选中匹配 进行相同操作(向左右操作) --> 相同语法修改  json - 枚举
+   
+5.live template
+   自定义代码块  psts --> public static final String 
+
+6.postfix
+   100.for for循环
+   new Date().sout 输出前面的值
+   在构造方法中 参数.filed 可以补充当前没有的属性到类中
+   需要返回的值.return -> return 返回值
+   name.nn 就是       if (name != null) {}
+   
+   ***其他在ctrl+shifta中搜索postfix查看其他快捷方式
+
+7.重构
+   单词重构  选中 shift+f6 统一修改
+   抽取变量  选中 ctrl+alt+v
+   抽取方法参数  避免依赖成员变量，使方法可以在任何地方使用 选中 ctrl+alt+p
+   抽取函数  选中代码块  ctrl+alt+m 使得抽象层次一致 
+   
+   
+   ctrl+d 复制当前行到下一行
+   home /end
+   ctrl+x 删除当前行
+   
+8.git
+   
+9.注释 
+   ctrl+ / 注释当前行
+   
+
+
+
+
+
+
 
 
 
