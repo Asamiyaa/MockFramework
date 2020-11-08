@@ -456,3 +456,132 @@ final 回顾 - 面试模拟
     顶级程序员工具集:https://www.cnblogs.com/aobing/p/11930859.html
 
 24.jdk8
+
+25.类初始化和构建
+			 类加载机制
+                  1、在虚拟机的生命周期中一个类只被加裁一次 
+                  2、加载的原则是：延迟加载（用到时候才加载） 
+                  3、类加载的时机 
+                           1）当第一次创建对象时要加载 ，但创建对象引用时不加裁类    String   s ； 
+                           2）当加载子类时会先加裁父类
+                           3）调用static方法时要加裁，访问static属性时要加裁，调用static代码块时要加载 
+                              子类调用父类的static方法时会加裁 
+                                             在这里要注意的是：当子类没有重写父类的static方法时，只加裁父类不加裁子类。当子类重写了父类的静态方法时既加裁父类又加裁子类。 
+                              访问static常量时，如果编译器在以计算出常量的值可以不加裁类，否则会加裁。 
+                           4）用Class.forName(类名)来显示的加载一个类
+
+                           5）在命令行中运行：java StaticCodeDemo
+
+                   4、Java 类中各成分加载顺序和内存中的存放位置 
+                        利用语句进行分析 。
+                                    Person p=new Person("zhangsan",20);
+                          该句话所做的事情：
+                                        1.在栈内存中，开辟main函数的空间，建立main函数的变量 p。（栈来自于线程   一个进程多个线程   线程之间没有关系的可以多线程执行。）
+
+                                        2.加载类文件：因为new要用到Person.class,所以要先从硬盘中找到Person.class类文件，并加载到内存中。 加载类文件时，除了非静态成员变量
+
+                                                                （对象的特有属性）不会被加载，其它的都会被加载。（类的所有信息都会加载除非静态变量  只是其中的变量是针 对每个对象的）
+
+                                                                 记住：加载，是将类文件中的一行行内容存放到了内存当中，并不会执行任何语句。---->加载时期，即使有输出语句也不会执行。
+
+                                                                            静态成员变量（类变量）           ----->方法区的静态部分
+
+                                                                            静态方法                        ----->方法区的静态部分
+
+                                                                            非静态方法（包括构造函数）        ----->方法区的非静态部分
+
+                                                                            静态代码块                       ----->方法区的静态部分
+
+                                                                            构造代码块                       ----->方法区的静态部分
+
+                             注意：在Person.class文件加载时，静态方法和非静态方法都会加载到方法区中，只不过要调用到非静态方法时需要先实例化一个对象，对象才能调用非静态方法。如果让类中所有的非静态方法都随着对象的实例化而建立一次，那么会大量消耗内存资源，
+
+所以才会让所有对象共享这些非静态方法，然后用this关键字指向调用非静态方法的对象。（对象唯一的特征就是非静态变量，其他全部来自方法区的共享）
+
+                                       3.执行类中的静态代码块：如果有的话，对Person.class类进行初始化。（这里的初始化是什么意思？）用于给类初始化，类加载时就会被加载执行，只加载一次。
+
+                                       4.开辟空间：在堆内存中开辟空间，分配内存地址。  
+
+                                       5.默认初始化：在堆内存中建立 对象的特有属性，并进行默认初始化。（null  / 0 等值）
+
+                                       6.super() 父类/关联对象构建....
+
+                                       7.显示初始化：对属性进行显示初始化。 （定义类时int i = 1 ;）
+
+                                       8.构造代码块：执行类中的构造代码块，对对象进行构造代码块初始化。  方法之外的语句       结构：{  System.out.println("这里就构造代码块");}  
+
+                                                                                                                                              用于给对象初始化的。只要建立对象该部分就会被执行，且优先于构造函数。
+
+                                       9.构造函数初始化：对对象进行对应的构造函数初始化。(构造器)   给对应对象初始化的，建立对象时，选择相应的构造函数初始化对象。
+
+                                       10.将内存地址赋值给栈内存中的变量p。    
+
+                          p.setName("lisi");
+                                       1.在栈内存中开辟setName方法的空间，里面有：对象的引用this，临时变量name
+
+                                       2.将p的值赋值给this,this就指向了堆中调用该方法的对象。
+
+                                       3.将"lisi" 赋值给临时变量name。
+
+                                       4.将临时变量的值赋值给this的name。
+
+                         Person.showCountry();
+
+                                      1.在栈内存中，开辟showCountry()方法的空间，里面有：类名的引用Person。
+
+                                      2.Person指向方法区中Person类的静态方法区的地址。
+
+                                      3.调用静态方法区中的country，并输出。
+
+                         注意：要想使用类中的成员，必须调用。通过什么调用？有：类名、this、super   
+
+                   5、类加载顺序、结构  详见ClassLoader 揭秘  
+
+                   6、当类被引用的加载，类只会加载一次
+
+                      类的主动引用（一定会发生类的初始化）
+                         new一个类的对象
+                         调用类的静态成员（除了final常量）和静态方法
+                         使用java.lang.reflect包的方法对类进行反射调用
+                         当虚拟机启动，java Demo01,则一定会初始化Demo01类，说白了就是先启动main方法所在的类
+                         当初始化一个类，如果其父类没有被初始化，则先初始化它父类
+                      类的被动引用（不会发生类的初始化）
+                         当访问一个静态域时，只有真正声名这个域的类才会被初始化
+                           通过子类引用父类的静态变量，不会导致子类初始化
+                         通过数组定义类的引用，不会触发此类初始化
+                        引用常量不会触发此类的初始化（常量在编译阶段就存入调用类的常量池中了）
+                        
+                        
+                        Java中创建对象方式（6种）
+
+作为java开发者，我们每天创建很多对象，但是我们通常使用依赖注入的方式管理系统，比如：
+
+                                                                                        Spring去创建对象     
+
+                                                                                        New关键字    
+
+                                                                                        Class类的newInstance方法    
+
+                                                                                        Constructor类的newInstance方法      
+
+                                                                                        Clone方法        
+
+                                                                                        反序列化    
+
+使用new关键字：这是我们最常见的也是最简单的创建对象的方式，通过这种方式我们还可以调用任意的够赞函数（无参的和有参的）。比如：Student student = new Student();
+使用Class类的newInstance方法：我们也可以使用Class类的newInstance方法创建对象，这个newInstance方法调用无参的构造器创建对象，如：Student student2 = (Student)Class.forName("根路径.Student").newInstance();　或者：Student stu = Student.class.newInstance();
+使用Constructor类的newInstance方法：本方法和Class类的newInstance方法很像，java.lang.relect.Constructor类里也有一个newInstance方法可以创建对象。我们可以通过这个newInstance方法调用有参数的和私有的构造函数。如： Constructor constructor = Student.class.getInstance(); Student stu = constructor.newInstance();　这两种newInstance的方法就是大家所说的反射，事实上Class的newInstance方法内部调用Constructor的newInstance方法。这也是众多框架Spring、Hibernate、Struts等使用后者的原因。
+使用Clone的方法：无论何时我们调用一个对象的clone方法，JVM就会创建一个新的对象，将前面的对象的内容全部拷贝进去，用clone方法创建对象并不会调用任何构造函数。要使用clone方法，我们必须先实现Cloneable接口并实现其定义的clone方法。如：Student stu2 = stu.clone();这也是原型模式的应用。
+使用反序列化：当我们序列化和反序列化一个对象，JVM会给我们创建一个单独的对象，在反序列化时，JVM创建对象并不会调用任何构造函数。为了反序列化一个对象，我们需要让我们的类实现Serializable接口。如：ObjectInputStream in = new ObjectInputStream (new FileInputStream("data.obj")); Student stu3 = (Student)in.readObject();
+　　从上面的例子可以看出来，除了使用new关键字之外的其他方法全部都是转变为invokevirtual（创建对象的直接方法），使用被new的方式转变为两个调用，new和invokespecial（构造函数调用）。
+
+另外：两种newInstance方法有没有区别？
+
+       ☆　Class类位于java的lang包中，而构造器类是java反射机制的一部分。
+　　☆　Class类的newInstance只能触发无参数的构造方法创建对象，而构造器类的newInstance能触发有参数或者任意参数的构造方法来创建对象。
+　　☆　Class类的newInstance需要其构造方法是共有的或者对调用方法可见的，而构造器类的newInstance可以在特定环境下调用私有构造方法来创建对象。
+　　☆　Class类的newInstance抛出类构造函数的异常，而构造器类的newInstance包装了一个InvocationTargetException异常。
+　　Class类本质上调用了反射包构造器类中无参数的newInstance方法，捕获了InvocationTargetException，将构造器本身的异常抛出。
+      
+      
+      
