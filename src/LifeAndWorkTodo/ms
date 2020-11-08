@@ -8,7 +8,15 @@ final 回顾 - 面试模拟
     sql
     rocketmq 分布式事务
     redis
-    dubbo  spi  \ dubbo如何和spring结合的？？？
+    dubbo  spi - 反射创建对象-扩展  \ dubbo如何和spring结合的？？？
+                                    基于 dubbo.jar 内的 META-INF/spring.handlers (其他配置框架也是这么来的)配置，Spring 在遇到 dubbo 名称空间时，会回调 DubboNamespaceHandler。
+                                    所有 dubbo 的标签，都统一用 DubboBeanDefinitionParser 进行解析，基于一对一属性映射，将 XML 标签解析为 Bean 对象。
+                                    进入BeanDefinitionParserDelegate.class的parseCustomElement方法:
+                                     parserContext.getRegistry().registerBeanDefinition(id, beanDefinition);
+                                        1.spring解析
+                                        2.注册
+                                        3.factoryBean直接注入对象跳过了beanDefinition  Spring-Mybatis插件原理+MapperFactoryBean  https://juejin.im/post/6844903954615107597
+
     jdk  hash / 算法 /多线程-代码实现 原理
     jdk  hash / 算法  https://juejin.im/post/6844903633914445837#heading-22 /多线程 ThreadMain.java
     设计模式
@@ -18,6 +26,7 @@ final 回顾 - 面试模拟
     排序算法：
     单例：
     线程场景实现：
+    maven依赖冲突： https://blog.csdn.net/my13413527259/article/details/85779625
 
 1.IO
     1.IO NIO 阻塞 同步 https://www.cnblogs.com/dolphin0520/p/3916526.html

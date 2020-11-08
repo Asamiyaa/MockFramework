@@ -10,6 +10,10 @@ import java.util.concurrent.atomic.AtomicIntegerArray;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
+ *  1.不为了多线程而写多线程，多线程必定带来系统的不稳定性。只有在性能瓶颈下使用
+ *  2.局部变量 0 成员变量  全局变量  应该尽量在无锁无多线程下开发，也就是说尽量使用局部变量。但当需要方法间传递也不一定要可以通过a(b()) 或者在方法内调用。
+ *          共享时必须使用成员、读无所谓(表面是读，但是底层确实多步且有写操作比如simpleDateFormat)。写就会有问题
+ *  3.无锁编程
  *
  * *1.背景   修改 -公共(公共数据/数据库/成员) - 安全控制
  *      1.同步代码块之后可以有代码吗？
@@ -114,8 +118,11 @@ import java.util.concurrent.atomic.AtomicReference;
          1.5.3　互斥模式 互斥这种机制可以用来实现临界段，确保操作相互排斥。这就是说，一次只有一个任务可以执行由互斥机制保护的代码片段。在Java中，你可以使用synchronized关键字（这允许你保护一段代码或者一个完整的方法）、ReentrantLock类或者Semaphore类来实现一个临界段。 让我们看看下面的例子。 public void task() { preCriticalSection(); try { lockObject.lock() // 临界段开始 criticalSection(); } catch (Exception e) { } finally { lockObject.unlock(); // 临界段结束 postCriticalSection(); }
          1.5.4　多元复用模式 多元复用设计模式是互斥机制的推广。在这种情形下，规定数目的任务可以同时执行临界段。这很有用，例如，当你拥有某一资源的多个副本时。在Java中实现这种设计模式最简单的方式是使用Semaphore类，并且使用可同时执行临界段的任务数来初始化该类。 请看如下示例。 public void task() { preCriticalSection(); semaphoreObject.acquire(); criticalSection(); semaphoreObject.release(); postCriticalSection(); }
          1.5.5　栅栏模式(cycleBarry) 这种设计模式解释了如何在某一共同点上实现任务同步的情形。每个任务都必须等到所有任务都到达同步点后才能继续执行。Java并发API提供了CyclicBarrier类，它是这种设计模式的一个实现。 请看下面的例子。 public void task() { preSyncPoint(); barrierObject.await(); postSyncPoint(); }
+                        线程间等待满足时多线程才开始并可以reset https://blog.csdn.net/qq_38293564/article/details/80558157  countDown...主等待其他
          1.5.6　双重检查锁定模式 当你获得某个锁之后要检查某项条件时，这种设计模式可以为解决该问题提供方案。如果该条件为假，你实际上也已经花费了获取到理想的锁所需的开销。对象的延迟初始化就是针对这种情形的例子。如果你有一个类实现了单例设计模式，那可能会有如下这样的代码。 public class Singleton{ private static Singleton reference; private static final Lock lock=new ReentrantLock(); public static Singleton getReference() { try { lock.lock(); if (reference==null) { reference=new Object(); } } catch (Exception e) { System.out.println(e); } finally { lock.unlock(); } return reference; } } 一种可能的解决方案就是在条件之中包含锁。 public class Singleton{ private Object reference; private Lock lock=new ReentrantLock(); public Object getReference() { if (reference==null) { lock.lock(); if (reference == null) { reference=new Object(); } lock.unlock(); } return reference; } } 该解决方案仍然存在问题。如果两个任务同时检查条件，你将要创建两个对象。解决这一问题的最佳方案就是不使用任何显式的同步机制。 public class Singleton { private static class LazySingleton { private static final Singleton INSTANCE = new Singleton(); } public static Singleton getSingleton() { return LazySingleton.INSTANCE; } }
          1.5.7　读写锁模式 当你使用锁来保护对某个共享变量的访问时，只有一个任务可以访问该变量，这和你将要对该变量实施的操作是相互独立的。有时，你的变量需要修改的次数很少，却需要读取很多次。这种情况下，锁的性能就会比较差了，因为所有读操作都可以并发进行而不会带来任何问题。为解决这样的问题，出现了读?写锁设计模式。这种模式定义了一种特殊的锁，它含有两个内部锁：一个用于读操作，而另一个用于写操作。该锁的行为特点如下所示。 ? 如果一个任务正在执行读操作而另一任务想要进行另一个读操作，那么另一任务可以进行该操作。 ? 						个任务正在执行读操作而另一任务想要进行写操作，那么另一任务将被阻塞，直到所有的读取方都完成操作为止。 ? 如果一个任务正在执行写操作而另一任务想要执行另一操作（读或者写），那么另一任务将被阻塞，直到写入方完成操作为止。 Java并发API中含有ReentrantReadWriteLock类，该类实现了这种设计模式。如果你想从头开始实现该设计模式，就必须非常注意读任务和写任务之间的优先级。如果有太多读任务存在，那么写任务等待的时间就会很长。
+                        保证读写一致，读写、写写互斥。只支持降级不支持升级。 缓存刷
+                        copyOnWrite 写时复制，支持读写，但是写写会有问题
          1.5.8　线程池模式 这种设计模式试图减少为执行每个任务而创建线程所引入的开销。该模式由一个线程集合和一个待执行的任务队列构成。线程集合通常具有固定大小。当一个线程完成了某个任务的执行时，它本身并不会结束执行，它要寻找队列中的另一个任务。如果存在另一个任务，那么它将执行该任务。如果不存在另一个任务，那么该线程将一直等待，直到有任务插入队列中为止，但是线程本身不会被终结。 Java并发API包含一些实现ExecutorService接口的类，该接口内部采用了一个线程池。
          1.5.9　线程局部存储模式 这种设计模式定义了如何使用局部从属于任务的全局变量或静态变量。当在某个类中有一个静态属性时，那么该类的所有对象都会访问该属性的同一存在。如果使用了线程局部存储，则每个线程都会访问该变量的一个不同实例。 Java并发API包含了ThreadLocal类，该类实现了这种设计模式。
  *
@@ -130,6 +137,52 @@ import java.util.concurrent.atomic.AtomicReference;
                 - 并发属性修饰符 -ThreadLocal / ConcurrentHashMap CopyOnWriteArrayList concurrentLinkedList concurrentSkiplistMap
                 - 锁(synchronized / lock - condition) | wait notify
                 - volitale(底层的、容易出错的) / aqs
+                      1）对变量的写操作不依赖于当前值
+            　　      2）该变量没有包含在具有其他变量的不变式
+
+                                             1.状态标记量
+                                             volatile boolean flag = false;
+
+                                             while(!flag){
+                                             doSomething();
+                                             }
+
+                                             public void setFlag() {
+                                             flag = true;
+                                             }
+
+                                             volatile boolean inited = false;
+                                             //线程1:
+                                             context = loadContext();
+                                             inited = true;
+
+                                             //线程2:
+                                             while(!inited ){
+                                             sleep()
+                                             }
+                                             doSomethingwithconfig(context);
+
+
+                                             2.double check
+
+                                             class Singleton{
+                                             private volatile static Singleton instance = null;  //保证线程间可见
+
+                                             private Singleton() {
+
+                                             }
+
+                                             public static Singleton getInstance() {
+                                             if(instance==null) {   //为后续访问无需枷锁判断，提高性能
+                                             synchronized (Singleton.class) {   //为首次判断创建唯一对象
+                                             if(instance==null)
+                                             instance = new Singleton();
+                                             }
+                                             }
+                                             return instance;
+                                             }
+                                             }
+
 
                          lock vs synchronized  二者都是可重入锁  对象head中monitor
                             1.提供了灵活的lockInterruptibly() 中断  / newCondition() 条件 /tryLock(long time, TimeUnit unit) 超时
