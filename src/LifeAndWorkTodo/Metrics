@@ -1,0 +1,126 @@
+
+ 	
+ 	指标实现 == 多技术整合、合适
+ 		版本1：  		 
+
+   		 1.线程池-启动初始化--多个继承只初始化一次。启动初始化，后面直接拿来用！ <--- list完后..无需手动处理线程池
+   		 2.并发submit 
+   		 	system.begintime
+   		 3.		--防止超时---try..catch...数据库/httpclient 都 配置 超时 。rpc也是。
+   		 4.    数据库连通性查询耗时，select 1 ===doHeart()..  <== 如何来做所有的子类都在这里执行呢？注解/	  注入list,循环，并行list,stream....==这是利用spring注解注入/自定义注解可以更细致细化。这里
+   		 	直接从https://blog.csdn.net/yuru974882032/article/details/106299371获取遍历
+
+   		 	endtime ...
+   		 5.	给哪个属性塞值。根据入参抽象到父类 xx.setRdsRt(); //这里肯定要反射的。FiledUtils.set....
+
+
+   		 6.方法参数调整
+   		 	1. - 入参中query\result\sql target (有set就要注意安全问题) 一份      <== 这里认识有误，参数不合理 		                   target在塞表的时候其实是有set操作的
+   		 			1.线程并发开始前初始化，避免在各个线程间对于初始初始化造成的问题，这里初始化还有map
+        				AtomicReference<SelfCheckResult> selfCheckResult =  initCheckResult();
+        			2.并发之前对线程没有差别的数据进行初始化，并传入，比如这里的targetList 。因为如果在线程中对取
+        			  	query参数 set...存在安全问题。
+        				==即没办法只能使用AtomicReference，否则选择2，进行传递
+         7.初始化	
+         	1.设想bean只有一份 模板方法不算/位置 --       <=== 导致后来线程不安全使用了threadlocal <==                              抽象类中的threadlocal有问题只能使用bean.copyproperties完成 <=== 问题：这么多对象有问题吗？
+         	//不适用threadlocal ,这里的线程是AbstractMetricsSelfCheck吗？
+			//    protected  ThreadLocal<ImageSearchQuery> imageSearchQueryForAttribute = new ThreadLocal<>();
+			//    protected  ThreadLocal<ImageSearchQuery> imageSearchQueryForFeature = new ThreadLocal<>();
+			//    protected  ThreadLocal<ImageSearchQuery> imageSearchQueryForPicId= new ThreadLocal<>();
+        			   
+            2.需要锁，所以放到了applicationrunner中
+
+			 //自检线程池\参数等信息
+			        { //类似于双重检查锁  --- 模板造成了影响 - 所以这里初始化还需要再提前 ---
+			            synchronized (AbstractMetricsSelfCheck.class){
+			                if(executorService != null || imageSearchQueryForAttribute != null ||
+			                        imageSearchQueryForFeature != null || imageSearchQueryForPicId != null ||
+  			                        selfCheckCount != null) {
+  			                            }
+					                //初始化线程
+					                initExecutorServce();
+					                //初始化查询
+					                initImageSearchQuery();
+					                //初始化计数器
+					                initSelfCheckCount();
+					            }
+					        }
+
+  			 3.选择方式初始化 对比
+		  8.模板方法 - 抽象类(只是公共抽象) vs 父类(可实例化-有意义) ==> 二者公共就是 ‘ 将公共部分抽象到上层 ’   =                               =抽象类主要用来抽象类别( 本质 - 从底向上 ),接口主要用来抽象功能( 操作 - 从上向下 )；
+		  	1.抽象不合理，这里流程简单并不需要模板。3.抽象到公共，剩下的就是差异。越高的抽像需要越合理，公共。 不合理的抽象导致对不同的兼容出现蹩脚。
+		  	2.公共地方较少，硬着抽到抽象类导致子类要上传 ‘ 许多标识 ’来个性化模板流程。虽然这里有时间差值记录。但不能塞值时需要传递给哪个属性塞值。初始化不同资源....
+		  	3.抽象类不仅仅可以作为模板流程，还可以将公共的实现抽离到这里，无需子类每个去实现。但注意这里，因为公用。这里的成员一定要
+		  	  注意线程安全问题。尽量不要写要set的成员
+
+		  9.主子线程
+		  	1.为了给每个子类加上超时，所以又添加了子线程做超时控制 submit --> feture.get()..  <== 第二版去掉
+
+		  10.异常和日志
+		    1.多线程中异常异常只能捕获不能抛出 
+		    		1.如何传递，需要使用AtomicInteger...这些类完成传递 
+		    2.异常使用传递，但和3的论点保持一致。指标作为单独的完成，不应该快速失败。所以catch..log..设置cost = -1 来标识失败调用
+		    3.明确定义异常 
+		    		1.代码异常
+		    		2.httpcode / content中的code ！= success /特殊接口的特殊逻辑判断
+		    		3.try.catch的块大小，因为client调用人
+
+		  11.多线程开发中使用成员变量一定要注意，可能存在安全问题。可以优先使用无锁，局部变量..
+
+		  12.多线程测试
+		  		1.正常流程 异常流程
+		  		2.线程共享变量  F9 切换线程
+		  		3.分支 场景
+		  		4.如何设计多线程漏洞点
+		  		5.断点 - e - 拷出来 - 查看具体错误原因 sql/代码/.... 一定要在开发前期提交代码时测试完整。
+
+
+
+ 	指标实现
+ 		版本2：
+ 			1.取消快速失败，转为 -1 这种无意义的值  
+ 			2.对于入参，合理性  atomicRefrence是必要的，但是target因为安全问题，且需要并发使用其传参，所以通过new..完成，不共享
+ 			  这个创建方法可以放到abstract的父类中
+ 			3.取消主子线程
+ 			4.添加group来作为过滤 人机非脸 + common <== 注解 加载 参考searchRunner注入对应list其实也就是注解分组标识了
+ 			5.一定要注意公共类 这里指abstract类，刚开始认为这是个模板，所有的子类都有一份。但后来发现也是会从子类到父类，这样话，父类
+ 			   成员就是线程不安全的。所以添加了threadLocal,认为threadlocal作为子类的thread key 
+
+ 			6.父类中尽量不屑成员 / 类中成员 这里父类成员因为多线程影响，其实每个类中有成员同样要注意多线程影响，所以尽量不要使用
+ 			  成员变量  。。所以这里的问题是柔和了多线程处理和父子继承问题
+ 			7.其实这里多线程考虑两个方面：
+ 				1.多个并发调用自检程序，每个指标尽量没有成员，又也必须是threadlocal 
+ 				2.多个子类公用了父类的成员作为自己的成员，希望通过threalocal来解决，这个目前有问题，没有周到原因
+
+ 				***所以不使用成员是重要的。成员是为了在多方法间传递 ，通过一个方法中，入参，return来完成，初始话局部变量，而不是成员
+
+ 			8.关于abstract类（假父 - 只是不能单独作为个体调用 ）和普通父类
+
+ 				//   1. new TTT().setFather("AAA"); //通过get但不能通过直接使用
+				//       作为protect则可以直接使用
+				        //对于方法 protect子类才能调，和new父类 .private方法 区分开
+
+				        //1.成员和局部，局部变量的作用范围就是方法体内，出了就传递走了。没有引用  成员则是为了方法间共同作用
+				//2.return 返回值
+
+				//threadlocal
+				    //1.threadlocal解决多线程   2.调用父类的threadlocal，子类是作为自己的thread key吗？
+
+				    //4.override写法
+				    //可以通过super.xxx()来增强父类功能，而不仅仅是重覆盖
+
+			9.spring扩展接口：https://www.cnblogs.com/xrq730/p/5721366.html
+			  spring常用方法：java spring中常用工具类介绍：https://blog.csdn.net/shadow_zed/article/details/81294578
+			  spirng注解： Spring 注解大全与详解 ：https://blog.csdn.net/weixin_37490221/article/details/78406810
+			  初始化：https://github.com/Asamiyaa/MockFramework/blob/master/src/main/java/com/pattern/c/Cmain.java
+			  设计模式：单一（每个指标都是个类） - 开闭 - 接口隔离(自检组织，过滤，初始化..)/指标接口实现各自逻辑并赋值/返回
+			  定位：已固定命名开头，stringutil.startignore....
+
+			10.时间控制，版本迭代
+
+			11.线程思考
+				使用场景:
+		   	    	1.需要多个人干多个活，无需等待/需等待 countdownlatch../feature  
+		   	    	 	=== java8  stream相当于简化了list+thread处理，但二者分开单独都有自己的领域
+		   	        2.需要协调主子线程，主线程耗时操作无需上面的耗时，让他干着 等待
+		   	        3.业务天然需要并发处理，比如指标检查。如果串行肯定是有问题的。
