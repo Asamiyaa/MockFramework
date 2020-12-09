@@ -1,0 +1,106 @@
+/**
+ * 注解上可以有的注解：@Inherited @Repeat @
+ * 通过2/3知道，已知已有注解的重要性：
+ */
+
+/**
+   1.组合注解 注解上面除了前三个，新加的注解就是组合。添加越多，功能越多
+*    如何最简单的，用于分组，这个可以配合spring的list注入，对同一个接口下的实现
+*    进行默认分组和注入
+ *    ***对应增强 ，可以使用已有注解。即所有的注解都可以组合
+ * @date 2020/12/9 16:16
+ */
+        @Target({ElementType.METHOD})
+        @Retention(RetentionPolicy.RUNTIME)
+        @Documented
+        @Qualifier
+        public @interface MyTTTNOE{
+
+        }
+
+        @Target({ElementType.METHOD})
+        @Retention(RetentionPolicy.RUNTIME)
+        @Documented
+        @RequestMapping(method = RequestMethod.PUT)
+        @interface MyTTTNOE2{
+
+        }
+
+/**
+ * 2.查看 @MyCaseValidate  通过@Constraint(validatedBy ={ CheckCaseValidator.class})
+ * @AliasFor 使用规则 https://www.cnblogs.com/sandyflower/p/10877291.html
+ */
+@Target({ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+//@Constraint(validatedBy ={ MyTTTNOE3.CheckCaseValidator.class})
+@interface MyTTTNOE3{
+
+    //默认属性value()
+    //自定义其他 按照格式：String[] value() default {}; / RequestMethod[] method() default {};
+
+    class CheckCaseValidator implements ConstraintValidator {
+        @Override
+        public void initialize(Annotation annotation) {
+
+        }
+
+        @Override
+        public boolean isValid(Object o, ConstraintValidatorContext constraintValidatorContext) {
+            return false;
+        }
+    }
+
+
+}
+
+/**
+ *  3.返回true/false  自定义的ConditionalOnPropertyContainsAny可以更具ConditionalOnProperty
+ *  类似实现，后面的括号内的内容就是一个实现了contional 。这里是继承了SpringBootCondition，普通的可以直接
+ *  继承condition即可 。。condition注解作为框架灵活性，判断条件基准，对于灵活性是重要的
+ *  https://segmentfault.com/a/1190000018777937
+ */
+@Configuration
+@MapperScan(basePackages = "扫描包", sqlSessionTemplateRef = "rdsSqlSessionTemplate")
+@Qualifier("coneRsDataSourceConfig")
+@ConditionalOnProperty(name = Constants.S_xx_v2_ENABLED, havingValue = "true")   //比较值 / 默认值 - 向下兼容
+@ConditionalOnPropertyContainsAnyMY(value = {"vcs.datagine.datarce.rds.url"}) //直接从对应spring中获取
+public class ColeRdsDaSourceConfig {
+
+    @Value(Constants.kkkk)
+    private String mybaisMperLocation;
+
+    @Bean(name = "rdsDataSource")
+    @ConfigurationProperties(prefix = "vcs.dataeine.datasrce.rds") //通过配置取前缀
+    public DataSource RDSDataSource() {
+        DataSource druidDataSource = DataSourceBuilder.create().build();
+        return druidDataSource;
+    }
+    //自定义注解内部类实现或者单独类
+    class OnPropertyContainsAnyMY implements Condition {
+        public static final String PROPERTIES_RPREIFX = "${";//通过和入参进行协定
+        public static final String PROPERTIES_SUFFIX = "}";
+
+        @Override
+        public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+            Map<String, Object> attrs = metadata.getAnnotationAttributes(ConditionalOnPropertyContainsAny.class.getName());
+            if (attrs == null) {
+                return false;
+            }
+            String[] propertyNames = (String[]) attrs.get("value");
+            for (String name : propertyNames) {
+                if (StringUtils.startsWith(name, PROPERTIES_RPREIFX)) {
+                    name = StringUtils.substringBefore(StringUtils.substringAfter(name, PROPERTIES_RPREIFX), PROPERTIES_SUFFIX);
+                }
+                //从对应的spring中获取信息
+                String val = context.getEnvironment().getProperty(name);
+                if (StringUtils.isNotBlank(val)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+/*
+*  4. 在其他监听或者切面中调用 spring加载对应注解 。。。
+ */
