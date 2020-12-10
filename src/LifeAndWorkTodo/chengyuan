@@ -1,0 +1,115 @@
+场景：在定义复用情况，比如父类，源码中的抽象类，这些都是如何做到线程安全的?
+
+头脑风暴：
+    1.spring中都是单例
+    2.AbstractApplicationContext有许多子类，他们不会对这个统一父类造成影响吗？
+    3.线程
+    4.new 
+    5.生命周期
+
+答：打开spring中AbstractApplicationContext查看
+    
+    1.成员public，protected，private ， 为什么private不能被子类继承，还要写呢?
+          1.不能被继承指的是 ‘ 子类无法直接使用改属性 ’ 。可以完全通过get/set来使用该类 。 比如father/son父类完全可以是private,因为spring注入使用的set....
+          2.第二种是abstract类中自己使用，虽然说abstract不能实例化，但不要像的他弱。除了不可以 ‘ 独立 ’作为对象起作用，其他比如构造方法，方法，属性都和普通类一样。abstract是对
+             公共抽象。但没有父子关系 . 公共的可以是流程-模板方法 或者 方法：普通为了方便子类公共调用
+          3.protect则是子类可以公用，比如这里的log,没有线程安全问题    
+             
+             示例：
+                 public static final String APPLICATION_EVENT_MULTICASTER_BEAN_NAME = "applicationEventMulticaster";
+                  protected final Log logger;
+                  private String id;
+                  private String displayName;
+   
+   公用和并发
+   
+   2.对于父类初始化，即使是abstract也会调用。 他没有实例化过程，实例调用需要子类构造中super()来完成。初始化的都是针对调用子类的，比如这里的this.
+        且注意abstract的初始化不能作为属性 = new ....这种方式。========错误
+        *******无论是父类/abstract类，都是为了 ‘ 写代码的时候复用，实例化的时候，jvm这些父类相当于同样下沉到子类，所以  不存在 父类有状态 .  除了static..其他都是对象级别的....’
+   
+   
+              示例：
+                  public AbstractApplicationContext() {           =====> 这些除了this的使用，同样可以直接在属性位置 new ...没有影响的。只是方式不同而已，都是对象级别。
+                      this.logger = LogFactory.getLog(this.getClass());
+                      this.id = ObjectUtils.identityToString(this);               ========子类可以更具自己的特点，通过构造方法初始化信息到父类。
+                      this.displayName = ObjectUtils.identityToString(this);
+                      this.beanFactoryPostProcessors = new ArrayList();
+                      this.active = new AtomicBoolean();
+                      this.closed = new AtomicBoolean();
+                      this.startupShutdownMonitor = new Object();
+                      this.applicationListeners = new LinkedHashSet();
+                      this.resourcePatternResolver = this.getResourcePatternResolver();
+                  }
+                  
+                  
+              测试：
+                    //    static private AtomicInteger i = new AtomicInteger() ; //1.懒加载  2.类变量   2
+                    //     private AtomicInteger i = new AtomicInteger() ; //abstract - 1
+                        private AtomicInteger i = new AtomicInteger() ; //修改未非abstract类呢 - 1
+                        
+                        
+                            public static void main(String[] args) {
+                            ExecutorService executorService = Executors.newFixedThreadPool(2);
+                            executorService.submit(()->new TTT().dd());
+
+                            executorService.submit(()->new TTT2().dd());
+                            executorService.shutdown();
+                        }
+                 
+                 //当父类需要方法时，可以定义abstract让子类实现；如果父类需要成员时，且这里的成员是无状态的，可以通过下面这种
+                  
+                  private aaaa aa;
+                  protected vv v;
+
+
+                  public AbstractDatabaseImageSearcher(aaaaa a2, vv v1) {
+
+                      this.aa = a2;
+                      this.v = v1;
+                  }
+
+
+                  @Value(Constants.Vcccc)
+                  private Float ccc;
+                  
+                  
+                  子类：
+                  public aaaa(
+                      @Qualifier("aaaaaa") aaa a,
+                      @Qualifier("vvvvv") vv v) {
+                  super(a, v);
+                    //通过这种方式将子类 ‘ 不同的地方 ’给到父类 。 注意这里的构造方式中的@Qualifier   
+                    //这里的线程安全是因为都用的单例，方法调用，没有公共变量 。 人机非脸都公共的代码包括模板都抽象
+              }
+                  
+     3.通过这种子类传递父类自己的this ,完成对子类获取
+     
+     4.有状态的代码编写，有成员 。当多个线程来，成员就会受到影响。这里的成员不仅仅是调用方法(大部分spring是简单调用方法)。
+     
+     5.框架是如何做到线程安全的呢？
+          目前业务代码的继承都是继承无状态的父类，或者bean==通过new或者构建副本传参来隔离。真正的编写底层的时候才会涉及到继承的父类有属性
+          聊一聊Spring中的线程安全性:https://juejin.cn/post/6844903509037416455  
+          Spring根本就没有对bean的多线程安全问题做出任何保证与措施。
+          对于每个bean的线程安全问题，根本原因是每个bean自身的设计。不要在bean中声明任何有状态的实例变量或类变量，如果必须如此，
+          那么就使用ThreadLocal把变量变为线程私有的，如果bean的实例变量或类变量需要在多个线程之间共享，那么就只能使用synchronized、lock、CAS等这些实现线程同步的方法了。
+
+    
+     
+     5.生命周期，什么时候清理？ spring一值持有单例，但main是暂时的，导致每次实例化。不会再调用super()
+        //    protected  ThreadLocal<ImageSearchQuery> imageSearchQueryForPicId= new ThreadLocal<>();
+        //    @Autowired
+        //    protected SelfCheckRunner selfCheckRunner;
+        //
+        //    protected void initQueryForAttributeResource() {
+        //        imageSearchQueryForAttribute.set(selfCheckRunner.getImageSearchQuery().get(HealthConstant.QUERY_ATTRIBUTE));
+        //    }
+        为社么是线程不安全的额？？？？？
+        Spring 有状态bean 无状态bean及spring线程安全解决方案：https://blog.csdn.net/peanutwzk/article/details/79226689  尽量设计成无状态的
+     
+     
+     
+     
+     
+     
+     
+     
