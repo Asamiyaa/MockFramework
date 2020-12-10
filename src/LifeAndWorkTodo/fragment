@@ -1,1 +1,32 @@
-1.
+1.1.cglib的BeanMap.create(item)转换bean到map / 首字母大写..
+2.guava中map<key,list> / table = key1-key2-value 码值翻译/中英互译
+3.bifunction 两个入参一个返回值。其实可以写出内部类 lamdar 也可以单独实现改接口，在调用。这样就将方法函数独立成一个类
+4.Base64.getEncoder().encodeToString(IOUtils.toByteArray(new URL(url)))  / ImageUtils 切图
+5.String.format
+6.Pattern.compile("_(\\w)"分组group如何使用 转换下划线到驼峰
+7.字符串操作 chartat / replace / indexOf / subBeforexxx 对应工具类
+8.guava本地缓存 线程安全的
+9.哪些不可以强转 
+		1.string易，但其他不容易 比如数值 / boolean .. 注意 
+	    2.像下转型 instance of 向上转型 会漏掉  
+		3.内部集合不可以强转，比如返回final list...
+10.new Timer(xxx + "xxx").schedule(new TimerTask() {for (; ; ) {
+                     sync();
+                     TimeUtils.sleep(60 * 1000);
+                   }}  -- xxl 简易定时器
+11.StringUtils.defaultIfBlank Preconditions.checkArgument(StringUtils.isNoneBlank ---Assert  / map.putifAbsent...
+12.本地验证  curl -X POST -H 'Content-Type:application' '请求地址加url以及参数' -d @请求参数.json                
+13.日志的输入输出不要直接json...输出，而是通过重写toString()来实现。Stringutils.arresivve....简化大量没用的信息
+14.分支合并   
+		 1.不冲突 / 冲突 = 基于分出的版本为基础，进行merge result为最后结果，所以尽量从同一个master拉分支。
+		 2.解决后，启动验证
+		 3.git - push ，这里无需提交，直接push..相当于这里的merge是在本地仓库执行的。
+		 4.如果需要从测试版本中拆除需要的，则使用compare
+
+		 1.线上有除master的多个分支，不同的环境可能分支不同 
+		 2.当你拿master新建分支后，实现逻辑后，先update在提交代码，防止冲突.
+15.org.postgresql.util.PSQLException: ERROR: function l2_distance(real[], real[]) does not exist
+  建议：No function matches the given name and argument types. You might need to add explicit type casts.
+  位置：8
+
+	一定要根据报错位置，报错的信息与对内容的每个步骤理解进行错误分析，一步一步验证。而不是猜测
