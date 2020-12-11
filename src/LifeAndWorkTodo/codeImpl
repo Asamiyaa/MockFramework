@@ -145,7 +145,8 @@
                                          耦合在代码中，所以一地步先要知道去做什么 ，第二步：正确实现  第三步：抽出来 切面统一。
                                          切面的本质代理。代理分为两类。1.设计模式中代理模式。就是封装重要的大型的屏蔽后台比如webservice.
                                            常写作：xxxProxy ....没有主次之分  2.aop 同样是代理。通过aspectj静态代理植入 有主次之分。切
-
+                                              
+                                              向上抽象基础： 抽象类父类 泛型  反射  设计模式 枚举 ... https://github.com/Asamiyaa/blog/tree/master/TechPoint/1_Core%20Java
                                               设计模式复合使用（https://www.runoob.com/design-pattern/design-pattern-intro.html  关联使用）
                                                         
                                                         0.层设计     Bmain.java -父类..
