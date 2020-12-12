@@ -41,6 +41,7 @@ package com.Reflect;
  *              2.枚举+泛型
  *              3.泛型+反射    定义泛型类型、值  genericUtil
  *              4.注解+反射    获得属性值、注解、注解值并进行逻辑处理  AnnotationUtils、CheckCaseValidator、
+                5.泛型+注解    geneAndAnn
  *
  *              6.io/nio
  *              7.serializable
