@@ -1,0 +1,97 @@
+1.当我们写了一个采用泛型的类，但是怎么获取到这个类上的泛型呢
+    public class GenericApply<T,U> {
+
+        public T apply(T t){
+            return t;
+        }
+
+        public List<String> getGenericClassName(){
+            List<String> ret = new ArrayList<>();
+            Type genericSuperclass = getClass().getGenericSuperclass();
+            Type[] actualTypeArguments = ((ParameterizedType) genericSuperclass).getActualTypeArguments();
+            Stream.of(actualTypeArguments).forEach(type -> {
+                ret.add(((Class)type).getName());
+            });
+            return ret;
+        }
+
+        public static void main(String[] args) {
+            //  匿名的子类实现
+            GenericApply genericApply = new GenericApply<Integer,Boolean>() {};
+            System.out.println(genericApply.getGenericClassName());
+        }
+    }
+
+2.泛型在抽象类和接口类上，我们怎么运用获取呢   <=============抽象类通过  ‘构造器’+‘this’来传递到公共类抽象类信息
+      public abstract class AbstractGeneric<T> {
+
+          // 当前泛型真实类型的Class
+          private final Class<T> modelClass;
+
+          public AbstractGeneric(){
+              ParameterizedType parameterizedType = (ParameterizedType)this.getClass().getGenericSuperclass();
+              modelClass = (Class<T>)parameterizedType.getActualTypeArguments()[0];
+          }
+
+          public Class<T> getGeneric(){
+              return modelClass;
+          }
+      }
+      
+      public class GenericImpl extends AbstractGeneric<String> implements IGeneric<Boolean>{
+
+    @Override
+    public void process(Boolean param) {
+
+    }
+
+    public static void main(String[] args) {
+        GenericImpl generic = new GenericImpl();
+        System.out.println("抽象类上的泛型全类名 "+generic.getGeneric().getName()+"\n");
+
+        Type[] genericInterfaces = generic.getClass().getGenericInterfaces();
+        for (Type genericInterface : genericInterfaces) {
+            Type[] actualTypeArguments = ((ParameterizedType) genericInterface).getActualTypeArguments();
+
+            Stream.of(actualTypeArguments).forEach(type -> {
+                System.out.println("接口类上的泛型全类名 "+((Class) type).getName());
+            });
+        }
+    }
+}
+
+
+3.泛型+注解来标记位置
+  @Retention(RetentionPolicy.RUNTIME)
+  @Target({ElementType.TYPE_PARAMETER,ElementType.TYPE_USE})
+  public @interface MyAxis {
+      String value() default "";
+  }
+
+  public interface IMultiParamInterface<@MyAxis(FIRST) T extends String,@MyAxis(SECONDE) U extends Integer> {
+      String FIRST="FIRST";
+      String SECONDE="SECONDE";
+
+      void process();
+  }
+
+  public class MultiParamsImpl implements IMultiParamInterface<String,Integer>{
+
+      @Override
+      public void process() {
+          System.out.println("MultiParamsImpl is invoke process");
+      }
+
+      //测试
+      public static void main(String[] args) {
+          Class<MultiParamsImpl> multiParamsClass = MultiParamsImpl.class;
+          //得到这个接口上的 所有泛型
+          Map<TypeVariable<?>, Type> typeArguments = TypeUtils.getTypeArguments(multiParamsClass, IMultiParamInterface.class);
+          for (Map.Entry<TypeVariable<?>, Type> typeVariableTypeEntry : typeArguments.entrySet()) {
+              TypeVariable<?> key = typeVariableTypeEntry.getKey();
+              MyAxis annotation = AnnotationUtils.getAnnotation(key, MyAxis.class);
+              Type value = typeVariableTypeEntry.getValue();
+              System.out.println("名称为："+ annotation.value() +" 泛型类全限定名: "+value.getTypeName());
+          }
+      }
+  }
