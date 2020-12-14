@@ -198,7 +198,17 @@ import java.util.concurrent.atomic.AtomicReference;
                                           这不是线程考虑的。而是实现代码中考虑的
 
                                   2.异常处理
-
+				  	1.线程自己处理自己的异常，不往外抛出：https://blog.csdn.net/h2604396739/article/details/102632494  
+					2.倘若希望将子线程中异常跑到父线程感知呢？
+						futureTask.get() .. e.printStackTrace();
+						  } catch (ExecutionException e) {
+						    //4.处理捕获的线程异常
+					
+				 	      那么对于stream这种如何处理？  
+					3.stream如何处理异常？
+						Java 8 Stream 中异常处理的4种方式：https://blog.csdn.net/zl1zl2zl3/article/details/90175115
+					
+					
 
                                         1.多线程发展历史：https://www.raychase.net/698
                                         2.fork - join 原生写法：https://www.infoq.cn/article/forkjoin-to-parallel-streams
