@@ -134,12 +134,123 @@ import java.util.concurrent.atomic.AtomicReference;
  *
  *      3.协作和同步 ：MainClass.java   无锁编程  局部变量话   threadLocal
                 - JUC（Autoxxx）< - cas  只有单个变量 、简单场景   atomicIntegerArray atomicRefrence<User>
-                - 并发属性修饰符 -ThreadLocal / ConcurrentHashMap CopyOnWriteArrayList concurrentLinkedList concurrentSkiplistMap
+                - 并发属性修饰符 -ThreadLocal / ConcurrentHashMap CopyOnWriteArrayList concurrentLinkedList concurrentSkiplistMap  
+                                                  ConcurrentSkipListMap 多线程下安全的TreeMap，底层实现是跳表 http://wsswdl.github.io/posts/ConcurrentSkipListMap.html
+		                              queue 底层实现  消息模型-先进先出。mq底层
                 - 锁(synchronized / lock - condition) | wait notify
+                              ******锁分类，使用场景以及api对应的实现。优化中如何：美团不可不说的Java“锁”事：https://tech.meituan.com/2018/11/15/java-lock.html
+                              1.死锁场景及解决  ： https://blog.csdn.net/lluozh2015/article/details/49097301 
+                                                 https://blog.csdn.net/m0_37962600/article/details/78238998
+                              2.lock 和 synchronized区别：
+                                        1.synchronized 锁this/锁其他对象，表示不同线程间操作同一个对象。/锁类：synchronized后面括号里是类，如果线程进入，则线程在该类中所有操作不能进行，包括静态变量和静态方法，对于含有静态方法和静态变量的代码块的同步，通常使用这种方式。
+                                        2.Lock是一个接口，而synchronized是Java中的关键字，synchronized是内置的语言实现；
+                                                  synchronized在发生异常时，会自动释放线程占有的锁，因此不会导致死锁现象发生；而Lock在发生异常时，如果没有主动通过unLock()去释放锁，则很可能造成死锁现象，因此使用Lock时需要在finally块中释放锁；
+                                                  Lock可以让等待锁的线程响应中断，而synchronized却不行，使用synchronized时，等待的线程会一直等待下去，不能够响应中断；
+                                                  通过Lock可以知道有没有成功获取锁，而synchronized却无法办到。
+                                                  Lock可以提高多个线程进行读操作的效率。（可以通过readwritelock实现读写分离）
+                                                  性能上来说，在资源竞争不激烈的情形下，Lock性能稍微比synchronized差点（编译程序通常会尽可能的进行优化synchronized）。但是当同步非常激烈的时候，synchronized的性能一下子能下降好几十倍。而ReentrantLock确还能维持常态。
+
+                                                  支持condition
                 - volitale(底层的、容易出错的) / aqs
                       1）对变量的写操作不依赖于当前值
             　　      2）该变量没有包含在具有其他变量的不变式
+          4.传统executorservcie.submit...vs stream + CompletableFuture使用和feature区别 <--- 线程池不释放
+                   
+                   1.CompletableFuture使用和feature区别 *********
+                      组合计算：
+                              将多个异步计算的结果合并为一个
+                              等待Future集合中的所有任务都完成
+                              Future完成事件 (即，任务完成以后触发执行动作)
 
+                              *****
+                              https://liurio.github.io/2019/12/17/Future%E5%92%8CCompletableFuture%E7%9A%84%E5%8C%BA%E5%88%AB/
+                              *****
+                     2.线程池
+                              线程池是否要每次新建，是否要使用完销毁 。既然作为池，那么使用第一种吧
+                              1.不新建  spring启动后初始化  每次提交使用，用完放回去 
+                              2.新建 --> 注意用完销毁 ***** 
+          
+                     3.stream vs ex..submit callable / runnable 
+                             1. 当不能使用stream调用同一个方法的并发时，可以使用ExcutorService的invokeAll(list...) 利用（）-> {...} 可以
+			  同时提交批次但又是不同的方法调用。类似于流程中 submit 
+                                         1 submit 2.其实二者也是没有关系的。可以同时batch提交
+		           https://segmentfault.com/a/1190000014940144
+                               
+                               
+                             2.stream和多线程关系  ---- 结合脑图上stream的使用
+                                   stream是高级的iterator,是数据结构并不保存数据，它是有关算法和计算的,意味着list和线程结合。从countdownloatch/cyclebary/ --fork jon - stream 都是从流程架构上提供解决方案 . 个数据大爆炸的时代，在数据来源多样化、数据海量化的今天，很多时候不得不脱离 RDBMS，或者以底层返回的数据为基础进行更上层的数据统计。函数式语言+多核时代综合影响
+                                        0.特点:
+                                                  1.保护数据源。对Stream中任何元素的修改都不会导致数据源被修改，比如过滤删除流中的一个元素，再次遍历该数据源依然可以获取该元素。
+                                                  2.不要再这个过程中修改数据源 ，新创建new list承接 
+                                                  3.并行流使用场景：parallelStream 	适用的场景是CPU密集型的，只是做到别浪费CPU，假如本身电脑CPU的负载很大，那还到处用并行流，那并不能起到作用；
+                                                            I/O密集型 磁盘I/O、网络I/O都属于I/O操作，这部分操作是较少消耗CPU资源，一般并行流中不适用于I/O密集型的操作，就比如使用并流行进行大批量的消息推送，涉及到了大量I/O，使用并行流反而慢了很多
+                                                  4.在使用并行流的时候是无法保证元素的顺序的，也就是即使你用了同步集合也只能保证元素都正确但无法保证其中的顺序；
+                                                  5.lambda的执行并不是瞬间完成的，所有使用parallel stream的程序都有可能成为阻塞程序的源头，并且在执行过程中程序中的其他部分将无法访问这些workers，这意味着任何依赖parallel streams的程序在什么别的东西占用着common ForkJoinPool时将会变得不可预知并且暗藏危机。
+                                                  6.parallelStream是创建一个并行的Stream,而且它的并行操作是不具备线程传播性的,所以是无法获取ThreadLocal创建的线程变量的值；
+                                                  7.会带来不确定性，请确保每条处理无状态且没有关联；
+                                                  8.不要在多线程中使用parallelStream，原因同上类似，大家都抢着CPU是没有提升效果，反而还会加大线程切换开销；
+
+                                  1.stream如何处理阻塞，释放资源？
+                                                            1.新建fork-join池：	https://www.jianshu.com/p/bd825cb89e00  统一使用统一fork-join池，要新建类似于new ThreadPoolExecutor(NUMBER_OF_CORES,
+                                                        NUMBER_OF_CORES * 2, KEEP_ALIVE_TIME, KEEP_ALIVE_TIME_UNIT,
+                                                        mWorkQueue,mThreadFactory);
+                                        2.任务阻塞操作都应该又对应的解决比如httpclient / db操作，不建议做io阻塞操作存在不确定性。做了对应代码也要保证可以从hung中解除
+                                          这不是线程考虑的。而是实现代码中考虑的
+
+                                  2.异常处理
+
+
+                                        1.多线程发展历史：https://www.raychase.net/698
+                                        2.fork - join 原生写法：https://www.infoq.cn/article/forkjoin-to-parallel-streams
+                                        2.性能对比：https://www.cnblogs.com/carpenterlee/p/6675568.html
+                                        4.stream初始化：
+                                                  3、Stream的生成方式
+                                                            （1）从Collection和数组获得
+                                                            Collection.stream() Collection.parallelStream() Arrays.stream(T array) or Stream.of()
+                                                            （2）从BufferedReader获得  < ---- 文件读取 ------
+                                                            java.io.BufferedReader.lines()    <===== 读取一行一行作为list的一个元素
+                                                            Stream<Path> pathStream = Files.list(Paths.get("/"));
+
+                                                            try (Stream<String> lines = Files.lines(Paths.get(path))) {
+
+                                                  String content = lines.collect(Collectors.joining(System.lineSeparator()));
+
+                                                          } catch (IOException e) {
+                                                              e.printStackTrace();
+                                                          }
+
+                                                      }
+
+                                                            （3）静态工厂
+                                                            java.util.stream.IntStream.range() java.nio.file.Files.walk()
+                                                            （4）自己构建
+                                                            java.util.Spliterator
+                                                            （5）其他
+                                                            Random.ints() BitSet.stream() Pattern.splitAsStream(java.lang.CharSequence) ==> 切割生成 JarFile.stream()
+                                                             (6)使用生成器
+                                                             // 随机生成100个整数
+                                                                      Random random = new Random();
+                                                                      // 加上limit否则就是无限流了
+                                                                      Stream<Integer> stream = Stream.generate(random::nextInt).limit(100);
+                                                            （7）使用迭代器创建Stream实例
+                                                                      // 生成100个奇数，加上limit否则就是无限流了
+                                                                      Stream<Integer> stream = Stream.iterate(1, n -> n + 2).limit(100);
+                                                                      stream.forEach(System.out::println);
+
+
+
+                                        5.stream坑
+                                                  1.comparing thenCompare :https://blog.csdn.net/u011381576/article/details/79422498 												场景：类似于数据库一样处理数据  
+                                                  2.什么时候可以使用Person：：age 
+                                                  3.stream中limit使用
+                                                  4.多个parallelStream之间默认使用的是同一个线程池，所以IO操作尽量不要放进parallelStream中，否则会阻塞其他parallelStream。
+
+
+
+
+          
+          
+          
                                              1.状态标记量
                                              volatile boolean flag = false;
 
