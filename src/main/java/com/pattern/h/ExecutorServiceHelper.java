@@ -146,6 +146,9 @@ class finalServiceHelper{
         //mThreadFactory= Executors.defaultThreadFactory();
         mThreadFactory = new NamedThreadFactory();
 //        System.out.println("NUMBER_OF_CORES:"+NUMBER_OF_CORES);
+        ExecutorService executorService = new ThreadPoolExecutor(NUMBER_OF_CORES,  //<---------存在问题，每次请求都要初始化线程池，并没有释放。这里应该全局初始化，直接调用。
+        NUMBER_OF_CORES * 2, KEEP_ALIVE_TIME, KEEP_ALIVE_TIME_UNIT,
+                mWorkQueue,mThreadFactory);
     }
 
     public  static  void  execute(Runnable runnable){
@@ -165,9 +168,9 @@ class finalServiceHelper{
          如果是 CPU 密集型任务，就需要尽量压榨CPU，参考值可以设为 NUMBER_OF_CORES + 1 或 NUMBER_OF_CORES + 2
          如果是 IO 密集型任务，参考值可以设置为 NUMBER_OF_CORES * 2
          */
-        ExecutorService executorService = new ThreadPoolExecutor(NUMBER_OF_CORES,
-                NUMBER_OF_CORES * 2, KEEP_ALIVE_TIME, KEEP_ALIVE_TIME_UNIT,
-                mWorkQueue,mThreadFactory);
+//         ExecutorService executorService = new ThreadPoolExecutor(NUMBER_OF_CORES,  //<---------存在问题，每次请求都要初始化线程池，并没有释放。这里应该全局初始化，直接调用。
+//                 NUMBER_OF_CORES * 2, KEEP_ALIVE_TIME, KEEP_ALIVE_TIME_UNIT,
+//                 mWorkQueue,mThreadFactory);
         executorService.execute(runnable);
     }
 
