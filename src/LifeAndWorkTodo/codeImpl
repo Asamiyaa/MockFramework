@@ -152,6 +152,7 @@
                                                         
                                                         0.层设计     Bmain.java -父类..
                                                         0.初始化     Cmain.java   SpringbootAndSpringInit.java
+                                                        0.传递       Mmain.java   上下文-map-对象
                                                         0.定位      Emain.java(包括xml解析)  EMain2.java（通过接口vs注解定位）
                                                         0.资源获取   Fmain.java  全局context CacheRunner.java -- shcpe  ***SpringContextUtil工具类和spring柔和获取其中信息***注解、父类...
                                                         0.信息结构   Gmain.java  xml解析 json  oxm ojm  / BeanDesign /DataStructure/TableDesign/Context
