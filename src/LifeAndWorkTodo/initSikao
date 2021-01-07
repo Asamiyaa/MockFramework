@@ -1,0 +1,2 @@
+对比分析初始化流程，比如spring中@Selector List<abx> aaa 直接注入list问题
+  问题:不是应该先初始化，后才启动spring相关吗？这些和static,成员初始化区别
