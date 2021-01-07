@@ -1,0 +1,110 @@
+1.是否过度设计
+    背景：框架中有runner、sorter、selector、asserter、paginator、resultconvetor、condition....
+    1.是否需要将filter加入框架
+         1.这种需求是否常用，是否有必要抽取到类，抽取到可扩展结构：因为目前来看该种过滤其实大部分已经从数据库层面过滤，这里的不能使用，只不过是因为score的特殊性，是在召回后拉伸计算的。
+           所以没有必要设计成可扩展的。。。所以过度设计了  -- 一定要恰到好处
+
+2.代码结构迭代：
+    1.scoreFilter流程图和类图 <--- 查看   《+==== 注意：想要网上抽象，就一定要注意是否公共，如何公共，如何传递不同，就像指标代码中的公共逻辑问题一样。。。。***
+        关于类图中思考：1.需要几层   -- 2 一层是Filter，每个具体的过滤器实现该接口，实现filter和order ;另一层则是向上抽象链，每个场景都有自己的链
+                      2.拿什么作为不同场景标识?   1.使用接口  2.使用注解(最后选择)
+                      3.注解中是否需要除了标识，是否传递值呢？比如order....,这个没有实现掉。其实是可以的。就看是否可以在整个架构中运行
+                      4.注入list注入思路  @自定义注解List<> recalllist ....这种spring帮注入了
+                      5.当你想要扩展时，这个架子是否可以符合所有的场景的呢？比如你的方法入参是否符合，其实在接口<--场景接口基础上引入了泛型，来更高层抽象。使其对于不同场景同样适用。
+                        这就要求公共的逻辑是更高层次的，不带有具体的。
+                      6.自定义注解并扩展其能力 *** 
+        
+     2. 代码实现简化：
+            1.public abstract class Filter<CONDITION, RESPONSE> {  <--- 注意这里的泛型，泛型是为了不同的业务场景不同的参数 ---》》 成员泛型（这里） vs  方法泛型 ? extends collection,
+                                                                        即可以使用collection作为方法进行相关操作，代替具体
+                public abstract List<RESPONSE> filter(List<RESPONSE> recallResultList, CONDITION recallCondition);
+                public abstract int order();
+
+            2.具体实现类 实现该接口 
+                 1.逻辑优化：对于遍历list首先判断是否需要过滤    其次重要的是是否可以提前return：比如集合的本身有序，是否可以判断第一个元素，最后一个元素直接就可以完成return,无需for
+                                                             for的时候break
+                 2.日志打印 入口，过滤掉的，出口 <-- 多个出口时保证日志的完整性 
+            3.选择初始化位置及哪种方式初始化  比如 applicationrunner - applicationcontextaware - 又比如
+              //@Component
+                  public abstract class AbstractSearchFilter /*<CommonSearchFilter>*//*<FILTERTYPE extends Annotation>*/  implements ApplicationContextAware {
+
+                  //    @CommonSearchFilter //-- 要对这种进行二次加工所以不能直接使用spring的这种注入list方式
+                  //    @FILTERTYPE
+                  //    @CommonSearchFilter
+                      private List<Filter> searchFilterChain;
+
+                      public AbstractSearchFilter(List<Filter> searchFilterChain) {   <---- 在抽象类中定义构造方法，说明抽象类中可以更高的自动性独立完成多个方法间的处理。
+                                                                                       当然需要子类注入不同特性的成员 。 其实抽象类就是个壳子，没有实例化，每个类都拿这个进行初始化自己。
+                          //this.searchFilterChain = searchFilterChain;             <----最后这里不仅仅是赋值了,而是携带着完成了其他需要初始化的操作
+                          sortFilter(searchFilterChain);
+                          
+                      }
+
+                      //    {
+                  //
+                  //    }
+
+                      public List process(List recallList , ImageSearchQuery imageSearchQuery){
+                  //        searchFilterChain.forEach(oneFilter ->oneFilter.filter(recallList,imageSearchQuery));
+                          //传递值给下一个过滤器
+                          for (int i = 0; i < searchFilterChain.size(); i++) {
+
+                              List filterList = searchFilterChain.get(i).filter(recallList, imageSearchQuery);  <----- 不同业务就是一个filterchain所以迭代
+                              recallList = fdiilterList;                                                        <---- 传递的时候已经更该了。。。
+                              if(CollectionUtils.isEmpty(filterList)){
+                                  break;
+                              }
+                             //recallList = fdiilterList;
+                          }
+
+                          return recallList;
+                      }
+
+                  //    @Override
+                  //    public void run(ApplicationArguments applicationArguments) throws Exception {
+                  //
+                  //    }
+
+                      @Override
+                      public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+                  //        applicationContext.getBeansWithAnnotation(FILTERTYPE.)
+
+                          searchFilterChain.stream().sorted((filter1,filter2) -> {
+                              CommonSearchFilter annotation1 = filter1.getClass().getAnnotation(CommonSearchFilter.class);
+                              CommonSearchFilter annotation2 = filter1.getClass().getAnnotation(CommonSearchFilter.class);
+
+                              return annotation1.order() - annotation2.order();
+                          });
+                      }
+
+                  //    @Override
+                  //    public void run(ApplicationArguments applicationArguments) throws Exception {
+                  //        //根据权重排序整理过滤器 如果重复则启动报错-- 过滤顺序
+                  //        @Autowired
+                  //        private ApplicationContext applicationContext;
+                  //        applicationArguments.get
+                  //    }
+                  //
+                  //    @Override
+                  //    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+                  //        applicationContext.get
+                  //    }
+                  }
+                  
+                  4.自定义注解作为标识  vs 接口  vs 分组
+                  //@Retention(RetentionPolicy.RUNTIME)
+                  @Qualifier                                                 <-- 注解上的注解代表了能力，这里注解使用的@qualifier，则说明自定义的注解已经有了普通注解的功能，并且有注入功能。
+                                                                      <----- 这种复用能力是重要的。区别于原生的直接注解内容，需要自定义解析器 。
+                                                                       这种配合list直接注入了list
+                  public @interface CommonSearchFilter {
+
+                  //    @AliasFor("value")                          <----- 别名和默认值思考 
+                      int order() default 0;
+                  }
+                  
+                  5. public DefaultSearchFilter(@CommonSearchFilter List<Filter> searchFilterChain) {     <----  使用list注入 spring ，并super传递给父类 。高度抽象
+                 super(searchFilterChain);
+                 
+       3.遗漏问题
+              spring环境下：初始化流程即：public DefaultSearchFilter(@CommonSearchFilter List<Filter> searchFilterChain) 不是应该先初始化，后spring....怎么融合在一起了? ===>initSikao文件
+              注解自定义直接复用@qualify这种底层原理是什么？有哪些组合可以扩展呢?  ==> 查看注解相关
