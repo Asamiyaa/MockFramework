@@ -1,0 +1,21 @@
+fix适配jbs代码开关思考
+	1.mybatis标签直接从spring中获取 失败 <if test="Constants.xxxx"> 这么直接取是取不到的。因为一个spring上下文 一个是mybatis上下文 ==> sqlSessionFactory
+			spring中取值：applicaton.property -> Constatnts 常量 ${a.b.c....:123} 设置默认值 --> 代码中@Value(${Constants.xxx})
+
+
+	2.通过listparam来传递入参来 - 因为这里入参是body，所以没有不能使用。又不能修改接口
+		    通过将入参转化为统一的数据库入参：这里可以塞入表 / 塞入configMap - 在sql中使用map.xxx获取对应值。把一些公共参数塞入。
+		    因为这里插入的是target，所以不能这么塞。
+
+	3.通过mybatis全局变量来修改。在sqlsessionFactory中进行修改  <--- 串联了mybatis session 和 spring关系 。 进行联系处理 . 
+			当前项目中rjfl都有自己的sqlsessionFactory
+				1.什么时候使用一个sqlSessionFacotry
+				2.
+
+回顾:明确框架之间关联和使用 比如这里的spring和mybatis
+     找到问题本质，
+     解决方案寻找最简单的。比如这里的全局变量  **** 又比如后面的log框架借助去写文件。当前系统维护这些关联spring是如何连接起来共同起作用的。。******
+
+     ******************
+     *不要已有问题就想着求人。一定要有抗压能力。自己思考。当前项目 + 网上搜索
+     *****************
