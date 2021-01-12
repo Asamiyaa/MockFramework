@@ -43,7 +43,7 @@
    		5.ArchiveRemover - TimeBasedArchiveRemover -- file.remove()
    		6.TimeBasedFileNamingAndTriggeringPolicy
    		7....set(this) 1.用来塞值  2.用来子类调用时塞入子类
-	8.PatternLayout <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} [%X{TRACE_ID}] - %msg%n</pattern>
+	8.PatternLayout <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} [%X{TRACE_ID}] - %msg%n</pattern>  https://www.cnblogs.com/jasenin/p/12692690.html
 		1.defaultConverterMap
 		2.ClassicConverter 对应上述converter
 	9.ThresholdFilter  过滤能力
