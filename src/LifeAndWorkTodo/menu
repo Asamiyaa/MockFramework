@@ -41,6 +41,8 @@
     抽象是否合理，是否过度设计：从底层开始，if -> 方法 -> 类 -> 模式 链(list -> fore) 模式中自动传递 。。一定时逐渐 。逻辑是否稳定，是否有必要抽象出来类 。 不要复杂化设计
     优秀的架构师思想和优秀的代码设计，这些足以让你多去阅读，细细品味：   goHead  *********************** 自己完成的需求和思考，记得思考每次需求前
     代码持续设计和重构：https://www.processon.com/view/link/5dca64dae4b0fc314a0dfaad#outline 、https://www.processon.com/view/link/5cb5262ee4b059e209f987a9#outline
+    源码提供解决方案：
+                        1.slf4j等日志系统   -- slf4jsource
     
     0.todo                                             todo
     0.已有实战                                               war
