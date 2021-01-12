@@ -1,0 +1,66 @@
+0.1.流写入-自动生成对应路径      2.大小监控切割/日期/和清理        3.异步    4.过滤  5.格式化输出    6.不同级别输出过滤比如debug是在 ‘可能出现问题，需要排查错误的地方使用，平时用来记录流程流转就是用info,出现问题时候在打开debug模式 ’
+	7.logContext
+
+1.日志框架之间关系： https://www.cnblogs.com/hanszhao/p/9754419.html
+2.源码  1-5继承关系 --> 下沉就是当前能力
+	1.RollingFillApender
+		1.ContextUtil
+		2.stop() /start()
+		3.addError() 
+		4.
+	2.FileAppender
+		1.safewrite()
+		2.channle - nio 
+		3.fileLock
+		4.FileUtil.createMissingParentDirectories(file)
+		
+	3.OutputStreamAppender
+		1.ReentrantLock
+		2.Encoder
+		3.LayoutWrappingEncoder
+		4.writeBytes 先后都有lock
+		5.
+
+	4.UnsynchronizedAppenderBase
+		1.ThreadLocal<Boolean> guard
+		2.
+	5.ContextAwareBase
+		1.BasicStatusManager
+		2.CyclicBuffer
+		3.LogbackLock
+		4.StatusListener
+
+	====rollingPolicy====给属性设置默认值，初始化的时候直接有值，比如0.0F false ...
+
+	6.SizeAndTimeBasedRollingPolicy
+		1.FileSize <--- SizeAndTimeBasedFNATP
+	7.TimeBasedRollingPolicy
+		1.FileNamePattern
+		2.Compressor
+		3.RenameUtil 	
+		4.Future<?> compressionFuture;
+   		  Future<?> cleanUpFuture;
+   		5.ArchiveRemover - TimeBasedArchiveRemover -- file.remove()
+   		6.TimeBasedFileNamingAndTriggeringPolicy
+   		7....set(this) 1.用来塞值  2.用来子类调用时塞入子类
+	8.PatternLayout <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} [%X{TRACE_ID}] - %msg%n</pattern>
+		1.defaultConverterMap
+		2.ClassicConverter 对应上述converter
+	9.ThresholdFilter  过滤能力
+		1.FilterReply onMatch 
+		2.EventEvaluator
+
+	====异步====
+	10.AsyncAppender
+	11.AsyncAppenderBase
+		1.AppenderAttachableImpl
+			1.COWArrayList 自定义list
+			2.Appender
+		2.BlockingQueue
+		3.AsyncAppenderBase<E>.Worker --> run
+3.设计模式及性能   https://blog.csdn.net/m0_37174538/article/details/92783145
+4.问题：
+	1.源码设计中如何保证不适用spring来注入对应
+		--> 为什么要使用spring
+	2.类中有大量的属性，如何保证安全的。
+		属性是无状态的。对于有状态的要加锁
