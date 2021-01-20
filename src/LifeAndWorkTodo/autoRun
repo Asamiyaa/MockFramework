@@ -1,6 +1,6 @@
-0.查看DevOpsFinal.xml查看对应的实现路径
+0.查看DevOpsFinal.xml查看对应的实现路径 === 复合编程，利用不用语言的特性进行协作编程
 
-1.shell      
+1.shell    --- 平时的登录pod ... 定位问题...都可以随手写成对应的shell 加快排查速度 
 
     脚本本质:将命令从独立串联起来，相对于较重得编程语言如java等，更接近于javascript;解析-执行。无需编译。
         场景：服务器端监控 、固定操作 、
@@ -139,7 +139,7 @@
 					fi;
 					}
 
-					echo "case:sh selfCheck.sh searchType=body beginTime=2020-01-0100:00:00 endTime=2021-01-1400:00:00 deviceId=11234567891320000042,11234567891320000038 corpId=123456789 isvId=123456789";					  //////////// 调用提示 。 对于输入多个参数必须要有对应关系，否则没办法知道参数值对应关系
+					echo "case:sh aaa.sh aa=body begTime=2020-01-0100:00:00 edTime=2021-01-1400:00:00 9";					  //////////// 调用提示 。 对于输入多个参数必须要有对应关系，否则没办法知道参数值对应关系
 
 					if [[ $# = 0 ]];
 					then
@@ -178,7 +178,7 @@
 					
 
 2.client  
-    k8s
+    代码中调用client 比如k8s / 监控 / redis.....
 
 
 3.picocli
@@ -186,6 +186,7 @@
 4.freemaker
 
 5.db 存储过程/函数
+	
 
 6.shell中嵌套sql
  	1.https://www.cnblogs.com/zhuawang/p/5179838.html
