@@ -1,8 +1,181 @@
 0.查看DevOpsFinal.xml查看对应的实现路径
 
-1.shell
+1.shell      
+
+    脚本本质:将命令从独立串联起来，相对于较重得编程语言如java等，更接近于javascript;解析-执行。无需编译。
+        场景：服务器端监控 、固定操作 、
+        逻辑：同编码其他一样，参数校验，分支逻辑.... 只不过是使用语法不一样罢了
+    1.linux操作:  grep grep -E 'k1|k2'  grep -E '==> | <==' 查看mybatis输出 /  / awk / tr / subtring /  sort /head -1 
+                / vim u 撤销上一个操作 dd pp-y复制 按照格式复制=用于写好得shell复制进linux - set paste => shift+insert  /要搜得词 n下一个匹配 s/old/new/g 替换
+			less查看可以避免more得跳过行
+			set nu 设置行数 - 用于shell报错定位
+			pageup/pagedown
+			xargs  vs <<  :
+			expr 计算
+			sed	 stream edit 
+				1.sed -i 's/from/to/g' a.txt sed读每行，s..替换操作
+				2.sed -d / -a / -w / -r 并且可以具体到哪行进行操作
+			awk  结构化概念来为数据处理增加处理逻辑。生成结构化报告
+			正则支持  <=== 结合其他得shell命令组合完成
+				1.^ $ . [Yy] ?0次或1次 + 一次或多次 [0-9]{5}精确出现5次 m,n至少出现m次至多n次 
+				2.()分组 ****
+			netstat -anp|grep prot    lsof-i:port 
+			let
+			source
+			exec
+			字符串截取：http://c.biancheng.net/view/1120.html  ${string: 0-start :length}
 
 
+
+2.shell全局：https://www.processon.com/view/5e5b4f97e4b0cc44b5b4c504#map
+
+
+3.shell实践：https://www.processon.com/view/5fd875a5f346fb0710106380?fromnew=1#map
+		1.脚本编写先写在其他文本中，在复制进来，在调试
+		2.调试必须频繁，语法不熟悉。避免多了出现错误需要难定位
+
+		1.shell中命令不执行通过$(命令) / 或者 "" /计算``
+		2.方法 - 函数 function a(){} 必须写在调用前即从文件开头往下写 return 、 exit 其他如break/continue..
+		3.方法成员 都是全局 没有定义和局部一说
+		4.$? $# $@ $* $$
+		5.getopt
+		6.read -t 5 -p "please enter your value" age
+		7./dev/null
+		8.exec 2>test | exec 0 < testfile
+		9.$$
+		10.toLogLevel=$([ "$fromLogLevel" == "INFO" ] && echo "DEBUG" || echo "INFO"); shell中三元表达式
+		11.子shell
+		12.shell中echo要用引号引起来
+		13.对于用户无参直接使用即调用返回for example :
+		14.参数校验
+				${var:-word}	如果变量var为空或者已被删除(unset)，那么返回word，但不会改变var的值
+				${var:=word}	如果变量var为空或者已被删除(unset)，那么返回word，同时将var的值设置为word
+				${var:?message}	如果变量var为空或者已被删除(unset)，那么将消息message送到标准错误输出，可以用来检测变量var是否可以被正常赋值。若此替换出现在shell脚本中，那么脚本将停止运行
+				${var:+word}	如果变量var被定义，那么返回word，但不改变var的值
+
+		15.去重 忽略大小写
+		16.异常如何处理 - 降级？抛错
+		17.参数变量的拼接
+		18.if [[ xx ]] 结尾 fi  then 
+		19.Linux Shell Map的用法详解   https://www.jb51.net/article/186118.htm
+		20.字符串拼接  str="$str  efg"    #实现了追加赋值
+		21.
+
+
+
+					dbType=$(echo "$(grep 'db_type' $applicationPropertyPath)" | awk -F = '{print $2}');
+					if [[ "$dbType" = "a" || "$dbType" = "v"  ]];
+					then
+					   dbUrlType="g";
+					else
+					   dbUrlType="gd";
+					fi
+
+					if [[ $# > 1 ]];
+					then
+					  echo "please input one param type";
+					  exit;
+					elif [[ $# = 1 ]]
+					then
+					  trimInput=$(echo $1 | sed 's/[ \t]*//g');
+					  if [[ $trimInput != "a1" && $trimInput != "a2" && $trimInput != "a3" && $trimInput != "a4" ]];
+					  then
+					      echo "please input special type : a1 a2 a2 a4 ";
+					      exit;
+					  fi
+
+					  wholeURL="v.e."$trimInput".publisher."$dbUrlType".url"; // 使用字符串拼接
+					 
+
+					  funCommon; // 类似于函数-参数关系。抽象出公共逻辑
+
+					  if [[ "$password" = "" || "$username" = "" || "$db" = "" || "$url" = "" || "$port" = ""  ]];
+					  then
+					     funDefualtLink;  // 这里不是降级，而是前面你逻辑中可能对应类型找不到就走默认
+					  fi
+					else
+					  funDefualtLink;
+
+					  if [[ "$a" != "" || "$b" != "" || "$c "$c" != "" ]];
+					  then
+					      echo "please input special type : b e ";
+					      exit;
+					  fi
+					fi
+
+					if [[ $dbUrlType = "ff" ]];
+					then
+					    PGPASSWORD="$password" psql -U "$username" -d $db -h $url -p $port;
+					else
+					    mysql -u $username -P $port -h $url -D $db  -p$password;
+					fi
+
+		21.命令不识别
+				1.是否将命令包装成了string  比如curl  ==》 写成独立
+				2.在shell下执行命令的方法  https://www.cnblogs.com/devilyouwei/p/12306337.html  exec / source / () / {} 
+		22.JSON parse error: Unexpected end-of-input: ... PushbackInputStream ... JsonEOFException  :https://blog.csdn.net/qwdafedv/article/details/100598601
+		23.sed替换每行最后一个字符  https://blog.csdn.net/weixin_34010949/article/details/92560800   vs if判断添加 ,
+
+					funBuildBody(){
+					key=$(echo $param | awk -F = '{print $1}');
+					value=$(echo $param | awk -F = '{print $2}');
+					if [[ $key == "beginTime" || $key == "endTime" ]];
+					then
+					    value=$(echo ${value:0:10} ${value:10});			 /////////// 为时间格式中2012-12-2112：22：33做的妥协 否则空格作为默认的分隔符这里会有问题 指定位置插入
+					fi
+
+					if [[ $key != "searchType" && $key != "beginTime" && $key != "endTime" && $key != "deviceId" && $key != "corpId" && $key != "isvId"  ]];
+					then
+					  echo "uncorrect param:"$key;
+					  exit;
+					fi
+
+					if [[ $argsBody = ""  ]];
+					then
+					        argsBody="\"$key\" : \"$value\"";
+					else
+					        argsBody="$argsBody, \"$key\" : \"$value\"";	///////////// 23对应解决，本应去掉最后的字符，因为不会使用，所以这里加了判断来去掉 , 
+
+					fi;
+					}
+
+					echo "case:sh selfCheck.sh searchType=body beginTime=2020-01-0100:00:00 endTime=2021-01-1400:00:00 deviceId=11234567891320000042,11234567891320000038 corpId=123456789 isvId=123456789";					  //////////// 调用提示 。 对于输入多个参数必须要有对应关系，否则没办法知道参数值对应关系
+
+					if [[ $# = 0 ]];
+					then
+					    funNoArgCall;
+					else
+					    for input in $*										////////////  for循环
+					    do
+					        param=$input;									////////////  全局变量
+					        funBuildBody;
+					    done
+
+					curl --location --request POST 'localhost:7001/status/selfCheck' \			/////////////// 注意这里不是string，否则无法识别
+					--header 'Content-Type: application/json' \
+					-d '{'"$argsBody"'}'| python -m json.tool                          ////////// 这里将变量拼接 注意上面拼接key value的地方 注意传入值都是string所以拼接string串。。。如果其他类型注意类型，否则给了后天无法解析 string作为最稳定的类型
+
+					fi
+		24：shell函数传递带空格的参数  https://www.cnblogs.com/pigerhan/p/3510990.html
+					$# 传给脚本的参数个数
+					$0 脚本本身的名字
+					$1 传递给该shell脚本的第1个参数
+					$2 传递给该shell脚本的第2个参数
+					$@ 传给脚本的所有参数的列表
+					$* 以一个单字符串显示所有向脚本传递的参数，与位置变量不同，参数可超过9个
+					$$ 脚本运行的当前进程ID号
+					$? 命令执行结果反馈，0表示执行成功，其余数字表示执行不成功
+
+					$_ NTc平坦软件保存之前执行的命令的最后一个参数
+
+					使用$@传递所有参数给另外一个脚本时使用引号括起来可以防止某个参数里的空格被拆成多个参数
+
+					使用$n传递单个参数时类似处理
+
+
+
+
+					
 
 2.client  
     k8s
@@ -13,3 +186,7 @@
 4.freemaker
 
 5.db 存储过程/函数
+
+6.shell中嵌套sql
+ 	1.https://www.cnblogs.com/zhuawang/p/5179838.html
+
