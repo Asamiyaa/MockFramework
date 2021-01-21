@@ -1,4 +1,56 @@
+在向上就是k8s，自动化了运维，监控、弹性扩展能力、容错能力、通过全局  <=== 自动化 <=== 哲学思想 *** 自动化的顶层
+
 0.查看DevOpsFinal.xml查看对应的实现路径 === 复合编程，利用不用语言的特性进行协作编程
+
+快速学习语言，并应用。。。有深度的只要java就可以，他们内部是相通的。其他都是工具，快速上手。应用。。shell , freemaker , db 函数/存储过程  js ...
+
+
+=================================================跨语言调用，利用各自优点=======================
+
+
+java -> shell  Runtime.getRuntime().exec(cmd, null, dir)  https://blog.csdn.net/u010376788/article/details/51337312
+shell -> java  java -jar ....https://blog.csdn.net/shenyunsese/article/details/17554765
+上面的都在同一个项目下不同子项目下，进行调用
+
+java -> db     call funxx()  https://blog.csdn.net/a327736051/article/details/49833533   
+db -> java
+shell -> db  https://blog.csdn.net/leshami/article/details/40076949  
+             cmd="select count(*) from tempdb.tb_tmp where id=${id}"
+             cnt=$(mysql -uroot -p123456 -s -e "${cmd}")
+
+
+====================================================freemaker=============================
+
+    1.manager作为管理节点是如何自己拉起来的   vs  tomcat  vs was
+        helm delete --purge service...manager
+        helm install . --name ...manager
+    2.新的manager包是如何从jeckins推到这里的？
+
+    3.被manager管理的服务呢？如何
+        shell传入指定参数(封装) - pyton - 调用manager方法 - 从db获取对应的configmap（FreeMarker） + application中获取信息塞进去 - k8s client拉起
+
+    4.代码如何从git推到k8s
+        Jenkins 与 Kubernetes 持续集成 Springboot + Helm  : https://juejin.cn/post/6844904056394088462
+
+   从freemaker ==> 类加载 ==> assist 动态加载类
+   反射
+
+   ===sql那里也是freemaker的语法，而不是 数据库，因为到达数据库之前，都已经被freemaker处理过了${user!"变量为空则给一个默认值"}  </#if>
+
+"id" bigint NOT NULL DEFAULT nextval('vcs.seq_jdcjghxx_${vcs.dataengine.datasource.provider.vendor}${(vcs.dataengine.searcher.history.enabled!false == true)?string("_history","")}_v2'::regclass)
+
+k8s configmap..使用freemaker 将公共的类似的抽取出来，在 ‘ 构建文件过程中 利用模板 根据入参 使用分支比如if 创建不同的东西 ’
+    FreeMarker是一块模版引擎，可以生产xml，html，java,yaml等文件
+    可配合springmvc / db sql / k8s configmap中的yaml完成 构建  <===== 构建是关键
+    https://segmentfault.com/a/1190000011768799
+
+ServiceMeta:name / status / serviceType / msg
+    1.缓存数据,并将值塞到对应的常量中vectorMap.put(Constants.VCS_DATAENGINE_DATASOURCE_FACE_VECTOR_LENGTH, algoMeta.getFeatureDataLength());
+    2.k8s configmap / service / application 区别   app:主要是系统级别的，内存，监控，挂载卷，... configmap:不同vendor自定义的变量信息 ==查看数据库对比
+    3.k8s中的value.yaml什么时候填充了application.properties的？？？
+
+
+===========================================================shell脚本编写============================
 
 1.shell    --- 平时的登录pod ... 定位问题...都可以随手写成对应的shell 加快排查速度 
 
