@@ -17,6 +17,13 @@ db -> java
 shell -> db  https://blog.csdn.net/leshami/article/details/40076949  
              cmd="select count(*) from tempdb.tb_tmp where id=${id}"
              cnt=$(mysql -uroot -p123456 -s -e "${cmd}")
+jar
+
+client  
+    代码中调用client 比如k8s / 监控 / redis.....
+
+picocli
+	1.java调用linux命令
 
 
 ====================================================freemaker=============================
@@ -226,23 +233,4 @@ ServiceMeta:name / status / serviceType / msg
 
 
 
-
-					
-
-2.client  
-    代码中调用client 比如k8s / 监控 / redis.....
-
-
-3.picocli
-	1.java调用linux命令
-4.freemaker  *****
-	1.从数据库读取对应模板，从环境变量或者容器中读取key value值，塞入 启动   <=== k8s + freemaker 实例化不同厂商
-	
-	
-	
-5.db 存储过程/函数
-	1.就像编写shell，有自己逻辑，些对应语法即可
-
-6.shell中嵌套sql
- 	1.https://www.cnblogs.com/zhuawang/p/5179838.html
 
