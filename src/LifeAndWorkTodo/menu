@@ -45,6 +45,8 @@
                         1.slf4j等日志系统   -- slf4jsource
                         2.mybatis和db/spring融合  -- mybatisSource
                         3.autoRun
+    定位问题:
+                        1.有了链路日志增强，排查Bug小意思啦 : https://www.toutiao.com/i6918956500807434755/  ********************
     
     0.todo                                             todo
     0.已有实战                                               war
