@@ -70,7 +70,7 @@ ServiceMeta:name / status / serviceType / msg
 			less查看可以避免more得跳过行
 			set nu 设置行数 - 用于shell报错定位
 			pageup/pagedown
-			xargs  vs <<  :
+			xargs  vs <<  :  将前面的结果输出作为参数输入 kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod
 			expr 计算
 			sed	 stream edit 
 				1.sed -i 's/from/to/g' a.txt sed读每行，s..替换操作
