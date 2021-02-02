@@ -231,7 +231,8 @@ ServiceMeta:name / status / serviceType / msg
 					使用$@传递所有参数给另外一个脚本时使用引号括起来可以防止某个参数里的空格被拆成多个参数
 
 					使用$n传递单个参数时类似处理
-
+					
+		25.mv calicoctl /usr/loca/bin && chmod +x /usr/local/bin/calicoctl
 
 
 
