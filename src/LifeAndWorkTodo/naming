@@ -55,4 +55,6 @@
     
     combine = merge = assemble 整合聚合
     
+Selector / rulers / group / label / resource /binding  / policy / version /Priority / Category（分类）/Aggregated（聚合的）/QoS（服务质量等级）/信号 
+Threshold / limitRange 
 
