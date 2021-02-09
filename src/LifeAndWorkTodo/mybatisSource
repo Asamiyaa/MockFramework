@@ -1,4 +1,9 @@
  
+ 0.mybatis执行流程：https://www.processon.com/view/5cc57a59e4b059e20a0c21c0
+ 1.mybatis各个组件: https://www.processon.com/view/5f754425e0b34d0711f0bb8c#map
+ 3.//总体源码讲解：
+	Mybatis技术内幕：  https://my.oschina.net/zudajun?q=Mybatis
+ 
 - 就像logback-spring.xml是log和spring的融合一样，mybatis和spring融合就是这个。所以思考 ===>  切入点 <=== 比如取spring中变量到myatis中进行判断。
 
 
@@ -331,5 +336,4 @@ super(configuration, contents, "WHERE", prefixList, (String)null, (List)null);
 
 9.SqlCommand和MethodSignature
 
-//总体源码讲解：
-	Mybatis技术内幕：  https://my.oschina.net/zudajun?q=Mybatis
+
