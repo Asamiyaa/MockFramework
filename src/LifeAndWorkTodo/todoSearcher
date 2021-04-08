@@ -1,0 +1,1718 @@
+快捷键
+	ctrl+shift+enter不只是用来行尾加分号的
+	ctrl+shift+p 括号跳转
+	Ctrl+Up/Down 当希望光标不移动而屏幕移动时使用，以调整视野
+	光标操作：https://blog.csdn.net/u013621398/article/details/39340551
+
+	OnPropertyCondition.java
+
+建表
+1.UPDATE `xx`.`xxx` set template_content= concat(template_content, 'xxxx') where template_content not like '%xxx%'  AND resource_type = 'CONFIG_MAP' AND service_type IN('xx', 'xx');
+  思考要 where 哪些条件 和 使用sql函数 'concat' , 大型字符串
+  
+2.`gender_code_reliability` float COMMENT '性别代码置信度',建表时要完整比如约束not null , 描述...
+PRIMARY KEY (`dxxxt`)									=======> 主键描述
+PARTITION BY HASH KEY (`xx`) PARTITION NUM 12   ======> 分区描述
+SUBPARTITION BY LIST KEY (dt)
+TABLEGROUP vcsxsxx          		======> 组描述
+OPTIONS (UPDATETYPE='xx')
+COMMENT 'xx xx';  		========> 表描述
+
+索引
+生命周期
+
+
+3.模板引擎 建表时  FreeMarker / db中 if判断 / 默认值 /  自动拉起表构建 / 从配置、外置环境中读取配置 /
+转义字符
+<#if (xx\.xx\.xx\.xx\.xxx gt 0)>
+
+默认值
+<#if xx\.xx\.xx\.xx\.xx!false == true >
+
+通过$取值
+create sequence if not exists xx.xxx${xx.xx.x.xx.x}${(xx.xx.xx.xx.xx!false == true)?string("_history","")}_v2  as bigint start with 1 increment by 1;
+CREATE TABLE if not exists ${xx.xx.xx.body.xx.xx.x.structure} (
+
+mybatis中过滤
+Map<String, Set<Object>> getMultiAttributes() === 这种的遍历
+<if test="multiAttributes !=null">
+            <if test="multiAttributes.xx	!= null and multiAttributes.x'x.size()>0">
+                and xx in
+                <foreach collection="multiAttributes.x'x" index="index" item="item" open="(" separator=","
+                         close=")">
+                    #{item}
+                </foreach>
+	map遍历 	
+		.....
+			
+	建完索引后记得analyze一下。。先执行sql --- 加索引 -- analyze -- 验证 --
+
+			
+				
+4.配置动静分离 == 配置类型 [] / ,分隔 ... 读取到内存中都是string进行对应解析  == 注意哪些场景需要 "" ...
+
+    xxx.non_motor=["distance", "genderCode", "ageUpLimit", "coatColor", "trousersColor", "vehicleClass"]
+    
+    xxxx.weight.non_motor=[0.1,0.2,0.3,0.4,0.5,0.6]						
+	
+	xx.xx.x.configs=[{"xx":"1","xx":"a","xx":"b","xx":"c"}]					string				== 都可以看作是string，进来在按照对应的格式parse,如果指定string[]相当于读入的时候就会自动解析了
+	stxxxorage.xxx.piccache.configs={"xxx":"47.8.18.16:3d991"}				=== map	
+    
+    xxx.face.src.points=-1.0f, 0.3f, 0.36f, 0.38f, 0.395f, 0.4f, 0.91f, 1.0f		== string[]
+    xxx.face.dst.points=0.0f, 0.4f, 0.5f, 0.6f, 0.7f, 0.85f, 0.95f, 1.0f
+	
+	public static final String xxx = "${xx.xxx.job.xx.cron:0 0 * * * *}";
+	FreeMarker 快速入门 ： https://segmentfault.com/a/1190000011768799
+	
+5.使用工具类
+	Preconditions.checkState(null != searchObjectParam, "searchObjectParam must not null");
+    Assert.notNull(searchObjectParam.getPeriodicDateStart(),"periodicDateStart must not be null");
+	
+	StringUtils.defaultIfEmpty
+	StringUtils.isNumeric(isvId)
+
+	private Float scoreThreshold = 0.0F; 而不是在代码中if...塞default值
+	null+ 0.2会报错 ，所以要分析是否存在null的情况 
+	matcher.appendReplacement(sb, Matcher.quoteReplacement("${" + replaced + "}"));
+	
+	Maps
+	将集合分组 。。。。。Collectors.groupby(xxx::xx) ....
+6.	
+	1.redis断链
+	2.httpclient超时
+	3.流程优化缩短搜索时间
+
+
+7.shell语法
+	APP_HOME=$(cd $(dirname ${BASH_SOURCE[0]})/..; pwd)
+	source "${APP_HOME}/bin/xx.sh"
+	source "${APP_HOME}/bin/setEnv.sh"
+	$(basename $(ls ${APP_HOME}/xx/${APP_NAME}____*
+	test -f "${APP_HOME}/target/${xx}" || die "app tgz file ${xx} not exist"
+	local first_pipe_exit_code=${PIPESTATUS[0]};
+	cd "${APP_HOME}/target" || exit1
+	touch --reference "${tgz_path}" "${tgz_path}.timestamp" 
+	export SERVICE_OPTS
+	test -n "${error_log}" && error_log="${error_log}"$'\n'
+	JAVA_VERSION=`$JAVA_HOME"/bin/java" -version 2>&1` || { echo $JAVA_HOME"/bin/java -version failed"; exit 1; }
+    JAVA_VERSION_MAJOR=${JAVA_VERSION:16:1}
+	 eval exec "\"$JAVA_HOME/bin/java\"" $SERVICE_OPTS \
+            -classpath "\"${APP_HOME}/target/${APP_NAME}:${APP_HOME}/target/${APP_NAME}/config\"" \
+            -Dapp.location="\"${APP_HOME}/target/${APP_NAME}\"" \
+            -Djava.endorsed.dirs="\"$JAVA_ENDORSED_DIRS\""  \
+            -Djava.io.tmpdir="\"$SERVICE_TMPDIR\"" \
+            -Djava.util.Arrays.useLegacyMergeSort=true \
+            com.taobao.pandora.boot.loader.SarLauncher "$@" \
+            2>&1 "&"
+
+
+8.json的使用 json api的工具使用 parseArray parseObj  toString .. | python -m json.tool
+  数组 [] / map  {} / 其他就是string 
+
+
+10.kafka 
+		kafka查看，是否阻塞...https://segmentfault.com/a/1190000023282843
+		查看堵塞命令 ： https://blog.csdn.net/asd1456732891/article/details/96917223
+		
+		主要是：stgFaceTopic - picFaceTopic  如果没有，这两个topic都要创建 -- 配置好之后都是自动的。 vs 手动创建在页面
+			   创建对应broker
+			   /**
+						 * 根据broker 数量创建topic
+						 *
+						 * @param topicName
+						 * @return
+						 */
+						public boolean createTopicByBrokerNum(String topicName) {
+							List<String> brokerList = getBrokerList();
+							int brokerNum = brokerList.size();
+							int partition = brokerNum * 4;
+							int replica = brokerNum == 1 ? 1 : 2;
+
+							return createTopicByBrokerNum(topicName, partition, replica);
+						}
+
+				createTopicByBrokerNum
+
+		=======创建完之后，别人往进放，我去消费 === FaceKafkaSubscriber extends KafkaSubscriber   
+		  KafkaProperties  KafkaSubscriber=公共逻辑 SubscriberMetricCollectorpublic 
+
+		kafka拉取特性  === 其中的start()从kafka 队列中多线程取，并调用handler.handle == 通过状态来控制的死循环 = 打印：
+		Poll data from kafka,total={},bufferQueue={},cost={}ms,delayed={}s"
+
+		handler在哪里呢？ consumer vs subcribe区别/
+
+		这里的start() 和 run() 先执行run 将东西放到 batchMessageQueue -  BatchMessage  start() 会从这个里面去取，并消费 调用的就是hander
+		DefaultBodyHandler ...== publisher == ads/adb/kafka/datahub /group组消费 多渠道发布  == BodyPostgresPublisher == service ...
+
+
+
+
+		问题：上面建立的两个topic是什么作用。是挪动吗？如何取？
+
+		  KafkaSubscriber(String topic, Class<T> messageBeanClass,
+								   int handlerThreadNum,
+								   KafkaProperties kafkaProperties, String consumer) {
+				this.consumer = consumer;
+				this.topic = topic;
+				LOG.info("Subscribe topic:{}", topic);
+				Map<String, Object> properties = kafkaProperties.getMap();
+				if (!properties.containsKey("enable.auto.commit")) {
+					properties.put("enable.auto.commit", "true");
+					properties.put("auto.commit.interval.ms", "10000");
+				}
+
+				if (!properties.containsKey("max.poll.records")) {
+					properties.put("max.poll.records", 64);
+				}
+
+
+				//每次拉取1M的数据量
+				if (!properties.containsKey("fetch.max.bytes")) {
+					properties.put("fetch.max.bytes", "1048576");
+				}
+				this.kafkaConsumer = new KafkaConsumer(properties);
+				this.kafkaConsumer.subscribe(Lists.newArrayList(topic));
+				this.messageBeanClass = messageBeanClass;
+				this.handlerThreadNum = handlerThreadNum;
+
+				this.handlerExecutorThreadPool = new ThreadPoolExecutor(handlerThreadNum,
+						handlerThreadNum, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<>(1024), new NamedThreadFactory("KafkaSubscriberHandler"));
+			}
+
+
+		================上面的代码很灵活，注意深入理解和而学习======================
+
+
+
+		@ConditionalOnExpression
+
+
+11.
+    查看别人提交的代码，进行学习和验证。。整理
+	
+	
+12.整体提升
+		1.从RPC到服务化框架  https://www.toutiao.com/i6874581829077172747/
+		2.加强单元测试，除了main/spring/mockito/引入yapi mock 后台数据-按照文档 ... 无需修改代码   https://github.com/YMFE/yapi	
+		3.打工四年总结的数据库知识点  ： https://www.toutiao.com/i6883317423693365771/
+		5.强如 Disruptor 也发生内存溢出？  https://www.toutiao.com/i6886424996843880971/
+		6.各种oom https://www.toutiao.com/i6880858911876841995/
+		7.数据分析思维 - 数据指标体系 - 指标认识=维度 ： https://www.toutiao.com/i6899240211050529293/
+		5.redis的扩展-特性适配使用
+		6.openapi:https://www.toutiao.com/i6899586550972301836/
+		7.cd/ci:https://www.toutiao.com/i6864501046681698827/
+		8.service mesh : https://www.toutiao.com/i6902002117968691724/
+		9.springcloud alibaba - nacos 灰度发布... 对比 springcloud
+		10.如何测试：https://www.toutiao.com/i6901554288649323019/
+		11.后端技术学习路线长这样  https://www.toutiao.com/i6901563398446809614/
+		12.graphsql - 分布式sql
+		13.十大热门业务场景最佳实践全面解析，阿里云中间件实战秘笈发布:https://www.toutiao.com/i6904556148423541259/
+		14.离线数据同步工具/平台 ：https://github.com/alibaba/DataX 
+		15.Spring Cloud+Nginx vs zuul 。。。api 网关
+		16.SOFARegistry 是蚂蚁金服开源的一个生产级、高时效、高可用的服务注册中心。https://www.toutiao.com/i6902789843160547847/
+		17.SpringBoot2 整合 ClickHouse数据库，实现高性能数据查询分析：https://www.toutiao.com/i6742106670110867981/
+		18.locust vs jmeter 性能测试
+		19.apollo
+		20.数据库高效优化：架构、规范与SQL技巧 书籍
+		21.刚刚晋升为 Apache 顶级项目的 Hudi 如何在数据湖上玩转增量处理:https://www.toutiao.com/i6836260624045965832/
+		22.通过处理器拦截器处理mdc的traceId .... 线程间的set/get操作  == xxx implements HandlerInterceptor
+			 MDC.put("requestId", UUID.randomUUID().toString().replace('-', '_'));
+			  MDC.clear();
+		23.json数据丢失问题
+				1.json太大，因为传递图片的base64内容
+					1.压缩	https://blog.csdn.net/shijue98/article/details/107109985/
+					2.加大maxPostSize https://blog.csdn.net/zhensanwuhou/article/details/102916169
+				2.网络不稳定 导致没有传输完成
+
+		24.httpclient解决总超时时间大于预期的超时时间的问题
+				1.HttpClient和OkHttp两种调用服务的方式区
+					1.httpclient:https://blog.csdn.net/yangshengwei230612/article/details/103964905
+					2.ok..  
+					3.二者对比：https://www.cnblogs.com/zk-blog/p/12465951.html
+
+				2.是否使用单例
+					1.spring中的单例对象会有性能问题吗？比如a对象正在干活，又来了另一个活？
+					2.httpclient是单例的吗？需要池化吗？
+
+
+				3.get /put /post /delete区别  其实现在还是post/get https://blog.csdn.net/themagickeyjianan/article/details/71404724
+				4.header的使用？
+				5.restful 
+						看Url就知道要什么
+						看http method就知道干什么
+						看http status code就知道结果如何
+
+
+		25.redis连接断开
+				1.
+
+		26.通过redis/context实现性能优化  空间换时间
+				1.业务理解
+				2.
+
+
+		27.编程中什么是「Context(上下文)」？ https://www.zhihu.com/question/26387327
+		28.guava api 
+				guava 的 Multimaps  Ordering.natural().sortedCopy(numbers); //10,20,30,60,80 Ordering.natural().max(numbers); //80
+                ClassToInstanceMap  BiMap  Table  LazyMap
+                http://ifeve.com/google-guava-newcollectiontypes/
+		29.Java8中LocalDate日期的操作  https://www.cnblogs.com/theRhyme/p/9756154.html
+    						     https://cloud.tencent.com/developer/article/1532036
+		30.JDK中并发队列提供了两种实现,一种是高性能队列ConcurrentLinkedQueue,一种是阻塞队列BlockingQueue,两种都继承自Queue:
+		31.mysql查看死锁和解除锁:https://blog.csdn.net/yucaifu1989/article/details/79400446
+		   postgres查看死锁和解锁：https://blog.csdn.net/DB_su/article/details/78673298	
+			
+		32.threadlocal: -- 对于弱引用到底是否能保证安全，不会因为弱引用而丢失吧
+			How to set ThreadLocal for parallelStream：https://stackoverflow.com/questions/48495194/how-to-set-threadlocal-for-parallelstream
+			ParallelStream的陷阱：https://blog.liexing.me/2018/11/03/parallelstream-trap/
+			ThreadLocal变量为什么用static修饰：https://www.jianshu.com/p/ee9e1d0247a6
+			将ThreadLocal变量设置为private static的好处是啥？：https://www.zhihu.com/question/35250439
+			通过调试模式理解 ThreadLocal 类的特性:https://www.jianshu.com/p/7d6081828467
+			ThreadLocal源码调试——“this”作为key:https://www.cnblogs.com/developer_chan/p/9125716.html
+			ThreadLocal类以及应用技巧:https://blog.csdn.net/eson_15/article/details/51540502
+			调用链跨线程传递ThreadLocal对象:https://blog.csdn.net/u013452337/article/details/104521703
+			threadlocal跨线程传递解决方案(上):https://www.jianshu.com/p/7a7a4b05a03c
+			高并发编程-ThreadLocal:https://qiuyadongsite.github.io/2019/04/09/concurrent-program-write-11/
+			ThreadLocal和维护全局Map＜THread,Object＞区别(摘自java并发编程实战3.3.3):https://blog.csdn.net/NerverSimply/article/details/109012329
+
+
+		注解
+			1.JAVA注解的继承性 ： https://www.jianshu.com/p/a848655d478e    ==> @PatchQueryCondition
+			2.注解处理类如何和注解进行绑定  ： 还是说可以放到该类中比如 @ConditionOnAny
+			3.https://www.jianshu.com/p/d1e46a13d91c
+			4.@Import 注解  https://www.jianshu.com/p/afd2c49394c2  ImportSelector
+			5.@EnableConfigurationProperties https://www.jianshu.com/p/7f54da1cb2eb
+			6.@ConditionalOnClass注解分析
+			7.@Conditional注解  https://blog.csdn.net/pengjunlee/article/details/79700127
+
+		spring
+			1.Spring钩子方法和钩子接口的使用详解 : https://www.jianashu.com/p/e22b9fef311c
+			2.spring4.1.8扩展实战之八：Import注解  https://cloud.tencent.com/developer/article/1438658
+
+		java 如何继承泛型: 泛型是向上抽象的一个重要的手法 == 类型的公共逻辑
+	
+		
+		33.storage存储jar包使用 ***
+				1.CacheFlusher
+				2.redis配置
+				3.连接netty
+				4.整合spring到自己的jar
+				5.synchronize
+				6.CacheThreadPool.flushCacheThreadPool.submit .. 提交异步任务
+				7.storageMonitorBean.labelCountor
+				8.成员的设计 高并发下 / 框架 / jar....都synchroze?
+				9.ossObjectStorageService中的init...操作初始化信息
+				10.DTO设计
+				11.ConditionOnProperty的使用
+				12.定时刷新 @Scheduled
+				13.clientConfigHolder
+				14.picCacheConfigs
+				15.默认值
+				
+		34.多技术融合			
+
+				java -> shell  Runtime.getRuntime().exec(cmd, null, dir)  https://blog.csdn.net/u010376788/article/details/51337312
+				shell -> java  java -jar ....https://blog.csdn.net/shenyunsese/article/details/17554765
+				上面的都在同一个项目下不同子项目下，进行调用
+
+				java -> db     call funxx()  https://blog.csdn.net/a327736051/article/details/49833533   
+				db -> java
+				shell -> db  https://blog.csdn.net/leshami/article/details/40076949  
+							 cmd="select count(*) from tempdb.tb_tmp where id=${id}"
+							 cnt=$(mysql -uroot -p123456 -s -e "${cmd}")
+
+						
+		1.大数据
+		1.数据量大
+				1.来源
+						1.对交易记录从不同维度进行分析
+						2.对用户行为、收藏、停留等日志进行挖掘，并结合推荐-算法
+						3.摄像头拉流 = 直播 = 直播项目代码 = 历史流(回看)
+								1.流媒体之推流拉流实战之关键点优化分析  https://www.toutiao.com/i6882709314940142088/
+				2.层设计
+						1.数据仓库| 1.4 ODS& DWD& DWS&DWT& ADS  https://www.cnblogs.com/shengyang17/p/10545198.html
+						2.大数据方面核心技术有哪些？https://www.zhihu.com/question/27696290
+						3.AnalyticDB向量分析版2.0发布 https://zhuanlan.zhihu.com/p/65825745
+
+				3.标准大数据框架- hadoop / hive /hdfs ... 和ali解决方案对比 == 自研数据库
+						1.从标准解决方案中借鉴  ***
+						2.从es等搜索中借鉴      ***
+						3.鉴于局部保持投影的多模态情感特则会那个融合：https://patents.google.com/patent/CN106096642A/zh
+						4.pg - 分区表
+				4.机器学习
+						1.经常提到的Embedding层有什么用？ https://www.jiqizhixin.com/articles/2019-03-27-7
+						2.机器学习——几种距离度量方法比较 https://my.oschina.net/hunglish/blog/787596
+						3.DBSCAN聚类算法——机器学习（理论+图解+python代码） https://blog.csdn.net/huacha__/article/details/81094891
+						4.列式数据库和向量化  https://www.infoq.cn/article/columnar-databases-and-vectorization
+						5.机器学习解决方案 https://cloud.google.com/docs/tutorials?hl=zh-cn#hpc
+						6.6个步骤从头开始编写机器学习算法：感知器案例研究 https://blog.csdn.net/eo63y6pKI42Ilxr/article/details/84351288
+						7.有没有必要把机器学习算法自己实现一遍？ https://www.zhihu.com/question/36768514
+
+
+		2.搜索
+				1.不同策略演化
+						1.向量
+								1.距离 - score 
+						2.属性
+						3.id
+				2.应用策略
+						1.渐进搜索
+						2.关联搜索
+						3.聚类
+
+				3.数据切片
+						1.db - 主从 / 分布式 ...
+						2.
+
+		3.实时 flink qlexpression
+
+
+数字化 = 云原生
+		1.DevOps -- 其实现在自己使用的就是云原生
+				1.最全教程，Jenkins 与 Kubernetes 持续集成 Springboot + Helm
+				2.helm:https://helm.sh/docs/
+						k8s中helm安装部署，升级和回滚（chart，helm，tiller，StorageClass） 	https://blog.51cto.com/14320361/2475004
+				3.git合并丢失代码问题分析与解决(错误操作导致)  https://www.jianshu.com/p/603186352605
+				4.helm作为jeckins和k8s中间工具，管理配置拉取和包install/delete到k8s
+				5.k8s:Kubernetes Handbook——Kubernetes 中文指南/云原生应用架构实践手册   https://jimmysong.io/kubernetes-handbook/
+						1.kubectl常用命令详解：https://juejin.cn/post/6844904008436416519#heading-0
+				
+				7.Jenkins 与 Kubernetes 持续集成 Springboot + Helm  : https://juejin.cn/post/6844904056394088462
+
+
+
+
+
+		3.互联网工具
+				1.json查看：http://www.bejson.com/jsonviewernew/   
+				  json对比 ： http://json.parser.online.fr/
+
+				2.代码格式化：https://tool.oschina.net/codeformat/sql
+				3.编解码/时间转换：https://tool.chinaz.com/tools/unixtime.aspx
+				4.在线画图：https://app.diagrams.net/
+				5.在线工具包：https://www.matools.com/
+				6.使用excel、nodepad++等工具：
+						1.notepad++ 行首行尾添加字符  ： https://www.cnblogs.com/wyblognew/p/11778145.html  换行、统计、添加
+						2.
+				7.base64转化：在线加密解密(采用Crypto-JS实现) ： https://tool.oschina.net/encrypt?type=3
+
+		4.常用api:
+				1.Google Guava官方教程（中文版） https://wizardforcel.gitbooks.io/guava-tutorial/content/1.html
+				2.Apache Commons Math 3.6 API  https://commons.apache.org/proper/commons-math/javadocs/api-3.6/index.html
+											   https://ifeve.com/apache-common/
+				3.Collections.singletonList方法的使用  当只有一个元素 / 当进行初始化时注意指定长度 new ArrayList<>(10)
+
+		5.redis
+				1.如何设计key key md5....
+				2.如何结合流程做缓存   关联..
+				3.如何定位缓存问题 在多个..
+				4.断链问题
+				5
+		6.client断链问题
+				1.
+
+		7.集群如何体现。。。。/ 读写分离 
+				1.
+
+		程序员架构修炼：架构设计概要、业务、应用、技术、数据架构：https://segmentfault.com/a/1190000038579086
+		在 SegmentFault，学习技能、解决问题：https://segmentfault.com/
+
+		400状态码可能是自己的参数有问题，比如url/其他入参 ...
+
+
+	结合日志去看代码 。。。。一步一步走
+
+	@Value 实现原理和扩展  / @Import(XX.class) 
+		
+		
+		
+		
+
+		1.高并发访问数据库问题   https://blog.csdn.net/u014421556/article/details/50964319
+		2.体验一下5分钟快速迁移mysql近亿数据量大表的速度！！！  https://www.cnblogs.com/liangshaoye/p/14118757.html
+		3.主备同步
+		4.‘ 多并发 ’查询数据库查询速度慢 1.是否有锁竞争问题  2.是否有配置支持多并发  3.都是查询操作为什么并发会这么慢？
+		5.Group By 分组并取第一条数据  https://blog.csdn.net/weixin_41160534/article/details/101439697   === 使用excel等工具
+				Stream的Collectors.groupingBy支持key为null进行分组  == 注意null值
+		6.数据库配置优化：设置Table Group与Shard Count  https://help.aliyun.com/document_detail/162594.html?spm=5176.11065259.1996646101.searchclickresult.4db62252LeuhPQ
+		7.Java StatefulRedisConnection类代码示例  https://vimsky.com/examples/detail/java-class-io.lettuce.core.api.StatefulRedisConnection.html
+		  Spring Boot中集成Redis ： https://blog.csdn.net/liujun03/article/details/82891784
+		1.redis:Java并发：分布式应用限流 Redis + Lua 实践 https://segmentfault.com/a/1190000016042927
+
+		3.菠菜编程 - 压力测试 优化 、 人月聊it 、架构思维 
+		  一角钱技术<-- 头条
+		  人人都是产品经理
+		  人月聊IT
+		  安防观察员
+
+
+		1.搜索与推荐中的深度学习匹配 书籍阅读  https://zhuanlan.zhihu.com/p/38296950 - 搜索系统中精巧设计 加速  -- 为什么不用elacsearch? 坑吗？借鉴？
+		2.flink实时流计算 - 实时匹配 https://g.yuque.com/cuteximi/base/bx6i3p
+				 https://www.google.com/search?q=%E5%9F%BA%E4%BA%8Eapache+link&oq=%E5%9F%BA%E4%BA%8Eapache+link&aqs=chrome..69i57j0i12j0.14975j0j1&sourceid=chrome&ie=UTF-8
+		3.springcloud 对比当前实现 <--- 简历
+		4.《系统架构：复杂系统的产品设计与开发》 在lifeand... frame下的pdf ..
+		  
+
+		5.kubernets常识（已完成） - 环境搭建 -  《kubernets》源码剖析-进阶
+			Kubernetes 特点
+
+				可移植: 支持公有云，私有云，混合云，多重云（multi-cloud）
+				可扩展: 模块化，插件化，可挂载，可组合
+				自动化: 自动部署，自动重启，自动复制，自动伸缩/扩展
+
+			云
+				云化是5G网络的基础，为了更便捷的发展业务，简化网络建设，云原生理念、技术的灵活性、敏捷性和便捷性，实现整个核心网的云化，微服务化，容器化，并且基于云原生技术来实现高可靠，弹性扩展，和敏捷响应的关键能力.在微服务化后提供关键的DevOps持续集成能力支撑
+				1）快速迭代 2）安全可靠 3）弹性扩展 4）开源共建
+
+				云原生本身是复杂的
+				云原生改变的不止是技术，最终去改变的是业务。云原生既然会帮助业务快速迭代，那么业务代码和项目流程必然会发生根本性变化。典型的就是业务越来越轻，底座越来越厚，数据处理越来越自动化，非人用户越来越多。
+
+				vs 云托管（Cloud Hosting）应用 -当前应用直接docker打包部署 不能够真正享受云的红利
+
+				*** 云原生体系下的技海浮沉与理论探索:::有无状态及转换：https://www.toutiao.com/i6901569305159451147/ ***** 作为搭建devops的指导论
+
+
+		工具：LogRocket 使你可以重播用户在你站点上所做的操作，从而帮你重现错误并更快地解决问题。
+
+		简历：
+			1.添加实时推荐这块、自己朝着这个方向发展，对接人工智能这块。 思考 、设计 ...
+			2.Sentry 的应用监视平台几乎可以为所有的开发人员提供帮助，它能够诊断、修复和优化你代码的性能。
+			3.Prettier一个代码格式化程序，支持多种语言，能够与大多数编辑器集成。
+			4.Mocky在开发时不必等待后端代码准备完毕，用 Mocky 可以生成自定义 API 响应。
+			5.Dash, Bokeh 和 Streamlit，还有一些基础设施的可视化工具，例如微服务架构中的服务网格可视化工具 Kiali
+			6.CDK 和 Pulumi 之类的工具，提供了远远超过第一代工具的功能。
+			7.https://codingdojo.org/kata/
+
+		汪峰演唱会！！！- 光明、 生来彷徨
+		侧耳倾听。1995
+		温铁军 三农问题
+		李永乐：资产证券化
+		管清友 / 富妈晓庆  -所长林超/林盆同学-叶胖三/阿智与曦/塞平、酒鬼一家-鲨鱼派-fashion衣舍：头条 - 技术匠人/双下巴金金酱/白呀白Talk/大数据工程师必读
+		投资理财
+		《最好的告别》
+		竖镜子 - 买
+
+		综艺： 《你好生活》 
+			  《心动的offer》  快速试错、纠正、方向 成本衡量而不是纠结 选择
+
+
+		分布式系统的几个通用问题：
+
+		进程崩溃
+
+		网络延迟
+
+		进程暂停
+
+		非同步的时钟
+
+		进而引出分布式系统的模式是如何解决这些问题的 。
+
+		比如非常经典的Write-Ahead Log 模式，可以用来解决进程崩溃时数据的持久化问题：
+
+ 
+ 
+ k8s：
+		k8s，自动化了运维，监控、弹性扩展能力、容错能力、通过全局  <=== 自动化 <=== 哲学思想 *** 自动化的顶层
+				
+
+		8.
+		okhttpclient ..解决超时返回 <--- 排查过程
+		concurrentModifyException .. 解决 ： 深拷贝  / 浅拷贝  => 其他解决方案
+		db模板已经有了，为什么还用网上抽像到value.yaml和application.property <== pod 的
+
+
+		9.插件 - 插拔
+		mybatis定义自己的float：AdsFloatArrayTypeHandler自定义不满足处理的器
+		@JSONField(serializeUsing = Date2LongSerializer.class, deserializeUsing = Long2DateDeserializer.class)
+			private Date streamTime;
+			校验...
+
+
+		10.linkedhashmap 如何保证有序？
+		   atomicRefrence : private AtomicReference<Map<String, List<Expression>>> expressionAll = new AtomicReference<>();
+		   只有成员变量-不安全的时候，对对象。这种特别是在源码中，多线程的背景下。。 方法中用不到
+			用AtomicStampedReference解决ABA问题：https://www.cnblogs.com/java20130722/p/3206742.html
+
+
+
+		10.springcloud学习  --- 自己的k8s和springcloud项目
+
+				SpringCloud各个组件说明：https://www.cnblogs.com/linkstar/p/9055900.html
+				Java微服务框架全方位对比（Dubbo 和 Spring Cloud？）：https://cloud.tencent.com/developer/article/1564212
+				下面内容：https://cloud.tencent.com/developer/article/1564212
+						 1.高调用量  系统中的各个微服务可被独立部署，各个微服务之间是松耦合的。每个微服务仅关注于完成一件任务并很好地完成该任务。在所有情况下，每个任务代表着一个小的业务能力。
+						 2.快速迭代 灰度发布  低耦合 拆分  高效
+						 3.性能
+						 
+						 3.其实相关的都是因为量大 - 拆分 - 解决方案 (分布式、微服务) --各个组件 及解决方案。。其实源自量！！！
+						 后期随着业务的不断增加，开发迭代和性能瓶颈等问题，将会困扰开发团队，微服务就是解决此问题的有效手段，市面上有很多的微服务框
+
+					
+
+					1.springcloud 组件及认知  --> 如何利用这些组建完成当前图搜+布控的重构
+					2.Hystrix技术解析  https://www.jianshu.com/p/3e11ac385c73  <--美团利用其完成容错
+					3.总线 : Apache Camel https://www.jianshu.com/p/68aba8d09a89  使用场景：https://my.oschina.net/u/3135165/blog/4268205
+					4.分布式调度：xxl   https://www.xuxueli.com/ xxl-rpc/#%E3%80%8A%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6XXL-RPC%E3%80%8B
+						调度框架对比：https://blog.csdn.net/u010398771/article/details/102485710
+
+					====k8s vs springcloud  *************
+					部署微服务的时候，Spring Cloud 和 Kubernetes 哪个更好？ http://dockone.io/article/2896 二者从不同维度解释了微服务
+					在Kubernetes上部署SpringCloud   https://kuboard.cn/learning/k8s-practice/ocp/#%E4%BD%BF%E7%94%A8-kuboard-%E5%9C%A8-k8s-%E4%B8%8A%E9%83%A8%E7%BD%B2-ocp
+					阿里如何选择springboot + k8s 而没有使用springcloud
+						
+
+					========================== springcloud vs dubbo vs k8s =========================
+					浅析如何设计一个亿级网关.md：https://github.com/javagrowing/JGrowing/blob/master/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%85%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E4%BA%BF%E7%BA%A7%E7%BD%91%E5%85%B3.md
+					https://cloud.tencent.com/developer/article/1494144  
+					https://developer.aliyun.com/article/772018
+					https://developer.51cto.com/art/201909/603171.htm
+
+
+		11.cd /ci 迭代 敏捷
+
+		12.登录kafka 查看是否有结构数据输出=====最简单了。但是不知道如何登录，看那个topic,看哪个分区
+			kafka相关操作
+			kafka - notifier 这个 --> 需要的kafka架构。灵活应用
+
+
+
+		14.mapReduce - 图搜也没有使用spark提供的mapreduce 	而是自己简单的java实现。从这些框架中又能得到哪些？强化哪些功能扩展呢？为什么不选择大数据框架？？
+
+		15.阿里 java规范手册 整理--未整理完
+			作为云开发指导思想：https://yuque.antfin-inc.com/alibabacloud-openapi/pop-doc/hd5pmt
+
+		16.	分布式 vs 集群下代码注意什么?到底多个pod是不是集群？
+			Storm vs. Kafka Streams vs. Spark Streaming vs. Flink https://www.codenong.com/cs106038287/
+
+
+
+		17.实时性+动态性
+			1.qlExpression  美团酒旅实时数据规则引擎的学习  https://www.biaodianfu.com/meituan-rules-engine.html / qlexpression使用：https://blog.csdn.net/YuYunTan/article/details/101436910
+					规则引擎对比：
+					qlExpress本身只是一个脚本语言，可以被封装成规则引擎，而drools本身是个规则引擎，专注于规则的条件匹配和执行，不具备可比性。
+
+						qlExpress和groovy同属脚本语言，比较如下：
+						1、groovy比qlExpress更兼容java语法
+						相对功能复杂处理过程的大段java脚本，groovy可以直接拷贝过来运行，
+						而qlexpress的语法很轻量，对原始的java代码有一定的兼容性问题，一般需要把数据的类型声明全部去掉，同时不支持异常处理、for循环的集合写法 等
+
+						2、qlExpress比groovy更强调功能扩展
+						因为qlExpress就是诞生于阿里的电商系统，定制了很多特别的常用功能需求（宏定义，语法解析，公式计算，布尔逻辑处理，操作符函数的内置替换），可读性和功能更贴合业务需要，详细看qlExpress的扩展能力部分
+
+						3、qlExpress和groovy性能相当
+						qlExpress和groovy同属弱类型语法，比如a+b，可以在运行时支持字符串，数字等多种计算模式，相比fel，simpleExpress 等强类型语言性能会差一个数量级。
+						他们都支持编译期做了缓存功能，qlExpress转化为InstructSet，groovy转化为一个特殊的groovyclass子类
+					2.流计算            阿里实时计算Blink核心技  https://www.biaodianfu.com/blink.html\\\\
+
+			
+						
+					实时计算：通过checkpoint进行批量处理 + flinksql 进行聚集
+					大数据之hadoop:https://www.zhihu.com/question/333417513  离线 计算  hdfs + mapreduce
+										各个组件含义：https://blog.csdn.net/NextAction/article/details/78993014
+					 ...           spark/flink:    实时计算   http://shiyanjun.cn/archives/1508.html
+					规则匹配：qlexpression  动态植入  https://segmentfault.com/a/1190000020503362
+									 没有用到 jvm???不是代码层级的注入吗
+						
+
+		18.jdk中的时间Durid
+			
+
+		@PropertySource("classpath:test-init-all-things.properties") 加载需要的配置
+
+
+		灵活点：
+
+		9.模板/公共方法抽到父类，通过定义abstract方法来让子类实现/通过构造方法来传递子类中特殊的成员变量。如果不抽象成员到父类，拿父类
+		   方法的代码流程收到影响。。。==类似于spring中的Abstract类的传递this .*********
+						//当父类需要方法时，可以定义abstract让子类实现；如果父类需要成员时，且这里的成员是无状态的，可以通过下面这种
+                  
+                  private aaaa aa;
+                  protected vv v;
+
+
+                  public xx(aaaaa a2, vv v1) {
+
+                      this.aa = a2;
+                      this.v = v1;
+                  }
+
+
+                  @Value(Constants.Vcccc)
+                  private Float ccc;
+                  
+                  
+                  子类：
+                  public aaaa(
+                      @Qualifier("aaaaaa") aaa a,
+                      @Qualifier("vvvvv") vv v) {
+                  super(a, v);
+                    //通过这种方式将子类 ‘ 不同的地方 ’给到父类 。 注意这里的构造方式中的@Qualifier   
+                    //这里的线程安全是因为都用的单例，方法调用，没有公共变量 。 人机非脸都公共的代码包括模板都抽象
+              }
+
+		10.测试类 灵活加载数据
+			InitPatchVectorStructDataTest
+			
+
+
+
+
+		===========================监控==========================
+		一张思维导图，包罗全面监控体系建设要点：http://www.softtest.com/dev/sysops/17463.html
+		监控预警  vs 埋点
+		指标
+
+		========================redis========================
+		布隆过滤器:https://juejin.im/post/6844903982209449991   -- 避免缓存穿透
+
+
+
+		Spring 5 新特性之webflux：https://darian1996.github.io/2018/12/07/Spring-5-%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BWebFlux/
+
+
+
+
+		=======================安全==============================
+		 
+
+
+		签名/加密/对称/非对称-公钥/私钥：
+		https://zhuanlan.zhihu.com/p/165077751 。
+		其实对于不可逆加密为了怕你的密码让别人通过拦截、日志获取到
+		任何的加密形式要是被知道了真实的密码，肯定怎么加密也是不行的。。。。 可逆加密则是为了处理比如金报文等需要接受方不仅要验证而且需要处理的。为了避免
+														传输途中的拦截，做了可逆机加密，这样就。非对称加密则是公钥加密，私钥解密。要保证安全性。。。
+		为什么要使用base64?
+			http://blog.xiayf.cn/2016/01/24/base64-encoding/
+		加签是什么？为什么？
+			https://blog.csdn.net/liyanlei5858/article/details/84664308
+		加密是什么？为什么？
+			https://blog.csdn.net/liyanlei5858/article/details/84664308
+		摘要是什么？为什么？
+			https://www.cnblogs.com/huhx/p/messageDigest.html
+
+
+
+		======================stream===============================
+		并发框架Disruptor：http://ifeve.com/disruptor/  https://tech.meituan.com/2016/11/18/disruptor.html
+
+
+		1.函数式接口中泛型如何理解？结合lamdar后，其实经过了多层抽象才到达xxx:getAge这一层的。
+
+
+		2.jvm其实在底层类加载 / gc / 多线程 - cpu间 提供支持
+
+		3.nio java早就提供了，其他使用地方 ?
+
+		缓存和多cpu，cpu时间片切换造成复杂度
+
+		========================================================
+
+      	路由转发，安全，限流，缓存，日志，监控，熔断降级等功能，网关服务不仅要做到高可用，还要避免出现性能瓶颈。
+      	RedisRateLimitFactory-RateLimitServiceImpl/GateWayHandler - DefaultApiInvoker 解析head信息 对get/post...都进行判单。明确有哪些参数
+
+
+						阿里的签名机制:https://help.aliyun.com/document_detail/25492.html?spm=a2c4g.11186623.6.1062.aebf5399OEkuAD
+
+						isv corpid / 注册和k8s关系 / 调用拼接串-拼接组装关系GatewayHttpClientUtil / 网关的项目如何验证、限流... gate-way模块 注册 vs 调用-限流
+
+								
+								
+								RedisRateLimitFactory-RateLimitServiceImpl/GateWayHandler - DefaultApiInvoker 解析head信息 对get/post...都进行判单。明确有哪些参数
+								//签名鉴权
+						            if (!skipAuth(request) &&
+						                    StringUtils.equalsIgnoreCase(api.getAuthType(), AuthEnum.AK.toString())) {
+						                boolean signOk = signatureService.verifySignature(app.getAppSecret(), request);
+						                if (!signOk) {
+						                    long cost = TimeUtils.costMills(startMills);
+						                    //指标采集
+						                    gatewayMetricCollector.collectAccess(GatewayMetric.create()
+						                            .accessKey(appKey).api(path).app(appName).code("400").failed(1).costMills(cost));
+						                    return sendInvalidParam(requestId, String.format("%s invalid", VCS_DATEENGINE_GATEWAY_PARAM_SIGNATURE));
+						                }
+						            }
+								//流控。。。
+								
+								//权限验证
+						            if (!skipAuth(request)) {
+						                boolean pass = vcsDataEngineAuthService.check(app, api);
+						                if (!pass) {
+						                    long cost = TimeUtils.costMills(startMills);
+						                    //指标采集
+						                    gatewayMetricCollector.collectAccess(GatewayMetric.create()
+						                            .accessKey(appKey).api(path).app(appName).code("400").failed(1).costMills(cost));
+						                    return sendNoAuth(requestId);
+						                }
+						            }
+
+						            //流量控制 -  令牌 - 操作lua脚本
+						            if (rateLimitEnabled.equals("true")) {
+						                if (!rateLimitService.tryAcquire(app, api)) {
+						                    long cost = TimeUtils.costMills(startMills);
+						                    //指标采集
+						                    gatewayMetricCollector.collectAccess(GatewayMetric.create()
+						                            .accessKey(appKey).api(path).app(appName).code("400").failed(1).costMills(cost));
+						                    return sendRateLimitError(requestId);
+						                }
+						                LOG.info("app rateLimit redis value={}", redisUtil.hmget("rateLimiter_" + app.getAppName() + "_" + api.getApiName()));
+						                LOG.info("api rateLimit redis value={}", redisUtil.hmget("rateLimiter_" + api.getApiName()));
+						            }
+
+								String[] array = {"AccessKeyId", "Signature","SignatureMethod","SignatureVersion","SignatureNonce","Timestamp","Version","Format"};
+								注册 - 发布状态 - 更新 - 缓存获取url和对应的limit注这里的不同分级，比如corpid...不同分级/分组设计 -校验accid...
+								链 ： 拦截器 - 过滤器 - dispatcher  - handler  - callback(监听) - 性能监控器    从方法抽到类，并合理组合配合完成
+								配置的灵活性 - 调用第三方灵活性 - 配置数据库 ....
+								DefaultApiInvoker
+								
+								 return Optional.ofNullable(CollectionUtil.first(selectUnMatch));
+								 // 按照 score 从高到低排序
+						        faceRelationBodyList.sort((o1, o2) ->
+						            Optional.ofNullable(o2.getScore()).orElse(0F)
+						                .compareTo(Optional.ofNullable(o1.getScore()).orElse(0F)));
+								 Optional.ofNullable(picture.getLeftTopX()).orElse(-1)
+								 
+							
+							问题：1.为社么要有签名机制 ？ 直接key/value 用户密码不好吗？签名机制不也是公开的吗？
+								  2.网关 有哪些功能 -鉴权/限流，springcloud中的网关能否使用到这里？？？
+								  3.SimpleHttpClient封装
+								  4.RequestUtil
+								
+
+
+
+
+			3.CSRF漏洞
+			4.C
+			门票ID是顺序的，可以伪造门票
+			以下哪种功能不需要添加CSRF_TOKEN:用户查看ECS监控信息
+
+			下面URL是一个跳转地址，会在用户前端渲染出redirect_url，但不涉及数据库的任何操作 可能导致哪些漏洞： http://sectest.aliyun.com/oauth_callback?redirect_url=http://www.aliyun.com
+			XSS跨站攻击  
+			URL跳转漏洞
+
+			如果某个操作（如重启ECS）需要对已绑定手机的登录用户发送手机验证码，以下哪些安全措施是正确的？a
+			abcd
+
+
+			List<Future<Object>> futureList = xxPool.invokeAll(Lists.newArrayList(
+							() -> doxxx(searchQuery, traceId, threadContext),
+
+
+===抠图=====  if嵌套  === 单独能力 ==  定义多算子抠图接口为当前接口子类 。。。 这样就可以通过super.方法来调用公共 - 子类较好 vs 注入关系组合
+ 判断开关
+ 
+
+ 
+=====上下文=====
+
+
+	2.是否重构，
+		1.对于已有的流程如何复用？整个结构不入？层次不对等
+		2.原流程梳理 - 新流程梳理 - 哪些要变动 ---> 流程图 / 类图
+			猛一看，这里需要只支持多算法抠图，但是其实搜索的是否同样需要有标识
+			1.上下文是否需要。。所以需要传递标识进去。。
+				多线程间的上下文
+			2.摄像头问题
+
+
+		3.如何保证最小影响原流程 vs 必要重构 vs 接口更改影响评估
+		4.如何合理的融合？如何合理设计流程减少复杂度和绕度？
+		5.面临修改接口 vs 修改对象--影响最小  
+			判断是否来自图搜对抠图  vs 普通抠图
+			多线程的影响 target--通过参数传递 
+
+
+
+	3.重新思考 继承-super.-abstract-类初始，** 结合底层的jvm空间分配
+		1.不能初始化不是意味着没有成员
+		2.那么每个构造方法中隐士的super..是否真正调用了父类，那么对象是不是很多
+		3.私有方法只有再该类中可以使用，出了该类，其他类中new xx().也只能调用
+		  非私有的。。。super...也一个道理。。所以private的限制很大
+	4.泛型
+		1.认识不够 ，复杂的不知道如何填充
+		2.设计时不知道如何合理利用泛型
+
+	5.stream 
+		1.flatmap 不熟练  return xx.stream
+		2.peek使用
+		3.        return ts /*ts.stream()*/; //这里注意一下...  使用 flatmap / 最后要返回ts.stream .... 这里还不能平铺,因为要保持altho和list关系
+		4.为了避免返回null,可以进来初始化list后者返回值，这样aa.stream....
+		  不用因为异常和正常分支而麻烦。。。这种异常时可以返回空的东西的，不印象的。。。。
+		5.使用sort vs 单独类
+		 	比如这里的交叉排序其实逻辑复杂，足以单独形成类，而不是在stream中的compare....
+
+
+	6.线程
+		1.数据量不大，不用使用多线程 ；比如这里远程调用返回信息，入参没几个。
+		  fork-join本身线程池损耗
+		2.通过摄像头批量查询，其实这里已有有了批量加速，量也不多，没必要parall,并行处理
+
+	7.哪些是公共的，可以抽成方法，抽成类，复用。。
+	    1.感知层次
+	8.如何设计合理的数据结构，比如这里的table没有用起来，最后还是嵌套了
+	   map， 
+	   	1.todo:整理数据结构选择流程
+	   	2.多看算法等东西，提供自己解决的维度。和技巧
+	9.上下文
+		1.threadlocal vs 可继承  vs  多线程间传递
+		2.数据结构 - 复杂的关系使用对象，简单的可以使用数据结构。对象要考虑个数，性能 new>>>
+		3.塞入信息是否要取关键字段/压缩/hash来减少占用
+		4.分布式缓存 - 共享 - redis ... vs 本地内存
+		5.//可以优化,这种key值替换  --> 这个能否使用guava的mutimap / keyvalue能否在塞入的是否就设计好. / 这里是key嫁接替换 /性能
+		6.多个类之间跨越  ***** 一定要注意线程安全 **********跨越多个类和属性**********************************
+
+
+
+			1.通过接口传递
+			2.通过对象属性判断
+			3.通过上下文传递  -- 这里 图搜 + 抠图 如何组成上下文？？？很大
+			   2和3是两种方式 。。。3要考虑多线程影响。。****
+
+			4.两个模块。。图搜和抠图是否维护。。盘踞：属性是否有持久维护意义，
+			比如这里的target是否有必要知道我是来自哪里？？....
+
+
+	10.解决方案
+		1.思考在满足要求的前提下，合理，简单，健壮的完成问题
+		2.优化和性能
+
+	11.内部类的异常和多线程异常处理 
+	12.返回内容的设计，哪里是list/哪里是单个？很多迷惑的都是 get(0) 
+	   如何设计返回的形式。
+
+	13.留时间buffer
+	14.finally中 资源释放，比如这里的上下文
+	15.Function操作
+	16.多个if融合时，一定要考虑清楚是否影响其他流程
+			1.   searchQuery.setVcsCorpId(null);//这个有问题吗??? 强制修改了入参,逻辑漏洞... 。。 不要为了添加分支标识，而影响了真正的原来流程
+
+			____真理抽象---
+
+			2.太多标识...
+    17.复制对象：
+    		1.为了降级保存现场
+    		2.为了多线程并发共享，因为有set操作
+    		
+//TODO:对多算法进行接哦古获取和.........这里判断featureList size或者直接取。如果大于1则,说明是多算法是是实现，启线程去做调用。判断1.安全 2.如何复用已有使其对当前影响最小
+            //组合多个异步任务如何写？单个向量的抠图和这个向量的搜索。这个能力写在哪里？抠图中重载 ，提供扩展异步的能力 对于list 并行，放到同一个filter判断是否加这个函数
+
+
+
+     18.threadlocal
+     	1.最简单的，一个类中，不同方法间，使用成员，使用threadlocal 安全  
+     	2.跨类  context  
+     	3.跨线程
+
+
+
+
+debug技巧  
+debug调试多线程技巧 
+
+
+
+
+
+	========================
+	1.模拟正确的返回值 -- 召回 --> 真正搜索引擎 vs 图搜逻辑对比
+	2.查看threadlocal，如何处理 ，是否在多线程间起作用
+
+
+	多线程编程 ：多模态召回 搜索
+	整理：
+		1.封装 - 模块化 - 设计模式 - 微服务
+		2.继承 - 抽象类 - 初始化 - spring下单例 - jvm对象
+		3.状态编程 - 多线程 - threadlocal - 如何debug - 区别于状态机编程
+			1.threadlocal跨方法 - 正常
+			2.threadlocal跨类 - 正常 - 只要是一个线程，通过context就可以获取到 。本质是线程，和类无关，这里只不过是将公有的抽到的独立类
+			3.thea.......跨线程  -- 
+			    *****子线程不用父的数据，子线程 -- 只是新增返回数据到数据信息到父。***********
+				*****那么在子线程中调用context，能将数据塞给父类吗？**********
+				在MultiAlgorithmContextHolder.isFromMultiAlgoSearch()断点查看，
+				虽然这里跨越了多个文件，类，但知道并行查找的时候才出现  --- 多线程 / 主子线程 --- 所以不要慌 
+
+				1.利用线程传递，子类更改会给到父类，虽然这里没有使用到。。
+				2.其他解决方案，抛弃threadlocal,直接使用自定义标识和map维护，脱离线程。全局map  vs theadlocal
+				3.threadlocal使用和类/方法无关，只有当前线程有关，因为内部是要Thread.current..作为依据的
+
+				****threadlocal vs 自己维护全局****
+				1.前者线程封闭，容易解决安全问题；后者需要concurentHashMap其实是需要竞争的。当多个线程竞争时候。。
+						https://blog.csdn.net/NerverSimply/article/details/109012329
+				2.为什么threadlocal的key是threadlocal而不是thread:
+
+
+				3.softRefrence --- remove 前者作用？
+
+				4.// 静态 | 线程threadlocal=thread | 子定义值or map。。。。 
+						1.为什么使用静态：
+						2.根本是thread,static是为了解决其他要素：
+						3.如何传递：
+
+				5.内部类 final 如何处理 ？	
+
+				6.调用方式就像工具类一样 。所以静态方法
+				  生命周期：全局 / 对象 
+				  			     >>> /线程 -threadlocal限定了线程  -- 直接限制了最小范围，所以这里的static只是为了容易访问。使用一块。
+
+
+				  7.处理返回值 / 提前初始化局部 / 提前初始化成员 传递来用值。。。。设计 .....其实他们可以相互转化的。
+
+				//------------真正代码中取舍，子类不使用threadlocal东西，所以没有get...put....。而是直接获取子类返回映射关系来完成 。。。。。，返回
+				的信息更新上下文。。。
+
+				//todo:是否影响到多线程 -- 这里因为并发而丢掉 ，因为这里是子线程了 。。后面在查询的地方第二次 并发 。 切记stream不是并发 。。。
+        //TODO:先将MultiAlgorithmContextHolders数据复制到子线程 。。。。===> 临时
+//        if(MultiAlgorithmContextHolder.isFromMultiAlgoSearch()) { //不稳定，这里可能恰好拿到的主线程作为遍历，所以需要传递
+//            MultiAlgorithmContextHolder.fillAlgo(taskAlgos, content);
+//        }
+
+
+			4.跨线程池
+			5.跨模块 
+			6.源码中this的使用，就像在spring中使用 ，如何传递？
+		4.解决多线程安全
+			1.多线程编程
+			2.beanutils - 对象个数影响 - 参数
+			3.底层spring的原型对象模式 / 底层的threadlocal是如何屏蔽上层的安全问题的？
+		5.3和4结合完成5 上下文编程 如何保存临时状态 - 传递 - 数据结构 vs 对象  
+			1.redis解决全局上下文 缓存 一次请求没必要到这种分布式缓存中 - 配合多线程  imageRecognizeCacheHolder
+			2.
+		6.测试：
+			1.跑起来
+			2.测试数据 运行时异常npe/数组越界..../json字符串模拟.... --- 分支
+			3.尽可能真实数据 数据的影响 / 代码-业务逻辑合理、优化/ 其他解决方案
+			4.异常/日志/性能/重构/整洁
+		7.思考  没有银弹 。解决一方面，触发另一方面
+			1.因为缓存解决了快，但引发了问题 
+			2.因为复用，使用了设计模式，类，判断标识，增加了代码阅读度。 为了复用  怎加判断 值得吗？？？
+
+
+
+
+
+====================2020-12-21===============
+		1.排序那是否和预期输出相同 --ok 问题查看butjiao文件进行整理
+		2.上下文传递线程那里是否可以拿到 子 --ok 直接使用put的方式，而不是
+		4.浅copy vs 深copy --> threadlocal / 有的时候只能使用copy，比如下面要对该对象set操作，同样在这个流程中/ 理解threadlocal比copy减少空间使用 ---退化可以使用
+				1.为什么阿里代码规约要求避免使用 Apache BeanUtils 进行属性的拷贝：性能使用beancopyer:https://segmentfault.com/a/1190000019356477
+				2.目前除了流/序列化其他copy都有可能出现深copy失败，但概率很小 
+					 各个实现：https://houbb.github.io/2019/01/09/java-deep-copy
+					 https://www.cnblogs.com/tison/p/7840647.html
+				3.哪些应该重写clone,实现searilize呢?https://www.cnblogs.com/IcanFixIt/p/8196478.html 
+		3.重构 - 按照重构是否合理。是否需要改名 --- 这里没有
+		4.接口返回是否和预期一样，一定要思考 是否为list vs get0
+		5.上传oss获取路径报错  ---需要配置，这里的 *** 配置文件 @bean
+		6.整体联调是否跑起来，特别是上下文内容
+		7.和第三方联调，协调 配合在哪个环境。。。最后 --- 先保证自己没有问题
+
+//分页 --- 到底哪里分页
+//            return pagingList(searchQuery,list);-
+
+排查问题的时候，没有报错，比如这里的返回别人的摄像头信息 - 流程是否加工 - 核心sql打印，是否预期入参-比如这里的corpId- 不要凭感觉自己写sql核对
+  比如这里的sql底层加了一些默认条件比如multi...!=0 ....等信息造成了迷惑行为。。。所以还是要拿用户参数，打开debug,查看最后的sql，发现没有corpid思考最近修改
+  思考为什么会漏了分支****** 确定走的是哪个分支 。比如走的是属性搜索....
+
+searchObject 前台传递算法类型，后台通过pop -- gateway路由到不同的pod上去。。所以说，用户可以自己选择不同的算法 。 --- 注意，客户可以在vcs切换算法类型来使用
+不同的库进行写入的。。。所以说这里是有一层路由的 。。 同一算法的不同pod间通过k8s进行路由 
+*****可以查下用户的数据是在HOLO数据库里，还是在线上ADB里，确认下结构化数据产出在哪里
+
+说明客户切换过算子，24号前是达摩，24号以后变成了yushiadb；所以用户查询的时候需要指定一个算法，先不设置其他查询条件，盲搜出来数据后，再设置condition进行细化查询，condition的条件都不满足的话，是会没有返回的。
+
+
+
+	==============2020-12-22=====
+		1.添加日志 多算法
+		2.漏提交recognize类
+		3.多算法哪里设置灰度。。。和原来的前后保持一致。。。
+		4.多算法标识，现在是constant中默认是true，灰度发布如何控制，，， / 以及在..imageSearcher中的531行对排序分支的处理，
+		5.访问第三方的时候，new xxx传递对象 vs  threadlocal???-----未
+		6.明确 普通list可以.stream.parallel并行处理  应为stream相当于遍历集合，在集合中submit线程 ，所以这里的list不是公用的。是安全的。
+		  但对于线程中要操作公共的东西，比如去维护某种关系时候，这个容器就是不安全的了。。
+		7.因为接口定义，封装成了list，所以对于flatmap对集合进行融合处理是必要的。
+		8.对于传递给子线程的上下文信息一定要记得release了。。。。否则有问题   子线程自己也的release了。明确有几个地方使用了多线程。。任何有paralle地方都要注意
+			一定要记得finally
+		9.既然你的抠图接口可能返回list,那如何维护list和code关系；当用户拿着你这些结果来搜索的时候，就走不了多算法排序呢？一起上来吗？那么算法和向量关系。。
+		  关系丢失了。。。。。
+		  curl --location --request POST 'localhost:7001/xxxxxxxx/sxxxearch' \
+			--header 'Content-xx: xx/json' \
+			-d '{
+			  "id":"112",
+			  "algoType":"xxx",
+			  "requestId": "xxxx",
+			  "pageNum":"1",
+			  "topNum":"2",
+			  "vcsCorpID":"xxx",
+			  "CamerIdList":[xxxx,888888888888,666666666,2884066583834004484],
+			  "PicContents":"xxx",
+			  "IsvId":232
+			}'   
+
+			调用成功了，可以核对一下下面的内容，是否保存成功了
+			
+
+			1.在新的接口中上传内容获取到osspath 但这个不是原来就已经有了吗。前台获取转为base64，这里有上传一份？ --- 可能不是了 。可能是用户的.
+			2.多算法返回多个向量，前台如何传递这些给我，我要如何解析？他们循环码？那我这里无法维护 算法code和向量关系了。。。。。。  选择一个。。。
+			3.开关 -- 在后面那里判断 不是在上面。 --- 原来的还是要保留
+			4.多算法召回的列表中get0,===> 不同算法 get0 --召回-- 排序(自己) + 混合排序   比如每个算法召回一个大合照，不可能每个都去。。。而是get0之后查
+
+		============测试问题重点=====他们融合在一起========================================
+
+		1.上下文
+			1.是否释放空间
+			2.取hash这种是否映射到对应值
+			3.上下文长链路传递、转化是否会缺失
+		2.返回值 列表和单值
+			1.是否少了层级
+			2.强制类型转换是否报错
+		3.多线程
+
+		4.开发环境不能debug，必须要到测试环境导致 定位问题 -不能debug / 修改数据 / 还需要打包 ....
+
+		5.召回的数据是否符合预期 混合排序
+-----do-------
+		1.先测试调用接口是否返回预期 - 日志
+		2.调用参数，因为流控设置了9所以注意
+		3.别人讲解时，记得截图。。。比如这里的aone合并代码
+		4.自动合并代码的时候如何做到测试环境独占-隔离 
+		5.
+		0.合并代码 - 通过流水线：https://aone.alibaba-inc.com/ec/pipelines/21093
+		1.cdrs调用失败 ，降级流程没走成功  报错：返回的向量长度不对 / cdrs无返回数据如何处理？ 原流程 - 不走多算法搜索。。。跑异常。。。 vs 和当前已有逻辑冲突吗
+		   当前是走原来逻辑，即：塞入corpid的值
+		2.RecognizedTarget 重写tostring(0)
+		3.多算法向量搜索失败,错误信息:java.lang.ClassCastException: com.google.common.collect.Synchronized$SynchronizedListMultimap cannot be cast to java.util.Map ,降级至普通向量搜索
+		4.降级至原流程还是有问题，不能返回正确向量
+		5.打印具体对战信息：普通实现：https://www.codenong.com/1149703/ ==》 log4j实现：直接log.error("",e);
+		==============*** 这里处理有问题，我应该取哪个
+		6. //如果cdrs返回的设备id不为空,则与客户上传deviceId进行交集处理
+                List<String> deviceIds = handleDevice(Lists.newArrayList(searchQuery.getCamerIdList()), deviceIdsByCorpId);
+        7.和用户取设备交集是否合理 ，
+
+
+        8.对于循环中 报错，一定要整体考虑。不要有一次就跑错，来个记录器。
+        9.流程中任一点报错，都要返回开始的checkpoint。。。。。***** 就不会导致这里的降级后，后面流程还按照现有的走。。。而是回到具体的点
+        10.查看多算法抠图失败后，是否可以降级至原抠图 。 ---未测
+           对于.............. , 是搜索场景 ，.......原搜搜 ----未测
+
+        11.对于配置默认的网关地址，专有云怎么弄，在调用oss引擎获取osspath时
+        12.又添加了多算法是否成功来判断分支 --- 这种依赖上下文维护标识可行吗？ 适配器？？？===》 如何复用，他与那种一个标识那种不同，
+           没办法复用，现在，都在一块写着。一个类，一个方法，各种判断 。。。。接口变化 ....如何传递 ？？  如何合理设计。。。。。你看现在无法扩展了
+           从头到底传递标识。。。
+           测试驱动开发---使思路更完善
+        13.你要知道问题再哪里，需要做成什么样子。才知道测试什么 ****
+
+====================
+		1.觉得复杂，是因为没有分而治之，比如这里的算法-融合 / 数据结构- list嵌套 一对多 / 上下文设计 vs 接口更改传递标识 vs 重构 / 业务数据剥离，不要因为
+		   业务数据的复杂性或者多样性混淆上面 / 业务分支 / 场景 / 环境不可达 异构 / 线上稳定性 改造的适度和测试 / 测试是否完全 / 性能是否满足 ...
+		   降级 / checkpoint 
+
+
+		2.如何重构？？ 拆分 - 方法 - 类(调用多个方法如何注入使用呢？？？剥离不出来) ...属性 - 传递  。。。查看对应的指导 - 可读性
+				只有非常稳定，是属性自己的方法才能下沉到ddd的对象上面去。。不是所有的方法都放上去 
+
+		3.算法和数据结构
+
+
+		1.结构传递是否正确
+		2.召回排序是否符合预期 
+
+
+
+		====代码评审后修改  -- 重构
+		1.去掉上下文  耦合了  --- 接口中添加标识 / 传递对象中添加属性 适当评估接口/对象对其影响。影响性分析。。。对比是否可以钝化成当前对象的属性。
+			当新加功能的时候，一定要从全局出发，是修改接口方法/传输对象 vs 上下文.....
+		2.将流控/灰度开关抽象到类  --->>> 类似于校验器 
+			1.使用到spring的东西 - 工具类使用spirng上下文 获取 静态调用 
+			2.流控 -- 统计 ... <---不应该是工具类 。。。。 因为有本地化 
+			3.抽象到模块
+
+			遇到的问题：1.同样的规则，可能传递到不同的地方，写法不同。如何抽象 === 抽的不合理 -
+		3.摄像头逻辑稳定，所以抽象到对应的模块中
+			1.抽象到方法 - 挪到类中 - 挪到模块中 重构保证一点一点来 
+			2.抽象接口方法 入参时，思考模块之间层级不要相互依赖同级 。 比如这里cdrs其实是设备的服务的实现。
+				//如果cdrs返回的设备id为空，则执行原逻辑
+	            在流程中将脏数据处理了
+
+	            //TODO:这里其实是对原逻辑 = 原流程 = 默认流程 = 业务流程 
+	        功能，写在哪里 。
+
+	        每写完一个方法，隔离。完成自己的事情，业务逻辑放到自己的业务中 。 
+	        防御式编程注意抛出不要和调用者耦合。因为被调者可能来自其他 。 所以可以防御，但要剥离 。。。 ===> 调用之前判断 。 那如何做到不相信外来者呢？
+
+	    4.判断多线程的使用 如果是单个就不走多线程  结论：如果只有一个，则是main，否则两个即以上就走多线程. 如果耗时较小，还是都走main，即使是多线程下 
+	    	1.普通的多线程提交，是否走fork-join 
+	    		Lists.newArrayList("1","3","4").stream().forEach(ele -> System.out.println(ele+Thread.currentThread()));
+		        Lists.newArrayList("1","2").stream().parallel().forEach(ele ->{
+		            try {
+		                Thread.sleep(10000) ;
+		            } catch (InterruptedException e) {
+		                e.printStackTrace();
+		            }
+		            System.out.println(ele+Thread.currentThread());});
+		    2.多线程下超时等待问题  线程池耗尽 vs db耗尽
+		    3.使用threadlocal和 copy 对象，前者需要将内容从主线程塞到新线程中   都是空间换时间 
+			    ThreadLocal<ImageSearchQuery> targetSearchQuery = ThreadLocal.withInitial(() -> searchQuery);
+		        ///判断...是否走多线程 . ..
+		        List<List> collect = structures.stream().parallel().map(ele -> {
+
+		            List ret = Lists.newArrayList();
+		            //put 上面值
+		            targetSearchQuery.get().setFeature(Arrays.toString(ele.getFeatureData()));
+
+
+
+	    5.copy对象的分支和旧分支就不是同一个分支 。 所以任何修改不起作用。原流程不影响。
+
+        6.下沉map关系到对象   ventor / 算法  <--- 业务场景的发展足以让这里修改，。。其实这里都没有新加而是原来一直就有的。所以一定要清晰已有
+           的逻辑  ，不要瞎写   ===还是对的了RecognizedTarget vs Target 后者是有哪些东西的 ==> 不对还是在每个target上连接---> 向上归集到算法-厂商
+
+           所以说修改接口一定要注意：合理性。 要对业务有认识。这里都有了，非的使用上下文，麻烦。。。。不要认为加字段周边会影响很大。其实这里作为值对象，
+           其实不要和前台映射就足以。。。。内部使用 -- 但必须是合理的 。。。。。 现在其实是将每个关系从最底层上面，从下网上推关系 
+
+           这里还是有问题  抠图对象 - vendor - algo - list引用 <---其实根源就是因为多算法抠图  vs  返回对象 - .... 需要对每个召回对象添加这些东西 
+             客户只需要知道 --- 
+
+           ===>1.还是的在 RecognizedTarget 上面添加  不对，这是抠图的入参，返回应该是target上面加
+               2. target是最后才有的，用到的。那么前面流程那么长，如何保留信息一直到能够给target赋值的时候，肯定是在具体抠图的时候
+                  不用传递那么长，从图搜到抠图....而是断开了。不代表不保存
+                  这里的target有两层含义：1.原始人机菲联入库   2.作为抠图返回，用到多算法的几个以及recall数据 - 组合模式 
+               3.ventor - algo - 向量还得维护只不过不跨越了。
+         7.holder  传递太多标识说明太耦合了。。。。不过思考当写holer的时候对上下文 ， threadlocal , bimap , hash取值...思考
+            我想用来target直接记录，但其实最后才有target生成，一直以来还是需要上面的将关系维护，最后才能塞进去
+         8.stream 
+         		stream中使用return 代替continue  或者使用filter
+         		map /  peek / foreach
+         9.对于getCorppedId 添加缓存命中 稳定的。。。 ****
+         10.fore / if是抽离代码的信号
+         11.比如稳定，可复用的抽象到类中比如这里的oss获取path
+         	2.抽象算法抠图接口，因为耦合性较高，所以将返回对象设置了listObject 以便不同逻辑对值进行处理。
+         12.传递这么紧密，用什么上下文，直接修改接口map 传递 --- 无锁编程 都是局部向量
+
+
+         =======================================
+         1.将上下文 --> map 因为这里需要的关系是紧挨着的，所以说可以直接返回map,实现无锁编程 。如果链路远，需要的传递映射远，则需要上下文 。比如某个节点，某个时候才用 。
+         2.不同的实现，体现了不同思路。就像这里，不断迭代
+         3.将方法提取到对应类中。。。。实现复用 。比如这里的抠图
+         4.添加guava缓存 进来访问的时候  vs 定时楼去数据刷新到本地表
+         5.思考循环的放置位置  结合这里的缓存，定义存储结构 
+         6.缓存调用的方法接口参数和入参不同，这里借助了threadlocal进行暂存 详见：DefaultRecognize 108
+         7.日志和异常抛哪些内容区分开，前者详细，后者简明
+         8.异常是该抛还是捕获呢 还是如果weinull 返回个值  。。其实就是不重要的。。。可以为null，可以忽略的。详见：DefaultRecognize - 137
+         9.code的类型  是string vs long
+         10.返回map的好处 处理上下文 高并发之前都不需要处理 。 返回就是天然上下文 。 无锁编程 
+         11.并发放置位置  比如MutiAlgo...中的81行
+         12.直接在网页上进行类的删除 
+         13.ThreadContextUtil.appendContext2CurrentThread();
+         14.异常的日志LOG.error("multiRecognize failed , degrade common Recognize ",e); ，正常的要有占位符
+
+         15.通过返回的抠图数量判断是否执行多算法排序  ， 如果数量只有一个，那么就走老逻辑  。。不走多算法排序等 
+         16.到处传递标识 ，就是腐化的现象
+         17.重构 - 先挪到方法 - 在挪到类 - 一点一点来
+         18.T和target区别， 写T说明代码无需向上转型 当调用类初始化还是....已经将这个绑定了，所以很有用
+
+         *****
+         19.通过泛型来灵活，比如这里的T 代表了body/face ..... 通过构造初始化了
+         20，写在一个类中，方法中不要考虑安全...wenti 
+
+          ===============
+         1.adb long转date
+
+         ==============
+
+         =====最终调试=====
+         1.重构之后进行测试 启动联调 
+         2.算法unit测试
+         3.oss 获取，别人的jar包写法及如何...
+         4.是否可以重构，利用重构知识图。。。因为这里的调用别扭。。。。 其实多算法和现在图搜抠图是同一层级的。--保证层级/块性/味道
+         5.//TODO:这里的标记 -重构
+
+                            sortType.set(SortType.MULTI_SORT);
+         6.引用传递这种方式能否生效    
+         7.从大里思考，知道流程；具体到细节，一定要明确入参，出参 - 特别是在测试的时候，每个细节是重要的。； 再思考如何合理组织代码 
+         8.            
+
+
+=====================
+		1.无论怎样都应该有召回的数据  == debug模式 为什么现在召不回数据呢？
+		2.对照代码和日志 查看是否。一定要注意原方法进行了tostring ,所以日志输出和预期不符 
+		3.应该自己画图，前期，否则容易串掉
+		4.降级之后入参是否满足原接口参数 ....
+		5.一定要根据数据根源，数据库进行验证 。。*****必须配合 明确为什么返回这些数据 。。规整逻辑。比如limit 2 / 一定要一个一个要素对应起来。不要凭空。
+		  特别是sql默认逻辑，所以整理查询脚本进行套用是必要的。
+		6.各种泛型，导致接口调用时强转 vs 泛型的灵活性和公共抽取特性
+		7.现在唯一的问题是:structure返回的数据像是/9j//
+		8.优雅的打印集合对应的展开日志  <--- 来源于对业务:问题可能点的提炼
+		9.代码 - 日志 - 数据库 召回sql 结合来看 。一定要结合预期、日志、分析为什么代码会这么执行，结果会这样。
+		10.走的分支
+		11.除了性能问题具有不稳定外，其他情况下，原因只有一个，所以要排查到
+		12.一定要注意/过滤掉进来的数据，比如虽然集合不为空，但集合中元素有的是空，这种可能再遍历时报错。*** 前面校验/进来校验 / 独立程度 
+		13.输出预期，如果结果为空呢？入参出参前都要校验，特别是调用.xxx方法时 。 拆开之后就能感受到，前面入参校验和方法内部校验不冲突，各自为
+		   自己服务，前面校验是流程性。后面校验是方法性 。 所以看两者的亲密度。如果提供单独调用，则需要两头都校验 。
+		   或许允许出参为空呢/对吧。。。所以说...出参不要限制。当作为单独的方法时，需要内部校验了***************
+		14.if true 抛异常 / ifxxx ...都要明确，如果不满足可以过滤掉，则允许if true ....这种，否则明确不满足该抛异常还是....
+		15.日志要详细，异常要简明
+		16.一直debug到源码
+		17.启动debug - @test debug 
+
+ ==================
+ 		1.重构
+ 		2.上下文和线程设计
+ 		3.算法数据结构 比如如何维护code和向量....值 、多算法融合中的排序 vs 
+ 		4.查看当前项目中对流程优化，使用redis暂存信息.....todo.
+ 		5.调试oss path ,查看了别人的源码 ， 学习中 .... 以及封装到底应该配置些什么 
+ 		6.offset记录
+ String storageGatewayHost = MapUtils.getString(this.picCacheConfigs, "gatewayHost", "vcs-storagengine-gateway.vcs:8080");
+        int clientCountPerServer = MapUtils.getIntValue(this.picCacheConfigs, "clientCountPerServer", 5);
+ String valueFromEnv = SystemUtil.getEnv("objectStorageService_type
+
+ StorageMonitorBean
+
+ 别人封装的jar包： <=== 从没有文档认识别人写的代码
+ 		1.debug到源码
+ 		2.jar包本身就是一个项目，也有自己的spring,两个spring如何融合呢?
+ 		3.StorageMonitorBean
+ 		4.getClientInfoHashed
+ 		getClientInfoByServerInfo
+ 		public abstract class StorageBeanConfig 
+ 		@EnableConfigurationProperties({RedisProperties.class})
+public class ClientStorageBeanConfig extends StorageBeanConfig {
+} 初始化这个的时候，初始化了父类中的默认信息
+
+  private static DefaultStorageClient getDefaultStorageClient() {
+        if (instance == null) {
+            Class var0 = DefaultStorageClient.class;
+            synchronized(DefaultStorageClient.class) {
+
+            为社么要用锁？？？
+
+		5.redis这里的redismanager是如何处理的，能获取到吗？ --- 本地调用 + redis更新 都做了哪些事情
+		6.一路上有缓存的处理，那么如何关联生成的url地址和上传的对象关系呢？如何保证？？？？ 没有形成map呀
+		7.到底访问的远程地址是哪个？
+		8.如何加入自己的配置信息呢？
+		9.TraceModel
+		10.RedisKeyUtil  -- getClientInfoHashed 取hash问题
+		11.动态从服务器拉取信息--- 判断可用不可用 。动态 相当于注册
+		12.他这里的redis如何用?
+		13.直接注入 - spring会加载，对于这种通过init...则需要该类加载，此时spring 还没有加载到该类 。
+		14.整理jar oss 源码图 结构及注意点
+
+		=====封装jar包===类似于框架
+
+		1.接口的二重修改 1.为了不添加字段导致使用threadlocal 2.对象嵌套list对象,是否合理..父子关系 ...交叉了抠图和搜索
+		2.使用对象维护map关系 vs map结构来维护 vs 调用方法返回vs成员变量 - 一个方法处理两件事,一个返回list信息,一个返回map关系 都撞到map中
+			成员是为了避免再不同  1.多个线程公用  2.多个方法公用   如何取舍 ???  避免了在不同的时间点\处理  防止歧义性
+
+		2.防腐 - 转化 统一 
+			//(List) recallList.stream().flatMap(ele ->  ele.stream()).collect(Collectors.toList());
+
+		3.log.info的输出会展开map /list吗? map<xx,list>这里的list是引用呀.会过大吗???不会   值传递  vs 引用传递 
+
+		4.为了复用,传递了threadlocal 类型的标识 .在整个方法中,因为一个方法中有多个if....elese ,又包含了搜索,排序...if判断 ..层次分不清楚  
+
+		5.强转 -- 到底什么时候要强转; list<xxx>这种如何强转
+
+		6.引用的数据如果不set回去,处理了也是白处理 .... 方法内部的可以实现...要重构吗??传递是含糊的颚 ...跨类就一定起不到作用了.
+			这种不使用,默认处理入参信息,是需要  重构 的   vs 流是一次性的  vs ....如何合理的...  这种处理完之后是否自动归位置???需要set....吗?
+
+
+		7.是使用平铺 vs 提前准备好容器呢?
+
+			tructureRecall.values().stream()
+                .flatMap(ele -> ele.stream())
+                .stream().collect(Collectors.groupingBy(Target::getAlgorithmVendor));
+
+                在JDK中，获取线程安全的List，我们可以使用Collections.synchronizedList(List<T> list)方式，也可以使用CopyOnWriteArrayList类。在真实环境中，使用它们可以根据我们的业务需要，在插入操作远远超过读取时，建议使用第一种方式，这是因为CopyOnWriteArrayList在插入的过程中会创建新的数组，这样在数据量特别大的情况下，对内存的消耗是很大的。当然，如果是读取操作远远大于插入时，第二种方式肯定更占优势，毕竟读取操作完全不需要加锁。
+
+         8.集合和单个对象之间乱,,,,,if和abstract之间乱  ,,,导致 ....乱 方法乱 ,,,类大
+         9.感觉写的代码结构需要大量注释,因为嵌套很深,维护的东西多,导致不单一 .前后约束太多 ====> 如何重构
+         10.一次循环做许多事情.而不是拆成两个循环
+         11.TODO:是否塞回去
+         12.一定要找到报错的地方,比如jeckins
+
+         ================
+         1.造2207的corp ....数据 yushi的实现多厂商 2299 多算法 
+         2.重启compute接口
+         3.接口联调是为了和别人对入参出参,自己可以mock数据对链路不通的进行屏蔽处理.....本地debug进行调试*****************不要过度依赖外界*********
+           注意联调是很小的一点点哦哦哦哦哦  .所以你要知道屏蔽什么,输入什么,预期什么.... 隔离复杂度 . ---降级到main <--测试技巧 <---块越大,则测试的东西越多
+           <---- 刚开始自己未对这种大范围的进行mock测试,其实这个是必须的e.......不要等接口调通.... 启动的时候关闭debug,以debug启动,起来后开启debug
+           当无法剥离的额,时候,启动searcherapplicaiton 进行searcher验证
+
+           输出的名字都是=============>path========>[null, null, null]
+         4.remoteImageRecognizer为什么不用spring管理  而是proxy....定时轮询查看状态??? 测试的时候不能注入 .各种注册文件的引入...
+         5.抠图测完了 ---> 搜搜 -- 搜索场景,抠图多算法正常,回到搜索的时候异常,此时回滚到重新搜索,那么抠图还走 直接get(0) 不管多个了.
+         6.刚开始没有完全剥离清楚 抠图和图搜,没有设计流程 异常和案例 测试i要点 ....<--- 开发过程中,逐渐完善
+         7.代码的复杂性是因为一直从头到尾维护映射 ,而没有选择调用获取.........************** 考虑降级******** 容错....
+            代码都在一个类中,一个大方法中.... 没有面向对象编程
+         8.对于大型,复杂的,思路混乱,调整混乱,全局观不行 ===== 需要提前冷静分析
+         9.debug ...重要性,否则乱
+         10.提交之前进行compare思考修改了哪些,影响是什么  <--- 善于借助工具 每个try..catch .每个嵌套都有他自己的含义
+
+         11.cdrstest multialgosorttest
+         12.JSON.toJSONString(来打印日志
+         13.直接delete pod 自动拉起，自动拉新代码 打包后的 ，但是配置没更新
+
+         7.每一步都考虑异常,降级 checkpoint累吗?
+         8.map中put key为null
+         9.排除包中的其他包含
+
+         剩余问题
+         	1.oss访问报错
+         	2.guava源码
+         当数据结构复杂时，封装成对象
+
+
+ group by 进行分组 
+
+
+ 1.抠图返回的结果是否符合预期 - 调用抠图接口
+ 2
+
+		====================================
+
+
+
+
+netty:
+	0.先看脑图
+	1.看视频 找问题  -- 各种模式解决方案源自生活  -- 网络编程(直播....快速) -- 吸收转换
+		1.reactor 中复用线程 判断是否io <-- 每个线程  多个连接一个线程 vs 时间片 cpu 线程池 (多个客户使用一个线程,连接服务器) vs spring中dispatcher
+			解决同一个问题:为了更多连接到服务器   不同的维度.
+			selector会是while(true)这种来完成监听吗  --- 监听器模式是如何实现的spring ? 事件 = 方法调用触发吗?
+		2.io = 网络io- + 磁盘io-磁盘/数据库  nio同样可以写文件...所以只是包装形式不同而已
+		3.bio 问题及解决方案  阻塞= hung  vs 事件 前者无为损耗
+		4.nio selector + channle + buffer 面向缓冲/块 ---unsafe调用对外内存??溢出 vs  while read = inputstream..... != -1 这个不是buffer吗?
+			channle和buffer都是双向的. flip转换方向 -- 对应底层操作系统双向
+			buffer底层也是数组,类似于new byte[] ,多了许多属性封装成了类 capacity - limit - position - mark 能力更强 --对应api
+			一个线程一个selector
+		5.源码是如何做到不阻塞的
+	2.看源码 解问题
+		1.源码依赖spring vs 不依赖spring 如何解决 . 不依赖如何管理对象,依赖了又如何和项目中的spring进行融合
+		2.
+	3.总结模式 ,解决方案
+
+	
+
+直播
+	技术 - flink?
+
+
+clickhouse
+
+
+
+unsafe类
+
+0.不理解	 没有站在全局考虑导致代码设计不合理 ，类结构/业务流程  
+    	1.为什么有我们自己维护映射 传递  		2.为什么要多算法 为什么从根本上解决  再判断，再处理   
+		3.流程进行debug,每个细节，塞的值，重复的值 < - 因源代码没有复用造成 ，只有清晰了这些才能知道流程上如何优化，复用数据....****
+	
+1.日志打印在后面还是前面 调用 比如httpclient 就是后面  但是如果抛错，参数就没有了。。不影响吗？ + 耗时
+	使用json.tostring来解析list信息进行打印
+	日志的简明之意：if(Objects.isNull(picContent)){
+            throw new RuntimeException("get ossPath failed, picContent is null");
+        }
+     slf4j会自动将这些东西比如list/map转化输出，无需自己遍历处理
+
+2.一定要深入业务才能知道哪些值如何取。能否转化，是否需要校验，哪些是用户可能上传的，哪些是必传的 ,
+		分支合理性比如这里的多算法才是抠图，所以分支是从搜索开始 vs 抠图
+	if (target.getOriginalDataBytes() == null && StringUtils.isNotBlank(target.getDataBase64())) {
+                target.setOriginalDataBytes(Base64.getDecoder().decode(target.getDataBase64()));
+            } <--- 只考虑了有http分支，没有考虑到用户直接上传的问题
+   新需求会涉及到哪些流程中的哪些地方会改?  --->
+   		 1.通过idea查看调用位置  
+  		 2.引申，比如这里的url,base64content 这些引申到哪里，如何改。
+  		 3.代码应该复用，放到统一位置，而不是散落
+
+   	if (StringUtils.isEmpty(picture) && StringUtils.isNotBlank(picUrl)) {
+                try {
+
+                    byte[] urlContent = HttpURLFactory.getResourceContentFromUrl(picUrl);
+                    target.setOriginalDataBytes(urlContent);
+
+                    String base64Content = Base64.getEncoder().encodeToString(urlContent);
+                    target.setDataBase64(base64Content);
+                } catch (Throwable e) {
+                    throw new SearcherException(SearcherErrorCode.GET_IMAGE_CONTENT_BY_URL_FAILED.getErrorCode(), e.getMessage(), e);
+                }
+            }
+
+            if (target.getOriginalDataBytes() == null && StringUtils.isNotBlank(target.getDataBase64())) {
+                target.setOriginalDataBytes(Base64.getDecoder().decode(target.getDataBase64()));
+            }
+
+ 3.数据结构要有简明之意：
+ 	 Map<String/*cropAlgorithmCode*/, List<T>/*recall result*/>
+ 	 。。。。。。。。。。。。。。。。。code2algoMap 
+ 4.以什么形式维护映射呢？
+ 5.排包 --- 避免升级的时候冲突
+ 	 <dependency>
+            <groupId>com.aldsfsdiyun.vcs.sdfds</groupId>
+            <artifactId>vcs-sdfsd-sdk</artifactId>
+            <version>3.5.3-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.kafka</groupId>
+                    <artifactId>kafka-clients</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.alibaba</groupId>
+                    <artifactId>fastjson</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.netty</groupId>
+                    <artifactId>netty-all</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.alibaba</groupId>
+                    <artifactId>druid-spring-boot-starter</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>kubernetes-client</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+
+ 	6.beancoper思考 
+ 		1.是否可以避免深copy失败  不能完全 除了序列化
+ 		2.copy速度对比
+ 		package com.aliyun.citybrain.vcs.dataengine.common.util;
+
+import org.springframework.cglib.beans.BeanCopier;
+import org.springframework.cglib.core.Converter;
+
+import java.util.Objects;
+
+
+public final class BeanCopyUtils {
+
+    private BeanCopyUtils() {}
+
+    public static <SOURCE,TARGET> TARGET copy(SOURCE source , TARGET target){
+        return copy(source,target,null);
+    }
+
+    public static <SOURCE,TARGET> TARGET copy(SOURCE source , TARGET target , Converter converter){
+        if(Objects.isNull(source) || Objects.isNull(target)){
+            return null;
+        }
+        BeanCopier.create(source.getClass(),target.getClass(),Objects.isNull(converter)?false:true).copy(source,target,converter);
+        return target;
+    }
+}
+	7.数据结构和算法 <--如何设计传递关系 map/对象/....
+		1.MultiAgoWeaveSort
+
+	8.MapUtils
+
+	9.展开map 而不是ele
+		Map<String, List<T>> multiCropAlgoSearchResult = doMultiCropAlgoSearchByFeature(searchQuery, recognizeTargetList);
+
+        // 执行多算法融合排序，这里一定都是同厂商的，所以只有同厂商的融合排序
+        multiCropAlgoSearchResult.forEach((cropAlgorithmCode, recallResult) -> {
+
+            // 这里简单地进行融合组装，最后的 processResult 流程，会进行去重和重新排序的动作
+            if (CollectionUtils.isNotEmpty(recallResult)) {
+                recallResult.get(0).setCropAlgorithmCode(cropAlgorithmCode);
+                result.addAll(recallResult);
+            }
+        });
+
+克隆：
+        xx clonedSearchQuery = JSON.parseObject(JSON.toJSONString(sexxarchQuery), xxxdd.class);
+            clonedSearchQuery.setFeature(JSON.toJSONString(ssdddss.getFeatureData())); //直接将byte[]转化为string? 这里的byte数组和[12],[34]...这些有区别吗？这里可是....-0.93434343这种类型
+            clonedSearchQuery.setPicContents(null);
+
+      10.处理过程中将外部的list/map进行填充处理 vs 返回处理值由总流程处理？
+      	多线程中，后续的流程需要map信息时，注意，可能都是空因为当时还没来得及塞入，所以不生效 ***
+      	Map<String,List> structureRecall = Maps.newConcurrentMap();
+        Map<String,String> algoDone = Maps.newConcurrentMap();
+        structures.stream().parallel().filter(ele -> !StringUtils.equalsIgnoreCase(algoDone.get(ele.getRecognizeAlgorithmCode()),"1"))
+                .forEach(ele -> {
+
+                    ImageSearchQuery targetQuery = new ImageSearchQuery();
+                    BeanCopyUtils.copy(searchQuery, targetQuery);
+                    List ret = Lists.newArrayList();
+                    targetQuery.setFeature(Arrays.toString(ele.getFeatureData()));
+
+                    try {d
+                        ret = doSesdfsdarchBdfdsyFeasdfsture(targetQuery);
+                        if(CollectionUtils.isEmpty(ret)){
+                            LOG.error("targetQuery = [{}], ret = null",targetQuery);
+                            throw new RuntimeException("targetQuery ret is null");
+                        }
+                        structureRecall.put(ele.getRecognizeAlgorithmCode()+","+ele.getRecognizeVendor(),ret);
+                        //默认取算法一个抠图结果进行召回,“1”代表该算法已处理
+                        algoDone.put(ele.getRecognizeAlgorithmCode(),"1");
+
+                        LOG.info("structure = [{}], ret = [{}]", ele.getFeatureData() , ret);
+                    } catch (SearchException e) {
+                        LOG.error("doMultiSearchByFeature failed ", e);
+                    }
+        });
+
+        if(structureRecall.size() == 0){
+            throw new RuntimeException("doMultiSearchByFeature failed,structureRecall size is empty");
+        }
+
+        11.泛型的使用 
+        	1.？ extends xxx   2.xxx这种是否会向上转型呢？不会吧    3.其他泛型是否合理？   （abd）xxx这种强转是否合理？
+        12.List<Map<String, String>  <-- dto
+
+
+一行一行查看别人提交，筛选有价值的东西
+		13.
+		13.int batchIndex = deviceIds.size() % LIST_TASK_ABILITY == 0 ?
+            deviceIds.size() / LIST_TASK_ABILITY :
+            (deviceIds.size() / LIST_TASK_ABILITY + 1);
+        14.循环中异常的处理 降级的处理 checkpoint值的保存copy
+        15.需要去查httpclient如果值是比较固定的，注意使用guava的缓存，再初始化初始化掉，调用的无感知 *** CacheLoader
+        16.防御式校验 vs 前面校验 vs 进去之后校验？
+        17.redis断链问题
+        		1.RedisLettuceConfig 类
+        				GenericObjectPool<StatefulRedisConnection
+        		2.RedisManager redis这里的同步 vs  异步
+        18.缓存中空值处理 
+        19.调用对象方法输出时，注意首先判断 。。。
+        20.重构代码到独立的方法 - 独立的类 ，当到了类那么就有了独立的能力 *** 每次抽取都要思考是否有必要放到独立的地方 --》 DefaultStorage
+        21；log.debug("knnGalleryResult1={}", JSON.toJSONString(knnGalleryResult1));
+        22.流控 - 代码 - xx.endwith("9")
+        23.我再测试上的跟进。mock哪些数据，提前测试好。。。一定要再联调前完成，联调只是对接口联通性校验 。提前对齐所有
+        24.一定要思考你改的是那一层的数据
+        	 @Override
+    public List doSearchByFeature(ImageSearchQuery searchQuery) throws SearchException {
+        TargetListParam listParam = prepareParam(searchQuery);
+        listParam.setBodyQuality(Float.valueOf(quality)); //放进去
+        //TODO:判断是否为数组 ，进行多线程 处理 调用 list,,并返回处理
+        if(StringUtils.split(listParam.getTzxl(),",").length > 1){ //说明是多算法搜索
+            //调用父类处理了？
+            TargetListParam targetListParam = new TargetListParam();
+//            BeanCopyUtils.copy(listParam,targetListParam);//保留原始的
+            //传递方法都到父类 funciton
+//            this.getTypeService();  通过这种方式将属性上传至父类 ---- 通过当前泛型 <body>获取
+//            multiFeatureRecall(this);
+            return null;
+        }else{
+            try {
+                return bodyService.listBodyByTzxl(listParam);
+            } catch (Exception e) {
+                LOG.error("doSearchByFeature error ", e);
+                throw new SearchException("List body from postgres by feature error,msg=> "+ e.getClass().getName() +" , "+ e.getMessage(),e);
+            }
+        }
+    }
+
+
+recognize梳理  -- 从property -- 同一个类的不同名称梳理 rjfl
+	1. @Bean("faceRecognizerProperties")
+    @ConfigurationProperties(prefix = "vcs.xx.face.xx.remote")
+    @Primary
+    public RemoteImageRecognizerProperties faceRecognizerProperties() {
+        return new RemoteImageRecognizerProperties();
+    }
+
+
+    2.@Bean("bodyRecognizer")
+    @ConditionalOnProperty(name = {Constants.xx}, havingValue = "true")
+    public ImageRecognizer bodyRecognizerV2(@Qualifier("xx")xx properties) {
+
+        LOG.info("Creating Body Recognizer,version=v2,featureUrl={},structureUrl={}", properties.getFeatureUrl(), properties.getStructureUrl());
+        return xxxer(properties);
+    }
+
+ 3.@Autowired
+    @Qualifier("bodyRecognizer")
+    private ImsdsagdfdfdeRecognizer bodddyImaddgeRecognizer;
+
+    @Autowired
+    @Qualifier("faceRecognizer")
+    private ImassgesssdfRecosdfdgnizer faddceImaddgeRecognizer;
+
+
+    ????=====> 为什么不是传入参数 rjfl 来给后端，后端进行自处理呢？而是调用方实例不同的....
+
+    switch (recognizedTarget.getAlgoType()) {
+                case FACE:
+                    model = "face";
+                    break;
+                case BODY:
+                    model = "body";
+                    break;
+                case MOTOR:
+                    model = "motor";
+                    break;
+                case NON_MOTOR:
+                    model = "nonMotor";
+                    break;
+            }上面如果说路由到不同的抠图服务器，那么这里是做什么的？
+
+
+    使用上下文暂存数据：
+    		 public void putRecognizeResultIntoCache(List<? extends Target> targetList) {
+
+        try {
+
+            if (CollectionUtils.isEmpty(targetList)) {
+                return;
+            }
+
+            String traceId = MDC.get(Constants.TRACE_ID);
+
+            threadPoolExecutor.submit(() -> {
+
+                try {
+                    MDC.put(Constants.TRACE_ID, traceId);
+
+                    for (Target target : targetList) {
+                        Float[] featureData = target.getFeatureData();
+
+                        String featureMd5 = getFormattedFeatureMd5(featureData);
+                        特征向量做key，完整值做value <---- 缓存的使用 
+                        1.为什么使用md5,为什么做标准化处理
+                        2.取hash有啥问题。hash是本地。没有重写的话就是位置 ....不同的地方不同。
+                        3. JSON.parseObject(targetFromRedis.toString(), Body.class);将json string转为对象
+
+	                        遍历 feature数组，对每个元素做精度标准化后，按照原顺序 add到一个全新的数组中，
+	                    4.String FLOAT_FORMAT_PATTERN = "%.6f";  <--- 小数点后几位  https://blog.csdn.net/lonely_fireworks/article/details/7962171
+        					String format = String.format(FLOAT_FORMAT_PATTERN, 2.333f);
+        				5.如何取key 合理，这里取特征会不会太大？
+			     * <p>
+			     * 然后对全新的精度标准化后的数组取json字符串，对 json字符串做 MD5消息摘要后返回
+			     * <p>
+			     * 该方法调用不会改变 feature 的原始值
+
+                        String cacheKey = getImageRecResultRedisKey(featureMd5);
+
+                        searcherRedisManager.set(cacheKey, JSON.toJSONString(target), REDIS_CACHE_TIMEOUT_MINUTES * 60 * 1000);<--- 这里要取json，因为都到远程了。都不是在当前服务器，所以直接存入引用共有问题，相当于共有数据库了
+
+
+                        log.info("put into imageRecognizeCache, featureMd5={}, cacheKey={}", featureMd5, cacheKey);
+                    }
+                } catch (Throwable e) {
+                    log.error("putRecognizeResultIntoCache error", e);
+                } finally {
+                    MDC.remove(Constants.TRACE_ID);
+                }
+            });
+
+        } catch (Throwable e) {
+            log.info("putRecognizeResultIntoCache error", e);
+        }
+    }
+
+
+查看截图log ---> 代码和sh结合起来处理。。clean日志....
+
