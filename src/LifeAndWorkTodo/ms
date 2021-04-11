@@ -1,7 +1,13 @@
+人是怎么变强的？https://www.zhihu.com/question/267653585/answer/1325873287
+
 高级常见面试题：https://blog.csdn.net/Butterfly_resting/article/details/89637697
              https://blog.csdn.net/ThinkWon/article/details/104397299
 	     如何熟悉一个系统？  https://zhuanlan.zhihu.com/p/343707634
-
+             换了工作，如何快速融入一个新团队？  https://www.zhihu.com/question/20186023/answer/30848836
+	     如何写好业务代码？:https://www.zhihu.com/question/60761181/answer/1737592739
+	     23种经典设计模式的原理、背后的思想、应用场景:https://zhuanlan.zhihu.com/p/345126462
+	     30张图解： TCP 重传、滑动窗口、流量控制、拥塞控制发愁: https://zhuanlan.zhihu.com/p/133307545
+	     Java 类加载器（ClassLoader）的实际使用场景有哪些？https://www.zhihu.com/question/46719811/answer/1739289578
 
 final 回顾 - 面试模拟
     springboot - spring -springmvc - jvm ( 都是对对象的管理 )
@@ -99,6 +105,7 @@ final 回顾 - 面试模拟
             2.数据库优化
 
     4.分库分表
+    	   MYSQL单表数据达2000万性能严重下降，为什么？我：额，不知道..   : https://zhuanlan.zhihu.com/p/355302417
 
 
     6.面试
