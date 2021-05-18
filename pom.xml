@@ -326,7 +326,7 @@
       <dependency>
         <groupId>com.thoughtworks.xstream</groupId>
         <artifactId>xstream</artifactId>
-        <version>1.4.10</version>
+        <version>1.4.17</version>
       </dependency>
 
       <!--mockito机制-->
@@ -503,7 +503,7 @@
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
-            <version>1.4.11.1</version>
+            <version>1.4.17</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/cglib/cglib -->
